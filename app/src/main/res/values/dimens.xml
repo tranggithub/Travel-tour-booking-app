@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_drawable_icon">8dp</dimen>
+    <dimen name="padding_search_bar">20dp</dimen>
+    <dimen name="radius_input">5px</dimen>
+</resources>
