@@ -25,6 +25,8 @@ public class HomeFragment extends Fragment {
     PlaceAdapter placeAdapter;
     ArrayList<Promotion> promotions;
     PromotionAdapter promotionAdapter;
+    ArrayList<News> newss;
+    NewsAdapter newsAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +71,20 @@ public class HomeFragment extends Fragment {
         RecyclerView rvPromotion = view.findViewById(R.id.rv_promotion);
         rvPromotion.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvPromotion.setAdapter(promotionAdapter);
+
+        //News
+        newss = new ArrayList<>();
+        News tempNews = new News(
+                "Khu vui chơi ở Huế",
+                new Date(2023,4,14),
+                "Nhiều thực khách tỏ ra thích thú với bố trí của công viên");
+        newss.add(tempNews);
+
+        newsAdapter = new NewsAdapter(getContext(),newss);
+
+        RecyclerView rvNews = view.findViewById(R.id.rv_new);
+        rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvNews.setAdapter(newsAdapter);
 
         // Inflate the layout for this fragment
         return view;
