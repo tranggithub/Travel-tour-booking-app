@@ -6,4 +6,8 @@
     <dimen name="size_title">25dp</dimen>
     <dimen name="padding_text">2dp</dimen>
     <dimen name="margin_section">8dp</dimen>
+    <dimen name="image_size">180px</dimen>
+    <dimen name="image_size_title">76px</dimen>
+    <dimen name="radius_picture">20px</dimen>
+    <dimen name="margin_left_right_section">12dp</dimen>
 </resources>

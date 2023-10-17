@@ -64,9 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="4"
-                android:padding="@dimen/padding_search_bar"
+                android:paddingTop="@dimen/padding_search_bar"
+                android:paddingBottom="@dimen/padding_search_bar"
                 android:background="@color/background_item"
-                android:layout_margin="@dimen/margin_section"></GridView>
+                android:layout_marginTop="@dimen/margin_section"></GridView>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,7 +87,7 @@
                     android:padding="@dimen/padding_text"
                     android:text="Địa điểm"
                     android:textAllCaps="true"
-
+                    android:layout_marginLeft="@dimen/margin_left_right_section"
                     android:textColor="@color/maincolor"
                     android:textSize="@dimen/size_title"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -101,10 +102,12 @@
                     android:padding="0dp"
                     android:text="Xem tất cả"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/tx_anotherplace" />
+                    app:layout_constraintEnd_toEndOf="@+id/tx_anotherplace"
+                    android:layout_marginLeft="@dimen/margin_left_right_section"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_item">
@@ -128,7 +131,7 @@
                     android:padding="@dimen/padding_text"
                     android:text="Khuyến mãi"
                     android:textAllCaps="true"
-
+                    android:layout_marginLeft="@dimen/margin_left_right_section"
                     android:textColor="@color/maincolor"
                     android:textSize="@dimen/size_title"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -142,6 +145,7 @@
                     android:drawableEnd="@drawable/ic_leftarrow"
                     android:padding="0dp"
                     android:text="Xem tất cả"
+                    android:layout_marginRight="@dimen/margin_left_right_section"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tx_promotion" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -170,7 +174,7 @@
                     android:padding="@dimen/padding_text"
                     android:text="Tin tức"
                     android:textAllCaps="true"
-
+                    android:layout_marginLeft="@dimen/margin_left_right_section"
                     android:textColor="@color/maincolor"
                     android:textSize="@dimen/size_title"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -184,6 +188,7 @@
                     android:drawableEnd="@drawable/ic_leftarrow"
                     android:padding="0dp"
                     android:text="Xem tất cả"
+                    android:layout_marginRight="@dimen/margin_left_right_section"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tx_news" />
             </androidx.constraintlayout.widget.ConstraintLayout>

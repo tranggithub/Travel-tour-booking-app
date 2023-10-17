@@ -6,4 +6,5 @@
     <color name="unselected_pagination">#82BDC1</color>
     <color name="background">#FF000000</color>
     <color name="background_item">#060d28</color>
+    <color name="title_info">#2D99AE</color>
 </resources>
