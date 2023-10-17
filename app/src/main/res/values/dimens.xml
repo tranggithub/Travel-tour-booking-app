@@ -3,4 +3,7 @@
     <dimen name="padding_drawable_icon">8dp</dimen>
     <dimen name="padding_search_bar">20dp</dimen>
     <dimen name="radius_input">5px</dimen>
+    <dimen name="size_title">25dp</dimen>
+    <dimen name="padding_text">2dp</dimen>
+    <dimen name="margin_section">8dp</dimen>
 </resources>
