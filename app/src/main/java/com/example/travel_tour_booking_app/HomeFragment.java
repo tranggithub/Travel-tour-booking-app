@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
@@ -22,6 +23,8 @@ public class HomeFragment extends Fragment {
     SelectionAdapter selectionAdapter;
     ArrayList<Place> places;
     PlaceAdapter placeAdapter;
+    ArrayList<Promotion> promotions;
+    PromotionAdapter promotionAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +53,22 @@ public class HomeFragment extends Fragment {
         RecyclerView rvPlace = view.findViewById(R.id.rv_place);
         rvPlace.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvPlace.setAdapter(placeAdapter);
+
+        //Promotion
+        promotions = new ArrayList<>();
+        Promotion tempPromtion = new Promotion(
+                "Liên kết ngân hàng",
+                R.drawable.img_promotion,
+                new Date(2023,4,14),
+                new Date(2023,5,20),
+                "Liên kết thẻ ngân hàng ngay để nhận giảm giá");
+        promotions.add(tempPromtion);
+
+        promotionAdapter = new PromotionAdapter(getContext(),promotions);
+
+        RecyclerView rvPromotion = view.findViewById(R.id.rv_promotion);
+        rvPromotion.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvPromotion.setAdapter(promotionAdapter);
 
         // Inflate the layout for this fragment
         return view;

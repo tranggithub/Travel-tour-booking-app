@@ -44,7 +44,7 @@
             android:layout_margin="@dimen/padding_search_bar"
             android:hint="Tìm kiếm ngay"
             android:textSize="15dp"
-            android:fontFamily="@font/firasans_light"
+            android:fontFamily="@font/firasans_medium"
             ></EditText>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,12 +151,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_item">
             </androidx.recyclerview.widget.RecyclerView>
 
-
+            // News
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,7 +173,7 @@
                     android:drawablePadding="@dimen/padding_drawable_icon"
                     android:fontFamily="@font/firasans_extrabold"
                     android:padding="@dimen/padding_text"
-                    android:text="Tin tức"
+                    android:text="Tin tức du lịch"
                     android:textAllCaps="true"
                     android:layout_marginLeft="@dimen/margin_left_right_section"
                     android:textColor="@color/maincolor"
@@ -194,6 +195,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_new"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_item">
