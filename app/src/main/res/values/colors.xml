@@ -5,4 +5,5 @@
     <color name="maincolor">#2D99AE</color>
     <color name="unselected_pagination">#82BDC1</color>
     <color name="background">#FF000000</color>
+    <color name="background_item">#060d28</color>
 </resources>
