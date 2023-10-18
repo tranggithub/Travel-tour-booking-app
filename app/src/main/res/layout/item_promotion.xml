@@ -10,7 +10,9 @@
         android:layout_height="100dp"
         android:layout_weight="0.3"
         android:src="@drawable/img_promotion"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:background="@drawable/custom_thumbnail_news_promotion"
+        android:clipToOutline="true"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="100dp"
