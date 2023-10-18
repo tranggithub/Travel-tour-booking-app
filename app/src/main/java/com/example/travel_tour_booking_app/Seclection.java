@@ -4,7 +4,10 @@ public enum Seclection {
     Place("Địa điểm",R.drawable.ic_place),
     Promotion("Khuyến mãi", R.drawable.ic_promotion),
     News("Tin tức",R.drawable.ic_news),
-    Question("Hỗ trợ",R.drawable.ic_question);
+    Question("Hỗ trợ",R.drawable.ic_question),
+    Facebook("Facebook", R.drawable.fb_logo),
+    Google("Google", R.drawable.google_logo),
+    Phone("Số điện thoại", R.drawable.ic_phone);
     String Name;
     int Image;
 
