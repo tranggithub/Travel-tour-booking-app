@@ -7,4 +7,6 @@
     <color name="background">#FF000000</color>
     <color name="background_item">#060d28</color>
     <color name="title_info">#071b37</color>
+    <color name="frame_search">#E3FFFFFF</color>
+    <color name="frame_searchpage">#7DBCFEFE</color>
 </resources>
