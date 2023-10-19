@@ -7,6 +7,7 @@
         <item name="android:statusBarColor">@color/maincolor</item>
         <item name="selectableItemBackground">@color/maincolor</item>
         <item name="selectableItemBackgroundBorderless">@color/maincolor</item>
+        <item name="colorSecondaryContainer">@android:color/transparent</item>
 
     </style>
 

@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,8 +89,22 @@ public class HomeFragment extends Fragment {
         rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvNews.setAdapter(newsAdapter);
 
+        ScrollToTop(view);
         // Inflate the layout for this fragment
         return view;
+
+    }
+
+    public void ScrollToTop(View v)
+    {
+        Button button = v.findViewById(R.id.btn_up);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScrollView scrollView = v.findViewById(R.id.sv_home);
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
 
     }
 }
