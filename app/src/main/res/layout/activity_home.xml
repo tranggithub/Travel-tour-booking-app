@@ -31,5 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu"
+        app:itemTextAppearance="@style/Style_TextView"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
