@@ -61,9 +61,9 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="match_parent"
+                    android:layout_width="247dp"
                     android:layout_height="wrap_content"
-                    android:layout_centralHorizontal="true"
+
                     android:layout_marginLeft="10dp"
                     android:text="Nguyễn Văn A"
                     android:textSize="20sp"

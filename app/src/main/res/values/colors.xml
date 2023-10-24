@@ -9,4 +9,5 @@
     <color name="title_info">#071b37</color>
     <color name="frame_search">#E3FFFFFF</color>
     <color name="frame_searchpage">#7DBCFEFE</color>
+    <color name="unselected">#82bdc1</color>
 </resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btn_pigination_discover"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@color/maincolor"
+        android:clipToOutline="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <Button
+        android:id="@+id/btn_pigination_unselected_discover"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@color/unselected_pagination"
+        android:clipToOutline="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tv_pigination_discover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="1"
+        android:fontFamily="@font/firasans_medium"
+        app:layout_constraintStart_toStartOf="@id/btn_pigination_discover"
+        app:layout_constraintEnd_toEndOf="@id/btn_pigination_discover"
+        app:layout_constraintTop_toTopOf="@id/btn_pigination_discover"
+        app:layout_constraintBottom_toBottomOf="@id/btn_pigination_discover"
+        android:textSize="10dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
