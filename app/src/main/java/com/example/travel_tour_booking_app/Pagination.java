@@ -1,9 +1,9 @@
 package com.example.travel_tour_booking_app;
 
-public class Pigination {
+public class Pagination {
     String page;
 
-    public Pigination(String page) {
+    public Pagination(String page) {
         this.page = page;
     }
 
