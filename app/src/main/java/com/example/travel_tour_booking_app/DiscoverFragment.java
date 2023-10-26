@@ -16,6 +16,8 @@ import java.util.List;
 public class DiscoverFragment extends Fragment {
     ArrayList<Country> countryList;
     CountryAdapter countryAdapter;
+    ArrayList<Pagination> paginationArrayList;
+    PaginationAdapter paginationAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,7 +42,24 @@ public class DiscoverFragment extends Fragment {
         RecyclerView recyclerViewCountry = view.findViewById(R.id.rv_places_discover);
         recyclerViewCountry.setAdapter(countryAdapter);
 
+        //Pagination
+        Pagination tempPagination = new Pagination("1");
+
+        paginationArrayList = new ArrayList<>();
+        paginationArrayList.add(tempPagination);
+        paginationArrayList.add(tempPagination);
+        paginationArrayList.add(tempPagination);
+        paginationArrayList.add(tempPagination);
+        paginationArrayList.add(tempPagination);
+        paginationArrayList.add(tempPagination);
+
+        paginationAdapter = new PaginationAdapter(getContext(),paginationArrayList);
+
+        RecyclerView recyclerViewPagination = view.findViewById(R.id.rv_pigination_discover);
+        recyclerViewPagination.setAdapter(paginationAdapter);
         // Inflate the layout for this fragment
+
+
         return view;
     }
 }

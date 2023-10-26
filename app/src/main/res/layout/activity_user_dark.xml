@@ -1,208 +1,393 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4TRAVEL"
-        android:textSize="28sp"
-        android:textColor="#2D99AE"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="33dp"
-        tools:ignore="MissingConstraints" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
 
-    <LinearLayout
-        android:layout_width="390dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:layout_alignParentLeft = "true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        <EditText
+            android:id="@+id/user_search"
+            android:layout_width="277dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/custom_input_searchbar"
+            android:drawableStart="@drawable/custom_button_search"
+            android:drawablePadding="@dimen/padding_drawable_icon"
+            android:fontFamily="@font/firasans_medium"
+            android:hint="Tìm kiếm ngay"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="InvalidId"></EditText>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/btn_search_home"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="@+id/user_search"
+            app:layout_constraintTop_toTopOf="@id/user_search"
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <Button
+            android:id="@+id/setting"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4"
+            tools:ignore="InvalidId,MissingConstraints,NotSibling"
+            tools:layout_editor_absoluteY="13dp" />
+
+        <Button
+            android:id="@+id/message"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_messaging"
+            app:layout_constraintEnd_toStartOf="@+id/setting"
+            tools:ignore="InvalidId,MissingConstraints,NotSibling"
+            tools:layout_editor_absoluteY="13dp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_messaging"
+            app:layout_constraintEnd_toStartOf="@+id/setting"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="13dp"></ImageView>
+
+        <Button
+            android:id="@+id/notification"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toStartOf="@+id/message"
+            tools:ignore="MissingConstraints,NotSibling"
+            tools:layout_editor_absoluteY="13dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_nofitication"
+            app:layout_constraintEnd_toStartOf="@+id/message"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="13dp"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="13dp"></ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:paddingTop="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_height="135dp"
+            android:background="#FFFFFF"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:foregroundGravity="center_horizontal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="38dp">
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_weight="1"
+                android:id="@+id/imageView2"
+                android:layout_width="96dp"
+                android:layout_height="105dp"
+                android:src="@drawable/ic_avatar"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp"
                 tools:srcCompat="@tools:sample/avatars" />
-        </LinearLayout>
 
-        <LinearLayout
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="195dp"
+                android:layout_height="29dp"
+                android:fontFamily="@font/firasans_black"
+                android:text="Nguyễn Văn A"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="138dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="211dp"
+                android:layout_height="20dp"
+                android:text="Email: nguyenvana@gmail.com"
+                tools:layout_editor_absoluteX="138dp"
+                tools:layout_editor_absoluteY="45dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="208dp"
+                android:layout_height="20dp"
+                android:text="Số điện thoại: +84385959xxx"
+                tools:layout_editor_absoluteX="138dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="211dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#2D99AE"
+                android:text="Chỉnh sửa trang cá nhân"
+                tools:layout_editor_absoluteX="138dp"
+                tools:layout_editor_absoluteY="85dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="395dp">
+
+        <Button
+            android:id="@+id/button2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="3">
+            android:layout_height="51dp"
+            android:layout_above="@id/button3"
+            android:backgroundTint="#1c1f29"
+            android:text="Thông báo"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="59dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_nofitication"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="65dp"></ImageView>
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="247dp"
-                    android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="@+id/button2"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="60dp"></ImageView>
 
-                    android:layout_marginLeft="10dp"
-                    android:text="Nguyễn Văn A"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_above="@id/button4"
+            android:backgroundTint="#1c1f29"
+            android:text="Lịch sử đặt Tour"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="110dp" />
 
-            <LinearLayout
-                android:id="@+id/info"
-                android:layout_width="match_parent"
-                android:layout_height="117dp"
-                android:layout_weight="2"
-                android:orientation="vertical">
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_time"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="120dp"></ImageView>
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Email: nguyenvana@gmail.com" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_above="@id/button5"
+            android:backgroundTint="#1c1f29"
+            android:text="Discount"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="161dp" />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Số điện thoại: +84385959xxx" />
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="@+id/button5"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="161dp"></ImageView>
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="225dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#2D99AE"
-                    android:text="Chỉnh sửa trang cá nhân" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_sale_price_tag"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="171dp"></ImageView>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:text="Thông báo"
-        android:textSize="18dp"
-        android:backgroundTint="#2D99AE"
-        android:layout_above="@id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="304dp"
-        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:backgroundTint="#2D99AE"
-        android:text="Lịch sử đặt Tour"
-        android:textSize="18dp"
-        android:layout_above="@id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="350dp"
-        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:text="Discount"
-        android:textSize="18dp"
-        android:backgroundTint="#2D99AE"
-        android:layout_above="@id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="396dp"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_above="@id/button6"
+            android:backgroundTint="#1c1f29"
+            android:text="Thẻ của tôi"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="212dp" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:text="Thẻ của tôi"
-        android:textSize="18dp"
-        android:backgroundTint="#2D99AE"
-        android:layout_above="@id/button6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="444dp"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_credit_card"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="222dp"></ImageView>
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:text="Hỗ trợ"
-        android:textSize="18dp"
-        android:backgroundTint="#2D99AE"
-        android:layout_above="@id/button7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="492dp"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="@+id/button5"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="213dp"></ImageView>
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:text="Cài đặt"
-        android:textSize="18dp"
-        android:backgroundTint="#2D99AE"
-        android:layout_above="@id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="540dp"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_above="@id/button7"
+            android:backgroundTint="#1c1f29"
+            android:text="Hỗ trợ"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="263dp" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4Travel phiên bản beta"
-        android:textSize="20dp"
-        android:textColor="#2D99AE"
-        android:layout_above="@id/textView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="602dp"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_help"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="272dp"></ImageView>
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đồng hành cùng bạn trên mọi chuyến đi"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-    
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="263dp"></ImageView>
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:backgroundTint="#1c1f29"
+            android:text="Cài đặt"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.541"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="314dp" />
+
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_setting"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="324dp"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="315dp"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="@+id/button3"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="111dp"></ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="4Travel phiên bản beta"
+            android:textColor="#2D99AE"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="27dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="257dp"
+            android:layout_height="29dp"
+            android:text="Đồng hành cùng bạn trên mọi chuyến đi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
