@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:weightSum="7"
     android:background="#000000"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="1dp"
@@ -16,8 +15,8 @@
 
         <EditText
             android:id="@+id/user_search"
-            android:layout_width="214dp"
-            android:layout_height="32dp"
+            android:layout_width="277dp"
+            android:layout_height="33dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/custom_input_searchbar"
             android:drawableStart="@drawable/custom_button_search"
@@ -36,18 +35,19 @@
             android:id="@+id/btn_search_home"
             android:layout_width="36dp"
             android:layout_height="32dp"
+            android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="@+id/user_search"
             app:layout_constraintTop_toTopOf="@id/user_search"
-            tools:ignore="MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteX="7dp" />
+            tools:ignore="MissingConstraints,NotSibling" />
 
         <Button
             android:id="@+id/setting"
             android:layout_width="36dp"
             android:layout_height="32dp"
             android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4"
             tools:ignore="InvalidId,MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteX="371dp"
             tools:layout_editor_absoluteY="13dp" />
 
         <Button
@@ -56,16 +56,17 @@
             android:layout_height="32dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_messaging"
+            app:layout_constraintEnd_toStartOf="@+id/setting"
             tools:ignore="InvalidId,MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteX="335dp"
             tools:layout_editor_absoluteY="13dp" />
 
         <ImageView
+            android:id="@+id/imageView6"
             android:layout_width="36dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_messaging"
+            app:layout_constraintEnd_toStartOf="@+id/setting"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="335dp"
             tools:layout_editor_absoluteY="13dp"></ImageView>
 
         <Button
@@ -73,24 +74,26 @@
             android:layout_width="36dp"
             android:layout_height="32dp"
             android:background="@android:color/transparent"
+            app:layout_constraintEnd_toStartOf="@+id/message"
             tools:ignore="MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteX="299dp"
             tools:layout_editor_absoluteY="13dp" />
 
         <ImageView
+            android:id="@+id/imageView7"
             android:layout_width="36dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_nofitication"
+            app:layout_constraintEnd_toStartOf="@+id/message"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="299dp"
             tools:layout_editor_absoluteY="13dp"></ImageView>
 
         <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="36dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="371dp"
             tools:layout_editor_absoluteY="13dp"></ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -157,6 +160,10 @@
                 tools:layout_editor_absoluteY="85dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -350,6 +357,7 @@
             tools:layout_editor_absoluteY="111dp"></ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -366,7 +374,8 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="27dp" />
 
         <TextView
             android:id="@+id/textView10"
@@ -379,7 +388,6 @@
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </LinearLayout>
