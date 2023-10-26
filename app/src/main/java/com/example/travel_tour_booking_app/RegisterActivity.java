@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 // Check if password contains at least one letter, one digit, and one special character
-                if (password.matches(".*[a-zA-Z].*") && password.matches(".*[0-9].*") && password.matches(".*[@#\\$%^&+=].*")) {
+                if (password.matches(".*[a-zA-Z].*") && password.matches(".*[0-9].*") && password.matches(".*[@#\\$%^&+=\\$*].*")) {
                     tvDangTu.setTextColor(0xFF37E0EE); // Màu xanh
                 } else {
                     tvDangTu.setTextColor(0xFF779FA1); // Màu xám
