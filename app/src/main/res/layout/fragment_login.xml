@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></com.google.android.material.imageview.ShapeableImageView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -172,6 +172,7 @@
                         android:text="Ghi nhớ đăng nhập"
                         android:textColor="#BCFEFE"
                         android:textSize="10dp"
+                        android:buttonTint="@color/maincolor"
                         app:layout_constraintStart_toStartOf="@id/tv_MatKhau"
                         app:layout_constraintTop_toBottomOf="@id/edt_Psw" />
 

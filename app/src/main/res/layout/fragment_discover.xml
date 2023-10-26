@@ -1,14 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiscoverFragment">
+    tools:context=".HomeFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Discover" />
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="@color/black"
+        android:id="@+id/sv_discover">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</FrameLayout>
+                <ImageView
+                    android:id="@+id/imageView_discover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_topbackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_logo"
+                    app:layout_constraintBottom_toTopOf="@+id/et_discover_search"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_discover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_discover" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <EditText
+                        android:id="@+id/et_discover_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_search_bar"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_input_searchbar"
+                        android:drawableStart="@drawable/custom_button_search"
+                        android:drawablePadding="@dimen/padding_drawable_icon"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Tìm kiếm ngay"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.6"
+                        app:layout_constraintStart_toStartOf="parent"></EditText>
+                    <Button
+                        android:id="@+id/btn_search_discover"
+                        android:layout_width="36dp"
+                        android:layout_height="32dp"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintStart_toStartOf="@id/et_discover_search"
+                        app:layout_constraintTop_toTopOf="@id/et_discover_search"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <Button
+                    android:id="@+id/btn_NoiDia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/firasans_extrabold"
+                    android:text="Nội địa"
+                    android:textSize="30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/maincolor"
+                    />
+                <Button
+                    android:id="@+id/btn_QuocTe"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/firasans_extrabold"
+                    android:text="Quốc tế"
+                    android:textSize="30dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_places"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_places_discover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    app:layout_constraintStart_toStartOf="@id/cl_places"
+                    app:layout_constraintEnd_toEndOf="@id/cl_places"
+                    app:layout_constraintTop_toTopOf="@id/cl_places"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_previous_discover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_previous_button"
+                    android:text="Trước"
+                    android:fontFamily="@font/firasans_medium"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="@dimen/margin_left_right_section"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_pigination_discover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toStartOf="@id/btn_next_discover"
+                    app:layout_constraintStart_toEndOf="@+id/btn_previous_discover"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="6" />
+                <Button
+                    android:id="@+id/btn_next_discover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_next_button"
+                    android:text="Sau"
+                    android:fontFamily="@font/firasans_medium"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="@dimen/margin_left_right_section"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

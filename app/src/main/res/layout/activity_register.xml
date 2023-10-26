@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- TODO: Update blank fragment layout -->
+        <VideoView
+            android:id="@+id/vv_Background_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></com.google.android.material.imageview.ShapeableImageView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_Logo_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/img_logo" />
+
+                    <TextView
+                        android:id="@+id/tv_4travel_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="4Travel"
+                        android:textColor="#BCFEFE"
+                        android:textSize="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_Logo_register" />
+
+                    <TextView
+                        android:id="@+id/tv_Slogan_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Đồng hành cùng bạn trên mọi nẻo đường"
+                        android:textColor="#D9D9D9"
+                        android:textSize="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_4travel_register" />
+
+                    <TextView
+                        android:id="@+id/tv_DangKy_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_extrabold"
+                        android:text="ĐĂNG KÝ"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_Slogan_register"
+                        app:layout_constraintVertical_bias="0.328" />
+
+                    <TextView
+                        android:id="@+id/tv_HovaTen_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Họ và tên"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_DangKy_register" />
+
+                    <EditText
+                        android:id="@+id/edt_Ho_register"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:alpha="0.6"
+                        android:background="@drawable/rounded_left_border"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Họ"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toStartOf="@id/edt_Ten_register"
+                        app:layout_constraintHorizontal_weight="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_HovaTen_register" />
+
+                    <EditText
+                        android:id="@+id/edt_Ten_register"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:alpha="0.6"
+                        android:background="@drawable/rounded_right_border"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Tên"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="0.5"
+                        app:layout_constraintStart_toEndOf="@id/edt_Ho_register"
+                        app:layout_constraintTop_toBottomOf="@id/tv_HovaTen_register" />
+
+                    <TextView
+                        android:id="@+id/tv_Email_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Email"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edt_Ho_register" />
+
+                    <EditText
+                        android:id="@+id/edt_Email_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:alpha="0.6"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập Email vào đây..."
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@id/tv_Email_register"
+                        app:layout_constraintTop_toBottomOf="@id/tv_Email_register" />
+
+                    <TextView
+                        android:id="@+id/tv_MatKhau_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint=""
+                        android:text="Mật khẩu"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@id/tv_Email_register"
+                        app:layout_constraintTop_toBottomOf="@id/edt_Email_register" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_Psw_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        app:layout_constraintStart_toStartOf="@+id/edt_Email_register"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_MatKhau_register"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="#A9C0C1">
+
+                        <EditText
+                            android:id="@+id/edt_Psw_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="35dp"
+                            android:alpha="0.6"
+                            android:background="@drawable/rounded_border"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="Nhập password vào đây..."
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text=""
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_Email_register"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_MatKhau_register" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shp_list1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_list"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintTop_toTopOf="@id/tv_ItNhat8KyTu"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_ItNhat8KyTu"
+                        app:layout_constraintEnd_toStartOf="@id/tv_ItNhat8KyTu"/>
+                    <TextView
+                        android:id="@+id/tv_ItNhat8KyTu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ít nhất 8 ký tự"
+                        android:fontFamily="@font/firasans_medium"
+                        android:textColor="#779FA1"
+                        android:textSize="11dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="7dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/til_Psw_register"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shp_list2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_list"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintTop_toTopOf="@id/tv_DangTu"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_DangTu"
+                        app:layout_constraintEnd_toStartOf="@id/tv_DangTu"/>
+                    <TextView
+                        android:id="@+id/tv_DangTu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bao gồm chữ, số và ký tự đặc biệt"
+                        android:fontFamily="@font/firasans_medium"
+                        android:textColor="#779FA1"
+                        android:textSize="11dp"
+                        android:layout_marginLeft="60dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_ItNhat8KyTu"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shp_list3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_list"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintTop_toTopOf="@id/tv_ChuHoaCuThuong"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_ChuHoaCuThuong"
+                        app:layout_constraintEnd_toStartOf="@id/tv_ChuHoaCuThuong"/>
+                    <TextView
+                        android:id="@+id/tv_ChuHoaCuThuong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gồm chữ in hoa và chữ thường"
+                        android:fontFamily="@font/firasans_medium"
+                        android:textColor="#779FA1"
+                        android:textSize="11dp"
+                        android:layout_marginLeft="60dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_DangTu"/>
+                    <TextView
+                        android:id="@+id/tv_NhapLaiMatKhau_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint=""
+                        android:text="Nhập lại mật khẩu"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@id/tv_MatKhau_register"
+                        app:layout_constraintTop_toBottomOf="@id/tv_ChuHoaCuThuong" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_NhapLaiPsw_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_NhapLaiMatKhau_register"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="#A9C0C1">
+
+                        <EditText
+                            android:id="@+id/edt_NhapLaiPsw_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="35dp"
+                            android:alpha="0.6"
+                            android:background="@drawable/rounded_border"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="Nhập password vào đây..."
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text=""
+                            android:textSize="16dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <CheckBox
+                        android:id="@+id/ckb_DongYDieuKhoan_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Tôi đồng ý với các điều khoản"
+                        android:textColor="#BCFEFE"
+                        android:textSize="10dp"
+
+                        app:layout_constraintStart_toStartOf="@id/tv_NhapLaiMatKhau_register"
+                        app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw_register" />
+
+                    <Button
+                        android:id="@+id/btn_DangKy_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="80dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Đăng ký"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ckb_DongYDieuKhoan_register" />
+
+                    <TextView
+                        android:id="@+id/tv_DaCoTaiKhoan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/firasans_extrabold"
+                        android:text="Bạn đã có tài khoản? Đăng nhập"
+                        android:textColor="#F4F4F4"
+                        android:textSize="13dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_DangKy_register" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với Điều khoản và Điều kiện và Cam kết bảo mật của 4Travel"
+                        android:textColor="#F4F4F4"
+                        android:textSize="11dp"
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_DaCoTaiKhoan" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
