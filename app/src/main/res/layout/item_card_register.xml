@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <TextView
+            android:id="@+id/my_card"
+            android:layout_width="291dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:fontFamily="@font/firasans_bold"
+            android:text="THÊM THẺ MỚI"
+            android:textColor="#2D99AE"
+            android:textSize="@dimen/size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="10dp"></TextView>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="25dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="1dp"></Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <TextView
+            android:id="@+id/card_number"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Số thẻ"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="51dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="#2D99AE"
+            android:hint="51210000868616"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_number">
+        </EditText>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Họ và tên"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="143dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="#2D99AE"
+            android:hint="Nguyễn Văn A"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name">
+        </EditText>
+
+        <TextView
+            android:id="@+id/end_date"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày hết hạn"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="237dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="#2D99AE"
+            android:hint="01/01/2024"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/end_date">
+        </EditText>
+
+        <TextView
+            android:layout_width="330dp"
+            android:layout_height="62dp"
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="Thông tin thẻ của bạn sẽ được mã hóa và lưu trữ một cách an toàn"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints,NotSibling"
+            tools:layout_editor_absoluteY="352dp"></TextView>
+
+        <Button
+            android:layout_width="238dp"
+            android:layout_height="55dp"
+            android:text="Thêm thẻ"
+            android:textSize="20dp"
+            android:fontFamily="@font/firasans_bold"
+            android:backgroundTint="#2D99AE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
