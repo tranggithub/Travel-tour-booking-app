@@ -99,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firasans_bold"
                 android:hint="Nhập thông tin"
-                android:textColorHint=""
                 android:textColor="@color/white"
                 app:layout_constraintHorizontal_weight="5"
                 app:layout_constraintBottom_toBottomOf="parent"
