@@ -6,4 +6,10 @@
     <string name="user">Hồ sơ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Search page -->
+    <string name="diemden">Điểm đến</string>
+    <string name="tp.tinh">Thành phố/Tỉnh</string>
+    <string name="ngaydi">Ngày đi</string>
+    <string name="chiphi">Chi phí</string>
 </resources>
