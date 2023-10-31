@@ -84,7 +84,7 @@
             app:layout_constraintStart_toStartOf="@id/et_home_search"
             app:layout_constraintTop_toTopOf="@id/et_home_search"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/search_bar"
@@ -206,7 +206,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
