@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity"
+    android:background="#070B1D">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_navigationView_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_list_news"
+                android:onClick="GoBack"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_trungtamhotro_chat"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_trungtamhotro_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="CHI TIẾT TIN TỨC"
+                android:textColor="@color/maincolor"
+                android:textSize="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_news"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/nv_navigationView_chat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/sv_detail_news"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/margin_left_right_section"
+        android:layout_marginRight="@dimen/margin_left_right_section"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Các khu cắm trại tiện nghi kín chỗ dịp 30/04"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_bold"
+                android:textSize="25dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chủ nhật, 23/4/2023, 12:15 (GMT+7)"
+                android:textColor="#9b9da5"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="12dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="15dp"
+                android:text="Một số điểm cắm trại có đầy đủ dịch vụ (glamping) gần Hà Nội và TP HCM đã được đặt kín cho kỳ nghỉ 30/4 trước cả tháng."
+                android:justificationMode="inter_word"
+                android:layout_marginTop="@dimen/margin_section"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="15dp"
+                android:text="Hai tuần trước kỳ nghỉ lễ 30/4, Đặng Thùy Anh (21 tuổi, Hà Nội) và nhóm bạn liên hệ 4 điểm cắm trại cách Hà Nội khoảng 50 km để đặt chỗ. Ba điểm đầu đều thông báo hết chỗ hoặc không còn lều phù hợp. Nơi thứ tư cô gọi là Camping Sport Đồng Mô tại Sơn Tây (Hà Nội) chỉ còn lều cuối cùng. Nhóm Thùy Anh thuê lều với giá hơn 3 triệu đồng cho 7 người trong hai ngày một đêm."
+                android:justificationMode="inter_word"
+                android:layout_marginTop="@dimen/margin_section"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="15dp"
+                android:text="Lần đầu tiên đặt dịch vụ glamping vào dịp lễ nên Thùy Anh không lường trước tình huống này. 'Tôi nghĩ nghỉ lễ dài (5 ngày) nên mọi người thường sẽ đi du lịch xa, không nghĩ các điểm cắm trại gần thành phố lại khó đặt như vậy', cô nói."
+                android:justificationMode="inter_word"
+                android:layout_marginTop="@dimen/margin_section"/>
+            <ImageView
+                android:id="@+id/iv_place"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_leu1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/custom_button"
+                android:clipToOutline="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Du khách hoạt động tự do tại các bãi cắm trại dịch vụ. Ảnh: Bích Phương."
+                android:textColor="#9b9da5"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="12dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="15dp"
+                android:text="Tại Xuyên Mộc, Bà Rịa - Vũng Tàu, khu cắm trại ven biển Đi Bụi Camping thông báo không còn lều cho dịp 30/4. Các ngày cuối tuần qua nơi này cũng kín khách. Anh Trinh Nguyễn, quản lý điểm cắm trại, cho biết cả khu có 30 lều, giới hạn lượng khách tối đa 150 người, do đó các lều thường nhanh kín. Để có lều vào ngày cuối tuần hoặc dịp lễ, khách phải đặt trước từ gần một tháng."
+                android:justificationMode="inter_word"
+                android:layout_marginTop="@dimen/margin_section"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="15dp"
+                android:text="'Giá thuê là 800.000 mỗi người, bao gồm mọi dịch vụ và bữa ăn, phụ thu 10% vào dịp lễ. Du khách đến đây chủ yếu di chuyển bằng phương tiện cá nhân hoặc đặt xe đưa đón tận nơi của khu cắm trại', anh Trinh nói."
+                android:justificationMode="inter_word"
+                android:layout_marginTop="@dimen/margin_section"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="15dp"
+                android:text="Xu hướng cắm trại tiện nghi không có dấu hiệu giảm nhiệt vì loại hình này đáp ứng được tiêu chuẩn kép của khách, muốn cắm trại gần gũi thiên nhiên đồng thời tận hưởng tiện nghi đầy đủ, thoải mái như ở khách sạn. Du khách không phải chuẩn bị đồ dùng và mất công sức dựng lều như cắm trại tự túc. Ngoài ra, kiểu cắm trại này phù hợp mọi lứa tuổi."
+                android:justificationMode="inter_word"
+                android:layout_marginTop="@dimen/margin_section"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_detail_news"
+                android:nestedScrollingEnabled="false"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_section">
+
+                <Button
+                    android:id="@+id/btn_detail_news_up"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_button"
+                    android:gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_double_up"
+                    app:layout_constraintEnd_toEndOf="@id/btn_detail_news_up"
+                    app:layout_constraintStart_toStartOf="@id/btn_detail_news_up"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_news_up"
+                    app:layout_constraintTop_toTopOf="@id/btn_detail_news_up"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
