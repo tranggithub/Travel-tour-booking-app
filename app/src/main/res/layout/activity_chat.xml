@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#070B1D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_topNavigationView_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintBottom_toBottomOf="@id/iv_Logo_chat"
+                app:layout_constraintEnd_toStartOf="@+id/tv_trungtamhotro_chat"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_Logo_chat" />
+
+            <TextView
+                android:id="@+id/tv_trungtamhotro_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="TRUNG TÂM HỖ TRỢ"
+                android:textColor="#2D99AE"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_Logo_chat"
+                app:layout_constraintEnd_toStartOf="@+id/iv_Logo_chat"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_chat"
+                app:layout_constraintTop_toTopOf="@id/iv_Logo_chat" />
+
+            <ImageView
+                android:id="@+id/iv_Logo_chat"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_trungtamhotro_chat"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_bottomNavigationView_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp">
+
+            <ImageView
+                android:id="@+id/iv_sendbutton_chat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/send_button"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintBottom_toBottomOf="@id/edt_message_chat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edt_message_chat"
+                app:layout_constraintTop_toTopOf="@id/edt_message_chat" />
+
+            <EditText
+                android:id="@+id/edt_message_chat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:hint="Nhập thông tin"
+                android:textColorHint="#7C7C7C"
+                android:textColor="@color/white"
+                app:layout_constraintHorizontal_weight="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_sendbutton_chat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+    <FrameLayout
+        android:id="@+id/fl_chat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nv_topNavigationView_chat"
+        app:layout_constraintBottom_toTopOf="@id/nv_bottomNavigationView_chat"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

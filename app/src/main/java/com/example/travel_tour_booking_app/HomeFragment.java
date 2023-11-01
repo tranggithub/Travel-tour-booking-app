@@ -1,6 +1,7 @@
 package com.example.travel_tour_booking_app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -91,6 +92,10 @@ public class HomeFragment extends Fragment {
 
         ScrollToTop(view);
         // Inflate the layout for this fragment
+
+        //Xu ly Xem tat ca
+        XemTatCaTinTuc(view);
+
         return view;
 
     }
@@ -106,5 +111,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
+    }
+    void XemTatCaTinTuc(View view)
+    {
+        Button button = view.findViewById(R.id.btn_readall_news);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ListNewsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

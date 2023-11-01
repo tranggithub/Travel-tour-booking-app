@@ -31,7 +31,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+                    app:layout_constraintTop_toTopOf="parent">
+                </ImageView>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -63,7 +64,8 @@
                         android:textSize="15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"></EditText>
+                        app:layout_constraintStart_toStartOf="parent">
+                    </EditText>
                     <Button
                         android:id="@+id/btn_search_home"
                         android:layout_width="36dp"
@@ -81,7 +83,8 @@
                 android:paddingTop="@dimen/padding_search_bar"
                 android:paddingBottom="@dimen/padding_search_bar"
                 android:background="@color/background_item"
-                android:layout_marginTop="@dimen/margin_section"></GridView>
+                android:layout_marginTop="@dimen/margin_section">
+            </GridView>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -197,6 +200,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/btn_readall_news"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
