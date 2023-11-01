@@ -26,7 +26,8 @@
             android:textSize="@dimen/size_title"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="10dp"></TextView>
+            tools:layout_editor_absoluteY="10dp"
+            ></TextView>
 
         <Button
             android:id="@+id/button8"
@@ -54,7 +55,8 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="6dp"
-            tools:ignore="MissingConstraints"></TextView>
+            tools:ignore="MissingConstraints"
+            android:fontFamily="@font/firasans_medium"></TextView>
 
         <RelativeLayout
             android:id="@+id/add_info"
@@ -91,7 +93,8 @@
                 android:layout_toRightOf="@id/email"
                 android:text="Mã giảm giá"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp"></TextView>
+                android:textSize="20dp"
+                android:fontFamily="@font/firasans_medium"></TextView>
         </RelativeLayout>
 
         <TextView
@@ -105,7 +108,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="253dp"></TextView>
+            tools:layout_editor_absoluteY="253dp"
+            android:fontFamily="@font/firasans_medium"></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,7 +135,8 @@
                 android:textSize="20dp"
                 android:textColor="#FFFFFF"
                 android:layout_marginLeft="20dp"
-                android:layout_centerVertical="true"></TextView>
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/firasans_medium"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,7 +146,8 @@
                 android:textColor="#FFFFFF"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"></TextView>
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/firasans_medium"></TextView>
         </RelativeLayout>
 
         <RelativeLayout
@@ -162,7 +168,8 @@
                 android:text="Chọn phương thức thanh toán"
                 android:textSize="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_centerVertical="true"></TextView>
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/firasans_medium"></TextView>
 
             <Button
                 android:layout_width="100dp"
@@ -170,7 +177,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="Chọn"></Button>
+                android:text="Chọn"
+                android:fontFamily="@font/firasans_medium"></Button>
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
