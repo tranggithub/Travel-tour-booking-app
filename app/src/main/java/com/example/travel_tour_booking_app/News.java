@@ -7,11 +7,19 @@ public class News {
     String Titile;
     Date UploadDate;
     String Text;
+    String Thumbnail;
 
     public News(String titile, Date uploadDate, String text) {
         Titile = titile;
         UploadDate = uploadDate;
         Text = text;
+    }
+
+    public News(String titile, Date uploadDate, String text, String thumbnail) {
+        Titile = titile;
+        UploadDate = uploadDate;
+        Text = text;
+        Thumbnail = thumbnail;
     }
 
     public void setTitile(String titile) {
@@ -41,4 +49,12 @@ public class News {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy"); // Định dạng ngày theo "dd-MM-yy"
         String formattedDate = sdf.format(date); // Lấy ngày hiện tại và định dạng nó
         return formattedDate;}
+
+    public String getThumbnail() {
+        return Thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        Thumbnail = thumbnail;
+    }
 }
