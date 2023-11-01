@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="passenger" type="id" />
+    <item name="money" type="id" />
+    <item name="email" type="id" />
+    <item name="best_sale" type="id" />
+    <item name="txt1" type="id" />
+    <item name="txt2" type="id" />
+    <item name="gi_m_gi_" type="id" />
+    <item name="ic_voucher" type="id" />
+    <item name="search" type="id" />
+</resources>

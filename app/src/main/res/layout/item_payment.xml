@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <TextView
+            android:id="@+id/my_card"
+            android:layout_width="291dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:fontFamily="@font/firasans_bold"
+            android:text="THANH TOÁN"
+            android:textColor="#2D99AE"
+            android:textSize="@dimen/size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="10dp"></TextView>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="25dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="1dp"></Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <TextView
+            android:id="@+id/card_number"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Số thẻ"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="51dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="#2D99AE"
+            android:hint="51210000868616"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_number">
+        </EditText>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Họ và tên"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="143dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="#2D99AE"
+            android:hint="Nguyễn Văn A"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name">
+        </EditText>
+
+        <TextView
+            android:id="@+id/end_date"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Số tiền thanh toán"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="237dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="#2D99AE"
+            android:hint="9.910.123 VNĐ"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/end_date">
+        </EditText>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#2D99AE"
+            android:fontFamily="@font/firasans_bold"
+            android:text="Xác nhận thanh toán"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/back2"
+            tools:layout_editor_absoluteY="364dp"
+            tools:ignore="MissingConstraints"></Button>
+
+        <Button
+            android:id="@+id/back2"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/firasans_bold"
+            android:text="Trở lại"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"></Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

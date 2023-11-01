@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2D99AE"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin liên hệ"
+            android:textSize="@dimen/size_title"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/firasans_bold"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ic_multiply"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ic_multiply"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <TextView
+            android:id="@+id/card_number"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Số thẻ"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="51dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="@drawable/rounded_border"
+            android:hint="51210000868616"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_number">
+        </EditText>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Họ và tên"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="143dp"></TextView>
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:background="@drawable/rounded_border"
+            android:hint="Nguyễn Văn A"
+            android:textColor="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name">
+        </EditText>
+
+        <TextView
+            android:id="@+id/end_date"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại"
+            android:textColor="#BCFEFE"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="237dp"></TextView>
+
+        <Spinner
+            android:id="@+id/country"
+            android:layout_width="110dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/rounded_left_border"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:ignore="InvalidId,MissingConstraints"
+            tools:layout_editor_absoluteY="264dp" />
+
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="46dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/rounded_right_border"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="264dp"
+            tools:ignore="MissingConstraints" />
+
+        <RelativeLayout
+            android:id="@+id/frame_23560"
+            android:layout_width="315dp"
+            android:layout_height="111dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#9C9C9C"
+            android:clipToOutline="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="324dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_info"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+
+            <TextView
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:layout_centerVertical="true"
+                android:text="Thông tin liên hệ bên trên sẽ được sử dụng để xác nhận, hoàn tiền hoặc hủy bỏ."
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="238dp"
+            android:layout_height="55dp"
+            android:text="Lưu lại"
+            android:textSize="20dp"
+            android:fontFamily="@font/firasans_bold"
+            android:backgroundTint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

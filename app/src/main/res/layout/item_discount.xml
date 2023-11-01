@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <TextView
+            android:id="@+id/my_card"
+            android:layout_width="291dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:fontFamily="@font/firasans_bold"
+            android:text="MÃ GIẢM GIÁ"
+            android:textColor="#2D99AE"
+            android:textSize="@dimen/size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="10dp"></TextView>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="25dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="1dp"></Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <RelativeLayout
+            android:id="@+id/search"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:clipToOutline="true"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="16dp">
+
+            <Button
+                android:id="@+id/ic_voucher"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/ic_voucher"
+                tools:ignore="InvalidId"></Button>
+
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/ic_voucher"
+                android:layout_marginLeft="8dp"
+                android:hint="Nhập mã giảm giá">
+            </EditText>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/discount_10"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
+            android:background="#1c1f29"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="77dp">
+
+            <ImageView
+                android:id="@+id/best_sale_1"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="#2D99AE"
+                android:src="@drawable/ic_best_sales"/>
+            <TextView
+                android:id="@+id/sale_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giảm 10%"
+                android:textSize="@dimen/size_title"
+                android:fontFamily="@font/firasans_bold"
+                android:textColor="#2D99AE"
+                android:layout_toRightOf="@id/best_sale_1"
+                android:layout_marginLeft="20dp"
+                tools:ignore="InvalidId" />
+            <TextView
+                android:id="@+id/price_300"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đơn tối thiểu 300.000đ"
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"
+                android:layout_toRightOf="@id/best_sale_1"
+                android:layout_below="@id/sale_10"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Có hiệu lực sau: 1 ngày"
+                android:textSize="15dp"
+                android:textColor="#2D99AE"
+                android:layout_toRightOf="@id/best_sale_1"
+                android:layout_below="@id/price_300"
+                android:layout_marginLeft="45dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_sand_watch"
+                android:layout_toRightOf="@id/best_sale_1"
+                android:layout_below="@id/price_300"
+                android:layout_marginLeft="12dp"/>
+
+            <Button
+                android:layout_width="85dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_btn_frame"
+                android:backgroundTint="#1c1f29"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Dùng"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/discount_30"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
+            android:background="#1c1f29"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="190dp">
+
+            <ImageView
+                android:id="@+id/best_sale_2"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="#2D99AE"
+                android:src="@drawable/ic_best_sales" />
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/best_sale_2"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Giảm 30%"
+                android:textColor="#2D99AE"
+                android:textSize="@dimen/size_title"
+                tools:ignore="InvalidId" />
+
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt1"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/best_sale_2"
+                android:text="Đơn tối thiểu 1.000.000đ"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt2"
+                android:layout_marginLeft="45dp"
+                android:layout_toRightOf="@id/best_sale_2"
+                android:text="Có hiệu lực sau: 1 ngày"
+                android:textColor="#2D99AE"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_below="@id/txt2"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/best_sale_2"
+                android:src="@drawable/ic_sand_watch" />
+
+            <Button
+                android:layout_width="85dp"
+                android:layout_height="38dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_btn_frame"
+                android:backgroundTint="#1c1f29"
+                android:text="Dùng" />
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="20dp"
+            android:text="Trở lại"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="115dp"
+            android:backgroundTint="#2D99AE"
+            android:layout_marginBottom="20dp"
+            android:text="Tiếp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#2D99AE"
+            android:text="1"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="67dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
