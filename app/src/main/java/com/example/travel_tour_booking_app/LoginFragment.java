@@ -14,6 +14,8 @@ import android.widget.VideoView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.ArrayList;
 
 public class LoginFragment extends Fragment {
