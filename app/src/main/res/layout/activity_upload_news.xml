@@ -200,6 +200,7 @@
                             android:fontFamily="@font/firasans_medium"
                             android:textAlignment="center"/>
                         <ImageView
+                            android:id="@+id/iv_thumbnail_upload_news"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_upload_image"

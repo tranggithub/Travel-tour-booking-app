@@ -80,8 +80,9 @@ public class HomeFragment extends Fragment {
         newss = new ArrayList<>();
         News tempNews = new News(
                 "Khu vui chơi ở Huế",
-                new Date(2023,4,14),
-                "Nhiều thực khách tỏ ra thích thú với bố trí của công viên");
+                "02/11/2023",
+                "Nhiều thực khách tỏ ra thích thú với bố trí của công viên",
+                "123");
         newss.add(tempNews);
 
         newsAdapter = new NewsAdapter(getContext(),newss);
