@@ -5,17 +5,17 @@ import java.util.Date;
 
 public class News {
     String Titile;
-    Date UploadDate;
+    String UploadDate;
     String Text;
     String Thumbnail;
 
-    public News(String titile, Date uploadDate, String text) {
-        Titile = titile;
-        UploadDate = uploadDate;
-        Text = text;
-    }
+//    public News(String titile, String uploadDate, String text) {
+//        Titile = titile;
+//        UploadDate = uploadDate;
+//        Text = text;
+//    }
 
-    public News(String titile, Date uploadDate, String text, String thumbnail) {
+    public News(String titile, String uploadDate, String text, String thumbnail) {
         Titile = titile;
         UploadDate = uploadDate;
         Text = text;
@@ -26,7 +26,7 @@ public class News {
         Titile = titile;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         UploadDate = uploadDate;
     }
 
@@ -38,17 +38,17 @@ public class News {
         return Titile;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return UploadDate;
     }
 
     public String getText() {
         return Text;
     }
-    public String getCurrentDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy"); // Định dạng ngày theo "dd-MM-yy"
-        String formattedDate = sdf.format(date); // Lấy ngày hiện tại và định dạng nó
-        return formattedDate;}
+//    public String getCurrentDate(Date date) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy"); // Định dạng ngày theo "dd-MM-yy"
+//        String formattedDate = sdf.format(date); // Lấy ngày hiện tại và định dạng nó
+//        return formattedDate;}
 
     public String getThumbnail() {
         return Thumbnail;
