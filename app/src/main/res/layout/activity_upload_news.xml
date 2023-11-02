@@ -207,14 +207,15 @@
 
                     </LinearLayout>
                     <Button
-                        android:id="@+id/btn_DangNhap"
+                        android:id="@+id/btn_upload_news"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="80dp"
-                        android:fontFamily="@font/firasans_medium"
-                        android:text="Đăng nhập"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="tải lên"
+                        android:textAllCaps="true"
                         android:textColor="#FFFFFF"
                         android:textSize="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
