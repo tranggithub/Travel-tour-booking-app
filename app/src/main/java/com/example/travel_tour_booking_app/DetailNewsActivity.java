@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,15 @@ public class DetailNewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_news);
 
+        TextView tv_title = findViewById(R.id.tv_title_details_news);
+        TextView tv_date = findViewById(R.id.tv_date_details_news);
+
+        //Lấy nội dung từ intent()
+        Bundle bundle = getIntent().getExtras();
+        if (bundle!= null){
+            tv_title.setText(bundle.getString("Title"));
+            tv_date.setText(bundle.getString("Date"));
+        }
         //Thêm nội dung detail
         detailNewsArrayList = new ArrayList<>();
 
@@ -37,6 +47,7 @@ public class DetailNewsActivity extends AppCompatActivity {
         RecyclerView rvDetailNews = findViewById(R.id.rv_detail_news);
         rvDetailNews.setLayoutManager(new LinearLayoutManager(this));
         rvDetailNews.setAdapter(detailNewsAdapter);
+
         ScrollToTop();
 
     }

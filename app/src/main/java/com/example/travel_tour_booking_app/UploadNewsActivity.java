@@ -119,36 +119,24 @@ public class UploadNewsActivity extends AppCompatActivity {
          String date = et_date.getText().toString();
          String text = et_text.getText().toString();
 
-         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-         Date date_real = null;
+         News news = new News(title, News.getCurrentDate(), text, ThumbnailURL);
 
-         try {
-             date_real = dateFormat.parse(date); // Chuyển đổi chuỗi thành kiểu Date
-         } catch (ParseException e) {
-             e.printStackTrace();
-         }
-
-         if (date == null) {
-             Toast.makeText(UploadNewsActivity.this, "Invalid Date", Toast.LENGTH_SHORT); // In ra kết quả dưới dạng kiểu Date
-         } else {
-             News news = new News(title, date, text, ThumbnailURL);
-
-             FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Android News").child(title).
-                     setValue(news).
-                     addOnCompleteListener(new OnCompleteListener<Void>() {
-                         @Override
-                         public void onComplete(@NonNull Task<Void> task) {
-                             if (task.isSuccessful()){
-                                 Toast.makeText(UploadNewsActivity.this, "Saved", Toast.LENGTH_SHORT);
-                                 finish();
-                             }
+         FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Android News").child(title).
+                 setValue(news).
+                 addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                     public void onComplete(@NonNull Task<Void> task) {
+                         if (task.isSuccessful()){
+                             Toast.makeText(UploadNewsActivity.this, "Saved", Toast.LENGTH_SHORT);
+                             finish();
                          }
-                     }).addOnFailureListener(new OnFailureListener() {
-                         @Override
-                         public void onFailure(@NonNull Exception e) {
-                             Toast.makeText(UploadNewsActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT);
-                         }
-                     });
-         }
+                     }
+                 }).addOnFailureListener(new OnFailureListener() {
+                     @Override
+                     public void onFailure(@NonNull Exception e) {
+                         Toast.makeText(UploadNewsActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT);
+                     }
+                 });
+
      }
 }
