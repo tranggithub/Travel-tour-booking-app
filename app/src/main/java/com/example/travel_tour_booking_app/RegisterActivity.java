@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -36,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText edtPsw;
     TextView tvItNhat8KyTu;
     TextView tvDangTu;
-    TextView tvChuHoaCuThuong;
+    TextView tvChuHoaCuThuong, tvDaCoTaiKhoan, tvDieuKhoan;
     EditText edtEmail, edtHo, edtTen, edtNhapLaiPsw;
     Button btnDangKy;
     CheckBox ckbDieuKhoan;
@@ -82,6 +83,20 @@ public class RegisterActivity extends AppCompatActivity {
                 mp.setLooping(true);
             }
         });
+
+        tvDaCoTaiKhoan = findViewById(R.id.tv_DaCoTaiKhoan);
+        tvDaCoTaiKhoan.setText(Html.fromHtml("Bạn đã có tài khoản? "+"<u>"+"Đăng nhập"+"</u>"));
+        tvDaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        tvDieuKhoan = findViewById(R.id.tv_DieuKhoan_register);
+        tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với "+"<u>"+"Điều khoản & Điều kiện"+"</u>"+" và "+"<u>"+"Cam kết bảo mật"+"</u>"+" của 4Travel"));
 
         edtEmail = findViewById(R.id.edt_Email_register);
         btnDangKy = findViewById(R.id.btn_DangKy_register);
