@@ -70,6 +70,7 @@
             android:orientation="vertical"
             android:paddingBottom="100dp">
             <TextView
+                android:id="@+id/tv_title_details_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Các khu cắm trại tiện nghi kín chỗ dịp 30/04"
@@ -77,6 +78,7 @@
                 android:fontFamily="@font/firasans_bold"
                 android:textSize="25dp"/>
             <TextView
+                android:id="@+id/tv_date_details_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Chủ nhật, 23/4/2023, 12:15 (GMT+7)"
