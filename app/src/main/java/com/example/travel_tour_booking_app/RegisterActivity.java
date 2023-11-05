@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,7 +24,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -180,18 +185,54 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this, "Account created.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+
+                                    // Enter User Data into Firebase Realtime Database
+                                    ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(ho, ten);
+
+                                    // Extracting User reference from Database for "User"
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
+                                    String userId = user.getUid(); // Get the user's unique ID
+                                    databaseReference.child(userId).setValue(writeUserDetails)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(RegisterActivity.this, "Đã lưu thông tin người dùng.",
+                                                                Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại. Hãy thử lại!",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                    // Handle authentication errors
+                                    try {
+                                        throw task.getException();
+                                    } catch (FirebaseAuthInvalidUserException e) {
+                                        Toast.makeText(RegisterActivity.this, "Email này không tồn tại hoặc đã được sử dụng.",
+                                                Toast.LENGTH_SHORT).show();
+                                        edtEmail.requestFocus();
+                                    } catch (FirebaseAuthUserCollisionException e) {
+                                        Toast.makeText(RegisterActivity.this, "Email đã được đăng ký. Hãy dùng email khác.",
+                                                Toast.LENGTH_SHORT).show();
+                                        edtEmail.requestFocus();
+                                    } catch (Exception e) {
+                                        Log.e("RegisterActivity", e.getMessage());
+                                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    // If sign-up fails, display a message to the user.
+                                    Toast.makeText(RegisterActivity.this, "Đăng ký thất bại. Hãy thử lại!",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
             }
         });
     }
