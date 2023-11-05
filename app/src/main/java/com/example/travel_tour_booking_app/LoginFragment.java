@@ -117,14 +117,14 @@ public class LoginFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "Authentication  successful.",
+                                    Toast.makeText(getActivity(), "Đăng nhập thành công.",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(),HomeActivity.class);
                                     startActivity(intent);
                                     getActivity().finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(LoginFragment.this.getContext(), "Authentication failed.",
+                                    Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại.",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

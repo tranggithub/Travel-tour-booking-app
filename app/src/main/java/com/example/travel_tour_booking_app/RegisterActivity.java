@@ -198,13 +198,13 @@ public class RegisterActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        Toast.makeText(RegisterActivity.this, "User Information Saved.",
+                                                        Toast.makeText(RegisterActivity.this, "Đã lưu thông tin người dùng.",
                                                                 Toast.LENGTH_SHORT).show();
                                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                                         startActivity(intent);
                                                         finish();
                                                     } else {
-                                                        Toast.makeText(RegisterActivity.this, "Authentication failed. Please try again",
+                                                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại. Hãy thử lại!",
                                                                 Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
@@ -214,11 +214,11 @@ public class RegisterActivity extends AppCompatActivity {
                                     try {
                                         throw task.getException();
                                     } catch (FirebaseAuthInvalidUserException e) {
-                                        Toast.makeText(RegisterActivity.this, "This email is invalid or already in use",
+                                        Toast.makeText(RegisterActivity.this, "Email này không tồn tại hoặc đã được sử dụng.",
                                                 Toast.LENGTH_SHORT).show();
                                         edtEmail.requestFocus();
                                     } catch (FirebaseAuthUserCollisionException e) {
-                                        Toast.makeText(RegisterActivity.this, "User is already registered with this email. Use another email",
+                                        Toast.makeText(RegisterActivity.this, "Email đã được đăng ký. Hãy dùng email khác.",
                                                 Toast.LENGTH_SHORT).show();
                                         edtEmail.requestFocus();
                                     } catch (Exception e) {
@@ -227,7 +227,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
 
                                     // If sign-up fails, display a message to the user.
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed. Please try again",
+                                    Toast.makeText(RegisterActivity.this, "Đăng ký thất bại. Hãy thử lại!",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
