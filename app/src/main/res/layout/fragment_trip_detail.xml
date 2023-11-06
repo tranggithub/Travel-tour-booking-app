@@ -593,6 +593,32 @@
                         android:layout_marginRight="@dimen/margin_left_right_section"/>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_section">
+
+                <Button
+                    android:id="@+id/btn_detail"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_button"
+                    android:gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_double_up"
+                    app:layout_constraintEnd_toEndOf="@id/btn_detail"
+                    app:layout_constraintStart_toStartOf="@id/btn_detail"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_detail"
+                    app:layout_constraintTop_toTopOf="@id/btn_detail"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
