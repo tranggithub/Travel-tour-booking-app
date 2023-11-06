@@ -24,21 +24,21 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_returnbutton_list_news"
+                android:id="@+id/iv_returnbutton"
                 android:onClick="GoBack"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="center"
                 android:src="@drawable/return_button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_trungtamhotro_chat"
+                app:layout_constraintEnd_toStartOf="@+id/tv_diadiem"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/tv_trungtamhotro_chat"
+                android:id="@+id/tv_diadiem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -47,7 +47,7 @@
                 android:textColor="@color/maincolor"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_news"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -56,6 +56,545 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#070B1D">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_sapxep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Sắp xếp tăng theo:"
+                    android:textColor="@color/white"
+                    android:textSize="17dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="1dp" />
+
+                <Button
+                    android:id="@+id/bt_gia"
+                    android:layout_width="33dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/custom_button"
+                    app:layout_constraintEnd_toStartOf="@+id/bt_sao"
+                    app:layout_constraintStart_toEndOf="@+id/tv_sapxep"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="2dp" />
+
+                <TextView
+                    android:id="@+id/tv_gia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Giá"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_gia"
+                    app:layout_constraintStart_toStartOf="@+id/bt_gia"
+                    tools:ignore="TextSizeCheck"
+                    tools:layout_editor_absoluteY="5dp" />
+
+                <Button
+                    android:id="@+id/bt_sao"
+                    android:layout_width="33dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/custom_button"
+                    app:layout_constraintEnd_toStartOf="@+id/bt_thoiluong"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="3dp" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginEnd="7dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Sao"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_sao"
+                    app:layout_constraintStart_toStartOf="@+id/bt_sao"
+                    tools:ignore="TextSizeCheck"
+                    tools:layout_editor_absoluteY="5dp" />
+
+                <Button
+                    android:id="@+id/bt_thoiluong"
+                    android:layout_width="71dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="44dp"
+                    android:background="@drawable/custom_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="TextSizeCheck"
+                    tools:layout_editor_absoluteY="3dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="11dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Thời lượng"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_thoiluong"
+                    app:layout_constraintStart_toStartOf="@+id/bt_thoiluong"
+                    tools:layout_editor_absoluteY="5dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/phongcanh"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="1dp">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="89dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/rounded_bottom_border"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_chitiet1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Chuyến du lịch đảo Torono"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/view"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view3"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view1"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view4"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view2"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view1"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view3"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view2"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view4"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/ic_star_not_vote"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view5"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_placesmall"
+                                tools:layout_editor_absoluteX="15dp"
+                                tools:layout_editor_absoluteY="53dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Canada (4 ngày)"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                tools:layout_editor_absoluteX="44dp"
+                                tools:layout_editor_absoluteY="53dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="9.190.123 VND"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:layout_editor_absoluteY="53dp" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/nui"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/rounded_bottom_border"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_chitiet2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Du lịch tại núi Buntu"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/view6"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+
+                                app:layout_constraintEnd_toStartOf="@+id/view10"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/View7"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+
+                                app:layout_constraintEnd_toStartOf="@+id/view8"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view8"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+
+                                app:layout_constraintEnd_toStartOf="@+id/view9"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view9"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+
+                                app:layout_constraintEnd_toStartOf="@+id/view6"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view10"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/ic_star_not_vote"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view11"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_placesmall"
+                                tools:layout_editor_absoluteX="15dp"
+                                tools:layout_editor_absoluteY="53dp"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Canada (7 ngày)"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                tools:layout_editor_absoluteX="44dp"
+                                tools:layout_editor_absoluteY="53dp"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="9.860.000 VND"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:layout_editor_absoluteY="53dp"
+                                tools:ignore="MissingConstraints" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/baibien">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@drawable/rounded_bottom_border"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/tv_chitiet3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Du lịch biển Canada"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/view12"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view16"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/View13"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view15"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteX="275dp"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view14"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/View13"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view15"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_star_vote"
+                                app:layout_constraintEnd_toStartOf="@+id/view12"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view16"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/ic_star_not_vote"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteY="23dp" />
+
+                            <View
+                                android:id="@+id/view17"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_placesmall"
+                                tools:layout_editor_absoluteX="15dp"
+                                tools:layout_editor_absoluteY="53dp"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Canada (14 ngày)"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                tools:layout_editor_absoluteX="44dp"
+                                tools:layout_editor_absoluteY="53dp"
+                                tools:ignore="MissingConstraints" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="9.990.000 VND"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:layout_editor_absoluteY="53dp"
+                                tools:ignore="MissingConstraints" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/cl_pagination"
+                    android:layout_gravity="center"
+                    android:weightSum="8">
+
+                    <Button
+                        android:id="@+id/btn_previous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/margin_left_right_section"
+                        android:background="@drawable/custom_previous_button"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Trước"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintEnd_toStartOf="@id/btn_next_discover"
+                        app:layout_constraintStart_toEndOf="@+id/btn_previous_discover"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:spanCount="6"/>
+                    <Button
+                        android:id="@+id/btn_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_next_button"
+                        android:text="Sau"
+                        android:fontFamily="@font/firasans_medium"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="@dimen/margin_left_right_section"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
