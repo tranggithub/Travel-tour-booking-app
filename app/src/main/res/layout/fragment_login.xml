@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -124,6 +124,7 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:text=""
+                        android:textColor="@color/white"
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -142,39 +143,52 @@
                         app:layout_constraintStart_toStartOf="@+id/tv_Email"
                         app:layout_constraintTop_toBottomOf="@+id/edt_Email" />
 
-                    <EditText
-                        android:id="@+id/edt_Psw"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_NhapLaiPsw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="35dp"
-                        android:alpha="0.6"
-                        android:background="@drawable/rounded_border"
-                        android:ems="10"
-                        android:fontFamily="@font/firasans_medium"
-                        android:hint="Nhập password vào đây..."
-                        android:inputType="textPassword"
-                        android:paddingStart="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:text=""
-                        android:textSize="16dp"
-                        app:layout_constraintStart_toStartOf="@+id/edt_Email"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_MatKhau" />
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_MatKhau"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="#A9C0C1">
+
+                        <EditText
+                            android:id="@+id/edt_Psw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="35dp"
+                            android:alpha="0.6"
+                            android:background="@drawable/rounded_border"
+                            android:ems="10"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="Nhập password vào đây..."
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_Email"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_MatKhau" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <CheckBox
                         android:id="@+id/ckb_GhiNhoDangNhap"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:buttonTint="@color/maincolor"
                         android:fontFamily="@font/firasans_medium"
                         android:text="Ghi nhớ đăng nhập"
                         android:textColor="#BCFEFE"
                         android:textSize="10dp"
-                        android:buttonTint="@color/maincolor"
                         app:layout_constraintStart_toStartOf="@id/tv_MatKhau"
-                        app:layout_constraintTop_toBottomOf="@id/edt_Psw" />
+                        app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw" />
 
                     <Button
                         android:id="@+id/btn_DangNhap"
@@ -261,19 +275,20 @@
                         app:layout_constraintTop_toBottomOf="@id/gv_DangNhapKhac" />
 
                     <TextView
+                        android:id="@+id/tv_DieuKhoan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/firasans_medium"
                         android:paddingLeft="25dp"
                         android:paddingRight="25dp"
-                        android:fontFamily="@font/firasans_medium"
                         android:text="Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với Điều khoản và Điều kiện và Cam kết bảo mật của 4Travel"
+                        android:textAlignment="center"
                         android:textColor="#F4F4F4"
                         android:textSize="11dp"
-                        android:textAlignment="center"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_ChuaCoTaiKhoan"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintTop_toBottomOf="@id/tv_ChuaCoTaiKhoan" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
         </ScrollView>

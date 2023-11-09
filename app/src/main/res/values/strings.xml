@@ -12,4 +12,9 @@
     <string name="tp.tinh">Thành phố/Tỉnh</string>
     <string name="ngaydi">Ngày đi</string>
     <string name="chiphi">Chi phí</string>
+
+    <!-- Trip Detail page -->
+    <string name="diadiemocanada">ĐỊA ĐIỂM Ở CANADA</string>
+
+
 </resources>

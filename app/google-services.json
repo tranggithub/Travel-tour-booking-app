@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "60358304702",
+    "project_id": "travel-tour-booking-app",
+    "storage_bucket": "travel-tour-booking-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60358304702:android:0b4a5aa46529328f638fef",
+        "android_client_info": {
+          "package_name": "com.example.travel_tour_booking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhnhy0MxBnefxbGZGbgmJ8FCfmV5fkG-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,4 +9,6 @@
     <item name="gi_m_gi_" type="id" />
     <item name="ic_voucher" type="id" />
     <item name="search" type="id" />
+    <item name="passenger_info" type="id" />
+    <item name="info_txt" type="id" />
 </resources>

@@ -1,24 +1,38 @@
 package com.example.travel_tour_booking_app;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class News {
     String Titile;
-    Date UploadDate;
+    String UploadDate;
     String Text;
+    String Thumbnail;
 
-    public News(String titile, Date uploadDate, String text) {
+//    public News(String titile, String uploadDate, String text) {
+//        Titile = titile;
+//        UploadDate = uploadDate;
+//        Text = text;
+//    }
+
+    public News(String titile, String uploadDate, String text, String thumbnail) {
         Titile = titile;
         UploadDate = uploadDate;
         Text = text;
+        Thumbnail = thumbnail;
+    }
+
+    public News() {
     }
 
     public void setTitile(String titile) {
         Titile = titile;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         UploadDate = uploadDate;
     }
 
@@ -30,15 +44,30 @@ public class News {
         return Titile;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return UploadDate;
     }
 
     public String getText() {
         return Text;
     }
-    public String getCurrentDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy"); // Định dạng ngày theo "dd-MM-yy"
-        String formattedDate = sdf.format(date); // Lấy ngày hiện tại và định dạng nó
+    public static String getCurrentDate() {
+        // Lấy thời gian hiện tại
+        Calendar calendar = Calendar.getInstance();
+        TimeZone timeZone = TimeZone.getTimeZone("Asia/Ho_Chi_Minh"); // Đặt múi giờ cho GMT+7
+
+        // Định dạng ngày giờ
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd/MM/yyyy, HH:mm (z)", new Locale("vi", "VN"));
+        sdf.setTimeZone(timeZone);
+
+        String formattedDate = sdf.format(calendar.getTime());
         return formattedDate;}
+
+    public String getThumbnail() {
+        return Thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        Thumbnail = thumbnail;
+    }
 }
