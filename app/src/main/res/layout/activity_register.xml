@@ -122,6 +122,7 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:text=""
+                        android:textColor="@color/white"
                         android:textSize="16dp"
                         app:layout_constraintEnd_toStartOf="@id/edt_Ten_register"
                         app:layout_constraintHorizontal_weight="0.5"
@@ -143,6 +144,7 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:text=""
+                        android:textColor="@color/white"
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight="0.5"
@@ -179,6 +181,7 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:text=""
+                        android:textColor="@color/white"
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -224,6 +227,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:text=""
+                            android:textColor="@color/white"
                             android:textSize="16dp"
                             app:layout_constraintStart_toStartOf="@+id/edt_Email_register"
                             app:layout_constraintTop_toBottomOf="@+id/tv_MatKhau_register" />
@@ -330,6 +334,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:text=""
+                            android:textColor="@color/white"
                             android:textSize="16dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -375,6 +380,7 @@
                         app:layout_constraintTop_toBottomOf="@id/btn_DangKy_register" />
 
                     <TextView
+                        android:id="@+id/tv_DieuKhoan_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"

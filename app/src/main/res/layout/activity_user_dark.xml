@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#000000"
-    android:orientation="vertical"
-    tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp">
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,7 +33,6 @@
             android:id="@+id/btn_search_home"
             android:layout_width="36dp"
             android:layout_height="32dp"
-            android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
             app:layout_constraintStart_toStartOf="@+id/user_search"
             app:layout_constraintTop_toTopOf="@id/user_search"
@@ -119,55 +116,63 @@
                 android:layout_width="96dp"
                 android:layout_height="105dp"
                 android:src="@drawable/ic_avatar"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="16dp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="195dp"
                 android:layout_height="29dp"
+                android:layout_marginStart="23dp"
                 android:fontFamily="@font/firasans_black"
                 android:text="Nguyễn Văn A"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="138dp"
-                tools:layout_editor_absoluteY="16dp" />
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="211dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="24dp"
                 android:text="Email: nguyenvana@gmail.com"
-                tools:layout_editor_absoluteX="138dp"
-                tools:layout_editor_absoluteY="45dp" />
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="208dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="24dp"
                 android:text="Số điện thoại: +84385959xxx"
-                tools:layout_editor_absoluteX="138dp"
-                tools:layout_editor_absoluteY="65dp" />
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="211dp"
                 android:layout_height="50dp"
+                android:layout_marginStart="24dp"
                 android:backgroundTint="#2D99AE"
                 android:text="Chỉnh sửa trang cá nhân"
-                tools:layout_editor_absoluteX="138dp"
-                tools:layout_editor_absoluteY="85dp" />
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="395dp">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/button2"
@@ -177,19 +182,22 @@
             android:backgroundTint="#1c1f29"
             android:text="Thông báo"
             android:textSize="18dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="59dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:layout_width="27dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_nofitication"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="65dp"></ImageView>
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/button2"
+            app:layout_constraintTop_toTopOf="@id/button2"
+            app:layout_constraintBottom_toBottomOf="@id/button2"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <ImageView
             android:id="@+id/imageView11"
@@ -197,8 +205,9 @@
             android:layout_height="50dp"
             android:src="@drawable/ic_next"
             app:layout_constraintEnd_toEndOf="@+id/button2"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="60dp"></ImageView>
+            app:layout_constraintTop_toTopOf="@id/button2"
+            app:layout_constraintBottom_toBottomOf="@id/button2"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <Button
             android:id="@+id/button3"
@@ -208,19 +217,32 @@
             android:backgroundTint="#1c1f29"
             android:text="Lịch sử đặt Tour"
             android:textSize="18dp"
+            app:layout_constraintTop_toBottomOf="@id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="110dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:layout_width="27dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_time"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="120dp"></ImageView>
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/button3"
+            app:layout_constraintTop_toTopOf="@id/button3"
+            app:layout_constraintBottom_toBottomOf="@id/button3"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="37dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="@+id/button3"
+            app:layout_constraintTop_toTopOf="@id/button3"
+            app:layout_constraintBottom_toBottomOf="@id/button3"
+            tools:ignore="MissingConstraints"></ImageView>
+
 
         <Button
             android:id="@+id/button4"
@@ -230,28 +252,31 @@
             android:backgroundTint="#1c1f29"
             android:text="Discount"
             android:textSize="18dp"
+            app:layout_constraintTop_toBottomOf="@id/button3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="161dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="37dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_next"
-            app:layout_constraintEnd_toEndOf="@+id/button5"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="161dp"></ImageView>
+            app:layout_constraintEnd_toEndOf="@+id/button4"
+            app:layout_constraintTop_toTopOf="@id/button4"
+            app:layout_constraintBottom_toBottomOf="@id/button4"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <ImageView
             android:layout_width="27dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_sale_price_tag"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="171dp"></ImageView>
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/button4"
+            app:layout_constraintTop_toTopOf="@id/button4"
+            app:layout_constraintBottom_toBottomOf="@id/button4"
+            tools:ignore="MissingConstraints"></ImageView>
 
 
 
@@ -263,19 +288,21 @@
             android:backgroundTint="#1c1f29"
             android:text="Thẻ của tôi"
             android:textSize="18dp"
+            app:layout_constraintTop_toBottomOf="@id/button4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="212dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:layout_width="27dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_credit_card"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="222dp"></ImageView>
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/button5"
+            app:layout_constraintTop_toTopOf="@id/button5"
+            app:layout_constraintBottom_toBottomOf="@id/button5"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <ImageView
             android:id="@+id/imageView5"
@@ -283,8 +310,9 @@
             android:layout_height="50dp"
             android:src="@drawable/ic_next"
             app:layout_constraintEnd_toEndOf="@+id/button5"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="213dp"></ImageView>
+            app:layout_constraintTop_toTopOf="@id/button5"
+            app:layout_constraintBottom_toBottomOf="@id/button5"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <Button
             android:id="@+id/button6"
@@ -294,28 +322,31 @@
             android:backgroundTint="#1c1f29"
             android:text="Hỗ trợ"
             android:textSize="18dp"
+            app:layout_constraintTop_toBottomOf="@id/button5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="263dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:layout_width="27dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_help"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="272dp"></ImageView>
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/button6"
+            app:layout_constraintTop_toTopOf="@id/button6"
+            app:layout_constraintBottom_toBottomOf="@id/button6"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="37dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_next"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="263dp"></ImageView>
+            app:layout_constraintEnd_toEndOf="@+id/button6"
+            app:layout_constraintTop_toTopOf="@id/button6"
+            app:layout_constraintBottom_toBottomOf="@id/button6"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <Button
             android:id="@+id/button7"
@@ -324,45 +355,32 @@
             android:backgroundTint="#1c1f29"
             android:text="Cài đặt"
             android:textSize="18dp"
+            app:layout_constraintTop_toBottomOf="@id/button6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.541"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="314dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:layout_width="27dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_setting"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="324dp"></ImageView>
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/button7"
+            app:layout_constraintTop_toTopOf="@id/button7"
+            app:layout_constraintBottom_toBottomOf="@id/button7"
+            tools:ignore="MissingConstraints"></ImageView>
 
         <ImageView
             android:id="@+id/imageView10"
             android:layout_width="37dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_next"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="315dp"></ImageView>
+            app:layout_constraintEnd_toEndOf="@+id/button7"
+            app:layout_constraintTop_toTopOf="@id/button7"
+            app:layout_constraintBottom_toBottomOf="@id/button7"
+            tools:ignore="MissingConstraints"></ImageView>
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="37dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_next"
-            app:layout_constraintEnd_toEndOf="@+id/button3"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="111dp"></ImageView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView9"
@@ -372,10 +390,11 @@
             android:text="4Travel phiên bản beta"
             android:textColor="#2D99AE"
             android:textSize="20sp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@id/button7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="27dp" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView10"
@@ -388,6 +407,7 @@
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </LinearLayout>
