@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,12 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +38,8 @@ public class HomeFragment extends Fragment {
     PromotionAdapter promotionAdapter;
     ArrayList<News> newss;
     NewsAdapter newsAdapter;
+    DatabaseReference databaseReference;
+    String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,19 +87,34 @@ public class HomeFragment extends Fragment {
 
         //News
         newss = new ArrayList<>();
-        News tempNews = new News(
-                "Khu vui chơi ở Huế",
-                "02/11/2023",
-                "Nhiều thực khách tỏ ra thích thú với bố trí của công viên",
-                "123");
-        newss.add(tempNews);
 
         newsAdapter = new NewsAdapter(getContext(),newss);
 
         RecyclerView rvNews = view.findViewById(R.id.rv_new);
-        rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
         rvNews.setAdapter(newsAdapter);
 
+
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                newss.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    News tempNews = itemSnapshot.getValue(News.class);
+                    newss.add(tempNews);
+                }
+                newsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        //Xử lý kéo về đầu trang
         ScrollToTop(view);
         // Inflate the layout for this fragment
 

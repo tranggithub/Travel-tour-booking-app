@@ -543,7 +543,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="186dp"
-                    android:background="@drawable/img_khachsan_Borahea"
+                    android:background="@drawable/img_khachsan_borahea"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
