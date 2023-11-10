@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class DetailNewsAdapter extends RecyclerView.Adapter<DetailNewsAdapter.MyViewHolder> {
@@ -33,17 +35,19 @@ public class DetailNewsAdapter extends RecyclerView.Adapter<DetailNewsAdapter.My
         DetailNews tempDetailNews = detailNews.get(position);
         if(tempDetailNews.isImage())
         {
-            //Thiê lập Visible
+            //Thiêt lập Visible
             holder.ivPlace.setVisibility(View.VISIBLE);
             holder.tvSubtitlePlace.setVisibility(View.VISIBLE);
 
             holder.tvDetail.setVisibility(View.GONE);
 
             //Thiết lập nội dung
-            holder.ivPlace.setImageResource(tempDetailNews.getImage());
+            //holder.ivPlace.setImageResource(tempDetailNews.getImage());
+            //holder.ivPlace.setImageResource(0);
+            Glide.with(context).load(detailNews.get(position).getPicture()).into(holder.ivPlace);
             holder.tvSubtitlePlace.setText(tempDetailNews.getSubtitleImage());
         } else{
-            //Thiê lập Visible
+            //Thiết lập Visible
             holder.ivPlace.setVisibility(View.GONE);
             holder.tvSubtitlePlace.setVisibility(View.GONE);
 

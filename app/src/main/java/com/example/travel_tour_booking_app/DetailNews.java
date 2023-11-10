@@ -1,7 +1,10 @@
 package com.example.travel_tour_booking_app;
 
-public class DetailNews {
+import java.io.Serializable;
+
+public class DetailNews implements Serializable {
     int Image;
+    String Picture = null;
     String SubtitleImage;
     String DetailText;
     boolean isImage;
@@ -13,8 +16,27 @@ public class DetailNews {
         this.isImage = isImage;
     }
 
-    public int getImage() {
-        return Image;
+    public DetailNews() {
+    }
+
+    public DetailNews(String picture, String subtitleImage, String detailText, boolean isImage) {
+        Picture = picture;
+        SubtitleImage = subtitleImage;
+        DetailText = detailText;
+        this.isImage = isImage;
+    }
+
+    public DetailNews(boolean isImage) {
+        this.isImage = isImage;
+    }
+
+
+//    public int getImage() {
+//        return Image;
+//    }
+
+    public String getPicture() {
+        return Picture;
     }
 
     public String getSubtitleImage() {
@@ -29,8 +51,12 @@ public class DetailNews {
         return isImage;
     }
 
-    public void setImage(int image) {
+    public void setIsImage(int image) {
         Image = image;
+    }
+
+    public void setPicture(String picture) {
+        Picture = picture;
     }
 
     public void setSubtitleImage(String subtitleImage) {
