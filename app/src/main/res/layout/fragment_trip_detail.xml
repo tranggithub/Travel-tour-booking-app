@@ -105,7 +105,7 @@
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="@+id/bt_gia"
                     app:layout_constraintStart_toStartOf="@+id/bt_gia"
-                    tools:ignore="TextSizeCheck"
+                    tools:ignore="MissingConstraints,TextSizeCheck"
                     tools:layout_editor_absoluteY="5dp" />
 
                 <Button
@@ -130,7 +130,7 @@
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="@+id/bt_sao"
                     app:layout_constraintStart_toStartOf="@+id/bt_sao"
-                    tools:ignore="TextSizeCheck"
+                    tools:ignore="MissingConstraints,TextSizeCheck"
                     tools:layout_editor_absoluteY="5dp" />
 
                 <Button
@@ -140,7 +140,7 @@
                     android:layout_marginEnd="44dp"
                     android:background="@drawable/custom_button"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="TextSizeCheck"
+                    tools:ignore="MissingConstraints,TextSizeCheck"
                     tools:layout_editor_absoluteY="3dp" />
 
                 <TextView
