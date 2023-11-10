@@ -2,6 +2,7 @@ package com.example.travel_tour_booking_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
@@ -45,7 +47,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 Intent intent = new Intent(context, DetailNewsActivity.class);
                 intent.putExtra("Title", newss.get(holder.getAdapterPosition()).getTitile());
                 intent.putExtra("Date", newss.get(holder.getAdapterPosition()).getUploadDate());
-
+                intent.putExtra("DetailNewsList", (News) newss.get(position));
                 context.startActivity(intent);
             }
         });

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#070B1D"
+    tools:ignore="MissingDefaultResource">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_navigationView_detailtrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_list_news"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:onClick="GoBack"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_chitietchuyendi"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_chitietchuyendi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="THÔNG TIN CHUYẾN ĐI"
+                android:textColor="@color/maincolor"
+                android:textSize="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_news"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+    <ScrollView
+        android:id="@+id/sv_detal_trip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nv_navigationView_detailtrip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="186dp"
+                    android:background="@drawable/phongcanh"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
+                    tools:ignore="MissingConstraints,UnknownIdInLayout"
+                    tools:layout_editor_absoluteY="80dp">
+                </ImageView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Chuyến du lịch đảo Toronto"
+                android:textColor="@color/maincolor"
+                android:textSize="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/white"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <TextView
+                    android:id="@+id/tv_ngaythamquan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/firasans_bold"
+                    android:text="Ngày tham quan"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/v_schec"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <View
+                    android:id="@+id/v_schec"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_schedule"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <View
+                    android:id="@+id/view13"
+                    android:layout_width="3dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="152dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/maincolor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_date"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/firasans_mediumitalic"
+                    android:text="Chủ nhật, 9 Th 4 2023"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    tools:ignore="MissingConstraints,TextSizeCheck"
+                    tools:layout_editor_absoluteY="4dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_bill"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_bill"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/tv_thoihan"
+                    android:layout_width="70dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="52dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="4 ngày"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <View
+                    android:id="@+id/v14"
+                    android:layout_width="3dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="36dp"
+                    android:background="@color/maincolor"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_gia"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="0dp" />
+
+                <TextView
+                    android:id="@+id/tv_gia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="96dp"
+                    android:fontFamily="@font/firasans_bold"
+                    android:text="9.190.123 VND"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_places"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_placesmall"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/tv_diadiem"
+                    android:layout_width="70dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="52dp"
+                    android:fontFamily="@font/firasans_mediumitalic"
+                    android:text="Canada"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="19dp"
+                    android:background="@drawable/ic_back1"
+                    android:theme="@style/Theme.Design.Light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_quality"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_good_quality"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_danhgia"
+                    android:layout_width="70dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="17dp"
+                    android:fontFamily="@font/firasans_mediumitalic"
+                    android:text="4 sao"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/v_quality"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <RatingBar
+                    android:id="@+id/rtbProductRating"
+                    style="@style/foodRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="3.5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="4dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/white"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_info_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Bạn muốn đi du lịch Canada, đó quả mà 1 quyết định sang suốt đó. Canada là một đất nước rộng lớn với vô số cảnh đẹp để thưởng thức, trong số đó phải nhắc tới thành phố Toronto. Toronto được đánh giá là một trong những thành phố đáng để ghé thăm nhất năm 2023. "
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginEnd="10dp"
+
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:justificationMode="inter_word"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/maincolor"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Lịch trình"
+                android:textColor="@color/maincolor"
+                android:textSize="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Ngày 1"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_medium"
+                android:text="* 7 giờ - 8 giờ: làm thủ tục ở sân bay"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_medium"
+                android:text="* 11 giờ 30 đến 12 giờ: làm thủ tục nhận phòng khách sạn"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="12dp"/>
+
+            <Button
+                android:id="@+id/btn_more_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_button"
+                android:gravity="bottom"
+                android:text="Xem thêm"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/maincolor"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Khách sạn Borahae"
+                android:textColor="@color/maincolor"
+                android:textSize="35dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/maincolor"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_places1"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_placesmall"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_back1"
+                    android:theme="@style/Theme.Design.Light"
+                    tools:layout_editor_absoluteX="365dp"
+                    tools:layout_editor_absoluteY="5dp"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_diadiem_khachsan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_mediumitalic"
+                    android:text="Đường 27, khu phố Wams, Tp Canada"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="41dp"
+                    tools:layout_editor_absoluteY="0dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_quality1"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_good_quality"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_danhgia1"
+                    android:layout_width="70dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="17dp"
+                    android:fontFamily="@font/firasans_mediumitalic"
+                    android:text="5 sao"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/v_quality1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <RatingBar
+                    android:id="@+id/rtbProductRating1"
+                    style="@style/foodRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="4dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_message"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_messaging"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_back1"
+                    android:theme="@style/Theme.Design.Light"
+                    tools:layout_editor_absoluteX="365dp"
+                    tools:layout_editor_absoluteY="5dp"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_danhgia2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_mediumitalic"
+                    android:text="Từ 40 đánh giá"
+                    android:textColor="@color/white"
+                    android:textSize="19dp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="41dp"
+                    tools:layout_editor_absoluteY="0dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/white"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="186dp"
+                    android:background="@drawable/img_khachsan_borahea"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
+                    tools:ignore="MissingConstraints,UnknownIdInLayout">
+                </ImageView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

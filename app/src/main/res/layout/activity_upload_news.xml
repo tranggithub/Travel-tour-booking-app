@@ -206,30 +206,71 @@
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
                         android:hint="Nhập nội dung vào đây..."
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
+                        android:paddingEnd="20dp"
                         android:text=""
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="@+id/edt_date_upload_news"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_news" />
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_upload_detail_news"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_news"
+                        android:gravity="top|start"/>
+                    <LinearLayout
+                        android:id="@+id/ll_upload_detail_news"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_text_upload_news"
-                        app:layout_constraintTop_toBottomOf="@+id/edt_text_upload_news" />
-                    />
+                        app:layout_constraintTop_toBottomOf="@+id/edt_text_upload_news"
+                        android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_upload_detail_news"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp">
+                            <Button
+                                android:id="@+id/btn_addText_upload_news"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_bold"
+                                android:text="Thêm nội dung"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15dp"
+                                android:drawableStart="@drawable/ic_add"
+                                app:layout_constraintStart_toStartOf="parent"
+                               app:layout_constraintEnd_toStartOf="@id/btn_addPicture_upload_news"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                            <Button
+                                android:id="@+id/btn_addPicture_upload_news"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_bold"
+                                android:text="Thêm hình ảnh"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_add"
+                                android:visibility="gone"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/btn_addText_upload_news"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
                     <Button
                         android:id="@+id/btn_upload_news"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="80dp"
                         android:fontFamily="@font/firasans_bold"
                         android:text="tải lên"
@@ -239,7 +280,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_upload_detail_news" />
+                        app:layout_constraintTop_toBottomOf="@+id/ll_upload_detail_news" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>

@@ -47,12 +47,6 @@ public class ListNewsActivity extends AppCompatActivity {
 
         //News
         newss = new ArrayList<>();
-//        News tempNews = new News(
-//                "Khu vui chơi ở Huế",
-//                "02/11/2023",
-//                "Nhiều thực khách tỏ ra thích thú với bố trí của công viên",
-//                "123");
-//        newss.add(tempNews);
 
         newsAdapter = new NewsAdapter(this,newss);
 

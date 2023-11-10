@@ -45,18 +45,16 @@
         android:layout_height="500dp">
 
         <TextView
+            android:id="@+id/choice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thêm lựa chọn"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="6dp"
-            tools:ignore="MissingConstraints"
-            android:fontFamily="@font/firasans_medium"></TextView>
+            app:layout_constraintRight_toRightOf="parent"></TextView>
 
         <RelativeLayout
             android:id="@+id/add_info"
@@ -66,9 +64,11 @@
             android:layout_alignParentTop="true"
             android:background="#CC22242C"
             android:clipToOutline="true"
-            tools:ignore="DuplicateIds,MissingConstraints"
-            tools:layout_editor_absoluteX="10dp"
-            tools:layout_editor_absoluteY="33dp" >
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/choice"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="DuplicateIds,MissingConstraints">
 
             <ImageView
                 android:id="@+id/email"
@@ -104,11 +104,12 @@
             android:lineSpacingExtra="8sp"
             android:text="Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với Điều khoản &amp; Điều kiện và Cam kết bảo mật của 4Travel"
             android:textSize="18dp"
+            android:layout_marginTop="200dp"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_info"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="253dp"
             android:fontFamily="@font/firasans_medium"></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
