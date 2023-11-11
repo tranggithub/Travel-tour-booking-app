@@ -9,6 +9,14 @@ public class ReadWriteUserDetails {
     // Default image URL
     private static final String DEFAULT_IMAGE_URL = "gs://travel-tour-booking-app.appspot.com/Android Users Image/default.png";
 
+    public ReadWriteUserDetails() {
+        this.ho = null;
+        this.ten = null;
+        this.delected = 0;
+        this.role = "user";
+        this.urlImage = DEFAULT_IMAGE_URL;
+    }
+
     ReadWriteUserDetails(String ho, String ten) {
         this.ho = ho;
         this.ten = ten;
@@ -16,7 +24,8 @@ public class ReadWriteUserDetails {
         this.role = "user";
         this.delected = 0;
     }
-    ReadWriteUserDetails(String userDisplayname){
+
+    ReadWriteUserDetails(String userDisplayname) {
         this.ho = null;
         this.ten = userDisplayname;
         this.urlImage = DEFAULT_IMAGE_URL;
