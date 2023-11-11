@@ -7,7 +7,8 @@
     android:background="#000000"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp">
+    tools:layout_editor_absoluteY="1dp"
+    tools:ignore="MissingDefaultResource">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -125,9 +126,8 @@
             android:layout_alignParentTop="true"
             android:background="#CC22242C"
             android:clipToOutline="true"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="57dp">
+            app:layout_constraintBottom_toTopOf="@id/money"
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,9 +159,8 @@
             android:layout_alignParentBottom="true"
             android:background="#FFFFFF"
             android:clipToOutline="true"
-            tools:ignore="InvalidId,MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="112dp" >
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="InvalidId,MissingConstraints">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -167,8 +167,7 @@
             android:background="#FFFFFF"
             android:clipToOutline="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="InvalidId,MissingConstraints"
-            tools:layout_editor_absoluteX="16dp">
+            tools:ignore="InvalidId,MissingConstraints">
 
             <TextView
                 android:layout_width="wrap_content"
