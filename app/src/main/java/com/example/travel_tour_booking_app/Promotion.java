@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Promotion implements Serializable {
+    String Key;
     String Title;
     String Thumbnail;
     String startDateString;
@@ -98,6 +99,14 @@ public class Promotion implements Serializable {
 
     public String getEndDateString() {
         return endDateString;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 
 //    public boolean isExpired()

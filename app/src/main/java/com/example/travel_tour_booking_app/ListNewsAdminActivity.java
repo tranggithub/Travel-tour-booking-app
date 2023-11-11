@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class ListNewsActivity extends AppCompatActivity {
+public class ListNewsAdminActivity extends AppCompatActivity {
     ArrayList<News> newss;
     NewsAdapter newsAdapter;
     DatabaseReference databaseReference;
@@ -34,17 +36,20 @@ public class ListNewsActivity extends AppCompatActivity {
     PaginationAdapter paginationAdapter;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     EditText et_search;
+    TextView tv_add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_news);
+        setContentView(R.layout.activity_list_news_admin);
 
-        //Progress layout
+//Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog alertDialog = builder.create();
 //        alertDialog.show();
+        //change to upload page
+        AddNews();
 
         //News
         newss = new ArrayList<>();
@@ -157,6 +162,18 @@ public class ListNewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+    }
+
+    public void AddNews()
+    {
+        tv_add = findViewById(R.id.tv_add_news);
+        tv_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListNewsAdminActivity.this, UploadNewsActivity.class);
+                startActivity(intent);
             }
         });
     }
