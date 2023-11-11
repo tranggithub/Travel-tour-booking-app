@@ -16,15 +16,17 @@ import java.util.List;
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder> {
     Context context;
     List<Place> places;
+    int layout;
 
-    public PlaceAdapter (Context context, List<Place> places){
+    public PlaceAdapter (Context context, List<Place> places, int layout){
         this.context = context;
         this.places = places;
+        this.layout = layout;
     }
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        v = LayoutInflater.from(context).inflate(R.layout.item_place, parent, false);
+        v = LayoutInflater.from(context).inflate(layout, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(v);
         return myViewHolder;
     }
