@@ -115,8 +115,8 @@
 
                 <View
                     android:id="@+id/v_place"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="17dp"
+                    android:layout_height="13dp"
                     android:layout_marginEnd="56dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/ic_place1"

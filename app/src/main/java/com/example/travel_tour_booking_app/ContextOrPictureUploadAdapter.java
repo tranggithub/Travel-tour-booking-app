@@ -92,7 +92,7 @@ public class ContextOrPictureUploadAdapter extends RecyclerView.Adapter<ContextO
         holder.iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailNewsList.remove(position);
+                DetailNewsList.remove(holder.getAdapterPosition());
                 notifyDataSetChanged();
             }
         });
@@ -101,7 +101,7 @@ public class ContextOrPictureUploadAdapter extends RecyclerView.Adapter<ContextO
             @Override
             public void onClick(View v) {
                 Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                ((Activity) context).startActivityForResult(pickImageIntent, position);
+                ((Activity) context).startActivityForResult(pickImageIntent, holder.getAdapterPosition());
 
             }
         });
@@ -117,6 +117,10 @@ public class ContextOrPictureUploadAdapter extends RecyclerView.Adapter<ContextO
 
     public ArrayList<DetailNews> getDetailNewsList() {
         return DetailNewsList;
+    }
+
+    public void setDetailNewsList(ArrayList<DetailNews> detailNewsList) {
+        DetailNewsList = detailNewsList;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

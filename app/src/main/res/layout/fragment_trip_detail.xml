@@ -154,7 +154,8 @@
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="@+id/bt_thoiluong"
                     app:layout_constraintStart_toStartOf="@+id/bt_thoiluong"
-                    tools:layout_editor_absoluteY="5dp" />
+                    tools:layout_editor_absoluteY="5dp"
+                    tools:ignore="MissingConstraints" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -556,7 +557,8 @@
                     android:orientation="horizontal"
                     android:id="@+id/cl_pagination"
                     android:layout_gravity="center"
-                    android:weightSum="8">
+                    android:weightSum="8"
+                    tools:ignore="MissingConstraints">
 
                     <Button
                         android:id="@+id/btn_previous"

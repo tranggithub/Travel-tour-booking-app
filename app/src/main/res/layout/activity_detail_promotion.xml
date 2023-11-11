@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailNewsActivity"
+    tools:context=".DetailPromotionActivity"
     android:background="#070B1D">
 
     <com.google.android.material.navigation.NavigationView
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firasans_bold"
-                android:text="CHI TIẾT TIN TỨC"
+                android:text="CHI TIẾT KHUYẾN MÃI"
                 android:textColor="@color/maincolor"
                 android:textSize="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@id/nv_navigationView_chat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/sv_detail_news"
+        android:id="@+id/sv_detail_promotion"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/margin_left_right_section"
         android:layout_marginRight="@dimen/margin_left_right_section"
@@ -70,7 +70,7 @@
             android:orientation="vertical"
             android:paddingBottom="100dp">
             <TextView
-                android:id="@+id/tv_title_details_news"
+                android:id="@+id/tv_title_details_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Các khu cắm trại tiện nghi kín chỗ dịp 30/04"
@@ -78,7 +78,7 @@
                 android:fontFamily="@font/firasans_bold"
                 android:textSize="25dp"/>
             <TextView
-                android:id="@+id/tv_date_details_news"
+                android:id="@+id/tv_date_details_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Chủ nhật, 23/4/2023, 12:15 (GMT+7)"
@@ -89,7 +89,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_detail_news"
+                android:id="@+id/rv_detail_promotion"
                 android:nestedScrollingEnabled="false"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                 android:layout_marginTop="@dimen/margin_section">
 
                 <Button
-                    android:id="@+id/btn_detail_news_up"
+                    android:id="@+id/btn_detail_promotion_up"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -112,10 +112,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_double_up"
-                    app:layout_constraintEnd_toEndOf="@id/btn_detail_news_up"
-                    app:layout_constraintStart_toStartOf="@id/btn_detail_news_up"
-                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_news_up"
-                    app:layout_constraintTop_toTopOf="@id/btn_detail_news_up"/>
+                    app:layout_constraintEnd_toEndOf="@id/btn_detail_promotion_up"
+                    app:layout_constraintStart_toStartOf="@id/btn_detail_promotion_up"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_promotion_up"
+                    app:layout_constraintTop_toTopOf="@id/btn_detail_promotion_up"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
