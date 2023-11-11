@@ -86,6 +86,38 @@
                 android:layout_marginTop="@dimen/margin_section">
             </GridView>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_item"
+                android:layout_marginTop="@dimen/margin_section">
+
+                <TextView
+                    android:id="@+id/tx_popularplace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_place1"
+                    android:drawablePadding="@dimen/padding_drawable_icon"
+                    android:fontFamily="@font/firasans_extrabold"
+                    android:padding="@dimen/padding_text"
+                    android:text="Địa điểm nổi bật"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="@dimen/margin_left_right_section"
+                    android:textColor="@color/maincolor"
+                    android:textSize="@dimen/size_title"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_popularplace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_item">
+            </androidx.viewpager2.widget.ViewPager2>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -102,7 +134,7 @@
                     android:drawablePadding="@dimen/padding_drawable_icon"
                     android:fontFamily="@font/firasans_extrabold"
                     android:padding="@dimen/padding_text"
-                    android:text="Địa điểm"
+                    android:text="Địa điểm khác"
                     android:textAllCaps="true"
                     android:layout_marginLeft="@dimen/margin_left_right_section"
                     android:textColor="@color/maincolor"
@@ -156,6 +188,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/btn_readall_promotions"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"

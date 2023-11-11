@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +34,14 @@ public class HomeFragment extends Fragment {
     ArrayList<Seclection> seclections;
     SelectionAdapter selectionAdapter;
     ArrayList<Place> places;
+    PlaceAdapter placePopularAdapter;
     PlaceAdapter placeAdapter;
     ArrayList<Promotion> promotions;
     PromotionAdapter promotionAdapter;
     ArrayList<News> newss;
     NewsAdapter newsAdapter;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceNews;
+    DatabaseReference databaseReferencePromotions;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,12 +61,19 @@ public class HomeFragment extends Fragment {
         GridView SelectionGridview = view.findViewById(R.id.gv_selection);
         SelectionGridview.setAdapter(selectionAdapter);
 
-        //Place
+        //Popular Place
         places = new ArrayList<>();
         Place tempPlace = new Place("Chuyến du lịch Toronto","Canada","9.190.123",4,R.drawable.img_toronto);
         places.add(tempPlace);
+        places.add(tempPlace);
 
-        placeAdapter = new PlaceAdapter(getContext(),places);
+        placePopularAdapter = new PlaceAdapter(getContext(),places,R.layout.item_popular_place);
+
+        ViewPager2 vpPopular_Place = view.findViewById(R.id.vp_popularplace);
+        vpPopular_Place.setAdapter(placePopularAdapter);
+
+        //Place
+        placeAdapter = new PlaceAdapter(getContext(),places,R.layout.item_place);
 
         RecyclerView rvPlace = view.findViewById(R.id.rv_place);
         rvPlace.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -71,19 +81,30 @@ public class HomeFragment extends Fragment {
 
         //Promotion
         promotions = new ArrayList<>();
-        Promotion tempPromtion = new Promotion(
-                "Liên kết ngân hàng",
-                R.drawable.img_promotion,
-                new Date(2023,4,14),
-                new Date(2023,5,20),
-                "Liên kết thẻ ngân hàng ngay để nhận giảm giá");
-        promotions.add(tempPromtion);
-
         promotionAdapter = new PromotionAdapter(getContext(),promotions);
 
         RecyclerView rvPromotion = view.findViewById(R.id.rv_promotion);
         rvPromotion.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvPromotion.setAdapter(promotionAdapter);
+
+        //Firebase
+        databaseReferencePromotions = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Promotion");
+
+        databaseReferencePromotions.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                promotions.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
+                    promotions.add(tempPromotion);
+                }
+                promotionAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         //News
         newss = new ArrayList<>();
@@ -96,9 +117,9 @@ public class HomeFragment extends Fragment {
 
 
         //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
+        databaseReferenceNews = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReferenceNews.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 newss.clear();
@@ -120,6 +141,7 @@ public class HomeFragment extends Fragment {
 
         //Xu ly Xem tat ca
         XemTatCaTinTuc(view);
+        XemTatCaKhuyenMai(view);
 
         return view;
 
@@ -136,6 +158,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+    }
+    void XemTatCaKhuyenMai(View view)
+    {
+        Button button = view.findViewById(R.id.btn_readall_promotions);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ListPromotionActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     void XemTatCaTinTuc(View view)
     {

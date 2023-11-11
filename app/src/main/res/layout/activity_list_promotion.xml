@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_returnbutton_list_news"
+                android:id="@+id/iv_returnbutton_list_promotion"
                 android:onClick="GoBack"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -41,12 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firasans_bold"
-                android:text="TIN TỨC (1)"
+                android:text="KHUYẾN MÃI (1)"
                 android:textColor="@color/maincolor"
                 android:textSize="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_news"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_promotion"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/et_news_search"
+            android:id="@+id/et_promotion_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_search_bar"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/search_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/sv_list_news"
+        android:id="@+id/sv_list_promotion"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
             android:orientation="vertical"
             android:paddingBottom="150dp">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_news"
+                android:id="@+id/rv_list_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_item"
@@ -125,7 +125,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pigination_list_new"
+                    android:id="@+id/rv_pigination_list_promotion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
@@ -184,7 +184,7 @@
                 android:layout_marginTop="@dimen/margin_section">
 
                 <Button
-                    android:id="@+id/btn_up"
+                    android:id="@+id/btn_up_list_promotion"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -199,10 +199,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_double_up"
-                    app:layout_constraintEnd_toEndOf="@+id/btn_up"
-                    app:layout_constraintStart_toStartOf="@id/btn_up"
-                    app:layout_constraintBottom_toBottomOf="@id/btn_up"
-                    app:layout_constraintTop_toTopOf="@id/btn_up"/>
+                    app:layout_constraintEnd_toEndOf="@+id/btn_up_list_promotion"
+                    app:layout_constraintStart_toStartOf="@id/btn_up_list_promotion"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_up_list_promotion"
+                    app:layout_constraintTop_toTopOf="@id/btn_up_list_promotion"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 

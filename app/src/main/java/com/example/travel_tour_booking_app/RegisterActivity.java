@@ -1,13 +1,19 @@
 package com.example.travel_tour_booking_app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,17 +53,17 @@ public class RegisterActivity extends AppCompatActivity {
     //Firebase
     FirebaseAuth mAuth;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null){
+//            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,16 +90,31 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        tvDaCoTaiKhoan = findViewById(R.id.tv_DaCoTaiKhoan);
-        tvDaCoTaiKhoan.setText(Html.fromHtml("Bạn đã có tài khoản? "+"<u>"+"Đăng nhập"+"</u>"));
-        tvDaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
+        //Handle DangNhap
+        tvDaCoTaiKhoan = (TextView) findViewById(R.id.tv_DaCoTaiKhoan);
+
+        String text = "Bạn đã có tài khoản? Đăng nhập";
+
+        SpannableString spannableString = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View widget) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
-        });
+        };
+
+        int startIndex = text.indexOf("Đăng nhập");
+        int endIndex = startIndex + "Đăng nhập".length();
+
+        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.WHITE);
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tvDaCoTaiKhoan.setText(spannableString);
+        tvDaCoTaiKhoan.setText(spannableString);
+        tvDaCoTaiKhoan.setMovementMethod(LinkMovementMethod.getInstance());
 
         tvDieuKhoan = findViewById(R.id.tv_DieuKhoan_register);
         tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với "+"<u>"+"Điều khoản & Điều kiện"+"</u>"+" và "+"<u>"+"Cam kết bảo mật"+"</u>"+" của 4Travel"));
