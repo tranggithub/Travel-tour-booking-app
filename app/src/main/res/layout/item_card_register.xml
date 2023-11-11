@@ -50,13 +50,15 @@
             android:text="Số thẻ"
             android:textColor="#BCFEFE"
             android:textSize="20dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="51dp"></TextView>
+            tools:ignore="MissingConstraints"></TextView>
 
         <EditText
+            android:id="@+id/edit_cardnum"
             android:layout_width="360dp"
             android:layout_height="46dp"
             android:background="#2D99AE"
@@ -77,10 +79,11 @@
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="InvalidId,MissingConstraints"
-            tools:layout_editor_absoluteY="143dp"></TextView>
+            app:layout_constraintTop_toBottomOf="@id/edit_cardnum"
+            tools:ignore="InvalidId,MissingConstraints"></TextView>
 
         <EditText
+            android:id="@+id/edit_name"
             android:layout_width="360dp"
             android:layout_height="46dp"
             android:background="#2D99AE"
@@ -99,12 +102,13 @@
             android:textColor="#BCFEFE"
             android:textSize="20dp"
             app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintTop_toBottomOf="@id/edit_name"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="InvalidId,MissingConstraints"
-            tools:layout_editor_absoluteY="237dp"></TextView>
+            tools:ignore="InvalidId,MissingConstraints"></TextView>
 
         <EditText
+            android:id="@+id/edit_enddate"
             android:layout_width="360dp"
             android:layout_height="46dp"
             android:background="#2D99AE"
@@ -122,11 +126,12 @@
             android:lineSpacingExtra="8sp"
             android:text="Thông tin thẻ của bạn sẽ được mã hóa và lưu trữ một cách an toàn"
             android:textSize="20dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintTop_toBottomOf="@id/edit_enddate"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteY="352dp"></TextView>
+            tools:ignore="MissingConstraints,NotSibling"></TextView>
 
         <Button
             android:layout_width="238dp"
