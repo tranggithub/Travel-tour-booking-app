@@ -73,4 +73,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             ll_item_news = itemView.findViewById(R.id.ll_item_news);
         }
     }
+
+    public void searchNews(ArrayList<News> news){
+        this.newss = news;
+        notifyDataSetChanged();
+    }
 }

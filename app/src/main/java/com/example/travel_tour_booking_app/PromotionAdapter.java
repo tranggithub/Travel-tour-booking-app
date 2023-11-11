@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyViewHolder> {
@@ -71,5 +72,10 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyVi
             ivThumbnail = itemView.findViewById(R.id.iv_thumbnail_promotion);
             ll_item_promotion = itemView.findViewById(R.id.ll_item_promotion);
         }
+    }
+
+    public void searchPromotion (ArrayList<Promotion> promotions){
+        this.promotions = promotions;
+        notifyDataSetChanged();
     }
 }

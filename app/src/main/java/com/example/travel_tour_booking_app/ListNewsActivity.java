@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -33,6 +37,7 @@ public class ListNewsActivity extends AppCompatActivity {
     ArrayList<Pagination> paginationArrayList;
     PaginationAdapter paginationAdapter;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
+    EditText et_search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,9 +98,48 @@ public class ListNewsActivity extends AppCompatActivity {
         RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_new);
         recyclerViewPagination.setAdapter(paginationAdapter);
 
+        //Search Function
+        et_search = findViewById(R.id.et_news_search);
+
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                performSearch(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         //Scroll to Top
         ScrollToTop();
     }
+
+    private void performSearch(String query) {
+        ArrayList<News> searchList = new ArrayList<>();
+        for (News item : newss){
+            if(normalizeString(item.getTitile().toLowerCase()).contains(query.toLowerCase())){
+                searchList.add(item);
+            }
+        }
+        newsAdapter.searchNews(searchList);
+    }
+    private String normalizeString(String input) {
+        // Loại bỏ dấu từ chuỗi
+        String regex = "\\p{InCombiningDiacriticalMarks}+";
+        String normalizedString = Normalizer.normalize(input, Normalizer.Form.NFD)
+                .replaceAll(regex, "")
+                .toLowerCase();
+        return normalizedString;
+    }
+
     public void ScrollToTop()
     {
         Button button = findViewById(R.id.btn_up);
