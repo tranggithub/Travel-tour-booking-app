@@ -128,7 +128,7 @@
             tools:ignore="DuplicateIds,MissingConstraints">
 
             <ImageView
-                android:id="@+id/email"
+                android:id="@+id/zalo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/email"
+                android:layout_toRightOf="@id/zalo"
                 android:fontFamily="@font/firasans_medium"
                 android:text="ZaloPay"
                 android:textColor="#FFFFFF"
