@@ -57,7 +57,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nv_navigationView_detailtrip">
 
@@ -79,27 +79,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
                     tools:ignore="MissingConstraints,UnknownIdInLayout"
-                    tools:layout_editor_absoluteY="80dp">
-                </ImageView>
+                    tools:layout_editor_absoluteY="80dp"></ImageView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_bold"
                 android:text="Chuyến du lịch đảo Toronto"
                 android:textColor="@color/maincolor"
-                android:textSize="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"/>
+                android:textSize="35dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/white"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"/>
+                android:layout_marginRight="12dp"
+                android:background="@color/white" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -179,6 +178,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
+
                 <TextView
                     android:id="@+id/tv_thoihan"
                     android:layout_width="70dp"
@@ -200,8 +200,7 @@
                     android:layout_marginEnd="36dp"
                     android:background="@color/maincolor"
                     app:layout_constraintEnd_toStartOf="@+id/tv_gia"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteY="0dp" />
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/tv_gia"
@@ -235,6 +234,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
+
                 <TextView
                     android:id="@+id/tv_diadiem"
                     android:layout_width="70dp"
@@ -305,106 +305,116 @@
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteY="4dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/white"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="10dp"/>
+                android:background="@color/white" />
 
             <TextView
                 android:id="@+id/tv_info_trip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/firasans_medium"
+                android:justificationMode="inter_word"
                 android:text="Bạn muốn đi du lịch Canada, đó quả mà 1 quyết định sang suốt đó. Canada là một đất nước rộng lớn với vô số cảnh đẹp để thưởng thức, trong số đó phải nhắc tới thành phố Toronto. Toronto được đánh giá là một trong những thành phố đáng để ghé thăm nhất năm 2023. "
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_marginEnd="10dp"
 
+                android:textSize="20dp"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                android:justificationMode="inter_word"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/maincolor"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="10dp"/>
+                android:background="@color/maincolor" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_bold"
                 android:text="Lịch trình"
                 android:textColor="@color/maincolor"
-                android:textSize="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"/>
+                android:textSize="35dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_medium"
                 android:text="Ngày 1"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"/>
+                android:textSize="20dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_medium"
                 android:text="* 7 giờ - 8 giờ: làm thủ tục ở sân bay"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="12dp"/>
+                android:textSize="20dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_medium"
                 android:text="* 11 giờ 30 đến 12 giờ: làm thủ tục nhận phòng khách sạn"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="12dp"/>
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/btn_more_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/custom_button"
                 android:gravity="bottom"
                 android:text="Xem thêm"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp" />
+                android:textSize="20dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/maincolor"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="10dp"/>
+                android:background="@color/maincolor" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_bold"
                 android:text="Khách sạn Borahae"
                 android:textColor="@color/maincolor"
-                android:textSize="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"/>
+                android:textSize="35dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/maincolor"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="10dp"/>
+                android:background="@color/maincolor" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -428,9 +438,10 @@
                     android:layout_height="20dp"
                     android:background="@drawable/ic_back1"
                     android:theme="@style/Theme.Design.Light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="365dp"
-                    tools:layout_editor_absoluteY="5dp"
-                    tools:ignore="MissingConstraints" />
+                    tools:layout_editor_absoluteY="5dp" />
 
                 <TextView
                     android:id="@+id/tv_diadiem_khachsan"
@@ -444,6 +455,7 @@
                     tools:layout_editor_absoluteX="41dp"
                     tools:layout_editor_absoluteY="0dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -473,7 +485,6 @@
                     android:textSize="19dp"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toEndOf="@+id/v_quality1"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <RatingBar
@@ -486,9 +497,9 @@
                     android:numStars="5"
                     android:rating="5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteY="4dp" />
+                    tools:ignore="MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -512,9 +523,10 @@
                     android:layout_height="20dp"
                     android:background="@drawable/ic_back1"
                     android:theme="@style/Theme.Design.Light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="365dp"
-                    tools:layout_editor_absoluteY="5dp"
-                    tools:ignore="MissingConstraints" />
+                    tools:layout_editor_absoluteY="5dp" />
 
                 <TextView
                     android:id="@+id/tv_danhgia2"
@@ -528,13 +540,15 @@
                     tools:layout_editor_absoluteX="41dp"
                     tools:layout_editor_absoluteY="0dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/white"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="10dp"/>
+                android:background="@color/white" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -543,16 +557,679 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="186dp"
-                    android:background="@drawable/img_khachsan_borahea"
+                    android:background="@drawable/img_borahea"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
-                    tools:ignore="MissingConstraints,UnknownIdInLayout">
-                </ImageView>
-
-
+                    tools:ignore="MissingConstraints,UnknownIdInLayout"></ImageView>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Tiện nghi chung"
+                android:textColor="@color/white"
+                android:textSize="30dp"></TextView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="12dp">
+
+                <View
+                    android:id="@+id/v_wifi"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_wifi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"></View>
+
+                <TextView
+                    android:id="@+id/tv_wifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_italic"
+                    android:text="Wifi"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/v_wifi"
+                    app:layout_constraintStart_toStartOf="@id/v_wifi"
+                    app:layout_constraintTop_toBottomOf="@+id/v_wifi"
+                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+
+                <View
+                    android:id="@+id/v_twobed"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="33dp"
+                    android:background="@drawable/ic_two_bed"
+                    app:layout_constraintEnd_toStartOf="@+id/v_spa"
+                    app:layout_constraintStart_toEndOf="@+id/v_wifi"
+                    tools:ignore="MissingConstraints"></View>
+
+                <TextView
+                    android:id="@+id/tv_bed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/firasans_italic"
+                    android:text="Giường"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/v_twobed"
+                    app:layout_constraintHorizontal_bias="0.717"
+                    app:layout_constraintStart_toStartOf="@+id/v_twobed"
+                    app:layout_constraintTop_toBottomOf="@+id/v_twobed"
+                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+
+                <View
+                    android:id="@+id/v_spa"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="33dp"
+                    android:background="@drawable/ic_spa"
+                    app:layout_constraintEnd_toStartOf="@+id/v_tvshow"
+                    app:layout_constraintStart_toEndOf="@+id/v_twobed"
+                    tools:ignore="MissingConstraints"></View>
+
+                <TextView
+                    android:id="@+id/tv_spa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/firasans_italic"
+                    android:text="Bồn tắm"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/v_spa"
+                    app:layout_constraintHorizontal_bias="0.652"
+                    app:layout_constraintStart_toStartOf="@+id/v_spa"
+                    app:layout_constraintTop_toBottomOf="@+id/v_spa"
+                    tools:ignore="MissingConstraints,TextSizeCheck,TextSizeCheck"></TextView>
+//2
+                <View
+                    android:id="@+id/v_tvshow"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="33dp"
+                    android:background="@drawable/ic_tvshow"
+                    app:layout_constraintEnd_toStartOf="@id/v_cool"
+                    app:layout_constraintStart_toEndOf="@+id/v_spa"
+                    tools:ignore="MissingConstraints"></View>
+
+                <TextView
+                    android:id="@+id/tv_tvshow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_italic"
+                    android:text="TV"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/v_tvshow"
+                    app:layout_constraintStart_toStartOf="@+id/v_tvshow"
+                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow"
+                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+
+                <View
+                    android:id="@+id/v_cool"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginEnd="33dp"
+                    android:background="@drawable/ic_cool"
+                    app:layout_constraintEnd_toStartOf="@id/v_packing"
+                    app:layout_constraintStart_toEndOf="@+id/v_tvshow"
+                    tools:ignore="MissingConstraints"></View>
+
+                <TextView
+                    android:id="@+id/tv_cool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/firasans_italic"
+                    android:text="Máy lạnh"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/v_cool"
+                    app:layout_constraintStart_toStartOf="@+id/v_cool"
+                    app:layout_constraintTop_toBottomOf="@+id/v_cool"
+                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+
+                <View
+                    android:id="@+id/v_packing"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/ic_packing"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints"></View>
+
+                <TextView
+                    android:id="@+id/tv_packing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/firasans_italic"
+                    android:text="Điểm đỗ xe"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/v_packing"
+                    app:layout_constraintHorizontal_bias="0.824"
+                    app:layout_constraintStart_toStartOf="@+id/v_packing"
+                    app:layout_constraintTop_toBottomOf="@+id/v_packing"
+                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Chính sách của khách sạn"
+                android:textColor="@color/white"
+                android:textSize="30dp"></TextView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp">
+
+                <View
+                    android:id="@+id/v_restaurant"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_restaurant"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_restaurant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Bữa sáng miễn phí"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.22222"
+                    app:layout_constraintStart_toEndOf="@+id/v_restaurant"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_nhanphong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/firasans_light"
+                    android:text="Nhận phòng từ"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toBottomOf="@+id/v_restaurant"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_traphong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/firasans_light"
+                    android:text="Trả phòng trước"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_restaurant"
+                    app:layout_constraintTop_toBottomOf="@id/tv_restaurant"
+                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_gionhanphong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="7:00"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_nhanphong"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nhanphong"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nhanphong"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_giotraphong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="12:00"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_traphong"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_traphong"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <View
+                    android:id="@+id/v_hotelbed"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ic_hotel_bed"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gionhanphong"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_themgiuong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Thêm giường"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@+id/v_hotelbed"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_giotraphong"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <LinearLayout
+                    android:id="@+id/ll_free"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_border_maincolor"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/v_hotelbed"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Miễn phí"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:ignore="TextSizeCheck">
+
+                    </TextView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_free1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="1 tuổi trở xuống"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintLeft_toRightOf="@+id/ll_free"
+                    app:layout_constraintTop_toBottomOf="@id/tv_themgiuong"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_free2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:fontFamily="@font/firasans_light"
+                    android:text="Trẻ em có thể sử dụng giường phụ miễn phí "
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintLeft_toRightOf="@+id/ll_free"
+                    app:layout_constraintTop_toBottomOf="@id/tv_free1"
+                    tools:ignore="TextSizeCheck"></TextView>
+
+                <LinearLayout
+                    android:id="@+id/ll_thanhtoan"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/rounded_border_maincolor"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_free"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="Thanh toán"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"></TextView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_thanhtoan1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="10 tuổi trở xuống"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintLeft_toRightOf="@+id/ll_thanhtoan"
+                    app:layout_constraintTop_toBottomOf="@id/tv_free2"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_thanhtoan2"
+                    android:layout_width="326dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/firasans_light"
+                    android:text="Trẻ em có thể sử dụng giường phụ với phụ phí là VND 500.000"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintLeft_toRightOf="@+id/ll_thanhtoan"
+                    app:layout_constraintTop_toBottomOf="@id/tv_thanhtoan1"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/maincolor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Phương tiện di chuyển"
+                android:textColor="@color/maincolor"
+                android:textSize="30dp"></TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/white" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:id="@+id/v_airport"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_airport"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_airport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Thông tin chuyến bay"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintHorizontal_bias="0.22222"
+                    app:layout_constraintLeft_toRightOf="@+id/v_airport"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <TextView
+                    android:id="@+id/tv_tphcm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/firasans_light"
+                    android:text="Từ thành phố Hồ Chí Minh"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toBottomOf="@+id/v_airport"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <View
+                    android:id="@+id/v_clock"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/ic_clock"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tphcm"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_thoigian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="26 giờ 5 phút"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/v_clock"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tphcm"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <View
+                    android:id="@+id/v_dot"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/ic_dot"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/tv_thoigian"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tphcm"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_thongtinbay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="2 chặng"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_thoigian"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tphcm"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <LinearLayout
+                    android:id="@+id/ll_date"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_border_maincolor"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/v_clock"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/firasans_light"
+                        android:text="Chủ nhật, 9 tháng 4"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"></TextView>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_hangbay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="VietNam Airlines Ltd"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/ll_date"
+                tools:ignore="MissingConstraints"></TextView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:id="@+id/v_dot1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_dot"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_chitietbay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="8:30 Thành phố Hồ Chí Minh"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toRightOf="@+id/v_dot1"
+                    tools:ignore="MissingConstraints"></TextView>
+
+                <View
+                    android:id="@+id/v_line"
+                    android:layout_width="3dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/maincolor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_dot1"></View>
+
+                <View
+                    android:id="@+id/v_dot2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/ic_dot"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintTop_toBottomOf="@id/v_line"
+                    tools:ignore="MissingConstraints" />
+
+                <View
+                    android:id="@+id/v_line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/v_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_chitietbay" />
+
+                <View
+                    android:id="@+id/v_airplane_takeoff"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_airplane_take_off"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/v_line"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line2"
+                    tools:ignore="MissingConstraints" />
+
+//1
+                <View
+                    android:id="@+id/v_tvshow_transport"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ic_tvshow"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/v_line"
+                    app:layout_constraintTop_toBottomOf="@+id/v_airplane_takeoff"
+                    tools:ignore="DuplicateIds,MissingConstraints" />
+                <TextView
+                    android:id="@+id/tv_chitietbay1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="A350 (máy bay thân rộng)"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toRightOf="@+id/v_airplane_takeoff"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line2"
+                    tools:ignore="MissingConstraints">
+                </TextView>
+                <TextView
+                    android:id="@+id/tv_chitietbay2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Có Tivi"
+                    android:textColor="@color/white"
+                    app:layout_constraintLeft_toRightOf="@+id/v_tvshow"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_chitietbay1"
+                    tools:ignore="MissingConstraints">
+                </TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
 

@@ -1,14 +1,21 @@
 package com.example.travel_tour_booking_app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -18,20 +25,28 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class LoginFragment extends Fragment {
-
-    LoginActivity binding;
     ArrayList<Seclection> selections;
     SelectionAdapter selectionAdapter;
     VideoView videoView;
@@ -42,18 +57,19 @@ public class LoginFragment extends Fragment {
     TextView tvQuenMatKhau;
     TextView tvChuaCoTaiKhoan;
     TextView tvDieuKhoan;
+    GoogleSignInClient googleSignInClient;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            Intent intent = new Intent(getActivity(), HomeActivity.class);
+//            startActivity(intent);
+//            getActivity().finish();
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,6 +106,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
+
+        //Handle QuenMatKhau
         tvQuenMatKhau = view.findViewById(R.id.tv_QuenMatKhau);
         tvQuenMatKhau.setText(Html.fromHtml("<u>"+"Quên mật khẩu"+"</u>"+"?"));
         tvQuenMatKhau.setOnClickListener(new View.OnClickListener() {
@@ -101,16 +119,32 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        //Handle DangKy
         tvChuaCoTaiKhoan = view.findViewById(R.id.tv_ChuaCoTaiKhoan);
-        tvChuaCoTaiKhoan.setText(Html.fromHtml("Bạn chưa có tài khoản? "+"<u>"+"Đăng ký"+"</u>"));
-        tvChuaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
+
+        String text = "Bạn chưa có tài khoản? Đăng ký";
+
+        SpannableString spannableString = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View widget) {
                 Intent intent = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
-        });
+        };
+
+        int startIndex = text.indexOf("Đăng ký");
+        int endIndex = startIndex + "Đăng ký".length();
+
+        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.WHITE);
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tvChuaCoTaiKhoan.setText(spannableString);
+        tvChuaCoTaiKhoan.setMovementMethod(LinkMovementMethod.getInstance());
+
+        //DieuKhoan
         tvDieuKhoan = view.findViewById(R.id.tv_DieuKhoan);
         tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với "+"<u>"+"Điều khoản & Điều kiện"+"</u>"+" và "+"<u>"+"Cam kết bảo mật"+"</u>"+" của 4Travel"));
 
@@ -119,8 +153,78 @@ public class LoginFragment extends Fragment {
 
         //Xử lý DangNhap button
         DangNhap(view);
+
+        //Xử lý SelectionGridView
+        SelectionGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item based on the position
+                Seclection selectedSeclection = selectionAdapter.getItem(position);
+
+                // Perform an action based on the selected item
+                if (selectedSeclection != null) {
+                    if (selectedSeclection == Seclection.Facebook) {
+                        // Handle the Facebook selection
+                        Intent intent = new Intent(getActivity(), FacebookLoginActivity.class);
+                        startActivity(intent);
+                    }
+                    if (selectedSeclection == Seclection.Google){
+                        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestIdToken(getString(R.string.default_web_client_id))
+                                .requestEmail()
+                                .build();
+                        googleSignInClient = GoogleSignIn.getClient(getActivity(),gso);
+                        Intent intent = googleSignInClient.getSignInIntent();
+                        startActivityForResult(intent,RC_SIGN_IN);
+                    }
+                }
+            }
+        });
         return view;
     }
+    int RC_SIGN_IN = 40;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+
+            try {
+                GoogleSignInAccount account =  task.getResult(ApiException.class);
+                firebaseGoogleAuth(account.getIdToken());
+            } catch (ApiException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void firebaseGoogleAuth(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            ReadWriteUserDetails userDetails = new ReadWriteUserDetails(user.getDisplayName());
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
+                            String userId = user.getUid(); // Get the user's unique ID
+                            databaseReference.child(userId).setValue(userDetails);
+                            if (userDetails.getDelected() == 0) {
+                                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                            else Toast.makeText(getActivity(), "Tài khoản đã bị xóa", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 
     public void DangNhap(View view) {
 
