@@ -125,6 +125,7 @@ public class HomeFragment extends Fragment {
                 newss.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     News tempNews = itemSnapshot.getValue(News.class);
+                    tempNews.setKey(itemSnapshot.getKey());
                     newss.add(tempNews);
                 }
                 newsAdapter.notifyDataSetChanged();

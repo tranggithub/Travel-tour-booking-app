@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ListNewsAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminPanelActivity"
+            android:exported="false" />
         <activity
             android:name=".DetailPromotionActivity"
             android:exported="false" />
@@ -29,10 +34,10 @@
             android:exported="false" />
         <activity
             android:name=".UploadNewsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,22 +58,19 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".SettingActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

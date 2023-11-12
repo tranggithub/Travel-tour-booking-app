@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,9 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class ListPromotionActivity extends AppCompatActivity {
-    ArrayList<Promotion> promotions;
-    PromotionAdapter promotionAdapter;
+public class ListNewsAdminActivity extends AppCompatActivity {
+    ArrayList<News> newss;
+    NewsAdapter newsAdapter;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
 
@@ -34,42 +36,45 @@ public class ListPromotionActivity extends AppCompatActivity {
     PaginationAdapter paginationAdapter;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     EditText et_search;
-    ListNewsActivity binding;
+    TextView tv_add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_promotion);
+        setContentView(R.layout.activity_list_news_admin);
 
-        //Progress layout
+//Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+//        alertDialog.show();
+        //change to upload page
+        AddNews();
 
-        //Promotions
-        promotions = new ArrayList<>();
+        //News
+        newss = new ArrayList<>();
 
-        promotionAdapter = new PromotionAdapter(this,promotions);
+        newsAdapter = new NewsAdapter(this,newss);
 
-        RecyclerView rvNews = findViewById(R.id.rv_list_promotion);
+        RecyclerView rvNews = findViewById(R.id.rv_list_news);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
-        rvNews.setAdapter(promotionAdapter);
+        rvNews.setAdapter(newsAdapter);
 
 
         //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Promotion");
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
 //        alertDialog.show();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                promotions.clear();
+                newss.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
-                    promotions.add(tempPromotion);
+                    News tempNews = itemSnapshot.getValue(News.class);
+                    tempNews.setKey(itemSnapshot.getKey());
+                    newss.add(tempNews);
                 }
-                promotionAdapter.notifyDataSetChanged();
+                newsAdapter.notifyDataSetChanged();
                 alertDialog.dismiss();
             }
 
@@ -92,11 +97,12 @@ public class ListPromotionActivity extends AppCompatActivity {
 
         paginationAdapter = new PaginationAdapter(this,paginationArrayList);
 
-        RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_promotion);
+        RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_new);
         recyclerViewPagination.setAdapter(paginationAdapter);
 
         //Search Function
-        et_search = findViewById(R.id.et_promotion_search);
+        et_search = findViewById(R.id.et_news_search);
+
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -119,13 +125,13 @@ public class ListPromotionActivity extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
-        ArrayList<Promotion> searchList = new ArrayList<>();
-        for (Promotion item : promotions){
-            if(normalizeString(item.getTitle().toLowerCase()).contains(query.toLowerCase())){
+        ArrayList<News> searchList = new ArrayList<>();
+        for (News item : newss){
+            if(normalizeString(item.getTitile().toLowerCase()).contains(query.toLowerCase())){
                 searchList.add(item);
             }
         }
-        promotionAdapter.searchPromotion(searchList);
+        newsAdapter.searchNews(searchList);
     }
     private String normalizeString(String input) {
         // Loại bỏ dấu từ chuỗi
@@ -138,11 +144,11 @@ public class ListPromotionActivity extends AppCompatActivity {
 
     public void ScrollToTop()
     {
-        Button button = findViewById(R.id.btn_up_list_promotion);
+        Button button = findViewById(R.id.btn_up);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_promotion);
+                ScrollView scrollView = findViewById(R.id.sv_list_news);
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });
@@ -151,11 +157,23 @@ public class ListPromotionActivity extends AppCompatActivity {
 
     public void GoBack()
     {
-        ImageView imageView = findViewById(R.id.iv_returnbutton_list_promotion);
+        ImageView imageView = findViewById(R.id.iv_returnbutton_list_news);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+    }
+
+    public void AddNews()
+    {
+        tv_add = findViewById(R.id.tv_add_news);
+        tv_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListNewsAdminActivity.this, UploadNewsActivity.class);
+                startActivity(intent);
             }
         });
     }

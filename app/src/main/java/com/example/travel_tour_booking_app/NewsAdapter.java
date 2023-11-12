@@ -2,7 +2,6 @@ package com.example.travel_tour_booking_app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +47,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 intent.putExtra("Title", newss.get(holder.getAdapterPosition()).getTitile());
                 intent.putExtra("Date", newss.get(holder.getAdapterPosition()).getUploadDate());
                 intent.putExtra("DetailNewsList", (News) newss.get(holder.getAdapterPosition()));
+//                intent.putExtra("Key", newss.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
             }
         });
@@ -72,5 +72,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             ivThumbnail = itemView.findViewById(R.id.iv_news_thumbnail);
             ll_item_news = itemView.findViewById(R.id.ll_item_news);
         }
+    }
+
+    public void searchNews(ArrayList<News> news){
+        this.newss = news;
+        notifyDataSetChanged();
     }
 }

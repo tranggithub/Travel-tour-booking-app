@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyViewHolder> {
@@ -47,6 +48,7 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyVi
                 intent.putExtra("Title", promotions.get(holder.getAdapterPosition()).getTitle());
                 intent.putExtra("Date", promotions.get(holder.getAdapterPosition()).getStartDateString()+" - "+promotions.get(holder.getAdapterPosition()).getEndDateString());
                 intent.putExtra("DetailPromotionList", (Promotion) promotions.get(holder.getAdapterPosition()));
+                intent.putExtra("Key",promotions.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
             }
         });
@@ -71,5 +73,10 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyVi
             ivThumbnail = itemView.findViewById(R.id.iv_thumbnail_promotion);
             ll_item_promotion = itemView.findViewById(R.id.ll_item_promotion);
         }
+    }
+
+    public void searchPromotion (ArrayList<Promotion> promotions){
+        this.promotions = promotions;
+        notifyDataSetChanged();
     }
 }
