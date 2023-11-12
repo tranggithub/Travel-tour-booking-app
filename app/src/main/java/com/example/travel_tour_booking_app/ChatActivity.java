@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 
 public class ChatActivity extends AppCompatActivity {
     EditText edtUserType;
-    ImageView ivSendButton;
+    ImageView ivSendButton, ivBackButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,15 @@ public class ChatActivity extends AppCompatActivity {
 
         edtUserType = findViewById(R.id.edt_message_chat);
         ivSendButton = findViewById(R.id.iv_sendbutton_chat);
+        ivBackButton = findViewById(R.id.iv_returnbutton_chat);
+
+        ivBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
         ivSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

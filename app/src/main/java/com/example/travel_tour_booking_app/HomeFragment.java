@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -133,6 +134,20 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        //Xu ly Ho tro
+        SelectionGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Seclection selectedSeclection = selectionAdapter.getItem(position);
+                if (selectedSeclection != null) {
+                    if (selectedSeclection == Seclection.Question) {
+                        Intent intent = new Intent(getActivity(), ChatActivity.class);
+                        startActivity(intent);
+                    }
+                }
             }
         });
 

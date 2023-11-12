@@ -41,8 +41,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -59,17 +62,17 @@ public class LoginFragment extends Fragment {
     TextView tvDieuKhoan;
     GoogleSignInClient googleSignInClient;
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if (currentUser != null) {
-//            Intent intent = new Intent(getActivity(), HomeActivity.class);
-//            startActivity(intent);
-//            getActivity().finish();
-//        }
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -252,13 +255,38 @@ public class LoginFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getActivity(), "Đăng nhập thành công.",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                    startActivity(intent);
-                                    getActivity().finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại.",
-                                            Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
+                                    if (user != null) {
+                                        databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if (snapshot.exists()) {
+                                                    ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                                                    if ("user".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                                                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                                        startActivity(intent);
+                                                        getActivity().finish();
+                                                    } else if ("admin".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                                                        Intent intent = new Intent(getActivity(), AdminPanelActivity.class);
+                                                        startActivity(intent);
+                                                        getActivity().finish();
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });
