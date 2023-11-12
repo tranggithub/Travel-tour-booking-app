@@ -11,4 +11,8 @@
     <item name="search" type="id" />
     <item name="passenger_info" type="id" />
     <item name="info_txt" type="id" />
+    <item name="edit_cardnum" type="id" />
+    <item name="edit_name" type="id" />
+    <item name="edit_enddate" type="id" />
+    <item name="text_view" type="id" />
 </resources>
