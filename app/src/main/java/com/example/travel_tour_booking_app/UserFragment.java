@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +20,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
     Button btnSetting;
     TextView tvName, tvEmail, tvSdt;
+    ImageView ivAvatar;
     FirebaseAuth mAuth;
 
     @Override
@@ -38,6 +41,7 @@ public class UserFragment extends Fragment {
         tvName = view.findViewById(R.id.textView6);
         tvEmail = view.findViewById(R.id.textView7);
         tvSdt = view.findViewById(R.id.textView8);
+        ivAvatar = view.findViewById(R.id.imageView2);
 
         if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -60,6 +64,7 @@ public class UserFragment extends Fragment {
                             if (user.getPhoneNumber()!=null)
                                 tvSdt.setText("Số điện thoại: "+user.getPhoneNumber());
                             else tvSdt.setText("Số điện thoại: ");
+                            Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
                         }
                     }
                 }

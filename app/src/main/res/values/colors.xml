@@ -10,4 +10,5 @@
     <color name="frame_search">#E3FFFFFF</color>
     <color name="frame_searchpage">#7DBCFEFE</color>
     <color name="unselected">#82bdc1</color>
+    <color name="delete">#872341</color>
 </resources>

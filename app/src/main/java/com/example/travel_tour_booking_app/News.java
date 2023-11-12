@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -13,6 +12,7 @@ public class News implements Serializable {
     String UploadDate;
     String Text;
     String Thumbnail;
+    String Key;
     ArrayList<DetailNews> detailNewsArrayList = new ArrayList<>();
 
 //    public News(String titile, String uploadDate, String text) {
@@ -95,5 +95,13 @@ public class News implements Serializable {
 
     public void setDetailNewsArrayList(ArrayList<DetailNews> detailNewsArrayList) {
         this.detailNewsArrayList = detailNewsArrayList;
+    }
+
+    public void setKey(String key) {
+        Key = key;
+    }
+
+    public String getKey() {
+        return Key;
     }
 }

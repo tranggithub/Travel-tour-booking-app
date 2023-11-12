@@ -53,30 +53,10 @@ public class ChatFragment extends Fragment {
         // Tạo tin nhắn từ bot
         ChatMessage botMessage = new ChatMessage("Trung tâm hỗ trợ trực tuyến 4Travel xin chào quý khách! Chúng tôi hỗ trợ trực tuyến cho khách hàng 24/7. Nếu quý khách có thắc mắc gì xin hãy nhập vào ô nhắn tin bên dưới!", 1);
         ChatMessage botMessageList = new ChatMessage(strings, 2);
-//        ChatMessage message = new ChatMessage("a",1);
-//        ChatMessage message2 = new ChatMessage("a",1);
-//        ChatMessage message3 = new ChatMessage("a",0);
-//        ChatMessage message4 = new ChatMessage("a", 0);
-//        ChatMessage message5 = new ChatMessage("a",0);
-//        ChatMessage message6 = new ChatMessage("a",1);
-//        ChatMessage message7 = new ChatMessage("a",1);
-//        ChatMessage message8 = new ChatMessage("a",0);
-//        ChatMessage message9 = new ChatMessage("a", 0);
-//        ChatMessage message10 = new ChatMessage("a",0);
 
         // Thêm tin nhắn từ bot vào danh sách
         chatList.add(botMessage);
         chatList.add(botMessageList);
-//        chatList.add(message);
-//        chatList.add(message2);
-//        chatList.add(message3);
-//        chatList.add(message4);
-//        chatList.add(message5);
-//        chatList.add(message6);
-//        chatList.add(message7);
-//        chatList.add(message8);
-//        chatList.add(message9);
-//        chatList.add(message10);
 
 
         // Khởi tạo ChatMessageAdapter và gắn với RecyclerView

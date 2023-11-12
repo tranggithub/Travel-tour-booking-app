@@ -114,7 +114,6 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="4dp"
-                        android:alpha="0.6"
                         android:background="@drawable/rounded_left_border"
                         android:fontFamily="@font/firasans_medium"
                         android:hint="Họ"
@@ -136,7 +135,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
                         android:background="@drawable/rounded_right_border"
                         android:fontFamily="@font/firasans_medium"
                         android:hint="Tên"
@@ -171,7 +169,6 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -218,7 +215,6 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginRight="35dp"
-                            android:alpha="0.6"
                             android:background="@drawable/rounded_border"
                             android:fontFamily="@font/firasans_medium"
                             android:hint="Nhập password vào đây..."
@@ -325,7 +321,6 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginRight="35dp"
-                            android:alpha="0.6"
                             android:background="@drawable/rounded_border"
                             android:fontFamily="@font/firasans_medium"
                             android:hint="Nhập password vào đây..."
@@ -347,7 +342,6 @@
                         android:text="Tôi đồng ý với các điều khoản"
                         android:textColor="#BCFEFE"
                         android:textSize="10dp"
-
                         app:layout_constraintStart_toStartOf="@id/tv_NhapLaiMatKhau_register"
                         app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw_register" />
 

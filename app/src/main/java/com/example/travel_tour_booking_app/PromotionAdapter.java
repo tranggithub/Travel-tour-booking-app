@@ -48,6 +48,7 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyVi
                 intent.putExtra("Title", promotions.get(holder.getAdapterPosition()).getTitle());
                 intent.putExtra("Date", promotions.get(holder.getAdapterPosition()).getStartDateString()+" - "+promotions.get(holder.getAdapterPosition()).getEndDateString());
                 intent.putExtra("DetailPromotionList", (Promotion) promotions.get(holder.getAdapterPosition()));
+                intent.putExtra("Key",promotions.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
             }
         });
