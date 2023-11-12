@@ -1,37 +1,70 @@
 package com.example.travel_tour_booking_app;
 
+import android.app.Activity;
+import android.hardware.camera2.CameraExtensionSession;
+import android.net.Uri;
+import android.provider.ContactsContract;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+
 public class ReadWriteUserDetails {
+    StorageReference storageReference;
     private String ho;
     private String ten;
     private String urlImage;
     private String role;
     private int delected;
-    // Default image URL
-    private static final String DEFAULT_IMAGE_URL = "gs://travel-tour-booking-app.appspot.com/Android Users Image/default.png";
-
     public ReadWriteUserDetails() {
         this.ho = null;
         this.ten = null;
         this.delected = 0;
         this.role = "user";
-        this.urlImage = DEFAULT_IMAGE_URL;
+        getDefaultImageUrl();
     }
 
     ReadWriteUserDetails(String ho, String ten) {
         this.ho = ho;
         this.ten = ten;
-        this.urlImage = DEFAULT_IMAGE_URL;
+        getDefaultImageUrl();
         this.role = "user";
         this.delected = 0;
     }
 
-    ReadWriteUserDetails(String userDisplayname) {
+    ReadWriteUserDetails(String userDisplayname, Uri photo) {
         this.ho = null;
         this.ten = userDisplayname;
-        this.urlImage = DEFAULT_IMAGE_URL;
+        if (photo != null) { this.urlImage=photo.toString();} else getDefaultImageUrl();
         this.role = "user";
         this.delected = 0;
     }
+
+    private void getDefaultImageUrl() {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                .child("Android Users Image").child("default.png");
+        Task<Uri> uriTask = storageReference.getDownloadUrl();
+        while (!uriTask.isComplete());
+            Uri url_Image = uriTask.getResult();
+        urlImage = url_Image.toString();
+    }
+
 
     public String getHo() {
         return ho;

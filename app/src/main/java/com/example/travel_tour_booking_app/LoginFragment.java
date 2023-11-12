@@ -208,7 +208,7 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            ReadWriteUserDetails userDetails = new ReadWriteUserDetails(user.getDisplayName());
+                            ReadWriteUserDetails userDetails = new ReadWriteUserDetails(user.getDisplayName(),user.getPhotoUrl());
                             DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
                             String userId = user.getUid(); // Get the user's unique ID
                             databaseReference.child(userId).setValue(userDetails);
