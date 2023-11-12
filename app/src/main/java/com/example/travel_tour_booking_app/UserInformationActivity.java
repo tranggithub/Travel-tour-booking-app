@@ -1,17 +1,16 @@
 package com.example.travel_tour_booking_app;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,27 +21,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class UserFragment extends Fragment {
-    Button btnSetting, btnChangeInfor;
-    TextView tvName, tvEmail, tvSdt;
+public class UserInformationActivity extends AppCompatActivity {
+    Button btnConfirm;
+    EditText edtFirstName, edtName, edtEmail, edtSdt;
     ImageView ivAvatar;
     FirebaseAuth mAuth;
-
+    ImageView ivBack;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_user_dark, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_information);
+
+        btnConfirm = findViewById(R.id.btn_XacNhan_userinformation);
+        edtFirstName = findViewById(R.id.edt_Ho_userinformation);
+        edtName = findViewById(R.id.edt_Ten_userinformation);
+        edtEmail = findViewById(R.id.edt_Email_userinformation);
+        edtSdt = findViewById(R.id.edt_SoDienThoai_userinformation);
+        ivAvatar = findViewById(R.id.iv_avatar_userinformation);
+        ivBack = findViewById(R.id.iv_returnbutton_userinformation);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
-
-        tvName = view.findViewById(R.id.textView6);
-        tvEmail = view.findViewById(R.id.textView7);
-        tvSdt = view.findViewById(R.id.textView8);
-        ivAvatar = view.findViewById(R.id.imageView2);
-        btnChangeInfor = view.findViewById(R.id.button);
 
         if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -50,21 +50,20 @@ public class UserFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
-                        String fullName;
                         if (userDetails != null) {
                             if (userDetails.getHo()!=null){
-                                fullName = userDetails.getHo() + " " + userDetails.getTen();
+                                edtFirstName.setText(userDetails.getHo());
+                                edtName.setText(userDetails.getTen());
                             }
                             else {
-                                fullName = userDetails.getTen();
+                                edtName.setText(userDetails.getTen());
                             }
-                            tvName.setText(fullName);
                             if (user.getEmail()!=null)
-                                tvEmail.setText("Email: "+user.getEmail());
-                            else tvEmail.setText("Email: ");
+                                edtEmail.setText(user.getEmail());
+                            else edtEmail.setText("");
                             if (user.getPhoneNumber()!=null)
-                                tvSdt.setText("Số điện thoại: "+user.getPhoneNumber());
-                            else tvSdt.setText("Số điện thoại: ");
+                                edtSdt.setText(user.getPhoneNumber());
+                            else edtSdt.setText("");
                             Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
                         }
                     }
@@ -73,32 +72,18 @@ public class UserFragment extends Fragment {
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 //                    // Handle any errors that may occur
-                    Toast.makeText(getActivity(), "Lỗi khi đọc dữ liệu người dùng.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInformationActivity.this, "Lỗi khi đọc dữ liệu người dùng.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
-        //Handle button Setting
-        btnSetting = view.findViewById(R.id.button7);
-        btnSetting.setOnClickListener(new View.OnClickListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                Intent intent = new Intent(UserInformationActivity.this, HomeActivity.class);
                 startActivity(intent);
-                getActivity().finish();
+                finish();
             }
         });
-
-        //Handle button ChangeInfor
-        btnChangeInfor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UserInformationActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
-        return view;
     }
 }
