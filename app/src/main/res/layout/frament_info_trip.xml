@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#070B1D"
-    tools:ignore="MissingDefaultResource">
+    tools:ignore="MissingDefaultResource"
+    tools:context=".DetailTripActivity">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nv_navigationView_detailtrip"
@@ -50,7 +51,7 @@
     </com.google.android.material.navigation.NavigationView>
 
     <ScrollView
-        android:id="@+id/sv_detal_trip"
+        android:id="@+id/sv_detail_trip"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
