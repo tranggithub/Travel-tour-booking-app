@@ -39,60 +39,36 @@
             app:layout_constraintTop_toTopOf="@id/user_search"
             tools:ignore="MissingConstraints,NotSibling" />
 
-        <Button
-            android:id="@+id/setting"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView4"
-            tools:ignore="InvalidId,MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteY="13dp" />
-
-        <Button
-            android:id="@+id/message"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_messaging"
-            app:layout_constraintEnd_toStartOf="@+id/setting"
-            tools:ignore="InvalidId,MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteY="13dp" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_messaging"
-            app:layout_constraintEnd_toStartOf="@+id/setting"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="13dp"></ImageView>
-
-        <Button
-            android:id="@+id/notification"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toStartOf="@+id/message"
-            tools:ignore="MissingConstraints,NotSibling"
-            tools:layout_editor_absoluteY="13dp" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_nofitication"
-            app:layout_constraintEnd_toStartOf="@+id/message"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="13dp"></ImageView>
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_setting"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="13dp"></ImageView>
+      <ImageButton
+          android:id="@+id/setting"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:background="@drawable/ic_setting"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="15dp"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          tools:ignore="MissingConstraints" />
+        <ImageButton
+            android:id="@+id/message_noti"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_messaging"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/setting"
+            tools:ignore="MissingConstraints" />
+        <ImageButton
+            android:id="@+id/noti"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_nofitication"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/message_noti"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
