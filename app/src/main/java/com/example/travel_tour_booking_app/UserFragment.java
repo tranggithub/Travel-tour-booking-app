@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
-    Button btnSetting, btnChangeInfor;
+    TextView btnSetting, btnChangeInfor;
     TextView tvName, tvEmail, tvSdt;
     ImageView ivAvatar;
     FirebaseAuth mAuth;

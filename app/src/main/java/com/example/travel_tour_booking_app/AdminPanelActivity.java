@@ -19,4 +19,9 @@ public class AdminPanelActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListNewsAdminActivity.class);
         startActivity(intent);
     }
+
+    public void ChangePromotion(View view){
+        Intent intent = new Intent(this, ListPromotionAdminActivity.class);
+        startActivity(intent);
+    }
 }

@@ -164,7 +164,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/custom_input_searchbar"
-                android:layout_margin="@dimen/margin_section">
+                android:layout_margin="@dimen/margin_section"
+                android:onClick="ChangePromotion">
                 <ImageView
                     android:id="@+id/iv_admin_promotion"
                     android:layout_width="match_parent"
