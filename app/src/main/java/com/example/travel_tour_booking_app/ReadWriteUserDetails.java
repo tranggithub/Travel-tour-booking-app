@@ -31,6 +31,8 @@ public class ReadWriteUserDetails {
     private String ten;
     private String urlImage;
     private String role;
+    private String sdt;
+    private String email;
     private int delected;
     public ReadWriteUserDetails() {
         this.ho = null;
@@ -55,6 +57,14 @@ public class ReadWriteUserDetails {
         this.role = "user";
         this.delected = 0;
     }
+    ReadWriteUserDetails(String Ho, String Ten, String Email, String Sdt){
+        this.ho = Ho;
+        this.ten = Ten;
+        this.email = Email;
+        this.sdt = Sdt;
+        this.role = "user";
+    }
+
 
     private void getDefaultImageUrl() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference()
@@ -106,4 +116,19 @@ public class ReadWriteUserDetails {
         return delected;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
 }

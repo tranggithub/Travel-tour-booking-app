@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
-    Button btnSetting;
+    Button btnSetting, btnChangeInfor;
     TextView tvName, tvEmail, tvSdt;
     ImageView ivAvatar;
     FirebaseAuth mAuth;
@@ -42,6 +42,7 @@ public class UserFragment extends Fragment {
         tvEmail = view.findViewById(R.id.textView7);
         tvSdt = view.findViewById(R.id.textView8);
         ivAvatar = view.findViewById(R.id.imageView2);
+        btnChangeInfor = view.findViewById(R.id.button);
 
         if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -51,18 +52,17 @@ public class UserFragment extends Fragment {
                         ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
                         String fullName;
                         if (userDetails != null) {
-                            if (userDetails.getHo()!=null){
+                            if (userDetails.getHo() != null) {
                                 fullName = userDetails.getHo() + " " + userDetails.getTen();
-                            }
-                            else {
+                            } else {
                                 fullName = userDetails.getTen();
                             }
                             tvName.setText(fullName);
-                            if (user.getEmail()!=null)
-                                tvEmail.setText("Email: "+user.getEmail());
+                            if (user.getEmail() != null)
+                                tvEmail.setText("Email: " + user.getEmail());
                             else tvEmail.setText("Email: ");
-                            if (user.getPhoneNumber()!=null)
-                                tvSdt.setText("Số điện thoại: "+user.getPhoneNumber());
+                            if (user.getPhoneNumber() != null || userDetails.getSdt() != null)
+                                tvSdt.setText("Số điện thoại: " + (user.getPhoneNumber() != null ? user.getPhoneNumber() : userDetails.getSdt()));
                             else tvSdt.setText("Số điện thoại: ");
                             Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
                         }
@@ -83,6 +83,16 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+        //Handle button ChangeInfor
+        btnChangeInfor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserInformationActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
