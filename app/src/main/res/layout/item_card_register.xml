@@ -29,7 +29,7 @@
             tools:layout_editor_absoluteY="10dp"></TextView>
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/add_card_back"
             android:layout_width="25dp"
             android:layout_height="55dp"
             android:layout_marginStart="16dp"
