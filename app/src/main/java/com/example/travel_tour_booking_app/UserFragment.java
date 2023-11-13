@@ -52,18 +52,17 @@ public class UserFragment extends Fragment {
                         ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
                         String fullName;
                         if (userDetails != null) {
-                            if (userDetails.getHo()!=null){
+                            if (userDetails.getHo() != null) {
                                 fullName = userDetails.getHo() + " " + userDetails.getTen();
-                            }
-                            else {
+                            } else {
                                 fullName = userDetails.getTen();
                             }
                             tvName.setText(fullName);
-                            if (user.getEmail()!=null)
-                                tvEmail.setText("Email: "+user.getEmail());
+                            if (user.getEmail() != null)
+                                tvEmail.setText("Email: " + user.getEmail());
                             else tvEmail.setText("Email: ");
-                            if (user.getPhoneNumber()!=null)
-                                tvSdt.setText("Số điện thoại: "+user.getPhoneNumber());
+                            if (user.getPhoneNumber() != null || userDetails.getSdt() != null)
+                                tvSdt.setText("Số điện thoại: " + (user.getPhoneNumber() != null ? user.getPhoneNumber() : userDetails.getSdt()));
                             else tvSdt.setText("Số điện thoại: ");
                             Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
                         }
