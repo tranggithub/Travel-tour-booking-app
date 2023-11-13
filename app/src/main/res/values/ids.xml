@@ -15,4 +15,5 @@
     <item name="edit_name" type="id" />
     <item name="edit_enddate" type="id" />
     <item name="text_view" type="id" />
+    <item name="textView2" type="id" />
 </resources>
