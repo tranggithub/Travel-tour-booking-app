@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -20,10 +22,12 @@ import android.widget.GridView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.travel_tour_booking_app.databinding.ActivityHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,7 +35,6 @@ import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
-    HomeActivity binding;
     ArrayList<Seclection> seclections;
     SelectionAdapter selectionAdapter;
     ArrayList<Place> places;
@@ -43,6 +46,7 @@ public class HomeFragment extends Fragment {
     NewsAdapter newsAdapter;
     DatabaseReference databaseReferenceNews;
     DatabaseReference databaseReferencePromotions;
+    ActivityHomeBinding binding;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -158,6 +162,7 @@ public class HomeFragment extends Fragment {
         //Xu ly Xem tat ca
         XemTatCaTinTuc(view);
         XemTatCaKhuyenMai(view);
+        XemTatCaDiaDiem(view);
 
         return view;
 
@@ -197,4 +202,16 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    public void XemTatCaDiaDiem(View view)
+    {
+        Button button = view.findViewById(R.id.btn_readall_place);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((HomeActivity) requireActivity()).setBottomNavigationSelectedItem(R.id.btn_discover);
+            }
+        });
+
+    }
+
 }

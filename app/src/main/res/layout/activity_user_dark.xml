@@ -268,7 +268,8 @@
             app:layout_constraintLeft_toLeftOf="@id/button4"
             app:layout_constraintTop_toTopOf="@id/button4"
             app:layout_constraintBottom_toBottomOf="@id/button4"
-            tools:ignore="MissingConstraints"></ImageView>
+            tools:ignore="MissingConstraints"
+            android:layout_marginStart="@dimen/margin_left_right_section"></ImageView>
 
 
 

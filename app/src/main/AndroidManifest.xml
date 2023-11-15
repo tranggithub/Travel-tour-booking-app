@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
         <activity
+            android:name=".DeleteNewsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListPromotionAdminActivity"
             android:exported="false" />
         <activity
@@ -45,7 +48,7 @@
             android:name=".UploadNewsActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,7 +72,7 @@
             android:name=".LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
