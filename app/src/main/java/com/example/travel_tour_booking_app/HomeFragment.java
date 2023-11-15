@@ -2,6 +2,8 @@ package com.example.travel_tour_booking_app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -208,6 +210,9 @@ public class HomeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                ShareDialog shareDialog = new ShareDialog(getActivity());
+//                shareDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                shareDialog.show();
                 ((HomeActivity) requireActivity()).setBottomNavigationSelectedItem(R.id.btn_discover);
             }
         });

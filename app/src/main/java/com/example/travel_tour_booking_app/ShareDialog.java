@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class ShareDialog extends Dialog implements View.OnClickListener {
     public Activity c;
     public Dialog d;
-    public ImageView fb,email,copy, message;
+    public ImageView fb,email,copy, message, close;
 
     public ShareDialog(Activity a) {
         super(a);
@@ -27,16 +27,21 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
         email = (ImageView) findViewById(R.id.iv_share_email);
         copy = (ImageView) findViewById(R.id.iv_share_copy);
         message = (ImageView) findViewById(R.id.iv_share_message);
+        close = (ImageView) findViewById(R.id.iv_share_close);
 
         fb.setOnClickListener(this);
         email.setOnClickListener(this);
         copy.setOnClickListener(this);
         message.setOnClickListener(this);
+        close.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.iv_share_close){
+            dismiss();
+        }
         if (v.getId() == R.id.iv_share_fb){
 
         }

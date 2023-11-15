@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_share_close"
-        android:text="Chia sẽ qua"
+        android:text="Chia sẻ qua"
         android:textColor="@color/white"
         android:fontFamily="@font/firasans_bold"
         android:textSize="20dp"/>
