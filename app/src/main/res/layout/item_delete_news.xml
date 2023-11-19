@@ -6,7 +6,6 @@
     android:orientation="horizontal"
     android:layout_margin="@dimen/margin_section"
     android:id="@+id/ll_item_news">
-
     <ImageView
         android:id="@+id/iv_news_thumbnail"
         android:layout_width="0dp"
@@ -21,15 +20,6 @@
         android:layout_height="100dp"
         android:layout_weight="0.7"
         android:background="@drawable/custom_promotionview">
-        <CheckBox
-            android:id="@+id/ckb_delete_news"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:theme="@style/checkBoxStyle"
-            />
         <TextView
             android:id="@+id/tv_title_news"
             android:layout_width="wrap_content"
@@ -69,6 +59,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date_news" />
+        <CheckBox
+            android:id="@+id/ckb_delete_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:theme="@style/checkBoxStyle"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

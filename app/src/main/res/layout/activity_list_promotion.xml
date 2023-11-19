@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firasans_bold"
-                android:text="KHUYẾN MÃI (1)"
+                android:text="KHUYẾN MÃI"
                 android:textColor="@color/maincolor"
                 android:textSize="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"

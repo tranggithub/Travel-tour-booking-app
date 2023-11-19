@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(getContext(),newss);
+        newsAdapter = new NewsAdapter(getContext(),newss,false);
 
         RecyclerView rvNews = view.findViewById(R.id.rv_new);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext()));

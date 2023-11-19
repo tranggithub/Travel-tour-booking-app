@@ -49,7 +49,7 @@ public class ListNewsActivity extends AppCompatActivity {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(this,newss);
+        newsAdapter = new NewsAdapter(this, newss, false);
 
         RecyclerView rvNews = findViewById(R.id.rv_list_news);
         rvNews.setLayoutManager(new LinearLayoutManager(this));

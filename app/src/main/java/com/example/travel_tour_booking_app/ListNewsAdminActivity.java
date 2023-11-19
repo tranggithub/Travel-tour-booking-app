@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,12 +55,11 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(this,newss);
+        newsAdapter = new NewsAdapter(this,newss,true);
 
         RecyclerView rvNews = findViewById(R.id.rv_list_news);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
         rvNews.setAdapter(newsAdapter);
-
 
         //Firebase
         databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
@@ -177,4 +177,6 @@ public class ListNewsAdminActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
