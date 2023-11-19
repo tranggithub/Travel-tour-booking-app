@@ -48,7 +48,7 @@
             android:name=".UploadNewsActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,10 +69,10 @@
             android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

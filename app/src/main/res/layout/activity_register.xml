@@ -343,7 +343,8 @@
                         android:textColor="#BCFEFE"
                         android:textSize="10dp"
                         app:layout_constraintStart_toStartOf="@id/tv_NhapLaiMatKhau_register"
-                        app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw_register" />
+                        app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw_register"
+                        android:theme="@style/checkBoxStyle"/>
 
                     <Button
                         android:id="@+id/btn_DangKy_register"

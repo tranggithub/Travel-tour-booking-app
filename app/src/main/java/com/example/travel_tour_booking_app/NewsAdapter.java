@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,10 +21,12 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
     Context context;
     List<News> newss;
+    boolean isAdmin;
 
-    public NewsAdapter (Context context, List<News> newss){
+    public NewsAdapter (Context context, List<News> newss, boolean isAdmin){
         this.context = context;
         this.newss = newss;
+        this.isAdmin = isAdmin;
     }
     @Override
     public NewsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,6 +38,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.MyViewHolder holder, int position) {
+        holder.ckb_delete_news.setVisibility(View.GONE);
         Glide.with(context).load(newss.get(position).getThumbnail()).into(holder.ivThumbnail);
         holder.tvTitle.setText(newss.get(position).getTitile());
         holder.tvDate.setText(newss.get(position).getUploadDate());
@@ -51,6 +55,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 context.startActivity(intent);
             }
         });
+
+        if(isAdmin){
+            holder.ll_item_news.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent(context, DeleteNewsActivity.class);
+                    context.startActivity(intent);
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -64,6 +79,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         private TextView tvText;
         private ImageView ivThumbnail;
         private LinearLayout ll_item_news;
+        private CheckBox ckb_delete_news;
         public MyViewHolder(View itemView){
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title_news);
@@ -71,6 +87,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             tvText = itemView.findViewById(R.id.tv_text_news);
             ivThumbnail = itemView.findViewById(R.id.iv_news_thumbnail);
             ll_item_news = itemView.findViewById(R.id.ll_item_news);
+            ckb_delete_news = itemView.findViewById(R.id.ckb_delete_news);
         }
     }
 

@@ -180,13 +180,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:buttonTint="@color/maincolor"
+
                         android:fontFamily="@font/firasans_medium"
                         android:text="Ghi nhớ đăng nhập"
                         android:textColor="#BCFEFE"
                         android:textSize="10dp"
                         app:layout_constraintStart_toStartOf="@id/tv_MatKhau"
-                        app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw" />
+                        app:layout_constraintTop_toBottomOf="@id/til_NhapLaiPsw"
+                        android:theme="@style/checkBoxStyle"/>
 
                     <Button
                         android:id="@+id/btn_DangNhap"
