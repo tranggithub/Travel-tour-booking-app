@@ -85,7 +85,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
+                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -160,8 +160,7 @@
                         app:layout_constraintStart_toStartOf="@+id/edt_text_upload_news"
                         app:layout_constraintTop_toBottomOf="@+id/tv_thumbnail_upload_news"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:alpha="0.6">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -201,7 +200,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
+                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
