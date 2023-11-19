@@ -42,6 +42,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     // Call the function to add the user's message to the chat
                     chatFragment.addUserMessageToChat(userTypeMsg);
+                    chatFragment.addBotResponse(userTypeMsg);
 
                     // Clear the input field after sending
                     edtUserType.setText("");
