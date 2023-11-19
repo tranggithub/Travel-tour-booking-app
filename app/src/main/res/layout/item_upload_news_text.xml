@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_section"
                 android:layout_marginRight="@dimen/margin_section"
+                android:textColor="@color/white"
                 android:hint="Nhập ghi chú hình ảnh vào đây..."
                 android:fontFamily="@font/firasans_medium"
                 android:inputType="textMultiLine"/>

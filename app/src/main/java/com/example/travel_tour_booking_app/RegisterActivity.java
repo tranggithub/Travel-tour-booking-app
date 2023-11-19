@@ -34,8 +34,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -54,16 +57,49 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-            startActivity(intent);
-            finish();
+        if (currentUser != null) {
+            // Nếu đã đăng nhập, thì tiếp tục kiểm tra và chuyển hướng người dùng
+            checkAndRedirectUser(currentUser.getUid());
         }
     }
+
+    private void checkAndRedirectUser(String userId) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("users");
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+
+                    if ("user".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                        startActivityWithFinish(RegisterActivity.this, HomeActivity.class);
+                    } else if ("admin".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                        startActivityWithFinish(RegisterActivity.this, AdminPanelActivity.class);
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Xử lý lỗi ở đây
+            }
+        });
+    }
+
+    private void startActivityWithFinish(RegisterActivity registerActivity, Class<?> cls) {
+        Intent intent = new Intent(registerActivity, cls);
+        startActivity(intent);
+        finish();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
