@@ -65,14 +65,47 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
-            startActivity(intent);
-            getActivity().finish();
+            // Nếu đã đăng nhập, thì tiếp tục kiểm tra và chuyển hướng người dùng
+            checkAndRedirectUser(currentUser.getUid());
         }
     }
+
+    private void checkAndRedirectUser(String userId) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("users");
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+
+                    if ("user".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                        startActivityWithFinish(HomeActivity.class);
+                    } else if ("admin".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                        startActivityWithFinish(AdminPanelActivity.class);
+                    } else {
+                        Toast.makeText(getActivity(), "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Xử lý lỗi ở đây
+            }
+        });
+    }
+
+    private void startActivityWithFinish(Class<?> cls) {
+        Intent intent = new Intent(getActivity(), cls);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
