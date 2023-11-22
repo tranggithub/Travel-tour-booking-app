@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_enabled="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/unselected_pagination"/>
+            <solid android:color="@color/maincolor"/>
             <corners android:bottomLeftRadius="@dimen/radius_picture" android:topLeftRadius="@dimen/radius_picture"/>
         </shape>
     </item>

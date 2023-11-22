@@ -23,7 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
-    TextView btnSetting, btnChangeInfor;
+    TextView btnSetting, btnChangeInfor, btnNotification;
+    ImageView iconNotification;
     TextView tvName, tvEmail, tvSdt;
     ImageView ivAvatar;
     FirebaseAuth mAuth;
@@ -77,6 +78,11 @@ public class UserFragment extends Fragment {
             });
         }
 
+        //Handle button Notification
+        btnNotification = view.findViewById(R.id.button2);
+        iconNotification = view.findViewById(R.id.noti);
+        ChangeToNotification();
+
         //Handle button Setting
         btnSetting = view.findViewById(R.id.button7);
         btnSetting.setOnClickListener(new View.OnClickListener() {
@@ -99,5 +105,24 @@ public class UserFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void ChangeToNotification() {
+        Intent intent = new Intent(getActivity(), NotificationActivity.class);
+        iconNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(intent);
+            }
+        });
+
+        btnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+
     }
 }
