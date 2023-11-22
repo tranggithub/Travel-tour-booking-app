@@ -64,20 +64,16 @@ public class ChatFragment extends Fragment {
             @Override
             public void onItemClick(String selectItem) {
                 addUserMessageToChat(selectItem);
-                if (generateBotResponse(selectItem)!=null)
-                {
-                    ChatMessage botResponse = new ChatMessage(generateBotResponse(selectItem),1);
-                    chatList.add(botResponse);
-                    chatMessageAdapter.notifyDataSetChanged();
-                }
+                addBotResponse(selectItem);
             }
         });
         recyclerView.setAdapter(chatMessageAdapter);
-        recyclerView.scrollToPosition(chatList.size()-1);
+        recyclerView.scrollToPosition(chatList.size() - 1);
 
 
         return view;
     }
+
     public String generateBotResponse(String userMessage) {
         if (userMessage.contains("4Travel") && userMessage.contains("đảm bảo") && userMessage.contains("an toàn")) {
             return "Cảm ơn quý khách đã đặt câu hỏi. 4Travel hoạt động dựa trên nguyên tắc lấy lợi ích của khách hàng làm trung tâm, vì thế sự an toàn của khách hàng là một trong những yếu tố mà 4Travel ưu tiên đáp ứng hàng đầu. Do đó quý khách có thể yên tâm sử dụng dịch vụ của chúng tôi.";
@@ -87,6 +83,7 @@ public class ChatFragment extends Fragment {
             return "Sorry, I didn't understand that. Can you ask again differently?";
         }
     }
+
     public void addUserMessageToChat(String userMessage) {
         ChatMessage userMessageObj = new ChatMessage(userMessage, 0);
 
@@ -95,5 +92,13 @@ public class ChatFragment extends Fragment {
         chatMessageAdapter.notifyDataSetChanged();
 
         recyclerView.scrollToPosition(chatList.size() - 1);
+    }
+
+    public void addBotResponse(String userMessage) {
+        if (generateBotResponse(userMessage) != null) {
+            ChatMessage botResponse = new ChatMessage(generateBotResponse(userMessage), 1);
+            chatList.add(botResponse);
+            chatMessageAdapter.notifyDataSetChanged();
+        }
     }
 }
