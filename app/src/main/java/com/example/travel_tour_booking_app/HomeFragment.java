@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(getContext(),newss,false);
+        newsAdapter = new NewsAdapter(getContext(),newss);
 
         RecyclerView rvNews = view.findViewById(R.id.rv_new);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -133,7 +133,8 @@ public class HomeFragment extends Fragment {
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     News tempNews = itemSnapshot.getValue(News.class);
                     tempNews.setKey(itemSnapshot.getKey());
-                    newss.add(tempNews);
+                    if (tempNews.isActive())
+                        newss.add(tempNews);
                 }
                 newsAdapter.notifyDataSetChanged();
             }

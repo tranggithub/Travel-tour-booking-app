@@ -21,12 +21,10 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
     Context context;
     List<News> newss;
-    boolean isAdmin;
 
-    public NewsAdapter (Context context, List<News> newss, boolean isAdmin){
+    public NewsAdapter (Context context, List<News> newss){
         this.context = context;
         this.newss = newss;
-        this.isAdmin = isAdmin;
     }
     @Override
     public NewsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,7 +38,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull NewsAdapter.MyViewHolder holder, int position) {
         holder.ckb_delete_news.setVisibility(View.GONE);
         Glide.with(context).load(newss.get(position).getThumbnail()).into(holder.ivThumbnail);
-        holder.tvTitle.setText(newss.get(position).getTitile());
+        holder.tvTitle.setText(newss.get(position).getTitle());
         holder.tvDate.setText(newss.get(position).getUploadDate());
         holder.tvText.setText(newss.get(position).getText());
 
@@ -48,24 +46,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailNewsActivity.class);
-                intent.putExtra("Title", newss.get(holder.getAdapterPosition()).getTitile());
+                intent.putExtra("Title", newss.get(holder.getAdapterPosition()).getTitle());
                 intent.putExtra("Date", newss.get(holder.getAdapterPosition()).getUploadDate());
                 intent.putExtra("DetailNewsList", (News) newss.get(holder.getAdapterPosition()));
-//                intent.putExtra("Key", newss.get(holder.getAdapterPosition()).getKey());
+                intent.putExtra("Key", newss.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
             }
         });
 
-        if(isAdmin){
-            holder.ll_item_news.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Intent intent = new Intent(context, DeleteNewsActivity.class);
-                    context.startActivity(intent);
-                    return true;
-                }
-            });
-        }
     }
 
     @Override
