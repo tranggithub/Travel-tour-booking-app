@@ -49,7 +49,19 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_news"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
+            <TextView
+                android:id="@+id/tv_update_news"
+                android:onClick="ChangeUpdateNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Sửa"
+                android:fontFamily="@font/firasans_bold"
+                android:textSize="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingEnd="@dimen/margin_left_right_section"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
     <ScrollView
@@ -87,6 +99,14 @@
                 android:textColor="#9b9da5"
                 android:fontFamily="@font/firasans_medium"
                 android:textSize="12dp" />
+            <TextView
+                android:id="@+id/tv_text_details_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Các khu cắm trại tiện nghi kín chỗ dịp 30/04"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,7 +54,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(this,newss,true);
+        newsAdapter = new NewsAdapter(this,newss);
 
         RecyclerView rvNews = findViewById(R.id.rv_list_news);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
@@ -127,7 +126,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
     private void performSearch(String query) {
         ArrayList<News> searchList = new ArrayList<>();
         for (News item : newss){
-            if(normalizeString(item.getTitile().toLowerCase()).contains(query.toLowerCase())){
+            if(normalizeString(item.getTitle().toLowerCase()).contains(query.toLowerCase())){
                 searchList.add(item);
             }
         }

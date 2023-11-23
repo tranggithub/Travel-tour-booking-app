@@ -75,7 +75,8 @@ public class ContextOrPictureUploadAdapter extends RecyclerView.Adapter<ContextO
             holder.et_context.setVisibility(View.VISIBLE);
             temp.setPicture(null);
             temp.setSubtitleImage(null);
-
+            if (temp.getDetailText()!=null)
+                holder.et_context.setText(temp.getDetailText().toString());
             holder.et_context.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -93,7 +94,7 @@ public class ContextOrPictureUploadAdapter extends RecyclerView.Adapter<ContextO
             @Override
             public void onClick(View v) {
                 DetailNewsList.remove(holder.getAdapterPosition());
-                notifyDataSetChanged();
+                notifyItemRemoved(holder.getAdapterPosition());
             }
         });
 

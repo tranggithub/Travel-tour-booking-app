@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_returnbutton_list_news"
+                android:id="@+id/iv_returnbutton_list_notifications"
                 android:onClick="GoBack"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -41,19 +41,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firasans_bold"
-                android:text="TIN TỨC"
+                android:text="THÔNG BÁO"
                 android:textColor="@color/maincolor"
                 android:textSize="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_news"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_notifications"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/tv_add_news"
+                android:id="@+id/tv_add_notifications"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="Chọn tất cả"
+                android:text="Đọc tất cả"
                 android:fontFamily="@font/firasans_bold"
                 android:textSize="15dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/et_news_search"
+            android:id="@+id/et_notifications_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_search_bar"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@id/search_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/sv_list_news"
+        android:id="@+id/sv_list_notifications"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,7 +104,7 @@
             android:orientation="vertical"
             android:paddingBottom="150dp">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_news"
+                android:id="@+id/rv_list_notifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_item"
@@ -128,7 +128,8 @@
                     android:fontFamily="@font/firasans_medium"
                     android:text="Trước"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:singleLine="true"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_pigination_list_new"
@@ -150,7 +151,9 @@
                     android:fontFamily="@font/firasans_medium"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginRight="@dimen/margin_left_right_section"/>
+                    android:layout_marginRight="@dimen/margin_left_right_section"
+                    android:singleLine="true"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

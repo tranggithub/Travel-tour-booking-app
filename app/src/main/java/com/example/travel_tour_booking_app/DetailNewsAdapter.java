@@ -18,6 +18,7 @@ public class DetailNewsAdapter extends RecyclerView.Adapter<DetailNewsAdapter.My
     Context context;
     List<DetailNews> detailNews;
 
+
     public DetailNewsAdapter (Context context, List<DetailNews> detailNews){
         this.context = context;
         this.detailNews = detailNews;
