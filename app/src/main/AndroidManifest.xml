@@ -71,11 +71,7 @@
         <activity
             android:name=".TourDetailActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".RegisterActivity"
@@ -89,6 +85,15 @@
         <activity
             android:name=".SettingActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetailTripActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

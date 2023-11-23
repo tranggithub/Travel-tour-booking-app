@@ -372,33 +372,32 @@
                 android:textColor="@color/maincolor"
                 android:textSize="35dp" />
 
+
             <TextView
+                android:id="@+id/tv_thongtinlichtrinh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_medium"
-                android:text="Ngày 1"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="12dp"
-                android:fontFamily="@font/firasans_medium"
-                android:text="* 7 giờ - 8 giờ: làm thủ tục ở sân bay"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="12dp"
-                android:fontFamily="@font/firasans_medium"
-                android:text="* 11 giờ 30 đến 12 giờ: làm thủ tục nhận phòng khách sạn"
+                android:text="Ngày 1:\n
+7 giờ - 8 giờ: làm thủ tục ở sân bay\n
+11 giờ 30 đến 12 giờ: làm thủ tục nhận phòng khách sạn\n
+12 giờ đến 1 giờ 30: ăn trưa tại nhà hàng của khách sạn\n
+2 giờ: nghỉ ngơi\n
+Ngày 2:\n
+8 giờ: tập hợp tại sảnh khách sạn\n
+9 giờ: đi thăm quan chùa Laka\n
+12 giờ: ăn trưa tại nhà hàng Saras\n
+1 giờ đến 5 giờ: du lịch tự do\n
+5 giờ 30: quay về khách sạn và ăn tối\n
+7 giờ: đi Công viên Vany\n
+Ngày 3:\n
+7 giờ: ăn sáng tại nhà ăn khách sạn\n
+9 giờ đến 11 giờ: tham quan tự do\n
+12 giờ: ăn trưa tại nhà ăn khách sạn\n
+3 giờ: tham quan Bảo tàng"
+                android:maxLines="3"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -1692,12 +1691,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/firasans_bold"
-                android:text="9.999.999 VND"
+                android:text="9.190.123 VND"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 app:layout_constraintBottom_toBottomOf="@id/bt_booking"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/bt_booking"></TextView>
+                app:layout_constraintTop_toTopOf="@id/bt_booking">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_booking"
@@ -1710,7 +1710,8 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></Button>
+                app:layout_constraintTop_toTopOf="parent">
+            </Button>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
