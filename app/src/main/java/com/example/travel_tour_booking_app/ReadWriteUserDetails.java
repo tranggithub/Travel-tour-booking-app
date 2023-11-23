@@ -57,14 +57,6 @@ public class ReadWriteUserDetails {
         this.role = "user";
         this.delected = 0;
     }
-    ReadWriteUserDetails(String Ho, String Ten, String Email, String Sdt){
-        this.ho = Ho;
-        this.ten = Ten;
-        this.email = Email;
-        this.sdt = Sdt;
-        this.role = "user";
-    }
-
 
     private void getDefaultImageUrl() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference()

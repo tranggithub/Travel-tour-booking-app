@@ -201,7 +201,7 @@
                         android:textColor="#FFFFFF"
                         android:textSize="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.481"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ckb_GhiNhoDangNhap" />
 

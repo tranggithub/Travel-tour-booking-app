@@ -213,6 +213,10 @@ public class LoginFragment extends Fragment {
                         Intent intent = googleSignInClient.getSignInIntent();
                         startActivityForResult(intent,RC_SIGN_IN);
                     }
+                    if (selectedSeclection == Seclection.Phone) {
+                        Intent intent = new Intent(getActivity(), PhoneLoginActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
