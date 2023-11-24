@@ -4,8 +4,10 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class DiscoverFragment extends Fragment {
     ArrayList<Country> countryList;
+    ArrayList<Country> countryNoiDia;
+    ArrayList<Country> countryQuocTe;
     CountryAdapter countryAdapter;
     ArrayList<Pagination> paginationArrayList;
     PaginationAdapter paginationAdapter;
@@ -25,23 +29,39 @@ public class DiscoverFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
         //List country
-        Country tempCountry = new Country(R.drawable.img_dubai, "Dubai");
+        //Quốc tế
+        countryQuocTe = new ArrayList<>();
+        countryQuocTe.add(Country.Dubai);
+        countryQuocTe.add(Country.Canada);
+        countryQuocTe.add(Country.Iceland);
+        countryQuocTe.add(Country.NhatBan);
+        countryQuocTe.add(Country.Phap);
+        countryQuocTe.add(Country.TayBanNha);
+        countryQuocTe.add(Country.ThaiLan);
+        countryQuocTe.add(Country.TayBanNha);
+        countryQuocTe.add(Country.ThoNhiKy);
 
-        countryList = new ArrayList<>();
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
-        countryList.add(tempCountry);
+        //Nội địa
+        countryNoiDia = new ArrayList<>();
 
-        countryAdapter = new CountryAdapter(getContext(),countryList);
+        countryNoiDia.add(Country.DaLat);
+        countryNoiDia.add(Country.DaNang);
+        countryNoiDia.add(Country.CanTho);
+        countryNoiDia.add(Country.NhaTrang);
+        countryNoiDia.add(Country.HaiPhong);
+        countryNoiDia.add(Country.HaNoi);
+        countryNoiDia.add(Country.HoChiMinh);
+        countryNoiDia.add(Country.PhuQuoc);
+        countryNoiDia.add(Country.Vinh);
+
+        countryAdapter = new CountryAdapter(getActivity(),countryNoiDia);
 
         RecyclerView recyclerViewCountry = view.findViewById(R.id.rv_places_discover);
         recyclerViewCountry.setAdapter(countryAdapter);
+
+
+        Button btnNoiDia = view.findViewById(R.id.btn_NoiDia);
+        Button btnQuocTe = view.findViewById(R.id.btn_QuocTe);
 
         //Pagination
         Pagination tempPagination = new Pagination("1");
@@ -74,6 +94,11 @@ public class DiscoverFragment extends Fragment {
             public void onClick(View v) {
                 btnNoiDia.setTextColor(getResources().getColor(R.color.maincolor));
                 btnQuocTe.setTextColor(getResources().getColor(R.color.white));
+
+                countryAdapter.setCountries(countryNoiDia);
+                countryAdapter.notifyDataSetChanged();
+
+
             }
         });
     }
@@ -86,6 +111,9 @@ public class DiscoverFragment extends Fragment {
             public void onClick(View v) {
                 btnQuocTe.setTextColor(getResources().getColor(R.color.maincolor));
                 btnNoiDia.setTextColor(getResources().getColor(R.color.white));
+
+                countryAdapter.setCountries(countryQuocTe);
+                countryAdapter.notifyDataSetChanged();
             }
         });
     }

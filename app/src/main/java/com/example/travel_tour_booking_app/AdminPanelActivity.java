@@ -39,4 +39,5 @@ public class AdminPanelActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListPromotionAdminActivity.class);
         startActivity(intent);
     }
+
 }
