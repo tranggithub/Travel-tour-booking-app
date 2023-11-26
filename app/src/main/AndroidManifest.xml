@@ -15,6 +15,15 @@
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
         <activity
+            android:name=".ListTourAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadTourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TourDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".PhoneLoginActivity"
             android:exported="false" />
         <activity
@@ -77,9 +86,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TourDetailActivity"
-            android:exported="true"></activity>
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />

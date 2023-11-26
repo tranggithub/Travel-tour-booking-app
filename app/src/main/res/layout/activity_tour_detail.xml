@@ -628,7 +628,13 @@ Ngày 3:\n
                 android:textColor="@color/white"
                 android:textSize="30dp">
             </TextView>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail_tour_tiennghichung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="12dp"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -852,6 +858,7 @@ Ngày 3:\n
 
                 <TextView
                     android:id="@+id/tv_traphong"
+                    android:layout_marginLeft="@dimen/margin_section"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -859,7 +866,7 @@ Ngày 3:\n
                     android:text="Trả phòng trước"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_restaurant"
+                    app:layout_constraintStart_toEndOf="@id/tv_nhanphong"
                     app:layout_constraintTop_toBottomOf="@id/tv_restaurant"
                     >
                 </TextView>
@@ -966,15 +973,12 @@ Ngày 3:\n
                     android:id="@+id/tv_free2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="36dp"
                     android:fontFamily="@font/firasans_light"
-                    android:text="Trẻ em có thể sử dụng giường phụ miễn phí "
+                    android:text="Sử dụng giường phụ miễn phí "
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    app:layout_constraintLeft_toRightOf="@+id/ll_free"
-                    app:layout_constraintTop_toBottomOf="@id/tv_free1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="TextSizeCheck">
+                    app:layout_constraintStart_toStartOf="@+id/tv_free1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_free1">
                 </TextView>
 
                 <LinearLayout
@@ -1019,16 +1023,14 @@ Ngày 3:\n
 
                 <TextView
                     android:id="@+id/tv_thanhtoan2"
-                    android:layout_width="326dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
                     android:fontFamily="@font/firasans_light"
-                    android:text="Trẻ em có thể sử dụng giường phụ với phụ phí là VND 500.000"
+                    android:text="Phụ phí là VND 500.000"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    app:layout_constraintLeft_toRightOf="@+id/ll_thanhtoan"
-                    app:layout_constraintTop_toBottomOf="@id/tv_thanhtoan1"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintStart_toStartOf="@+id/tv_thanhtoan1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_thanhtoan1">
                 </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/img_logo"
-                    app:layout_constraintBottom_toTopOf="@+id/et_discover_search"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_discover"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView_discover" />
@@ -119,9 +118,11 @@
                     android:layout_margin="12dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="3"
+                    tools:itemCount="9"
                     app:layout_constraintStart_toStartOf="@id/cl_places"
                     app:layout_constraintEnd_toEndOf="@id/cl_places"
                     app:layout_constraintTop_toTopOf="@id/cl_places"
+                    android:nestedScrollingEnabled="false"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout

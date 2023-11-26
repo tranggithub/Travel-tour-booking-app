@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hà nội"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textColor="@color/white"
         android:fontFamily="@font/firasans_medium"
         app:layout_constraintBottom_toBottomOf="parent"

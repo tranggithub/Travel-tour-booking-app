@@ -26,9 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class ListNewsAdminActivity extends AppCompatActivity {
-    ArrayList<News> newss;
-    NewsAdapter newsAdapter;
+public class ListTourAdminActivity extends AppCompatActivity {
+    ArrayList<Place> places;
+    PlaceAdapter placeAdapter;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
 
@@ -40,8 +40,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_news_admin);
-
+        setContentView(R.layout.activity_list_tour_admin);
         //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
@@ -49,37 +48,37 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         //change to upload page
-        AddNews();
+        AddTour();
 
         //News
-        newss = new ArrayList<>();
+        places = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(this,newss);
+        placeAdapter = new PlaceAdapter(this,places,R.layout.item_place);
 
-        RecyclerView rvNews = findViewById(R.id.rv_list_news);
+        RecyclerView rvNews = findViewById(R.id.rv_list_tours);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
-        rvNews.setAdapter(newsAdapter);
+        rvNews.setAdapter(placeAdapter);
 
         //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
 //        alertDialog.show();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                newss.clear();
+                places.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    News tempNews = itemSnapshot.getValue(News.class);
-                    tempNews.setKey(itemSnapshot.getKey());
-                    newss.add(tempNews);
+                    Place tempPlace = itemSnapshot.getValue(Place.class);
+                    tempPlace.setKey(itemSnapshot.getKey());
+                    places.add(tempPlace);
                 }
-                newsAdapter.notifyDataSetChanged();
+                placeAdapter.notifyDataSetChanged();
                 alertDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                alertDialog.dismiss();
+//                alertDialog.dismiss();
             }
         });
 
@@ -100,7 +99,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         recyclerViewPagination.setAdapter(paginationAdapter);
 
         //Search Function
-        et_search = findViewById(R.id.et_news_search);
+        et_search = findViewById(R.id.et_tours_search);
 
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -124,13 +123,13 @@ public class ListNewsAdminActivity extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
-        ArrayList<News> searchList = new ArrayList<>();
-        for (News item : newss){
+        ArrayList<Place> searchList = new ArrayList<>();
+        for (Place item : places){
             if(normalizeString(item.getTitle().toLowerCase()).contains(query.toLowerCase())){
                 searchList.add(item);
             }
         }
-        newsAdapter.searchNews(searchList);
+        placeAdapter.searchPlace(searchList);
     }
     private String normalizeString(String input) {
         // Loại bỏ dấu từ chuỗi
@@ -147,7 +146,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_news);
+                ScrollView scrollView = findViewById(R.id.sv_list_tours);
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });
@@ -156,7 +155,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
 
     public void GoBack()
     {
-        ImageView imageView = findViewById(R.id.iv_returnbutton_list_news);
+        ImageView imageView = findViewById(R.id.iv_returnbutton_list_tours);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,13 +164,13 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         });
     }
 
-    public void AddNews()
+    public void AddTour()
     {
-        tv_add = findViewById(R.id.tv_add_news);
+        tv_add = findViewById(R.id.tv_add_tours);
         tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListNewsAdminActivity.this, UploadNewsActivity.class);
+                Intent intent = new Intent(ListTourAdminActivity.this, UploadTourActivity.class);
                 startActivity(intent);
             }
         });

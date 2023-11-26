@@ -70,9 +70,6 @@ public class HomeFragment extends Fragment {
 
         //Popular Place
         places = new ArrayList<>();
-        Place tempPlace = new Place("Chuyến du lịch Toronto","Canada","9.190.123",4,R.drawable.img_toronto);
-        places.add(tempPlace);
-        places.add(tempPlace);
 
         placePopularAdapter = new PlaceAdapter(getContext(),places,R.layout.item_popular_place);
 
@@ -85,6 +82,29 @@ public class HomeFragment extends Fragment {
         RecyclerView rvPlace = view.findViewById(R.id.rv_place);
         rvPlace.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvPlace.setAdapter(placeAdapter);
+
+        //Firebase
+        databaseReferenceNews = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
+
+        databaseReferenceNews.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                places.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Place tempPlace = itemSnapshot.getValue(Place.class);
+                    tempPlace.setKey(itemSnapshot.getKey());
+                    if (tempPlace.isActive())
+                        places.add(tempPlace);
+                }
+                placeAdapter.notifyDataSetChanged();
+                placePopularAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
 
         //Promotion
         promotions = new ArrayList<>();
