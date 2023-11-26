@@ -1,6 +1,8 @@
 package com.example.travel_tour_booking_app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.MediaController;
@@ -60,6 +63,7 @@ public class LoginFragment extends Fragment {
     TextView tvQuenMatKhau;
     TextView tvChuaCoTaiKhoan;
     TextView tvDieuKhoan;
+    CheckBox ckbGhiNhoMatKhau;
     GoogleSignInClient googleSignInClient;
 
     @Override
@@ -89,6 +93,7 @@ public class LoginFragment extends Fragment {
                         startActivityWithFinish(AdminPanelActivity.class);
                     } else {
                         Toast.makeText(getActivity(), "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().signOut();
                     }
                 }
             }
@@ -125,27 +130,11 @@ public class LoginFragment extends Fragment {
         SelectionGridview.setAdapter(selectionAdapter);
 
         videoView = view.findViewById(R.id.vv_Background);
-        String videoPath = "android.resource://" + getContext().getPackageName() + "/" + R.raw.ocean;
-        Uri uri = Uri.parse(videoPath);
-
-        MediaController mediaController = new MediaController(getContext());
-        videoView.setMediaController(mediaController);
-        mediaController.setAnchorView(videoView);
-
-        videoView.setVideoURI(uri);
-        videoView.start();
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
-
+        HandleBackground(videoView);
 
         //Handle QuenMatKhau
         tvQuenMatKhau = view.findViewById(R.id.tv_QuenMatKhau);
-        tvQuenMatKhau.setText(Html.fromHtml("<u>"+"Quên mật khẩu"+"</u>"+"?"));
+        tvQuenMatKhau.setText(Html.fromHtml("<u>" + "Quên mật khẩu" + "</u>" + "?"));
         tvQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,13 +171,16 @@ public class LoginFragment extends Fragment {
 
         //DieuKhoan
         tvDieuKhoan = view.findViewById(R.id.tv_DieuKhoan);
-        tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với "+"<u>"+"Điều khoản & Điều kiện"+"</u>"+" và "+"<u>"+"Cam kết bảo mật"+"</u>"+" của 4Travel"));
+        tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với " + "<u>" + "Điều khoản & Điều kiện" + "</u>" + " và " + "<u>" + "Cam kết bảo mật" + "</u>" + " của 4Travel"));
 
         edtMail = view.findViewById(R.id.edt_Email);
         edtPassword = view.findViewById(R.id.edt_Psw);
 
         //Xử lý DangNhap button
         DangNhap(view);
+
+        ckbGhiNhoMatKhau = view.findViewById(R.id.ckb_GhiNhoDangNhap);
+
 
         //Xử lý SelectionGridView
         SelectionGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -204,14 +196,14 @@ public class LoginFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), FacebookLoginActivity.class);
                         startActivity(intent);
                     }
-                    if (selectedSeclection == Seclection.Google){
+                    if (selectedSeclection == Seclection.Google) {
                         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                 .requestIdToken(getString(R.string.default_web_client_id))
                                 .requestEmail()
                                 .build();
-                        googleSignInClient = GoogleSignIn.getClient(getActivity(),gso);
-                        Intent intent = googleSignInClient.getSignInIntent();
-                        startActivityForResult(intent,RC_SIGN_IN);
+                        googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+                        Intent signInIntent = googleSignInClient.getSignInIntent();
+                        startActivityForResult(signInIntent, RC_SIGN_IN);
                     }
                     if (selectedSeclection == Seclection.Phone) {
                         Intent intent = new Intent(getActivity(), PhoneLoginActivity.class);
@@ -222,49 +214,114 @@ public class LoginFragment extends Fragment {
         });
         return view;
     }
+
+    private void HandleBackground(VideoView videoView) {
+        String videoPath = "android.resource://" + getContext().getPackageName() + "/" + R.raw.ocean;
+        Uri uri = Uri.parse(videoPath);
+
+        videoView.setVideoURI(uri);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+    }
+
     int RC_SIGN_IN = 40;
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RC_SIGN_IN){
+        // Kiểm tra xem requestCode có phải là mã đăng nhập Google không
+        if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
             try {
-                GoogleSignInAccount account =  task.getResult(ApiException.class);
-                firebaseGoogleAuth(account.getIdToken());
+                // Lấy tài khoản Google thành công, đăng nhập vào Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                throw new RuntimeException(e);
+                // Xử lý lỗi khi lấy tài khoản Google
+                if (task.getException() != null) {
+                    Toast.makeText(getActivity(), "Đăng nhập bằng Google thất bại. Lỗi: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Đăng nhập bằng Google thất bại. Lỗi không xác định.", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
 
-    private void firebaseGoogleAuth(String idToken) {
+    private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            // Đăng nhập thành công, kiểm tra và chuyển hướng người dùng
                             FirebaseUser user = mAuth.getCurrentUser();
-                            ReadWriteUserDetails userDetails = new ReadWriteUserDetails(user.getDisplayName(),user.getPhotoUrl());
-                            DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
-                            String userId = user.getUid(); // Get the user's unique ID
-                            databaseReference.child(userId).setValue(userDetails);
-                            if (userDetails.getDelected() == 0) {
-                                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
-                            }
-                            else Toast.makeText(getActivity(), "Tài khoản đã bị xóa", Toast.LENGTH_SHORT).show();
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                                    .getReference("users");
+
+                            databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    ReadWriteUserDetails userDetails;
+                                    if (snapshot.exists()) {
+                                        userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                                    } else {
+                                        userDetails = new ReadWriteUserDetails();
+                                        userDetails.setEmail(user.getEmail());
+                                        userDetails.setTen(user.getDisplayName());
+                                        pushUserDetailsToDatabase(userDetails, user.getUid());
+                                    }
+                                    if ("user".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                                        startActivityWithFinish(HomeActivity.class);
+                                    } else if ("admin".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
+                                        startActivityWithFinish(AdminPanelActivity.class);
+                                    } else {
+                                        Toast.makeText(getActivity(), "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
+                                        FirebaseAuth.getInstance().signOut();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    // Xử lý lỗi ở đây
+                                }
+                            });
+                            Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                            // Đăng nhập thất bại, hiển thị thông báo lỗi
+                            if (task.getException() != null) {
+                                String errorMessage = task.getException().getMessage();
+                                Toast.makeText(getActivity(), "Đăng nhập bằng Google thất bại. Lỗi: " + errorMessage, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), "Đăng nhập bằng Google thất bại.", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
     }
 
+
+    private void pushUserDetailsToDatabase(ReadWriteUserDetails userDetails, String userId) {
+        // Đường dẫn đến "users" trong Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
+
+        // Đẩy userDetails lên Firebase Realtime Database dưới dạng một child của user có id là userId
+        databaseReference.child(userId).setValue(userDetails)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), "Dữ liệu người dùng đã được lưu trữ", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "Lỗi khi lưu trữ dữ liệu người dùng", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
     public void DangNhap(View view) {
 
@@ -290,8 +347,6 @@ public class LoginFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "Đăng nhập thành công.",
-                                            Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
                                     if (user != null) {
@@ -310,7 +365,10 @@ public class LoginFragment extends Fragment {
                                                         getActivity().finish();
                                                     } else {
                                                         Toast.makeText(getActivity(), "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
+                                                        FirebaseAuth.getInstance().signOut();
                                                     }
+                                                } else {
+                                                    Toast.makeText(getActivity(), "Người dùng chưa tồn tại. Hãy đăng ký", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
 
@@ -319,6 +377,8 @@ public class LoginFragment extends Fragment {
 
                                             }
                                         });
+                                        Toast.makeText(getActivity(), "Đăng nhập thành công.",
+                                                Toast.LENGTH_SHORT).show();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại.",
@@ -329,5 +389,11 @@ public class LoginFragment extends Fragment {
                         });
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        HandleBackground(videoView);
     }
 }
