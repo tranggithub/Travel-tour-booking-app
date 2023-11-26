@@ -70,7 +70,11 @@ public class HomeFragment extends Fragment {
 
         //Popular Place
         places = new ArrayList<>();
-        Place tempPlace = new Place("Chuyến du lịch Toronto","Canada","9.190.123",4,R.drawable.img_toronto);
+        Place tempPlace = new Place("Chuyến du lịch đến Totoro",
+                                            "10/02/2022","Canada","10.000.000",null,null
+        ,"Tận hưởng chuyến du lịch",null,null,null,null,
+                4,null,null,null,null,null,null,
+                null,true);
         places.add(tempPlace);
         places.add(tempPlace);
 

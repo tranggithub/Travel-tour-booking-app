@@ -42,12 +42,12 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_news_admin);
 
-//Progress layout
+        //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
+        alertDialog.show();
         //change to upload page
         AddNews();
 
@@ -79,7 +79,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
+                alertDialog.dismiss();
             }
         });
 
