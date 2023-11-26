@@ -27,6 +27,7 @@ public class Place implements Serializable {
     double Star = 0;
     int NumberOfPeople;
     int SumOfPoint;
+    String Key;
 
     public Place(String title, String date, String location, String price, String duration, String thumbnail_Image, String text, ArrayList<DetailNews> schedule, Hotel hotel, String planeFrom, String planeDuration, int numberOfSegment, String planeDate, String planeBrand, String timeTakeOff, String timeLanding, ArrayList<TienIch> planeTienIch, String carType, ArrayList<TienIch> carTienIch, boolean isActive) {
         Title = title;
@@ -49,6 +50,9 @@ public class Place implements Serializable {
         CarType = carType;
         CarTienIch = carTienIch;
         IsActive = isActive;
+    }
+
+    public Place() {
     }
 
 
@@ -222,5 +226,13 @@ public class Place implements Serializable {
 
     public void setActive(boolean active) {
         IsActive = active;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 }

@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder> {
@@ -33,6 +36,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Glide.with(context).load(places.get(position).getThumbnail_Image()).into(holder.ivThumbnail);
         holder.tvTitle.setText(places.get(position).getTitle());
         holder.tvLocation.setText(places.get(position).getLocation() + " (" + places.get(position).getDuration()+" ngày)");
         holder.tvPrice.setText(places.get(position).getPrice());
@@ -93,6 +97,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         private TextView tvTitle;
         private TextView tvLocation;
         private TextView tvPrice;
+        private ImageView ivThumbnail;
         private ImageView ivStar1, ivStar2, ivStar3, ivStar4, ivStar5;
         public MyViewHolder(View itemView){
             super(itemView);
@@ -104,6 +109,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
             ivStar3 = itemView.findViewById(R.id.iv_star_3);
             ivStar4 = itemView.findViewById(R.id.iv_star_4);
             ivStar5 = itemView.findViewById(R.id.iv_star_5);
+            ivThumbnail = itemView.findViewById(R.id.iv_place);
         }
+    }
+    public void searchPlace(ArrayList<Place> places){
+        this.places = places;
+        notifyDataSetChanged();
     }
 }

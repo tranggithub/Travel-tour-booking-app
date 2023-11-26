@@ -17,6 +17,9 @@ public enum TienIch implements Serializable {
         this.name = name;
     }
 
+    TienIch() {
+    }
+
     public int getIcon() {
         return Icon;
     }

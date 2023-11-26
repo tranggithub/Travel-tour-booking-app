@@ -22,6 +22,9 @@ public class Hotel implements Serializable {
         ChildrenAgeFree = childrenFree;
     }
 
+    public Hotel() {
+    }
+
     public String getName() {
         return Name;
     }
