@@ -18,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -51,20 +53,31 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LoginFragment extends Fragment {
     ArrayList<Seclection> selections;
     SelectionAdapter selectionAdapter;
     VideoView videoView;
 
-    EditText edtMail, edtPassword;
+    EditText edtPassword;
+    AutoCompleteTextView edtMail;
     //FirebaseAuth
     FirebaseAuth mAuth;
     TextView tvQuenMatKhau;
     TextView tvChuaCoTaiKhoan;
     TextView tvDieuKhoan;
-    CheckBox ckbGhiNhoMatKhau;
     GoogleSignInClient googleSignInClient;
+
+    //Ghi nho mat khau
+    CheckBox ckbGhiNhoMatKhau;
+    private static final String PREF_NAME = "login_preference";
+    private static final String KEY_REMEMBER_LOGIN = "remember_login";
+    private static final String KEY_ACCOUNTS = "saved_accounts";
+    private static final String KEY_EMAIL = "email";
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     public void onStart() {
@@ -180,7 +193,7 @@ public class LoginFragment extends Fragment {
         DangNhap(view);
 
         ckbGhiNhoMatKhau = view.findViewById(R.id.ckb_GhiNhoDangNhap);
-
+        HandleSaveAccount(ckbGhiNhoMatKhau);
 
         //Xử lý SelectionGridView
         SelectionGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -213,6 +226,55 @@ public class LoginFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void HandleSaveAccount(CheckBox ckbGhiNhoMatKhau) {
+        sharedPreferences = getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        // Lấy danh sách tài khoản đã lưu từ SharedPreferences
+        Set<String> savedAccounts = sharedPreferences.getStringSet(KEY_ACCOUNTS, new HashSet<>());
+
+        // Thiết lập gợi ý cho AutoCompleteTextView
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList<>(savedAccounts));
+        edtMail.setAdapter(adapter);
+
+        edtMail.setOnItemClickListener((parent, view1, position, id) -> {
+            String selectedAccount = (String) parent.getItemAtPosition(position);
+            // Lấy thông tin tài khoản từ SharedPreferences và hiển thị trong EditText
+            String savedPassword = sharedPreferences.getString(selectedAccount, "");
+            edtMail.setText(selectedAccount);
+            edtPassword.setText(savedPassword);
+        });
+
+        boolean isRememberLogin = sharedPreferences.getBoolean(KEY_REMEMBER_LOGIN, false);
+        ckbGhiNhoMatKhau.setChecked(isRememberLogin);
+
+        if (isRememberLogin) {
+            String savedEmail = sharedPreferences.getString(KEY_EMAIL, "");
+            String savedPassword = sharedPreferences.getString(savedEmail, "");
+            edtMail.setText(savedEmail);
+            edtPassword.setText(savedPassword);
+        }
+
+        ckbGhiNhoMatKhau.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editor.putBoolean(KEY_REMEMBER_LOGIN, isChecked);
+            editor.apply();
+        });
+    }
+
+    private void HandleSaveAccountLoginButton(Button button, CheckBox rememberCheckBox, String email, String password) {
+        Set<String> savedAccounts = sharedPreferences.getStringSet(KEY_ACCOUNTS, new HashSet<>());
+        // Lưu thông tin tài khoản vào SharedPreferences
+        Set<String> updatedAccounts = new HashSet<>(savedAccounts);
+        updatedAccounts.add(email);
+        editor.putStringSet(KEY_ACCOUNTS, updatedAccounts);
+        editor.putString(email, password);
+
+        if (rememberCheckBox.isChecked()) {
+            editor.putString(KEY_EMAIL, email);
+            editor.apply();
+        }
     }
 
     private void HandleBackground(VideoView videoView) {
@@ -342,6 +404,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(LoginFragment.this.getContext(), "Nhập password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                HandleSaveAccountLoginButton(button, ckbGhiNhoMatKhau, email, psw);
                 mAuth.signInWithEmailAndPassword(email, psw)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
