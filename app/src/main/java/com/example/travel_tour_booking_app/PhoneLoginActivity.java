@@ -44,22 +44,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_login);
 
         videoView = findViewById(R.id.vv_Background);
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.ocean;
-        Uri uri = Uri.parse(videoPath);
-
-        MediaController mediaController = new MediaController(this);
-        videoView.setMediaController(mediaController);
-        mediaController.setAnchorView(videoView);
-
-        videoView.setVideoURI(uri);
-        videoView.start();
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
+        HandleBackground(videoView);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -119,6 +104,32 @@ public class PhoneLoginActivity extends AppCompatActivity {
             }
         };
     }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        HandleBackground(videoView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        HandleBackground(videoView);
+    }
+
+    private void HandleBackground(VideoView videoView) {
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.ocean;
+        Uri uri = Uri.parse(videoPath);
+
+        videoView.setVideoURI(uri);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+    }
 
     private void sendVerificationCode(String phoneNumber) {
         // Gửi mã xác thực đến số điện thoại
@@ -141,7 +152,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(PhoneLoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mAuth.getCurrentUser();
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
                                 .getReference("users");
@@ -152,8 +162,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                                 ReadWriteUserDetails userDetails;
                                 if (snapshot.exists()) {
                                     userDetails = snapshot.getValue(ReadWriteUserDetails.class);
-                                }
-                                else {
+                                } else {
                                     userDetails = new ReadWriteUserDetails();
                                     userDetails.setSdt(user.getPhoneNumber());
                                     pushUserDetailsToDatabase(userDetails, user.getUid());
@@ -172,6 +181,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                                 // Xử lý lỗi ở đây
                             }
                         });
+                        Toast.makeText(PhoneLoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(PhoneLoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                     }
@@ -201,6 +211,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
     private void showVerificationViews() {
         // Hiển thị các view liên quan đến việc xác nhận mã
+        edtPhoneNumber.setEnabled(false);
         tvMaXacNhan.setVisibility(View.VISIBLE);
         edtMaXacNhan.setVisibility(View.VISIBLE);
         btnGuiMa.setVisibility(View.INVISIBLE);
