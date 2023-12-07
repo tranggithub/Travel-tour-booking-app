@@ -83,7 +83,7 @@ public class UploadTourActivity extends AppCompatActivity {
 
         //Hotel
         hotels = new ArrayList<>();
-        hotels.add(new Hotel(null,"Borahae","7:00","12:00",null,"500 VND","1 tuổi"));
+        hotels.add(new Hotel(null,"Đường 27, khu phố Wans, Canada","Borahae","7:00","12:00",null,"500 VND","1 tuổi"));
         hotelSpinnerAdapter = new HotelSpinnerAdapter(this,R.layout.item_drop_down_spinner, hotels);
 
         spn_hotel = findViewById(R.id.spn_hotel_upload_tour);
@@ -159,25 +159,7 @@ public class UploadTourActivity extends AppCompatActivity {
             }
         });
     }
-    //Thiết lập URL cho Detail News
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && requestCode < 10) {
-            Uri selectedImageUri = data.getData();
-
-            // Lấy vị trí của mục RecyclerView được chọn từ requestCode
-            int position = requestCode;
-
-            // Cập nhật URI của ảnh trong dữ liệu
-            DetailNews selectedItem = detailSchedule.get(position);
-            selectedItem.setPicture(selectedImageUri.toString());
-
-            // Cập nhật RecyclerView
-            contextOrPictureUploadAdapter.notifyItemChanged(position);
-        }
-    }
     private void addContentOrPicture() {
         Button btn_add_content = findViewById(R.id.btn_addText_upload_tour);
         Button btn_add_picture = findViewById(R.id.btn_addPicture_upload_tour);
