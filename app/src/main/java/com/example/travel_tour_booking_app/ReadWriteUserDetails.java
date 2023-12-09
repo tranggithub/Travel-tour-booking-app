@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -26,7 +27,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 public class ReadWriteUserDetails {
-    StorageReference storageReference;
     private String ho;
     private String ten;
     private String urlImage;
@@ -62,12 +62,10 @@ public class ReadWriteUserDetails {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference()
                 .child("Android Users Image").child("default.png");
         Task<Uri> uriTask = storageReference.getDownloadUrl();
-        while (!uriTask.isComplete());
-            Uri url_Image = uriTask.getResult();
+        while (!uriTask.isComplete()) ;
+        Uri url_Image = uriTask.getResult();
         urlImage = url_Image.toString();
     }
-
-
     public String getHo() {
         return ho;
     }
