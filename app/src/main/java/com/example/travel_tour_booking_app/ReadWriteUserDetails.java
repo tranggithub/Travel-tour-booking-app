@@ -23,10 +23,13 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-public class ReadWriteUserDetails {
+public class ReadWriteUserDetails implements Serializable {
+    StorageReference storageReference;
     private String ho;
     private String ten;
     private String urlImage;
@@ -34,6 +37,7 @@ public class ReadWriteUserDetails {
     private String sdt;
     private String email;
     private int delected;
+    ArrayList<Place> listLikeTours = new ArrayList<>();
     public ReadWriteUserDetails() {
         this.ho = null;
         this.ten = null;
@@ -120,5 +124,13 @@ public class ReadWriteUserDetails {
 
     public String getSdt() {
         return sdt;
+    }
+
+    public ArrayList<Place> getListLikeTours() {
+        return listLikeTours;
+    }
+
+    public void setListLikeTours(ArrayList<Place> listLikeTours) {
+        this.listLikeTours = listLikeTours;
     }
 }

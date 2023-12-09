@@ -124,13 +124,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/edt_title_upload_tour" />
 
                     <EditText
+                        android:textColor="@color/white"
                         android:id="@+id/edt_date_upload_tour"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -163,7 +163,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
+                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -195,7 +195,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
+                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"

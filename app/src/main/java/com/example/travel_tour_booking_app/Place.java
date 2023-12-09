@@ -11,7 +11,7 @@ public class Place implements Serializable {
     String Duration;
     String Thumbnail_Image;
     String Text;
-    ArrayList<DetailNews> Schedule;
+    ArrayList<DetailNews> Schedule = new ArrayList<>();
     Hotel hotel;
     String PlaneFrom;
     String PlaneDuration;

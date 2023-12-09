@@ -39,7 +39,7 @@ public class DetailPromotionActivity extends AppCompatActivity {
         for (DetailNews item : promotion.getDetailPromotionList()){
             detailPromotionList.add(item);
         }
-        detailPromotionAdapter = new DetailNewsAdapter(this,detailPromotionList);
+        detailPromotionAdapter = new DetailNewsAdapter(this,detailPromotionList,15);
 
         RecyclerView rvDetailNews = findViewById(R.id.rv_detail_promotion);
         rvDetailNews.setLayoutManager(new LinearLayoutManager(this));

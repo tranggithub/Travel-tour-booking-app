@@ -41,7 +41,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Glide.with(context).load(places.get(position).getThumbnail_Image()).into(holder.ivThumbnail);
         holder.tvTitle.setText(places.get(position).getTitle());
-        holder.tvLocation.setText(places.get(position).getLocation() + " (" + places.get(position).getDuration() + " ngày)");
+        holder.tvLocation.setText(places.get(position).getLocation() + " (" + places.get(position).getDuration() + ")");
         holder.tvPrice.setText(places.get(position).getPrice());
         if (places.get(position).getStar() < 1) {
             holder.ivStar1.setImageResource(R.drawable.ic_star_not_vote);

@@ -71,7 +71,7 @@ public class DetailNewsActivity extends AppCompatActivity {
         for (DetailNews item : news.getDetailNewsArrayList()){
             detailNewsArrayList.add(item);
         }
-        detailNewsAdapter = new DetailNewsAdapter(this,detailNewsArrayList);
+        detailNewsAdapter = new DetailNewsAdapter(this,detailNewsArrayList,15);
 
         RecyclerView rvDetailNews = findViewById(R.id.rv_detail_news);
         rvDetailNews.setLayoutManager(new LinearLayoutManager(this));

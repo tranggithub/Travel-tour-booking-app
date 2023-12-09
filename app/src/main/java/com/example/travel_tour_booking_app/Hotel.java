@@ -5,24 +5,28 @@ import java.util.ArrayList;
 
 public class Hotel implements Serializable {
     String Thumbnail;
+    String Address;
     String Name;
     String TimeCheckIn;
     String TimeCheckOut;
     ArrayList<TienNghiChung> TienNghiChungs;
     String ChildenFee;
     String ChildrenAgeFree;
+    ArrayList<Comment> comments = new ArrayList<>();
 
-    public Hotel(String thumbnail, String name, String timeCheckIn, String timeCheckOut, ArrayList<TienNghiChung> tienNghiChungs, String childenFee, String childrenFree) {
+
+    public Hotel() {
+    }
+
+    public Hotel(String thumbnail, String address, String name, String timeCheckIn, String timeCheckOut, ArrayList<TienNghiChung> tienNghiChungs, String childenFee, String childrenAgeFree) {
         Thumbnail = thumbnail;
+        Address = address;
         Name = name;
         TimeCheckIn = timeCheckIn;
         TimeCheckOut = timeCheckOut;
         TienNghiChungs = tienNghiChungs;
         ChildenFee = childenFee;
-        ChildrenAgeFree = childrenFree;
-    }
-
-    public Hotel() {
+        ChildrenAgeFree = childrenAgeFree;
     }
 
     public String getName() {
@@ -79,5 +83,21 @@ public class Hotel implements Serializable {
 
     public void setThumbnail(String thumbnail) {
         Thumbnail = thumbnail;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
     }
 }

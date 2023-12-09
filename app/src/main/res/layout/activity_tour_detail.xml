@@ -47,6 +47,19 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_trip"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_update_tour"
+                android:onClick="ChangeUpdateNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Sửa"
+                android:fontFamily="@font/firasans_bold"
+                android:textSize="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingEnd="@dimen/margin_left_right_section"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
 
@@ -78,7 +91,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
-                    
+                    android:scaleType="centerCrop"
                     >
                 </ImageView>
 
@@ -91,7 +104,21 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="200dp"
                     app:layout_constraintTop_toTopOf="@id/img_toronto"
-                    app:layout_constraintEnd_toStartOf="@id/iv_share_trip"/>
+                    app:layout_constraintEnd_toStartOf="@id/iv_share_trip"
+                    />
+                <ImageView
+                    android:id="@+id/iv_heart_trip_love"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_heart"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="200dp"
+                    app:layout_constraintTop_toTopOf="@id/img_toronto"
+                    app:layout_constraintEnd_toStartOf="@id/iv_share_trip"
+                    android:tint="#eb3223"
+                    android:visibility="gone"
+                    />
                 <ImageView
                     android:id="@+id/iv_share_trip"
                     android:layout_width="50dp"
@@ -105,6 +132,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/tv_detail_tour_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -164,11 +192,11 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:layout_constraintStart_toEndOf="@id/tv_ngaythamquan"
-                    app:layout_constraintEnd_toStartOf="@id/tv_date"
+                    app:layout_constraintEnd_toStartOf="@id/tv_detail_tour_date"
                      />
 
                 <TextView
-                    android:id="@+id/tv_date"
+                    android:id="@+id/tv_detail_tour_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/firasans_mediumitalic"
@@ -202,7 +230,7 @@
                      />
 
                 <TextView
-                    android:id="@+id/tv_thoihan"
+                    android:id="@+id/tv_detail_tour_duration"
                     android:layout_width="70dp"
                     android:layout_height="31dp"
                     android:layout_marginStart="50dp"
@@ -220,14 +248,14 @@
                     android:layout_width="3dp"
                     android:layout_height="30dp"
                     android:background="@color/maincolor"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_gia"
-                    app:layout_constraintStart_toEndOf="@id/tv_thoihan"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_detail_tour_price"
+                    app:layout_constraintStart_toEndOf="@id/tv_detail_tour_duration"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                      />
 
                 <TextView
-                    android:id="@+id/tv_gia"
+                    android:id="@+id/tv_detail_tour_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/firasans_bold"
@@ -260,7 +288,7 @@
                      />
 
                 <TextView
-                    android:id="@+id/tv_diadiem"
+                    android:id="@+id/tv_detail_tour_diadiem"
                     android:layout_width="70dp"
                     android:layout_height="31dp"
                     android:layout_marginStart="50dp"
@@ -339,7 +367,7 @@
                 android:background="@color/white" />
 
             <TextView
-                android:id="@+id/tv_info_trip"
+                android:id="@+id/tv_detail_tour_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -371,7 +399,13 @@
                 android:text="Lịch trình"
                 android:textColor="@color/maincolor"
                 android:textSize="35dp" />
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail_tour_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:nestedScrollingEnabled="false"/>
 
             <TextView
                 android:id="@+id/tv_thongtinlichtrinh"
@@ -399,7 +433,8 @@ Ngày 3:\n
 3 giờ: tham quan Bảo tàng"
                 android:maxLines="3"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_more_info"
@@ -410,7 +445,8 @@ Ngày 3:\n
                 android:background="@drawable/custom_button"
                 android:gravity="bottom"
                 android:text="Xem thêm"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
@@ -421,6 +457,7 @@ Ngày 3:\n
                 android:background="@color/maincolor" />
 
             <TextView
+                android:id="@+id/tv_detail_tour_hotel_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -1155,7 +1192,7 @@ Ngày 3:\n
 
             <LinearLayout
                 android:id="@+id/ll_date_fly"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="10dp"
@@ -1165,6 +1202,9 @@ Ngày 3:\n
                 >
 
                 <TextView
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:id="@+id/tv_detail_tour_date_plane"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -1224,14 +1264,14 @@ Ngày 3:\n
                 <View
                     android:id="@+id/v_line"
                     android:layout_width="3dp"
-                    android:layout_height="170dp"
+                    android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:background="@color/maincolor"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_chitietbay6"
                     app:layout_constraintEnd_toEndOf="@id/v_dot2"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/v_dot1">
-                </View>
+                    app:layout_constraintTop_toBottomOf="@+id/v_dot1"></View>
 
                 <View
                     android:id="@+id/v_dot2"
@@ -1253,112 +1293,15 @@ Ngày 3:\n
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line"
                     app:layout_constraintTop_toBottomOf="@id/tv_chitietbay" />
-
-                <View
-                    android:id="@+id/v_airplane_takeoff"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_airplane_take_off"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_tour_tiennghi_plane"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line2"
-                     />
+                    app:layout_constraintTop_toBottomOf="@+id/v_line2"/>
 
 
-                <View
-                    android:id="@+id/v_tvshow_transport"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_tvshow"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_airplane_takeoff"
-                     />
-
-                <TextView
-                    android:id="@+id/tv_chitietbay1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="A350 (máy bay thân rộng)"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_airplane_takeoff"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line2"
-                    >
-                </TextView>
-
-                <TextView
-                    android:id="@+id/tv_chitietbay2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Có Tivi"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_tvshow_transport"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_chitietbay1"
-                    >
-                </TextView>
-
-                <View
-                    android:id="@+id/v_food"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_food_bar"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow_transport"
-                     />
-
-                <TextView
-                    android:id="@+id/tv_chitietbay3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Cung cấp các bữa ăn "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_food"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow_transport"
-                    >
-                </TextView>
-
-                <View
-                    android:id="@+id/v_plug"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_plug"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_food"
-                     />
-
-                <TextView
-                    android:id="@+id/tv_chitietbay4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Cung cấp ổ cắm điện "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_plug"
-                    app:layout_constraintTop_toBottomOf="@+id/v_food"
-                    >
-                </TextView>
 
                 <View
                     android:id="@+id/v_line3"
@@ -1369,13 +1312,13 @@ Ngày 3:\n
                     android:layout_marginRight="12dp"
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@id/v_plug" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_detail_tour_tiennghi_plane" />
 
                 <TextView
                     android:id="@+id/tv_chitietbay6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/firasans_medium"
                     android:text="10:45 Đảo Toronto "
@@ -1434,6 +1377,7 @@ Ngày 3:\n
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintTop_toBottomOf="@+id/v_car"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
                     >
                 </TextView>
 
@@ -1446,6 +1390,7 @@ Ngày 3:\n
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintTop_toBottomOf="@+id/tv_from_car"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
                      />
 
                 <TextView
@@ -1461,6 +1406,7 @@ Ngày 3:\n
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintStart_toEndOf="@+id/v_clock_car"
                     app:layout_constraintTop_toBottomOf="@+id/tv_from_car"
+                    android:visibility="gone"
                     >
                 </TextView>
 
@@ -1502,7 +1448,7 @@ Ngày 3:\n
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:fontFamily="@font/firasans_medium"
-                    android:text="10:55 Từ sân bay"
+                    android:text="Danh sách tiện nghi"
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toRightOf="@+id/v_dot3"
                     app:layout_constraintTop_toTopOf="parent"
@@ -1512,13 +1458,14 @@ Ngày 3:\n
                 <View
                     android:id="@+id/v_line_car"
                     android:layout_width="3dp"
-                    android:layout_height="120dp"
+                    android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:background="@color/maincolor"
                     app:layout_constraintEnd_toEndOf="@id/v_dot4"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/v_dot3">
+                    app:layout_constraintTop_toBottomOf="@+id/v_dot3"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_detailhour_car1">
                 </View>
 
                 <View
@@ -1541,87 +1488,13 @@ Ngày 3:\n
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line_car"
                     app:layout_constraintTop_toBottomOf="@id/tv_detailhour_car" />
-
-                <View
-                    android:id="@+id/v_tvshow_car"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_tvshow"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_car1"
-                     />
-
-
-                <TextView
-                    android:id="@+id/tv_detail_car1"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_tour_tiennghi_car"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Có Tivi"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_tvshow_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_car1"
-                    >
-                </TextView>
-
-                <View
-                    android:id="@+id/v_car_freshair"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_car_fresh_air"
-                    app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow_car"
-                     />
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_car1"/>
 
-
-                <TextView
-                    android:id="@+id/tv_detail_car2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Xe có máy lạnh "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_car_freshair"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_car1"
-                    >
-                </TextView>
-
-                <View
-                    android:id="@+id/v_car_seat"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_seat"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_car_freshair"
-                     />
-
-
-                <TextView
-                    android:id="@+id/tv_detail_car3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Ghế ngồi thoải mái "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_car_seat"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_car2"
-                    >
-                </TextView>
 
                 <View
                     android:id="@+id/v_line_car2"
@@ -1632,7 +1505,7 @@ Ngày 3:\n
                     android:layout_marginRight="12dp"
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@id/tv_detail_car3" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_detail_tour_tiennghi_car" />
 
                 <TextView
                     android:id="@+id/tv_detailhour_car1"
@@ -1644,6 +1517,7 @@ Ngày 3:\n
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toRightOf="@+id/v_dot4"
                     app:layout_constraintTop_toBottomOf="@id/v_line_car2"
+                    android:visibility="gone"
                     >
                 </TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1654,7 +1528,7 @@ Ngày 3:\n
                 android:layout_marginTop="@dimen/margin_section">
 
                 <Button
-                    android:id="@+id/btn_detail_trip_up"
+                    android:id="@+id/btn_detail_tour_up"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -1669,14 +1543,15 @@ Ngày 3:\n
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_double_up"
-                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_trip_up"
-                    app:layout_constraintEnd_toEndOf="@id/btn_detail_trip_up"
-                    app:layout_constraintStart_toStartOf="@id/btn_detail_trip_up"
-                    app:layout_constraintTop_toTopOf="@id/btn_detail_trip_up" />
+                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_tour_up"
+                    app:layout_constraintEnd_toEndOf="@id/btn_detail_tour_up"
+                    app:layout_constraintStart_toStartOf="@id/btn_detail_tour_up"
+                    app:layout_constraintTop_toTopOf="@id/btn_detail_tour_up" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/sv_detail_tour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_top_border"
