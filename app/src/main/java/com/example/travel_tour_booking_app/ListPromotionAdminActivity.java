@@ -60,7 +60,7 @@ public class ListPromotionAdminActivity extends AppCompatActivity {
 
         //Firebase
         databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Promotion");
-//        alertDialog.show();
+        alertDialog.show();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,6 +68,7 @@ public class ListPromotionAdminActivity extends AppCompatActivity {
                 promotions.clear();
                 for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
                     Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
+                    tempPromotion.setKey(itemSnapshot.getKey());
                     promotions.add(tempPromotion);
                 }
                 promotionAdapter.notifyDataSetChanged();
@@ -76,7 +77,7 @@ public class ListPromotionAdminActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
+                alertDialog.dismiss();
             }
         });
 

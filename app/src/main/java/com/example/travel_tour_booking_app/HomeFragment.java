@@ -123,7 +123,8 @@ public class HomeFragment extends Fragment {
                 promotions.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
-                    promotions.add(tempPromotion);
+                    if (tempPromotion.isActive())
+                        promotions.add(tempPromotion);
                 }
                 promotionAdapter.notifyDataSetChanged();
             }

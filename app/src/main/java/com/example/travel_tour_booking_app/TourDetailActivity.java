@@ -256,7 +256,7 @@ public class TourDetailActivity extends AppCompatActivity {
     }
 
     public void ChangeUpdateNews(View view){
-        Intent intent = new Intent(this, DetailTourUpdateActivity.class);
+        Intent intent = new Intent(this, UpdateTourActivity.class);
         intent.putExtra("Tour", (Place) tours);
         startActivity(intent);
     }
