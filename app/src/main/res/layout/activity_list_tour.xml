@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity"
+    android:background="#070B1D">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_navigationView_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_list_tours"
+                android:onClick="GoBack"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_list_tour_place"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_list_tour_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="ĐỊA ĐIỂM Ở CANADA"
+                android:textColor="@color/maincolor"
+                android:textSize="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_tours"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAllCaps="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/nv_navigationView_chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/margin_section"
+        android:layout_marginRight="@dimen/margin_section"
+        app:layout_constraintHorizontal_chainStyle="spread"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_list_tour_sortby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sắp xếp tăng theo"
+            android:textColor="@color/white"
+            android:fontFamily="@font/firasans_medium"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_list_tour_sortbyprice"
+            />
+        <TextView
+            android:id="@+id/tv_list_tour_sortbyprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giá"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@id/tv_list_tour_sortby"
+            app:layout_constraintTop_toTopOf="@id/tv_list_tour_sortby"
+            app:layout_constraintBottom_toBottomOf="@id/tv_list_tour_sortby"
+            app:layout_constraintEnd_toStartOf="@id/tv_list_tour_sortbystar"
+            android:layout_marginLeft="@dimen/margin_section"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_button"
+            android:padding="@dimen/margin_section"
+            />
+        <TextView
+            android:id="@+id/tv_list_tour_sortbystar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sao"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@id/tv_list_tour_sortbyprice"
+            app:layout_constraintTop_toTopOf="@id/tv_list_tour_sortby"
+            app:layout_constraintBottom_toBottomOf="@id/tv_list_tour_sortby"
+            app:layout_constraintEnd_toStartOf="@id/tv_list_tour_sortbyduration"
+            android:layout_marginLeft="@dimen/margin_section"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_button"
+            android:padding="@dimen/margin_section"
+            />
+        <TextView
+            android:id="@+id/tv_list_tour_sortbyduration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời lượng"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@id/tv_list_tour_sortbystar"
+            app:layout_constraintTop_toTopOf="@id/tv_list_tour_sortby"
+            app:layout_constraintBottom_toBottomOf="@id/tv_list_tour_sortby"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="@dimen/margin_section"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_button"
+            android:padding="@dimen/margin_section"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/sv_list_tours"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="150dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list_tours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_item"
+                >
+            </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/tv_list_tour_null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chưa có tour ở địa điểm này"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/margin_section"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:fontFamily="@font/firasans_medium"
+                android:textSize="20dp"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/cl_pagination"
+                android:layout_gravity="center"
+                android:weightSum="8">
+
+                <Button
+                    android:id="@+id/btn_previous_discover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/margin_left_right_section"
+                    android:background="@drawable/custom_previous_button"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Trước"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_pigination_list_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toStartOf="@id/btn_next_discover"
+                    app:layout_constraintStart_toEndOf="@+id/btn_previous_discover"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="6"/>
+                <Button
+                    android:id="@+id/btn_next_discover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_next_button"
+                    android:text="Sau"
+                    android:fontFamily="@font/firasans_medium"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="@dimen/margin_left_right_section"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_margin="@dimen/margin_section">
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/custom_edit_text"
+                    android:fontFamily="@font/firasans_medium"
+                    android:hint="Trang"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="11dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:textAlignment="center"></EditText>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_button"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="Di chuyển"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_section">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_section">
+
+                <Button
+                    android:id="@+id/btn_up"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_button"
+                    android:gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_double_up"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_up"
+                    app:layout_constraintStart_toStartOf="@id/btn_up"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_up"
+                    app:layout_constraintTop_toTopOf="@id/btn_up"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
