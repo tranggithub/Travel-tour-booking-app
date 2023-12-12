@@ -62,9 +62,11 @@ public class UserFragment extends Fragment {
                             if (user.getEmail() != null)
                                 tvEmail.setText("Email: " + user.getEmail());
                             else tvEmail.setText("Email: ");
-                            if (user.getPhoneNumber() != null || userDetails.getSdt() != null)
-                                tvSdt.setText("Số điện thoại: " + (user.getPhoneNumber() != null ? user.getPhoneNumber() : userDetails.getSdt()));
-                            else tvSdt.setText("Số điện thoại: ");
+                            if (userDetails.getSdt() != null) {
+                                tvSdt.setText("Số điện thoại: " + userDetails.getSdt());
+                            } else {
+                                tvSdt.setText("Số điện thoại: ");
+                            }
                             Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
                         }
                     }

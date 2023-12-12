@@ -213,7 +213,7 @@
             android:layout_marginRight="35dp"
             android:background="@drawable/rounded_border"
             android:fontFamily="@font/firasans_medium"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingStart="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
