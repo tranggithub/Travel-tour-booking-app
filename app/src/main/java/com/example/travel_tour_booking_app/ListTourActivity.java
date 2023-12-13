@@ -58,7 +58,7 @@ public class ListTourActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        //News
+        //Places
         places = new ArrayList<>();
 
         placeAdapter = new PlaceAdapter(this,places,R.layout.item_place);
@@ -134,6 +134,8 @@ public class ListTourActivity extends AppCompatActivity {
                 tv_sort_by_price.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.maincolor));
                 tv_sort_by_star.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.unselected));
                 tv_sort_by_duration.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.unselected));
+
+                placeAdapter.sortByPrice();
             }
         });
         tv_sort_by_star.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +144,8 @@ public class ListTourActivity extends AppCompatActivity {
                 tv_sort_by_star.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.maincolor));
                 tv_sort_by_price.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.unselected));
                 tv_sort_by_duration.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.unselected));
+
+                placeAdapter.sortByStar();
             }
         });
         tv_sort_by_duration.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +154,8 @@ public class ListTourActivity extends AppCompatActivity {
                 tv_sort_by_duration.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.maincolor));
                 tv_sort_by_price.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.unselected));
                 tv_sort_by_star.setBackgroundTintList(ContextCompat.getColorStateList(ListTourActivity.this, R.color.unselected));
+
+                placeAdapter.sortByDuration();
             }
         });
     }

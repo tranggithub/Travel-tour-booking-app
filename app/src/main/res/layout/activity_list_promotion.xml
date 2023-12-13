@@ -24,7 +24,6 @@
 
             <ImageView
                 android:id="@+id/iv_returnbutton_list_promotion"
-                android:onClick="GoBack"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="center"

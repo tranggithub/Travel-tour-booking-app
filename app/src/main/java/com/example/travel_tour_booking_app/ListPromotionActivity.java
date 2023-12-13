@@ -117,6 +117,7 @@ public class ListPromotionActivity extends AppCompatActivity {
 
         //Scroll to Top
         ScrollToTop();
+        GoBack();
     }
 
     private void performSearch(String query) {

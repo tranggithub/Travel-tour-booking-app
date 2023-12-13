@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder> {
@@ -121,6 +123,23 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     }
     public void searchPlace(ArrayList<Place> places){
         this.places = places;
+        notifyDataSetChanged();
+    }
+    public void sortByDuration(){
+        Collections.sort(places,new DurationComparator());
+        notifyDataSetChanged();
+    }
+    public void sortByPrice(){
+        Collections.sort(places,new PriceComparator());
+        notifyDataSetChanged();
+    }
+    public void sortByStar(){
+        Collections.sort(places,new StarComparator());
+        notifyDataSetChanged();
+    }
+
+    public void sortByNews(){
+        Collections.reverse(places);
         notifyDataSetChanged();
     }
 }

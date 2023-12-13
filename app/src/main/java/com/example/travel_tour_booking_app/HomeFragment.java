@@ -39,7 +39,7 @@ import java.util.Date;
 public class HomeFragment extends Fragment {
     ArrayList<Seclection> seclections;
     SelectionAdapter selectionAdapter;
-    ArrayList<Place> places;
+    ArrayList<Place> places, placesPopular;
     PlaceAdapter placePopularAdapter;
     PlaceAdapter placeAdapter;
     ArrayList<Promotion> promotions;
@@ -69,14 +69,16 @@ public class HomeFragment extends Fragment {
         SelectionGridview.setAdapter(selectionAdapter);
 
         //Popular Place
-        places = new ArrayList<>();
+        placesPopular = new ArrayList<>();
 
-        placePopularAdapter = new PlaceAdapter(getContext(),places,R.layout.item_popular_place);
+        placePopularAdapter = new PlaceAdapter(getContext(),placesPopular,R.layout.item_popular_place);
 
         ViewPager2 vpPopular_Place = view.findViewById(R.id.vp_popularplace);
         vpPopular_Place.setAdapter(placePopularAdapter);
 
         //Place
+        places = new ArrayList<>();
+
         placeAdapter = new PlaceAdapter(getContext(),places,R.layout.item_place);
 
         RecyclerView rvPlace = view.findViewById(R.id.rv_place);
@@ -93,11 +95,14 @@ public class HomeFragment extends Fragment {
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Place tempPlace = itemSnapshot.getValue(Place.class);
                     tempPlace.setKey(itemSnapshot.getKey());
-                    if (tempPlace.isActive())
+                    if (tempPlace.isActive()){
                         places.add(tempPlace);
+                        placesPopular.add(tempPlace);
+                    }
+
                 }
-                placeAdapter.notifyDataSetChanged();
                 placePopularAdapter.notifyDataSetChanged();
+                placeAdapter.sortByNews();
             }
 
             @Override

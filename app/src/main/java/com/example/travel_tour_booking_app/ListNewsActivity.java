@@ -118,6 +118,7 @@ public class ListNewsActivity extends AppCompatActivity {
 
         //Scroll to Top
         ScrollToTop();
+        GoBack();
     }
 
     private void performSearch(String query) {

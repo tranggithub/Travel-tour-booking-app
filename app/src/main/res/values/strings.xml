@@ -9,9 +9,9 @@
 
     <!-- Search page -->
     <string name="diemden">Điểm đến</string>
-    <string name="tp.tinh">Thành phố/Tỉnh</string>
+    <string name="country">Đất nước</string>
     <string name="ngaydi">Ngày đi</string>
-    <string name="chiphi">Chi phí</string>
+    <string name="chiphi">Chi phí cao nhất</string>
 
     <!-- Trip Detail page -->
     <string name="diadiemocanada">ĐỊA ĐIỂM Ở CANADA</string>
