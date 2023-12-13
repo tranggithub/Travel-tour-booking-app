@@ -1,9 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HistoryActivity">
+    tools:context=".HistoryActivity"
+    android:background="@color/black">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nv_navigationView_detailtrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#070B1D"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_returnbutton_list_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:onClick="GoBack"
+                    android:scaleType="center"
+                    android:src="@drawable/return_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chitietchuyendi"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_chitietchuyendi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_bold"
+                    android:text="LỊCH SỬ"
+                    android:textColor="@color/maincolor"
+                    android:textSize="28dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_trip"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.navigation.NavigationView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item"
+            android:layout_marginTop="@dimen/margin_section">
+
+            <TextView
+                android:id="@+id/tv_booked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:drawablePadding="@dimen/padding_drawable_icon"
+                android:fontFamily="@font/firasans_extrabold"
+                android:padding="@dimen/padding_text"
+                android:text="Đã đặt"
+                android:textAllCaps="true"
+                android:layout_marginLeft="@dimen/margin_left_right_section"
+                android:textColor="@color/maincolor"
+                android:textSize="@dimen/size_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_readall_place"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_leftarrow"
+                android:padding="0dp"
+                android:text="Xem tất cả"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_booked"
+                android:layout_marginRight="@dimen/margin_left_right_section"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_booked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item"
+            tools:itemCount="2">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item"
+            android:layout_marginTop="@dimen/margin_section">
+
+            <TextView
+                android:id="@+id/tv_recently_viewed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="@dimen/padding_drawable_icon"
+                android:fontFamily="@font/firasans_extrabold"
+                android:padding="@dimen/padding_text"
+                android:text="Đã xem gần đây"
+                android:textAllCaps="true"
+                android:layout_marginRight="@dimen/margin_left_right_section"
+                android:textColor="@color/maincolor"
+                android:textSize="@dimen/size_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_readall_recently_viewed"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_leftarrow"
+                android:padding="0dp"
+                android:text="Xem tất cả"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_recently_viewed"
+                android:layout_marginLeft="@dimen/margin_left_right_section"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recently_viewed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item"
+            tools:itemCount="2">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item"
+            android:layout_marginTop="@dimen/margin_section">
+
+            <TextView
+                android:id="@+id/tv_loved"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:drawablePadding="@dimen/padding_drawable_icon"
+                android:fontFamily="@font/firasans_extrabold"
+                android:padding="@dimen/padding_text"
+                android:text="Yêu thích"
+                android:textAllCaps="true"
+                android:layout_marginLeft="@dimen/margin_left_right_section"
+                android:textColor="@color/maincolor"
+                android:textSize="@dimen/size_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_readall_loved"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_leftarrow"
+                android:padding="0dp"
+                android:text="Xem tất cả"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_loved"
+                android:layout_marginRight="@dimen/margin_left_right_section"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_loved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item"
+            tools:itemCount="2">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+</ScrollView>

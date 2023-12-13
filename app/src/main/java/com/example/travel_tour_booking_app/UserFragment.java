@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 public class UserFragment extends Fragment {
     TextView btnSetting, btnChangeInfor, btnNotification;
     ImageView iconNotification;
-    TextView tvName, tvEmail, tvSdt;
+    TextView tvName, tvEmail, tvSdt, tvHistory;
     ImageView ivAvatar;
     FirebaseAuth mAuth;
 
@@ -44,6 +44,7 @@ public class UserFragment extends Fragment {
         tvSdt = view.findViewById(R.id.textView8);
         ivAvatar = view.findViewById(R.id.imageView2);
         btnChangeInfor = view.findViewById(R.id.button);
+        tvHistory = view.findViewById(R.id.button3);
 
         if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -106,6 +107,8 @@ public class UserFragment extends Fragment {
             }
         });
 
+        ChangeToHistory();
+
         return view;
     }
 
@@ -126,5 +129,15 @@ public class UserFragment extends Fragment {
             }
         });
 
+    }
+
+    private void ChangeToHistory(){
+        tvHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

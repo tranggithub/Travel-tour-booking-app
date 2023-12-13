@@ -153,14 +153,15 @@
                     android:text="Xem tất cả"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tx_anotherplace"
-                    android:layout_marginLeft="@dimen/margin_left_right_section"/>
+                    android:layout_marginRight="@dimen/margin_left_right_section"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_item">
+                android:background="@color/background_item"
+                tools:itemCount="2">
             </androidx.recyclerview.widget.RecyclerView>
 
 
@@ -205,7 +206,8 @@
                 android:id="@+id/rv_promotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_item">
+                android:background="@color/background_item"
+                tools:itemCount="2">
             </androidx.recyclerview.widget.RecyclerView>
 
             // News
@@ -250,7 +252,8 @@
                 android:id="@+id/rv_new"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_item">
+                android:background="@color/background_item"
+                tools:itemCount="2">
             </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.constraintlayout.widget.ConstraintLayout

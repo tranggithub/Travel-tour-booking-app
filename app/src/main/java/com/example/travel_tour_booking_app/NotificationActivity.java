@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -56,5 +57,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_new);
         recyclerViewPagination.setAdapter(paginationAdapter);
+    }
+    public void GoBack(View view){
+        finish();
     }
 }
