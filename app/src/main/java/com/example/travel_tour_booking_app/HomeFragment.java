@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,12 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -37,6 +40,7 @@ import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
+    EditText et_home_search;
     ArrayList<Seclection> seclections;
     SelectionAdapter selectionAdapter;
     ArrayList<Place> places, placesPopular;
@@ -54,6 +58,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        initID(view);
 
         //Selector
         seclections = new ArrayList<>();
@@ -193,8 +199,22 @@ public class HomeFragment extends Fragment {
         XemTatCaKhuyenMai(view);
         XemTatCaDiaDiem(view);
 
+        ChangeToSearch();
+
         return view;
 
+    }
+    private void initID(View view){
+        et_home_search = view.findViewById(R.id.et_home_search);
+    }
+    private void ChangeToSearch(){
+        et_home_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void ScrollToTop(View v)

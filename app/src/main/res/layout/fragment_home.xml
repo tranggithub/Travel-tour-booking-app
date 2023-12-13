@@ -44,6 +44,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_search_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -58,14 +59,15 @@
                         android:background="@drawable/custom_input_searchbar"
                         android:drawableStart="@drawable/custom_button_search"
                         android:drawablePadding="@dimen/padding_drawable_icon"
+                        android:editable="false"
                         android:fontFamily="@font/firasans_medium"
                         android:hint="Tìm kiếm ngay"
                         android:textColor="@color/black"
                         android:textSize="15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
-                    </EditText>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></EditText>
                     <Button
                         android:id="@+id/btn_search_home"
                         android:layout_width="36dp"
