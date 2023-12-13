@@ -129,7 +129,7 @@
                 android:text="Xem tất cả"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_recently_viewed"
-                android:layout_marginLeft="@dimen/margin_left_right_section"/>
+                android:layout_marginRight="@dimen/margin_left_right_section"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
