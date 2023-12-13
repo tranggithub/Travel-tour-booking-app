@@ -36,7 +36,7 @@ public class ListTourActivity extends AppCompatActivity {
     PaginationAdapter paginationAdapter;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     TextView tv_place, tv_no_place, tv_sort_by_price, tv_sort_by_star, tv_sort_by_duration;
-    String location;
+    String location, appointment, price, date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +45,9 @@ public class ListTourActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             location = bundle.getString("Place");
+            appointment = bundle.getString("Appointment");
+            price = bundle.getString("Price");
+            date = bundle.getString("Date");
         }
 
         initID();
@@ -78,8 +81,16 @@ public class ListTourActivity extends AppCompatActivity {
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Place tempPlace = itemSnapshot.getValue(Place.class);
                     tempPlace.setKey(itemSnapshot.getKey());
-                    if(tempPlace.isActive() && normalizeString(tempPlace.getLocation().toLowerCase()).contains(normalizeString(location.toLowerCase()))){
-                        places.add(tempPlace);
+                    if(tempPlace.isActive()
+                            && normalizeString(tempPlace.getLocation().toLowerCase()).contains(normalizeString(location.toLowerCase()))
+                            && normalizeString(tempPlace.getDate().toLowerCase()).contains(normalizeString(date.toLowerCase()))
+                            && normalizeString(tempPlace.getTitle().toLowerCase()).contains(normalizeString(appointment.toLowerCase()))){
+                        if(price.contains("Không giới hạn"))
+                            places.add(tempPlace);
+                        else {
+                            if(ConvertNumber.extractNumberFromString(tempPlace.getPrice())<= ConvertNumber.extractNumberFromString(price))
+                                places.add(tempPlace);
+                        }
                     }
                 }
                 placeAdapter.notifyDataSetChanged();
@@ -119,6 +130,7 @@ public class ListTourActivity extends AppCompatActivity {
 
         //Sort
         Sort();
+
     }
     private void initID(){
         tv_place = findViewById(R.id.tv_list_tour_place);
@@ -190,15 +202,9 @@ public class ListTourActivity extends AppCompatActivity {
 
     }
 
-    public void GoBack()
+    public void GoBack(View view)
     {
-        ImageView imageView = findViewById(R.id.iv_returnbutton_list_tours);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        finish();
     }
 
 

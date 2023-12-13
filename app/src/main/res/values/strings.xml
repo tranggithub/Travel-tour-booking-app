@@ -12,6 +12,7 @@
     <string name="country">Đất nước</string>
     <string name="ngaydi">Ngày đi</string>
     <string name="chiphi">Chi phí cao nhất</string>
+    <string name="khonggioihan">"Không giới hạn"</string>
 
     <!-- Trip Detail page -->
     <string name="diadiemocanada">ĐỊA ĐIỂM Ở CANADA</string>

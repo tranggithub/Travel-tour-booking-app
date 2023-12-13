@@ -42,6 +42,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
             public void onClick(View v) {
                 Intent intent = new Intent(context, ListTourActivity.class);
                 intent.putExtra("Place", holder.tvName.getText().toString());
+                intent.putExtra("Appointment", "");
+                intent.putExtra("Date", "");
+                intent.putExtra("Price","Không giới hạn");
                 context.startActivity(intent);
             }
         });
