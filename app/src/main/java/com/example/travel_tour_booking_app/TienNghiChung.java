@@ -8,7 +8,9 @@ public enum TienNghiChung implements Serializable {
     Bathtub(R.drawable.ic_spa,"Bồn tắm"),
     TV(R.drawable.ic_tvshow,"TV"),
     Conditioner(R.drawable.ic_cool,"Máy lạnh"),
-    Parking(R.drawable.ic_packing,"Điểm đỗ xe");
+    Parking(R.drawable.ic_packing,"Điểm đỗ xe"),
+    Exercise(R.drawable.ic_exercise,"Thể dục"),
+    Wine(R.drawable.ic_wine,"Quầy rượu");
     int Icon;
     String name;
 

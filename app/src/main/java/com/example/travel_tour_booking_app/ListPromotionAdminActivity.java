@@ -151,14 +151,8 @@ public class ListPromotionAdminActivity extends AppCompatActivity {
 
     }
 
-    public void GoBack() {
-        ImageView imageView = findViewById(R.id.iv_returnbutton_list_promotion);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+    public void GoBack(View view) {
+        finish();
     }
 
     public void AddPromotion(View view)

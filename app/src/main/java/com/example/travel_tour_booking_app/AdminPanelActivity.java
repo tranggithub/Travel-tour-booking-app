@@ -43,5 +43,9 @@ public class AdminPanelActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListTourAdminActivity.class);
         startActivity(intent);
     }
+    public void ChangeHotel (View view){
+        Intent intent = new Intent(this, ListHotelAdminActivity.class);
+        startActivity(intent);
+    }
 
 }

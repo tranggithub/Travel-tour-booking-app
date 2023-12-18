@@ -154,15 +154,9 @@ public class ListNewsAdminActivity extends AppCompatActivity {
 
     }
 
-    public void GoBack()
+    public void GoBack(View view)
     {
-        ImageView imageView = findViewById(R.id.iv_returnbutton_list_news);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        finish();
     }
 
     public void AddNews()

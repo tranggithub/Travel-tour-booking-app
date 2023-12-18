@@ -4,30 +4,42 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Hotel implements Serializable {
+    String Key;
     String Thumbnail;
     String Address;
     String Name;
+    String Introduction;
     String TimeCheckIn;
     String TimeCheckOut;
     ArrayList<TienNghiChung> TienNghiChungs;
     String ChildenFee;
     String ChildrenAgeFree;
-    ArrayList<Comment> comments = new ArrayList<>();
+    String ChildrenAgeAdditionFee;
+    String Breakfast;
+    ArrayList<Comment> comments;
+    ArrayList<DetailNews> detailPictureList;
 
 
     public Hotel() {
+        this.detailPictureList = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
-    public Hotel(String thumbnail, String address, String name, String timeCheckIn, String timeCheckOut, ArrayList<TienNghiChung> tienNghiChungs, String childenFee, String childrenAgeFree) {
+    public Hotel(String thumbnail, String address, String name, String introduction, String timeCheckIn, String timeCheckOut, ArrayList<TienNghiChung> tienNghiChungs, String childenFee, String childrenAgeFree, String childrenAgeAdditionFee, String breakfast, ArrayList<DetailNews> detailPictureList) {
         Thumbnail = thumbnail;
         Address = address;
         Name = name;
+        Introduction = introduction;
         TimeCheckIn = timeCheckIn;
         TimeCheckOut = timeCheckOut;
         TienNghiChungs = tienNghiChungs;
         ChildenFee = childenFee;
         ChildrenAgeFree = childrenAgeFree;
+        ChildrenAgeAdditionFee = childrenAgeAdditionFee;
+        Breakfast = breakfast;
+        this.detailPictureList = detailPictureList;
     }
+
 
     public String getName() {
         return Name;
@@ -99,5 +111,45 @@ public class Hotel implements Serializable {
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getIntroduction() {
+        return Introduction;
+    }
+
+    public String getChildrenAgeAdditionFee() {
+        return ChildrenAgeAdditionFee;
+    }
+
+    public String getBreakfast() {
+        return Breakfast;
+    }
+
+    public ArrayList<DetailNews> getDetailPictureList() {
+        return detailPictureList;
+    }
+
+    public void setIntroduction(String introduction) {
+        Introduction = introduction;
+    }
+
+    public void setChildrenAgeAdditionFee(String childrenAgeAdditionFee) {
+        ChildrenAgeAdditionFee = childrenAgeAdditionFee;
+    }
+
+    public void setBreakfast(String breakfast) {
+        Breakfast = breakfast;
+    }
+
+    public void setDetailPictureList(ArrayList<DetailNews> detailPictureList) {
+        this.detailPictureList = detailPictureList;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 }

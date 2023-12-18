@@ -13,7 +13,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -26,9 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class ListTourAdminActivity extends AppCompatActivity {
-    ArrayList<Place> places;
-    PlaceAdapter placeAdapter;
+public class ListHotelAdminActivity extends AppCompatActivity {
+    ArrayList<Hotel> hotels;
+    HotelAdapter hotelAdapter;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
 
@@ -36,49 +35,49 @@ public class ListTourAdminActivity extends AppCompatActivity {
     PaginationAdapter paginationAdapter;
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     EditText et_search;
-    TextView tv_add;
+    TextView tv_add_hotels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_tour_admin);
+        setContentView(R.layout.activity_list_hotel_admin);
+
+        initID();
         //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-        //change to upload page
-        AddTour();
 
         //News
-        places = new ArrayList<>();
+        hotels = new ArrayList<>();
 
-        placeAdapter = new PlaceAdapter(this,places,R.layout.item_place);
+        hotelAdapter = new HotelAdapter(this,hotels,R.layout.item_place);
 
-        RecyclerView rvNews = findViewById(R.id.rv_list_tours);
+        RecyclerView rvNews = findViewById(R.id.rv_list_hotels);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
-        rvNews.setAdapter(placeAdapter);
+        rvNews.setAdapter(hotelAdapter);
 
         //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
 //        alertDialog.show();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                places.clear();
+                hotels.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    Place tempPlace = itemSnapshot.getValue(Place.class);
-                    tempPlace.setKey(itemSnapshot.getKey());
-                    places.add(tempPlace);
+                    Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
+                    tempHotel.setKey(itemSnapshot.getKey());
+                    hotels.add(tempHotel);
                 }
-                placeAdapter.notifyDataSetChanged();
+                hotelAdapter.notifyDataSetChanged();
                 alertDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
+                alertDialog.dismiss();
             }
         });
 
@@ -99,7 +98,7 @@ public class ListTourAdminActivity extends AppCompatActivity {
         recyclerViewPagination.setAdapter(paginationAdapter);
 
         //Search Function
-        et_search = findViewById(R.id.et_tours_search);
+        et_search = findViewById(R.id.et_hotels_search);
 
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -120,16 +119,40 @@ public class ListTourAdminActivity extends AppCompatActivity {
 
         //Scroll to Top
         ScrollToTop();
+        ChaneToAddHotel();
     }
+    private void initID(){
+        tv_add_hotels = findViewById(R.id.tv_add_hotels);
+    }
+    private void ChaneToAddHotel(){
+        tv_add_hotels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListHotelAdminActivity.this, UploadHotelActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void ScrollToTop()
+    {
+        Button button = findViewById(R.id.btn_up);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScrollView scrollView = findViewById(R.id.sv_list_news);
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
 
+    }
     private void performSearch(String query) {
-        ArrayList<Place> searchList = new ArrayList<>();
-        for (Place item : places){
-            if(normalizeString(item.getTitle().toLowerCase()).contains(query.toLowerCase())){
+        ArrayList<Hotel> searchList = new ArrayList<>();
+        for (Hotel item : hotels){
+            if(normalizeString(item.getName().toLowerCase()).contains(query.toLowerCase())){
                 searchList.add(item);
             }
         }
-        placeAdapter.searchPlace(searchList);
+        hotelAdapter.searchHotel(searchList);
     }
     private String normalizeString(String input) {
         // Loại bỏ dấu từ chuỗi
@@ -140,35 +163,7 @@ public class ListTourAdminActivity extends AppCompatActivity {
         return normalizedString;
     }
 
-    public void ScrollToTop()
-    {
-        Button button = findViewById(R.id.btn_up);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_tours);
-                scrollView.fullScroll(ScrollView.FOCUS_UP);
-            }
-        });
-
-    }
-
-    public void GoBack(View view)
-    {
+    public void GoBack(View view){
         finish();
     }
-
-    public void AddTour()
-    {
-        tv_add = findViewById(R.id.tv_add_tours);
-        tv_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListTourAdminActivity.this, UploadTourActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-
 }

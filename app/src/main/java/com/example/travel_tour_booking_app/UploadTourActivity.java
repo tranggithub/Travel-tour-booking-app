@@ -83,7 +83,7 @@ public class UploadTourActivity extends AppCompatActivity {
 
         //Hotel
         hotels = new ArrayList<>();
-        hotels.add(new Hotel(null,"Đường 27, khu phố Wans, Canada","Borahae","7:00","12:00",null,"500 VND","1 tuổi"));
+        //hotels.add(new Hotel(null,"Đường 27, khu phố Wans, Canada","Borahae","7:00","12:00",null,"500 VND","1 tuổi"));
         hotelSpinnerAdapter = new HotelSpinnerAdapter(this,R.layout.item_drop_down_spinner, hotels);
 
         spn_hotel = findViewById(R.id.spn_hotel_upload_tour);
