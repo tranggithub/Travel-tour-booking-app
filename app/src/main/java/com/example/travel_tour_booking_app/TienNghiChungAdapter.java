@@ -62,4 +62,8 @@ public class TienNghiChungAdapter extends RecyclerView.Adapter<TienNghiChungAdap
         this.tienNghiChungs = tienNghiChungs;
         notifyDataSetChanged();
     }
+    public void setTienNghiChungs(ArrayList<TienNghiChung> tienNghiChungArrayList){
+        this.tienNghiChungs = tienNghiChungArrayList;
+        notifyDataSetChanged();
+    }
 }

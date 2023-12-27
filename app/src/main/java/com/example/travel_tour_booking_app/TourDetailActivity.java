@@ -40,8 +40,11 @@ public class TourDetailActivity extends AppCompatActivity {
     TextView tv_title, tv_date, tv_text, tv_location, tv_price, tv_duration, tv_price_navigation, tv_star;
     RatingBar rb_star, rb_hotel_star;
     //Hotel
-    TextView tv_hotel_name, tv_hotel_diachi, tv_hotel_star, tv_hotel_comment;
-
+    TextView tv_hotel_name, tv_hotel_diachi, tv_hotel_star, tv_hotel_comment, tv_hotel_breakfast, tv_hotel_checkin, tv_hotel_checkout,tv_hotel_age_free, tv_hotel_age_fee, tv_hotel_additional_fee;
+    ImageView iv_hotel_thumbnail;
+    RecyclerView rv_hotel_tiennghi;
+    ArrayList<TienNghiChung> tienNghiChungArrayList;
+    TienNghiChungAdapter tienNghiChungAdapter;
     //Plane
     TextView tv_planefrom, tv_planeduration, tv_segment,tv_planedate, tv_planebrand, tv_timetakeoff, tv_timelanding;
 
@@ -114,6 +117,28 @@ public class TourDetailActivity extends AppCompatActivity {
                             //Hotel
                             tv_hotel_diachi.setText(hotel.getAddress());
                             tv_hotel_name.setText(hotel.getName());
+                            tv_hotel_comment.setText("Từ " + hotel.getComments().size() + " đánh giá");
+                            float averageStar = 0;
+                            if(hotel.getComments()!= null){
+                                for (Comment item:hotel.getComments()){
+                                    averageStar+=item.getStar();
+                                }
+                                if(hotel.getComments().size()!=0){
+                                    averageStar = averageStar/(hotel.getComments().size());
+                                }
+                            }
+                            tv_hotel_star.setText(averageStar + " sao");
+                            rb_hotel_star.setRating(averageStar);
+                            Glide.with(getBaseContext()).load(hotel.getThumbnail()).into(iv_hotel_thumbnail);
+
+                            tienNghiChungAdapter.setTienNghiChungs(hotel.getTienNghiChungs());
+
+                            tv_hotel_breakfast.setText(hotel.getBreakfast());
+                            tv_hotel_checkin.setText(hotel.getTimeCheckIn());
+                            tv_hotel_checkout.setText(hotel.getTimeCheckOut());
+                            tv_hotel_age_free.setText(hotel.getChildrenAgeFree()+ " tuổi trở xuống");
+                            tv_hotel_age_fee.setText(hotel.getChildrenAgeAdditionFee()+ " tuổi trở xuống");
+                            tv_hotel_additional_fee.setText("Phụ phí thêm là " + hotel.getChildenFee());
                             break;
                         }
                     }
@@ -188,6 +213,23 @@ public class TourDetailActivity extends AppCompatActivity {
         tv_hotel_name = findViewById(R.id.tv_detail_tour_hotel_name);
         tv_hotel_diachi = findViewById(R.id.tv_diadiem_khachsan);
         tv_price_navigation = findViewById(R.id.tv_price);
+        tv_hotel_star = findViewById(R.id.tv_danhgia1);
+        tv_hotel_comment = findViewById(R.id.tv_danhgia2);
+        rb_hotel_star = findViewById(R.id.rtbProductRating1);
+        tv_hotel_breakfast = findViewById(R.id.tv_restaurant);
+        tv_hotel_checkin = findViewById(R.id.tv_gionhanphong);
+        tv_hotel_checkout = findViewById(R.id.tv_giotraphong);
+        tv_hotel_age_free = findViewById(R.id.tv_free1);
+        tv_hotel_age_fee = findViewById(R.id.tv_thanhtoan1);
+        tv_hotel_additional_fee = findViewById(R.id.tv_thanhtoan2);
+        iv_hotel_thumbnail = findViewById(R.id.iv_detail_tour_hotel_thumbnail);
+
+        rv_hotel_tiennghi = findViewById(R.id.rv_detail_tour_tiennghichung);
+
+        tienNghiChungArrayList = new ArrayList<>();
+        tienNghiChungAdapter = new TienNghiChungAdapter(this, tienNghiChungArrayList);
+        rv_hotel_tiennghi.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        rv_hotel_tiennghi.setAdapter(tienNghiChungAdapter);
 
         //Plane
         tv_planefrom = findViewById(R.id.tv_info);

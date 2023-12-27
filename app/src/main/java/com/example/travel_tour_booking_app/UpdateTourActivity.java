@@ -239,7 +239,7 @@ public class UpdateTourActivity extends AppCompatActivity {
         ckb_isActive = findViewById(R.id.ckb_upload_tour_isActive);
         iv_thumbnail = findViewById(R.id.iv_thumbnail_upload_tour);
     }
-    public void GoBack(){
+    public void GoBack(View view){
         finish();
     }
     private void addContentOrPicture() {
