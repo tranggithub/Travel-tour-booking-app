@@ -63,6 +63,9 @@ public class TourDetailActivity extends AppCompatActivity {
     ImageView iv_share;
     ImageView iv_heart;
     ImageView iv_heart_love;
+    String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
+    DatabaseReference databaseReferenceHotel;
+    Hotel hotel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,9 +101,28 @@ public class TourDetailActivity extends AppCompatActivity {
             tv_star.setText(tours.getStar() + " sao");
             rb_star.setRating((float) tours.getStar());
 
-            //Hotel
-            tv_hotel_name.setText("Khách sạn " + tours.getHotel().getName());
-            tv_hotel_diachi.setText(tours.getHotel().getAddress());
+            //Firebase
+            databaseReferenceHotel = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
+            databaseReferenceHotel.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                        Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
+                        tempHotel.setKey(itemSnapshot.getKey());
+                        if(tempHotel.getKey().contains(tours.getHotel())){
+                            hotel = tempHotel;
+                            //Hotel
+                            tv_hotel_diachi.setText(hotel.getAddress());
+                            tv_hotel_name.setText(hotel.getName());
+                            break;
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
 
             //Plane
             tienIchPlane = tours.getPlaneTienIch();
