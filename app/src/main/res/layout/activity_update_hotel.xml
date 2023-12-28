@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment"
+    android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/iv_returnbutton_list_news"
+                        android:onClick="GoBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:scaleType="center"
+                        android:src="@drawable/return_button"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <ImageView
+                        android:id="@+id/iv_Logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/img_logo" />
+
+                    <TextView
+                        android:id="@+id/tv_4travel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="4Travel"
+                        android:textColor="#BCFEFE"
+                        android:textSize="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_Logo" />
+
+
+                    <TextView
+                        android:id="@+id/tv_upload_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_extrabold"
+                        android:text="Cập nhật khách sạn"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_4travel"
+                        app:layout_constraintVertical_bias="0.328" />
+
+                    <TextView
+                        android:id="@+id/tv_title_uploadhotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Tên khách sạn "
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_upload_hotel" />
+
+                    <EditText
+                        android:id="@+id/edt_title_upload_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập tên khách sạn vào đây..."
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/tv_title_uploadhotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title_uploadhotel" />
+
+                    <TextView
+                        android:id="@+id/tv_address_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Địa chỉ"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_title_uploadhotel"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_title_upload_hotel" />
+
+                    <EditText
+                        android:textColor="@color/white"
+                        android:id="@+id/edt_address_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập địa chỉ vào đây"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_title_upload_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_address_hotel" />
+
+                    <TextView
+                        android:id="@+id/tv_introduction_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Giới thiệu"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_address_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_address_hotel" />
+
+                    <EditText
+                        android:id="@+id/edt_introduction_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập lời giới thiệu vào đây"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_title_upload_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_introduction_hotel" />
+                    <TextView
+                        android:id="@+id/tv_place_upload_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Địa điểm"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_address_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_introduction_hotel"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:id="@+id/edt_place_upload_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập địa điểm vào đây"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_title_upload_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_place_upload_hotel"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/tv_thumbnail_upload_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Hình thu nhỏ (Thumbnail)"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_place_upload_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_place_upload_hotel" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_thumbnail_upload_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:background="@drawable/custom_maincolor_border"
+                        app:layout_constraintEnd_toEndOf="@+id/edt_text_upload_hotel"
+                        app:layout_constraintStart_toStartOf="@+id/edt_text_upload_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_thumbnail_upload_hotel"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tải hình ảnh lên"
+                            android:textColor="@color/maincolor"
+                            android:fontFamily="@font/firasans_medium"
+                            android:textAlignment="center"/>
+                        <ImageView
+                            android:id="@+id/iv_thumbnail_upload_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_upload_image"
+                            android:layout_marginLeft="@dimen/margin_section"
+                            android:layout_marginRight="@dimen/margin_section"
+                            android:layout_marginBottom="@dimen/margin_section"
+                            />
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_text_upload_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Nội dung"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_address_hotel"
+                        app:layout_constraintTop_toBottomOf="@id/ll_thumbnail_upload_hotel"
+                        android:visibility="gone"/>
+
+
+                    <EditText
+                        android:id="@+id/edt_text_upload_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập nội dung vào đây..."
+                        android:inputType="textMultiLine"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingEnd="20dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_address_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_hotel"
+                        android:gravity="top|start"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/tv_schedule_upload_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Hình ảnh khác"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_address_hotel"
+                        app:layout_constraintTop_toBottomOf="@id/edt_text_upload_hotel"/>
+                    <LinearLayout
+                        android:id="@+id/ll_upload_detail_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_text_upload_hotel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_schedule_upload_hotel"
+                        android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_upload_detail_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp">
+                            <Button
+                                android:id="@+id/btn_addText_upload_hotel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_bold"
+                                android:text="Thêm nội dung"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15dp"
+                                android:drawableStart="@drawable/ic_add"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/btn_addPicture_upload_hotel"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:visibility="gone"/>
+                            <Button
+                                android:id="@+id/btn_addPicture_upload_hotel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_bold"
+                                android:text="Thêm hình ảnh"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_add"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/btn_addText_upload_hotel"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_transport_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Chính sách của khách sạn"
+                            android:textColor="#BCFEFE"
+                            android:textAllCaps="true"
+                            android:layout_gravity="center"
+                            android:textSize="13dp" />
+                        <TextView
+                            android:id="@+id/tv_check_in_time_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Thòi gian nhận phòng"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <EditText
+                            android:id="@+id/edt_check_in_time_upload_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/rounded_border"
+                            android:ems="10"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="7:00"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="20dp"
+                            android:text=""
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_address_hotel"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_hotel"
+                            android:gravity="top|start"/>
+                        <TextView
+                            android:id="@+id/tv_check_out_time_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Thời gian trả phòng"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <EditText
+                            android:id="@+id/edt_check_out_time_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/rounded_border"
+                            android:ems="10"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="12:00"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="20dp"
+                            android:text=""
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_address_hotel"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_hotel"
+                            android:gravity="top|start"/>
+                        <TextView
+                            android:id="@+id/tv_free_bed_age_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Được thêm giường miễn phí với trẻ bé hơn"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <EditText
+                            android:id="@+id/edt_free_bed_age_upload_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/rounded_border"
+                            android:ems="10"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="2 (tuổi)"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="20dp"
+                            android:text=""
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_address_hotel"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_hotel"
+                            android:gravity="top|start"/>
+                        <TextView
+                            android:id="@+id/tv_addition_fee_bed_age_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Trả phụ phí thêm giường với trẻ dưới"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <EditText
+                            android:id="@+id/edt_addition_fee_bed_age_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/rounded_border"
+                            android:ems="10"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="3 (tuổi)"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="20dp"
+                            android:text=""
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_address_hotel"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_hotel"
+                            android:gravity="top|start"/>
+                        <TextView
+                            android:id="@+id/tv_addition_fee_bed_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Tiền phụ phí"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <EditText
+                            android:id="@+id/edt_addition_fee_hotel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/rounded_border"
+                            android:ems="10"
+                            android:fontFamily="@font/firasans_medium"
+                            android:hint="500.000 VND"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingEnd="20dp"
+                            android:text=""
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/edt_address_hotel"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_hotel"
+                            android:gravity="top|start"/>
+                        <TextView
+                            android:id="@+id/tv_plan_tienich_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Ăn sáng"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <RadioGroup
+                            android:id="@+id/rg_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/firasans_medium"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle">
+                            <RadioButton
+                                android:id="@+id/rb_upload_hotel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:checked="false"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Bữa sáng miễn phí"
+                                android:textColor="#BCFEFE"
+                                android:textSize="15dp"
+                                android:theme="@style/checkBoxStyle"/>
+                            <RadioButton
+                                android:id="@+id/ckb_food_upload_hotel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:checked="false"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Bữa sáng tính phí"
+                                android:textColor="#BCFEFE"
+                                android:textSize="15dp"
+                                android:theme="@style/checkBoxStyle"/>
+                            <RadioButton
+                                android:id="@+id/ckb_electric_upload_hotel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:checked="false"
+                                android:fontFamily="@font/firasans_medium"
+                                android:text="Không cung cấp ăn sáng"
+                                android:textColor="#BCFEFE"
+                                android:textSize="15dp"
+                                android:theme="@style/checkBoxStyle"/>
+                        </RadioGroup>
+                        <TextView
+                            android:id="@+id/tv_car_tienich_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Các tiện nghi chung"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <CheckBox
+                            android:id="@+id/ckb_wifi_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="wifi"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_airconditioner_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Máy lạnh"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_bed_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Giường"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_bathtub_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Bồn tă"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_tv_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="TV"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_carpark_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Điểm đỗ xe"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_exercise_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Thể dục"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <CheckBox
+                            android:id="@+id/ckb_wine_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="false"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Quầy rượu"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                        <TextView
+                            android:id="@+id/tv_isActive_upload_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/firasans_bold"
+                            android:text="Chế độ hiển thị"
+                            android:textColor="#BCFEFE"
+                            android:textSize="13dp" />
+                        <CheckBox
+                            android:id="@+id/ckb_upload_hotel_isActive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="true"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Hiển thị"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_upload_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="80dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Cập nhật"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_upload_detail_hotel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

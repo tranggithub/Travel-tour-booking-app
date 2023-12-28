@@ -165,7 +165,7 @@ public class UploadHotelActivity extends AppCompatActivity {
 
         et_title = findViewById(R.id.edt_title_upload_hotel);
         et_address = findViewById(R.id.edt_address_hotel);
-        et_text = findViewById(R.id.edt_text_upload_hotel);
+        et_text = findViewById(R.id.edt_introduction_hotel);
         et_check_in = findViewById(R.id.edt_check_in_time_upload_hotel);
         et_check_out = findViewById(R.id.edt_check_out_time_hotel);
         et_age_free = findViewById(R.id.edt_free_bed_age_upload_hotel);
