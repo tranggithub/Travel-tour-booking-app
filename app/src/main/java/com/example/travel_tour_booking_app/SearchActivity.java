@@ -126,11 +126,12 @@ public class SearchActivity extends AppCompatActivity {
                     ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
                     if (userDetails!=null) {
                         searches.clear();
+                        searches.add(new Search(R.drawable.icon_bin,"Xóa lịch sử tìm kiếm"));
                         for (String key : userDetails.getSearchHistory()) {
                             searches.add(new Search(R.drawable.icon_history, key));
                         }
-                        searches.add(new Search(R.drawable.icon_bin,"Xóa lịch sử tìm kiếm"));
-                        searchAdapter.notifyDataSetChanged();
+
+                        searchAdapter.sortByNews();
                     }
                 }
             }
