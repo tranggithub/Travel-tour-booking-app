@@ -226,16 +226,11 @@ public class UserInformationActivity extends AppCompatActivity {
             uploadImageToFirebase(imageUri);
             tmpUser.setUrlImage(getImageUrl(user));
             databaseReference.child(user.getUid()).setValue(tmpUser)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(UserInformationActivity.this, "Ảnh đại diện người dùng đã được cập nhật.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(UserInformationActivity.this, "Lỗi khi cập nhật ảnh đại diện người dùng.", Toast.LENGTH_SHORT).show();
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Lịch sử tìm kiếm đã được cập nhật thành công
+                        } else {
+                            // Lỗi khi cập nhật lịch sử tìm kiếm
                         }
                     });
         }

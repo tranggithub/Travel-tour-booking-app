@@ -1,5 +1,7 @@
 package com.example.travel_tour_booking_app;
 
+import static com.example.travel_tour_booking_app.UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL;
+
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +33,7 @@ import java.awt.font.TextAttribute;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,7 +64,7 @@ public class ReviewFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
-        if (user != null){
+        if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -78,13 +83,12 @@ public class ReviewFragment extends Fragment {
 
         // Receive data from the Bundle
         Bundle bundle = getArguments();
-        if (bundle != null){
+        if (bundle != null) {
             hotel = (Hotel) bundle.getSerializable("Hotel");
 
             tvHotelName.setText(hotel.getName());
 
-            List<DetailNews> imgHotelList = new ArrayList<>();
-            imgHotelList = hotel.getDetailPictureList();
+            List<DetailNews> imgHotelList = hotel.getDetailPictureList();
             HotelImageAdapter hotelImageAdapter = new HotelImageAdapter(getActivity(), imgHotelList);
             rcvImgHotel.setAdapter(hotelImageAdapter);
 
@@ -93,43 +97,32 @@ public class ReviewFragment extends Fragment {
 
             rbHotelRating.setRating(hotel.getAvgStar());
 
-            String soDanhGia = hotel.getSizeComments() +" đánh giá";
+            String soDanhGia = hotel.getSizeComments() + " đánh giá";
             tvSoDanhGia.setText(soDanhGia);
 
             tempComments = hotel.getComments();
-            reviewAdapter = new ReviewAdapter(tempComments, getContext(), user.getUid());
+            reviewAdapter = new ReviewAdapter(tempComments, getActivity(), user.getUid(), hotel);
+            rcvReview.setLayoutManager(new LinearLayoutManager(getActivity()));
             rcvReview.setAdapter(reviewAdapter);
             ivSendComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (rbDanhGiaCuaBan.getRating() == 0){
+                    if (rbDanhGiaCuaBan.getRating() == 0) {
                         Toast.makeText(getActivity(), "Hãy đánh giá sao cho khách sạn", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         if (edtCommentText.getText().toString().equals("") || edtCommentText.getText() == null) {
                             Toast.makeText(getActivity(), "Hãy nhập bình luận cho khách sạn", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            String today = getCurrentDate();
-                            String userId = user.getUid();
-                            Float myRating = rbDanhGiaCuaBan.getRating();
-                            String text = edtCommentText.getText().toString();
-
-                            Comment comment = new Comment(userId, myRating, text, today);
-                            tempComments.add(comment);
-                            reviewAdapter.notifyItemInserted(tempComments.size() - 1);
-
-                            hotel.setComments(tempComments);
+                        } else {
+                            UploadComment();
+                            reviewAdapter.sortByDate(hotel.getComments());
 
                             edtCommentText.setText("");
                             String star = String.valueOf(hotel.getAvgStar());
                             tvSaoDanhGia.setText(star);
                             rbHotelRating.setRating(hotel.getAvgStar());
-                            String soDanhGia = hotel.getSizeComments() +" đánh giá";
+                            String soDanhGia = hotel.getSizeComments() + " đánh giá";
                             tvSoDanhGia.setText(soDanhGia);
                             Toast.makeText(getActivity(), "Bình luận thành công", Toast.LENGTH_SHORT).show();
-
-                            UploadComment(hotel);
                         }
                     }
                 }
@@ -138,14 +131,21 @@ public class ReviewFragment extends Fragment {
         return rootView;
     }
 
-    private void UploadComment(Hotel hotel) {
+    private void UploadComment() {
+        String today = getCurrentDate();
+        String userId = user.getUid();
+        Float myRating = rbDanhGiaCuaBan.getRating();
+        String text = edtCommentText.getText().toString();
+        Comment comment = new Comment(userId, myRating, text, new ArrayList<String>(), new ArrayList<String>(), today);
+        tempComments.add(comment);
+        hotel.setComments(tempComments);
         DatabaseReference databaseReferenceHotel = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel");
         databaseReferenceHotel.child(hotel.getKey()).setValue(hotel)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(getActivity(), "Lưu bình luận thành công", Toast.LENGTH_SHORT).show();
+                        // Lịch sử tìm kiếm đã được cập nhật thành công
                     } else {
-                        Toast.makeText(getActivity(), "Lưu bình luận thất bại", Toast.LENGTH_SHORT).show();
+                        // Lỗi khi cập nhật lịch sử tìm kiếm
                     }
                 });
     }

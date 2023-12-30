@@ -136,10 +136,10 @@ public class ReadWriteUserDetails implements Serializable {
         this.listLikeTours = listLikeTours;
     }
     public String getFullName(){
-        if (getHo() != null || !getHo().equals("")) {
-            return getHo() + " " + getTen();
+        if (getHo() == null || getHo().equals("")) {
+            return getTen();
         }
-        return getTen();
+        return getHo() + " " + getTen();
     }
 
     public ArrayList<String> getSearchHistory() {

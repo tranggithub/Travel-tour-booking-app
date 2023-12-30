@@ -42,7 +42,15 @@ public class Comment implements Serializable {
         this.ListUsersLike = new ArrayList<>();
         this.ListUsersDishLike = new ArrayList<>();
     }
-
+    public Comment(String userId, float rating, String reviewText, ArrayList<String> ListUsersLike , ArrayList<String> ListUsersDishLike,
+                   String date) {
+        this.userId = userId;
+        this.Star = rating;
+        this.Text = reviewText;
+        this.Date = date;
+        this.ListUsersLike = ListUsersLike;
+        this.ListUsersDishLike = ListUsersDishLike;
+    }
     public Comment() {
     }
 
@@ -56,38 +64,6 @@ public class Comment implements Serializable {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
-    private ReadWriteUserDetails getUserDetails() {
-        final ReadWriteUserDetails[] userDetails = {new ReadWriteUserDetails()};
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("users");
-
-        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    userDetails[0] = snapshot.getValue(ReadWriteUserDetails.class);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-        return userDetails[0];
-    }
-
-
-    public String getAvatarUrl() {
-        ReadWriteUserDetails userDetails = getUserDetails();
-        return userDetails != null ? userDetails.getUrlImage() : "";
-    }
-
-    public String getName() {
-        ReadWriteUserDetails userDetails = getUserDetails();
-        return userDetails != null ? userDetails.getFullName() : "";
-    }
-
     public Float getStar() {
         return Star;
     }

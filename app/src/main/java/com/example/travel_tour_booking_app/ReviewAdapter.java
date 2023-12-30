@@ -1,5 +1,7 @@
 package com.example.travel_tour_booking_app;
 
+import static com.example.travel_tour_booking_app.UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.common.data.DataBufferObserver;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
@@ -21,11 +32,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     private  ArrayList<Comment> reviewList;
     private final Context context;
     private String userId;
+    private Hotel hotel;
 
-    public ReviewAdapter(ArrayList<Comment> reviewList, Context context, String userId) {
+    public ReviewAdapter(ArrayList<Comment> reviewList, Context context, String userId, Hotel hotel) {
         this.reviewList = reviewList;
         this.context = context;
         this.userId = userId;
+        this.hotel = hotel;
     }
 
     @NonNull
@@ -40,11 +53,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
         Comment currentItem = reviewList.get(position);
 
-        // Load image using Picasso
-        Picasso.get().load(currentItem.getAvatarUrl()).into(holder.ivAvatar);
+        User(currentItem, holder);
 
         // Set other data to views
-        holder.tvTen.setText(currentItem.getName());
         holder.rbVotingStar.setRating(currentItem.getStar());
         holder.tvReviewText.setText(currentItem.getText());
         holder.tvNumLike.setText(String.valueOf(currentItem.getNumLikes()));
@@ -56,11 +67,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         updateUnlikeButtonState(holder, currentItem);
 
         // Set up click listeners for like and unlike buttons
-        holder.ivLike.setOnClickListener(view -> handleLikeButtonClick(currentItem, holder));
-        holder.ivUnlike.setOnClickListener(view -> handleUnlikeButtonClick(currentItem, holder));
+        holder.ivLike.setOnClickListener(view -> handleLikeButtonClick(currentItem, holder, position));
+        holder.ivUnlike.setOnClickListener(view -> handleUnlikeButtonClick(currentItem, holder, position));
     }
 
-    private void handleLikeButtonClick(Comment currentItem, ReviewViewHolder holder) {
+    private void handleLikeButtonClick(Comment currentItem, ReviewViewHolder holder, int position) {
         if (!currentItem.isLiked(userId)) {
             // If the review is not already liked, proceed with the like action
             currentItem.ListUsersLike.add(userId);
@@ -76,9 +87,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         // Update the UI
         updateLikeButtonState(holder, currentItem);
         updateUnlikeButtonState(holder, currentItem);
+
+        updateToDatabase(position, currentItem);
+
     }
 
-    private void handleUnlikeButtonClick(Comment currentItem, ReviewViewHolder holder) {
+    private void handleUnlikeButtonClick(Comment currentItem, ReviewViewHolder holder, int position) {
         if (!currentItem.isUnliked(userId)) {
             // If the review is not already unliked, proceed with the unlike action
             currentItem.ListUsersDishLike.add(userId);
@@ -96,6 +110,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         updateUnlikeButtonState(holder, currentItem);
         holder.tvNumLike.setText(String.valueOf(currentItem.getNumLikes()));
         holder.tvNumUnlike.setText(String.valueOf(currentItem.getNumUnlikes()));
+
+        updateToDatabase(position, currentItem);
     }
 
     private void updateLikeButtonState(ReviewViewHolder holder, Comment currentItem) {
@@ -140,5 +156,37 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     public void setReviewList(ArrayList<Comment> comments){
         this.reviewList = comments;
         notifyDataSetChanged();
+    }
+    public void sortByDate(ArrayList<Comment> comments){
+        Collections.reverse(comments);
+        notifyDataSetChanged();
+    }
+
+    public void updateToDatabase(int position, Comment currentItem){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel").child(hotel.getKey());
+        databaseReference.child("comments").child(String.valueOf(position)).setValue(currentItem).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // Lịch sử tìm kiếm đã được cập nhật thành công
+            } else {
+                // Lỗi khi cập nhật lịch sử tìm kiếm
+            }
+        });
+    }
+
+    private void User(Comment item, ReviewViewHolder holder){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(item.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                holder.tvTen.setText(userDetails.getFullName());
+                Picasso.get().load(userDetails.getUrlImage()).into(holder.ivAvatar);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
