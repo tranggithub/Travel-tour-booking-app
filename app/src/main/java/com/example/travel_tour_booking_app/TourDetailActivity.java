@@ -1,5 +1,7 @@
 package com.example.travel_tour_booking_app;
 
+import static com.example.travel_tour_booking_app.UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +36,7 @@ public class TourDetailActivity extends AppCompatActivity {
     DetailNewsAdapter detailScheduleAdapter;
     //FirebaseAuth
     FirebaseAuth mAuth;
+    FirebaseUser currentUser;
     TextView tv_update_tour;
     String key;
     //Tour
@@ -76,7 +79,7 @@ public class TourDetailActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         tv_update_tour = findViewById(R.id.tv_update_tour);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             // Nếu là admin thì sẽ có chức năng sửa ngược lại thì không
             checkIsAdmin(currentUser.getUid());
@@ -258,11 +261,56 @@ public class TourDetailActivity extends AppCompatActivity {
     }
 
     private void Heart(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                ArrayList<String> tempListLikeTour = userDetails.getListLikeTours();
+                if (tempListLikeTour.contains(tours.getKey())){
+                    iv_heart.setVisibility(View.GONE);
+                    iv_heart_love.setVisibility(View.VISIBLE);
+                }
+                else {
+                    iv_heart.setVisibility(View.VISIBLE);
+                    iv_heart_love.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         iv_heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iv_heart.setVisibility(View.GONE);
                 iv_heart_love.setVisibility(View.VISIBLE);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+                databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                        ArrayList<String> tempListLikeTour = userDetails.getListLikeTours();
+                        tempListLikeTour.add(tours.getKey());
+                        userDetails.setListLikeTours(tempListLikeTour);
+                        databaseReference.child(currentUser.getUid()).setValue(userDetails)
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        // Lịch sử tìm kiếm đã được cập nhật thành công
+                                    } else {
+                                        // Lỗi khi cập nhật lịch sử tìm kiếm
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -271,6 +319,32 @@ public class TourDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 iv_heart.setVisibility(View.VISIBLE);
                 iv_heart_love.setVisibility(View.GONE);
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+                databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                        ArrayList<String> tempListLikeTour = userDetails.getListLikeTours();
+                        if (tempListLikeTour.contains(tours.getKey())){
+                            tempListLikeTour.remove(tours.getKey());
+                            userDetails.setListLikeTours(tempListLikeTour);
+                            databaseReference.child(currentUser.getUid()).setValue(userDetails)
+                                    .addOnCompleteListener(task -> {
+                                        if (task.isSuccessful()) {
+                                            // Lịch sử tìm kiếm đã được cập nhật thành công
+                                        } else {
+                                            // Lỗi khi cập nhật lịch sử tìm kiếm
+                                        }
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
     }

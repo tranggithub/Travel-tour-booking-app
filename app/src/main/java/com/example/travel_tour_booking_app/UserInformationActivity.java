@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 
 public class UserInformationActivity extends AppCompatActivity {
     private static String FIREBASE_STORAGE_URL = "gs://travel-tour-booking-app.appspot.com/";
-    private static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    public static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
     private static int MY_REQUEST_CODE = 10;
     Button btnConfirm;
     EditText edtFirstName, edtName, edtEmail, edtSdt;

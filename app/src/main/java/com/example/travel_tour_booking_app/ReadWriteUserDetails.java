@@ -38,7 +38,7 @@ public class ReadWriteUserDetails implements Serializable {
     private String email;
     private int delected;
     private ArrayList<String> searchHistory = new ArrayList<>();
-    ArrayList<Place> listLikeTours = new ArrayList<>();
+    ArrayList<String> listLikeTours = new ArrayList<>();
     public ReadWriteUserDetails() {
         this.ho = null;
         this.ten = null;
@@ -127,11 +127,11 @@ public class ReadWriteUserDetails implements Serializable {
         return sdt;
     }
 
-    public ArrayList<Place> getListLikeTours() {
+    public ArrayList<String> getListLikeTours() {
         return listLikeTours;
     }
 
-    public void setListLikeTours(ArrayList<Place> listLikeTours) {
+    public void setListLikeTours(ArrayList<String> listLikeTours) {
         this.listLikeTours = listLikeTours;
     }
     public String getFullName(){
