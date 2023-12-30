@@ -81,7 +81,6 @@ public class TourDetailActivity extends AppCompatActivity {
             // Nếu là admin thì sẽ có chức năng sửa ngược lại thì không
             checkIsAdmin(currentUser.getUid());
         }
-
         initID();
 
         //Share
@@ -332,5 +331,11 @@ public class TourDetailActivity extends AppCompatActivity {
             startActivity(intent);
         }
         finish();
+    }
+    public void ChangeDetailHotel(View v){
+        Intent intent = new Intent(TourDetailActivity.this, DetailHotelActivity.class);
+        intent.putExtra("Hotel", (Hotel) hotel);
+        intent.putExtra("Tour", (Place) tours);
+        startActivity(intent);
     }
 }

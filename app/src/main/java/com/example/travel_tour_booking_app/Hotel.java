@@ -19,7 +19,6 @@ public class Hotel implements Serializable {
     ArrayList<Comment> comments;
     ArrayList<DetailNews> detailPictureList;
 
-
     public Hotel() {
         this.detailPictureList = new ArrayList<>();
         this.comments = new ArrayList<>();
@@ -38,6 +37,7 @@ public class Hotel implements Serializable {
         ChildrenAgeAdditionFee = childrenAgeAdditionFee;
         Breakfast = breakfast;
         this.detailPictureList = detailPictureList;
+        this.comments = new ArrayList<>();
     }
 
 
@@ -151,5 +151,24 @@ public class Hotel implements Serializable {
 
     public void setKey(String key) {
         Key = key;
+    }
+    public float getAvgStar(){
+        if (comments == null || comments.isEmpty()) {
+            // No comments available, return 0 or any default value as needed.
+            return 0.0f;
+        }
+
+        float totalStars = 0.0f;
+
+        // Iterate through each comment and sum up the star ratings
+        for (Comment comment : comments) {
+            totalStars += comment.getStar();
+        }
+
+        // Calculate the average star rating
+        return totalStars / comments.size();
+    }
+    public int getSizeComments(){
+        return comments.size();
     }
 }

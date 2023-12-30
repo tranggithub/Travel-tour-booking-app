@@ -465,7 +465,8 @@ Ngày 3:\n
                 android:fontFamily="@font/firasans_bold"
                 android:text="Khách sạn Borahae"
                 android:textColor="@color/maincolor"
-                android:textSize="35dp" />
+                android:textSize="35dp"
+                android:onClick="ChangeDetailHotel"/>
 
             <View
                 android:layout_width="match_parent"
@@ -625,7 +626,8 @@ Ngày 3:\n
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     android:scaleType="centerCrop"
-                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news">
+                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
+                    android:onClick="ChangeDetailHotel">
                 </ImageView>
                 <Button
                     android:id="@+id/bt_full_img"
@@ -634,7 +636,8 @@ Ngày 3:\n
                     android:text="Xem tất cả hình ảnh"
                     android:background="#03030375"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:onClick="ChangeDetailHotel">
                 </Button>
 
                 <View

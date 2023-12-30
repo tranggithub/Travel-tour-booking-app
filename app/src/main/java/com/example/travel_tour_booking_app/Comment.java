@@ -2,32 +2,90 @@ package com.example.travel_tour_booking_app;
 
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Comment implements Serializable {
-    ReadWriteUserDetails user;
+    String userId;
+    //        ReadWriteUserDetails user;
     Float Star = null;
     String Text = null;
     String Date = null;
-    ArrayList<ReadWriteUserDetails> ListUsersLike = new ArrayList<>();
-    ArrayList<ReadWriteUserDetails> ListUsersDishLike = new ArrayList<>();
+    //    ArrayList<ReadWriteUserDetails> ListUsersLike = new ArrayList<>();
+    //    ArrayList<ReadWriteUserDetails> ListUsersDishLike = new ArrayList<>();
+    ArrayList<String> ListUsersLike = new ArrayList<>();
+    ArrayList<String> ListUsersDishLike = new ArrayList<>();
 
 
-    public Comment(ReadWriteUserDetails user, Float star, String text, String date, ArrayList<ReadWriteUserDetails> listUsersLike, ArrayList<ReadWriteUserDetails> listUsersDishLike) {
-        this.user = user;
-        Star = star;
-        Text = text;
-        Date = date;
-        ListUsersLike = listUsersLike;
-        ListUsersDishLike = listUsersDishLike;
+    //    public Comment(ReadWriteUserDetails user, Float star, String text, String date, ArrayList<ReadWriteUserDetails> listUsersLike, ArrayList<ReadWriteUserDetails> listUsersDishLike) {
+//        this.user = user;
+//        Star = star;
+//        Text = text;
+//        Date = date;
+//        ListUsersLike = listUsersLike;
+//        ListUsersDishLike = listUsersDishLike;
+//    }
+    public Comment(String userId, float rating, String reviewText,
+                   String date) {
+        this.userId = userId;
+        this.Star = rating;
+        this.Text = reviewText;
+        this.Date = date;
+        this.ListUsersLike = new ArrayList<>();
+        this.ListUsersDishLike = new ArrayList<>();
     }
 
     public Comment() {
     }
 
-    public ReadWriteUserDetails getUser() {
-        return user;
+    //    public ReadWriteUserDetails getUser() {
+//        return user;
+//    }
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    private ReadWriteUserDetails getUserDetails() {
+        final ReadWriteUserDetails[] userDetails = {new ReadWriteUserDetails()};
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("users");
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    userDetails[0] = snapshot.getValue(ReadWriteUserDetails.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        return userDetails[0];
+    }
+
+
+    public String getAvatarUrl() {
+        ReadWriteUserDetails userDetails = getUserDetails();
+        return userDetails != null ? userDetails.getUrlImage() : "";
+    }
+
+    public String getName() {
+        ReadWriteUserDetails userDetails = getUserDetails();
+        return userDetails != null ? userDetails.getFullName() : "";
     }
 
     public Float getStar() {
@@ -42,17 +100,17 @@ public class Comment implements Serializable {
         return Date;
     }
 
-    public ArrayList<ReadWriteUserDetails> getListUsersLike() {
-        return ListUsersLike;
-    }
-
-    public ArrayList<ReadWriteUserDetails> getListUsersDishLike() {
-        return ListUsersDishLike;
-    }
-
-    public void setUser(ReadWriteUserDetails user) {
-        this.user = user;
-    }
+//    public ArrayList<ReadWriteUserDetails> getListUsersLike() {
+//        return ListUsersLike;
+//    }
+//
+//    public ArrayList<ReadWriteUserDetails> getListUsersDishLike() {
+//        return ListUsersDishLike;
+//    }
+//
+//    public void setUser(ReadWriteUserDetails user) {
+//        this.user = user;
+//    }
 
     public void setStar(Float star) {
         Star = star;
@@ -66,11 +124,42 @@ public class Comment implements Serializable {
         Date = date;
     }
 
-    public void setListUsersLike(ArrayList<ReadWriteUserDetails> listUsersLike) {
+    //    public void setListUsersLike(ArrayList<ReadWriteUserDetails> listUsersLike) {
+//        ListUsersLike = listUsersLike;
+//    }
+//
+//    public void setListUsersDishLike(ArrayList<ReadWriteUserDetails> listUsersDishLike) {
+//        ListUsersDishLike = listUsersDishLike;
+//    }
+    public ArrayList<String> getListUsersDishLike() {
+        return ListUsersDishLike;
+    }
+
+    public void setListUsersDishLike(ArrayList<String> listUsersDishLike) {
+        ListUsersDishLike = listUsersDishLike;
+    }
+
+    public void setListUsersLike(ArrayList<String> listUsersLike) {
         ListUsersLike = listUsersLike;
     }
 
-    public void setListUsersDishLike(ArrayList<ReadWriteUserDetails> listUsersDishLike) {
-        ListUsersDishLike = listUsersDishLike;
+    public ArrayList<String> getListUsersLike() {
+        return ListUsersLike;
+    }
+
+    public int getNumLikes() {
+        return ListUsersLike.size();
+    }
+
+    public boolean isLiked(String userId) {
+        return ListUsersLike.contains(userId);
+    }
+
+    public int getNumUnlikes() {
+        return ListUsersDishLike.size();
+    }
+
+    public boolean isUnliked(String userId) {
+        return ListUsersDishLike.contains(userId);
     }
 }

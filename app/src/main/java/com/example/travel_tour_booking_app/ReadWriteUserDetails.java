@@ -133,4 +133,10 @@ public class ReadWriteUserDetails implements Serializable {
     public void setListLikeTours(ArrayList<Place> listLikeTours) {
         this.listLikeTours = listLikeTours;
     }
+    public String getFullName(){
+        if (getHo() != null || !getHo().equals("")) {
+            return getHo() + " " + getTen();
+        }
+        return getTen();
+    }
 }
