@@ -42,9 +42,8 @@ import com.google.firebase.database.ValueEventListener;
 
         initID();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            hotel = (Hotel) getIntent().getSerializableExtra("Hotel", Hotel.class);
-            tours = (Place) getIntent().getSerializableExtra("Tour", Place.class);
+            hotel = (Hotel) getIntent().getSerializableExtra("Hotel");
+            tours = (Place) getIntent().getSerializableExtra("Tour");
 
             tvPrice.setText(tours.getPrice());
 
@@ -53,7 +52,6 @@ import com.google.firebase.database.ValueEventListener;
             bundle.putSerializable("Hotel", hotel);
 
             reviewFragment.setArguments(bundle);
-        }
 
         //Phân quyền - admin
         mAuth = FirebaseAuth.getInstance();

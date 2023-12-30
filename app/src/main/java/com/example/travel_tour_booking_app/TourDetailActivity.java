@@ -83,6 +83,7 @@ public class TourDetailActivity extends AppCompatActivity {
         if (currentUser != null) {
             // Nếu là admin thì sẽ có chức năng sửa ngược lại thì không
             checkIsAdmin(currentUser.getUid());
+            addRecntlyView();
         }
         initID();
 
@@ -189,6 +190,35 @@ public class TourDetailActivity extends AppCompatActivity {
         rvDetailNews.setAdapter(detailScheduleAdapter);
 
         ScrollToTop();
+
+    }
+
+    private void addRecntlyView() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                ArrayList<String> tempListRecentlyViewedTour = userDetails.getListRecentlyViewedTours();
+                if(tempListRecentlyViewedTour.contains(tours.getKey()))
+                    tempListRecentlyViewedTour.remove(tours.getKey());
+                tempListRecentlyViewedTour.add(tours.getKey());
+                userDetails.setListRecentlyViewedTours(tempListRecentlyViewedTour);
+                databaseReference.child(currentUser.getUid()).setValue(userDetails)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                // Lịch sử tìm kiếm đã được cập nhật thành công
+                            } else {
+                                // Lỗi khi cập nhật lịch sử tìm kiếm
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

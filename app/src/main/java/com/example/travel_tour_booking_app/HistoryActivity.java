@@ -66,6 +66,7 @@ public class HistoryActivity extends AppCompatActivity {
         placeAdapterRecentlyViewed = new PlaceAdapter(this, arrayListRecentlyViewed, R.layout.item_place);
         rv_recently_viewed.setLayoutManager(new LinearLayoutManager(this));
         rv_recently_viewed.setAdapter(placeAdapterRecentlyViewed);
+        RecentlyViewed();
 
         //Loved
         arrayListLoved = new ArrayList<>();
@@ -75,6 +76,30 @@ public class HistoryActivity extends AppCompatActivity {
 
         Loved();
 
+    }
+
+    private void RecentlyViewed() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arrayListRecentlyViewed.clear();
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                ArrayList<String> tempListRecentlyViewed = userDetails.getListRecentlyViewedTours();
+                for (Place tour: tours)
+                {
+                    if (tempListRecentlyViewed.contains(tour.getKey())){
+                        arrayListRecentlyViewed.add(tour);
+                    }
+                }
+                placeAdapterRecentlyViewed.sortByNews();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void Loved() {
@@ -110,5 +135,12 @@ public class HistoryActivity extends AppCompatActivity {
 
     public void GoBack(View view){
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RecentlyViewed();
+        Loved();
     }
 }

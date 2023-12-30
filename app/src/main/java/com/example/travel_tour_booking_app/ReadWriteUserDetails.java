@@ -39,6 +39,7 @@ public class ReadWriteUserDetails implements Serializable {
     private int delected;
     private ArrayList<String> searchHistory = new ArrayList<>();
     ArrayList<String> listLikeTours = new ArrayList<>();
+    ArrayList<String> listRecentlyViewedTours = new ArrayList<>();
     public ReadWriteUserDetails() {
         this.ho = null;
         this.ten = null;
@@ -147,5 +148,13 @@ public class ReadWriteUserDetails implements Serializable {
 
     public void setSearchHistory(ArrayList<String> searchHistory) {
         this.searchHistory = searchHistory;
+    }
+
+    public ArrayList<String> getListRecentlyViewedTours() {
+        return listRecentlyViewedTours;
+    }
+
+    public void setListRecentlyViewedTours(ArrayList<String> listRecentlyViewedTours) {
+        this.listRecentlyViewedTours = listRecentlyViewedTours;
     }
 }
