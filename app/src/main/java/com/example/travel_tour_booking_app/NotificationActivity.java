@@ -27,19 +27,19 @@ public class NotificationActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
 //        alertDialog.show();
 
-        //News
+        //Notification
         notifications = new ArrayList<>();
 
         notificationAdapter = new NotificationAdapter(this, notifications);
 
-        RecyclerView rvNews = findViewById(R.id.rv_list_notifications);
-        rvNews.setLayoutManager(new LinearLayoutManager(this));
-        rvNews.setAdapter(notificationAdapter);
+        RecyclerView rvNotification = findViewById(R.id.rv_list_notifications);
+        rvNotification.setLayoutManager(new LinearLayoutManager(this));
+        rvNotification.setAdapter(notificationAdapter);
 
         //Nếu thay đổi thì cập nhật ở đây
         notifications.add(new Notification("Bạn đã chuẩn bị gì cho Lễ?",
                 "Hãy để 4Travel gợi ý cho bạn các chuyến đi thật thú vị trong Lễ Giổ Tổ, 30/04 và 01/05 nhé.",
-                "123","19:05 26/04/2023"));
+                "123","19:05 26/04/2023", "yourKey", true, new ArrayList<>()));
         notificationAdapter.notifyDataSetChanged();
 
         //Pagination

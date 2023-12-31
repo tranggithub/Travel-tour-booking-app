@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment"
+    android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/iv_returnbutton_list_notification"
+                        android:onClick="GoBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:scaleType="center"
+                        android:src="@drawable/return_button"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <ImageView
+                        android:id="@+id/iv_Logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/img_logo" />
+
+                    <TextView
+                        android:id="@+id/tv_4travel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/firasans_medium"
+                        android:text="4Travel"
+                        android:textColor="#BCFEFE"
+                        android:textSize="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_Logo" />
+
+
+                    <TextView
+                        android:id="@+id/tv_update_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_extrabold"
+                        android:text="Cập nhật tin tức"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_4travel"
+                        app:layout_constraintVertical_bias="0.328" />
+
+                    <TextView
+                        android:id="@+id/tv_title_updatenotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Tiêu đề"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_update_notification" />
+
+                    <EditText
+                        android:id="@+id/edt_title_update_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập tiêu đề vào đây..."
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/tv_title_updatenotification"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title_updatenotification" />
+
+                    <TextView
+                        android:id="@+id/tv_date_update_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Ngày đăng tải"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_title_updatenotification"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_title_update_notification"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:visibility="gone"
+                        android:id="@+id/edt_date_update_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:alpha="0.6"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="dd/mm/yyyy"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_title_update_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date_update_notification" />
+
+                    <TextView
+                        android:id="@+id/tv_thumbnail_update_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Hình thu nhỏ (Thumbnail)"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date_update_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_date_update_notification" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_thumbnail_update_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:background="@drawable/custom_maincolor_border"
+                        app:layout_constraintEnd_toEndOf="@+id/edt_text_update_notification"
+                        app:layout_constraintStart_toStartOf="@+id/edt_text_update_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_thumbnail_update_notification"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tải hình ảnh lên"
+                            android:textColor="@color/maincolor"
+                            android:fontFamily="@font/firasans_medium"
+                            android:textAlignment="center"/>
+                        <ImageView
+                            android:id="@+id/iv_thumbnail_update_notification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_upload_image"
+                            android:layout_marginLeft="@dimen/margin_section"
+                            android:layout_marginRight="@dimen/margin_section"
+                            android:layout_marginBottom="@dimen/margin_section"
+                            />
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_text_update_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="Nội dung"
+                        android:textColor="#BCFEFE"
+                        android:textSize="13dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date_update_notification"
+                        app:layout_constraintTop_toBottomOf="@id/ll_thumbnail_update_notification"/>
+
+
+                    <EditText
+                        android:id="@+id/edt_text_update_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_border"
+                        android:ems="10"
+                        android:fontFamily="@font/firasans_medium"
+                        android:hint="Nhập nội dung vào đây..."
+                        android:inputType="textMultiLine"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingEnd="20dp"
+                        android:text=""
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_date_update_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_text_update_notification"
+                        android:gravity="top|start"/>
+                    <LinearLayout
+                        android:id="@+id/ll_update_detail_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="35dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_text_update_notification"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_text_update_notification"
+                        android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_update_detail_notification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp">
+                            <Button
+                                android:id="@+id/btn_addText_update_notification"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_bold"
+                                android:text="Thêm nội dung"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15dp"
+                                android:drawableStart="@drawable/ic_add"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/btn_addPicture_update_notification"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                            <Button
+                                android:id="@+id/btn_addPicture_update_notification"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/firasans_bold"
+                                android:text="Thêm hình ảnh"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_add"
+                                android:visibility="gone"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/btn_addText_update_notification"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <CheckBox
+                            android:id="@+id/ckb_update_isActive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="true"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Hiển thị"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_update_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="80dp"
+                        android:fontFamily="@font/firasans_bold"
+                        android:text="cập nhật"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_update_detail_notification" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -36,15 +36,22 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull NotificationAdapter.MyViewHolder holder, int position) {
-        Glide.with(context).load(notifications.get(position).getThumbnailURL()).into(holder.ivThumbnail);
+        Glide.with(context).load(notifications.get(position).getThumbnail()).into(holder.ivThumbnail);
         holder.tvTitle.setText(notifications.get(position).getTitle());
-        holder.tvDate.setText(notifications.get(position).getDate());
+        holder.tvDate.setText(notifications.get(position).getUploadDate());
         holder.tvText.setText(notifications.get(position).getText());
 
         //ử lý sự kin nhấp vào
         holder.ll_item_notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, DetailNotificationActivity.class);
+                intent.putExtra("Title", notifications.get(holder.getAdapterPosition()).getTitle());
+                intent.putExtra("Date", notifications.get(holder.getAdapterPosition()).getUploadDate());
+                intent.putExtra("Text", notifications.get(holder.getAdapterPosition()).getText());
+                intent.putExtra("DetailNotifications", (Notification) notifications.get(holder.getAdapterPosition()));
+                intent.putExtra("Key", notifications.get(holder.getAdapterPosition()).getKey());
+                context.startActivity(intent);
             }
         });
 
@@ -61,6 +68,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         private TextView tvText;
         private ImageView ivThumbnail;
         private LinearLayout ll_item_notifications;
+        private CheckBox ckb_delete_notification;
         public MyViewHolder(View itemView){
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title_notifications);
@@ -68,6 +76,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             tvText = itemView.findViewById(R.id.tv_text_notifications);
             ivThumbnail = itemView.findViewById(R.id.iv_notifications_thumbnail);
             ll_item_notifications = itemView.findViewById(R.id.ll_item_notifications);
+            ckb_delete_notification = itemView.findViewById(R.id.ckb_delete_notification);
         }
     }
 

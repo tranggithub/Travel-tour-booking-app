@@ -49,11 +49,11 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_notifications"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/tv_read_notifications"
+                android:id="@+id/tv_add_notifications"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="Đọc tất cả"
+                android:text="Thêm"
                 android:fontFamily="@font/firasans_bold"
                 android:textSize="15dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/et_notifications_search"
+            android:id="@+id/et_notifications_search_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_search_bar"
@@ -104,7 +104,7 @@
             android:orientation="vertical"
             android:paddingBottom="150dp">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_notifications"
+                android:id="@+id/rv_pigination_list_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_item"
@@ -128,8 +128,7 @@
                     android:fontFamily="@font/firasans_medium"
                     android:text="Trước"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:singleLine="true"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_pigination_list_new"
@@ -151,9 +150,7 @@
                     android:fontFamily="@font/firasans_medium"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginRight="@dimen/margin_left_right_section"
-                    android:singleLine="true"
-                    />
+                    android:layout_marginRight="@dimen/margin_left_right_section"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
