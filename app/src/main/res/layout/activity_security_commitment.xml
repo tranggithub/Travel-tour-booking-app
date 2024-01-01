@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#070B1D"
+    tools:context=".SecurityCommitmentActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_topNavigationView_bm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_bm"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintEnd_toStartOf="@id/tv_baomat"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_baomat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="CAM KẾT BẢO MẬT"
+                android:textColor="#2D99AE"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_returnbutton_bm"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_bm"
+                app:layout_constraintTop_toTopOf="@id/iv_returnbutton_bm" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+    <ScrollView
+        android:id="@+id/sv_bm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nv_topNavigationView_bm">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_bm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintTop_toTopOf="@id/sv_bm">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Dưới đây là chính sách bảo mật và chính sách riêng tư của ứng dụng 4Travel:"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cl_bm" />
+
+            <TextView
+                android:id="@+id/tv_thu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Thứ 1: Thông tin thu thập"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_thu1_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu1" />
+            <TextView
+                android:id="@+id/tv_thu2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Thứ 2: Mục đích sử dụng thông tin"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu1_p1" />
+            <TextView
+                android:id="@+id/tv_thu2_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu2" />
+            <TextView
+                android:id="@+id/tv_thu3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Thứ 3: Bảo vệ dữ liệu cá nhân"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu2_p1" />
+
+            <TextView
+                android:id="@+id/tv_thu3_p1"
+                android:layout_width="380dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Chúng tôi cam kết dữ liệu mà người dùng đã cung cấp sẽ không bị tiết lộ sang bên thứ 3, ngoại trừ việc làm đó phục vụ cho điều tra pháp lý. Hệ thống của chúng tôi sử dụng các công nghệ bảo mật tiên tiến và hiện đại để lưu trữ và truy xuất thông tin của người dùng, nên thông tin của người dùng sẽ không bị mất hoặc bị xâm phạm."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu3" />
+
+            <TextView
+                android:id="@+id/tv_thu3_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Nếu người dùng cảm thấy dữ liệu cá nhân đang bị xâm phạm thì ngay lập tức hãy liên hệ với chúng tôi ở phần Trung tâm hỗ trợ để được giải đáp và trợ giúp kịp thời. 4Travel luôn luôn lắng nghe tâm tư và nguyện vọng của người dùng."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu3_p1" />
+            <TextView
+                android:id="@+id/tv_thu4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Thứ 4: Phương thức truy cập và chỉnh sữa dữ liệu cá nhân"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu3_p2" />
+            <TextView
+                android:id="@+id/tv_thu4_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Khi người dùng cung cấp cấp cho chúng tôi dữ liệu cá nhân, vui lòng đảm bảo rằng những dữ liệu đó là chính xác và đầy đủ. Nếu người dùng tin rằng bất kỳ thông tin nào mà chúng tôi đang nắm giữ có sai sót hoặc thiếu sót, vui lòng đăng nhập vào tài khoản và cập nhật lại thông tin. Ngoài ra người dùng nên cập nhật dữ liệu cá nhân thông qua tài khoản nếu có bất kỳ thay đổi nào."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu4" />
+
+            <TextView
+                android:id="@+id/tv_thu4_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Trong trường hợp người dùng không thể thay đổi dữ liệu cá nhân thông qua tài khoản đăng nhập, thì người dùng có thể gửi yêu cầu thay đổi thông tin cá nhân qua Trung tâm hỗ trợ hoặc là gửi trực tiếp yêu cầu đến email 4TravelF@gm.com.vn, chúng tôi sẽ cố gắng phản hồi sớm nhất có thể."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu4_p1" />
+            <TextView
+                android:id="@+id/tv_thu5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Thứ 5: Vấn đề liên quan đến bên thứ 3"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu4_p2" />
+            <TextView
+                android:id="@+id/tv_thu5_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Như đã đề cập ở những vấn đề trước, chúng tôi có quyền đưa dữ liệu cá nhân của người dùng cho bên thứ 3 để phục vụ cho các quá trình điều tra tội phạm. Việc sử dụng ứng dụng này thì người dùng cũng đã cam kết là sẽ cung cấp dữ liệu cho bên thứ 3 để điều tra tội phạm. Nếu người dùng cảm thấy bản thân hoàn toàn vô tội hoặc không liên quan gì đến việc điều tra này, xin hãy viết thư gửi đến email 4Travel@gm.com để được giải đáp và giúp đỡ."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu5" />
+
+            <TextView
+                android:id="@+id/tv_thu5_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Ngoài việc cung cấp dữ liệu cá nhân cho bên thứ 3 với mục đích điều tra tội phạm, thì 4Travel xin cam kết sẽ không tiết lộ bất kỳ dữ liệu cá nhân của người dùng cho bên thứ 3 nào khác."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu5_p1" />
+            <Button
+                android:id="@+id/btn_up_bm"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_section"
+                android:background="@drawable/custom_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_thu5_p2"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_double_up"
+                app:layout_constraintBottom_toBottomOf="@id/btn_up_bm"
+                app:layout_constraintEnd_toEndOf="@+id/btn_up_bm"
+                app:layout_constraintStart_toStartOf="@id/btn_up_bm"
+                app:layout_constraintTop_toTopOf="@id/btn_up_bm" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -124,6 +125,11 @@ public class LoginFragment extends Fragment {
         getActivity().finish();
     }
 
+    private void startActivity(Class<?> cls) {
+        Intent intent = new Intent(getActivity(), cls);
+        startActivity(intent);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -153,7 +159,6 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ResetPasswordActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -184,7 +189,36 @@ public class LoginFragment extends Fragment {
 
         //DieuKhoan
         tvDieuKhoan = view.findViewById(R.id.tv_DieuKhoan);
-        tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với " + "<u>" + "Điều khoản & Điều kiện" + "</u>" + " và " + "<u>" + "Cam kết bảo mật" + "</u>" + " của 4Travel"));
+
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String normalText = "Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với ";
+        String linkText1 = "Điều khoản & Điều kiện";
+        String linkText2 = "Cam kết bảo mật";
+
+        spannableStringBuilder.append(normalText);
+        int start1 = spannableStringBuilder.length();
+        spannableStringBuilder.append(linkText1);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(TermsAndConditionActivity.class);
+            }
+        }, start1, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        spannableStringBuilder.append(" và ");
+
+        int start2 = spannableStringBuilder.length();
+        spannableStringBuilder.append(linkText2);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(SecurityCommitmentActivity.class);
+            }
+        }, start2, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.append(" của 4Travel.");
+
+        tvDieuKhoan.setText(spannableStringBuilder);
+        tvDieuKhoan.setMovementMethod(LinkMovementMethod.getInstance());
 
         edtMail = view.findViewById(R.id.edt_Email);
         edtPassword = view.findViewById(R.id.edt_Psw);
