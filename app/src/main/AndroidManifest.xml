@@ -16,6 +16,21 @@
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListNotificationAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadNotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdateHotelActivity"
             android:exported="false" />
         <activity
