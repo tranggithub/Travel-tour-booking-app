@@ -162,6 +162,19 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         notifyDataSetChanged();
     }
 
+    public void sortByStar(ArrayList<Comment> comments, int i){
+        ArrayList<Comment> tempComments = new ArrayList<>();
+        for (Comment comment:comments){
+            if (comment.getStar() == i || comment.getStar() == (i + 0.5)){
+               tempComments.add(comment);
+            }
+        }
+        reviewList.clear();
+        reviewList.addAll(tempComments);
+        notifyDataSetChanged();
+    }
+
+
     public void updateToDatabase(int position, Comment currentItem){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel").child(hotel.getKey());
         databaseReference.child("comments").child(String.valueOf(position)).setValue(currentItem).addOnCompleteListener(task -> {

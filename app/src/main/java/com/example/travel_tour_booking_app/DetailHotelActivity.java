@@ -13,6 +13,7 @@ import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
     boolean isAdmin;
     ImageView ivBack;
     Place tours;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,4 +130,5 @@ import com.google.firebase.database.ValueEventListener;
             }
         });
        }
+
 }

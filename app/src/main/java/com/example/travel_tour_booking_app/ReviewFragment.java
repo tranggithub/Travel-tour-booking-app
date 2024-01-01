@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,8 +51,7 @@ public class ReviewFragment extends Fragment {
     Hotel hotel;
     ReviewAdapter reviewAdapter;
     ArrayList<Comment> tempComments;
-
-    Boolean isClick = false;
+    TextView tv1Sao, tv2Sao, tv3Sao, tv4Sao, tv5Sao;
 
 
     @Override
@@ -114,7 +114,7 @@ public class ReviewFragment extends Fragment {
                             Toast.makeText(getActivity(), "Hãy nhập bình luận cho khách sạn", Toast.LENGTH_SHORT).show();
                         } else {
                             UploadComment();
-                            reviewAdapter.sortByDate(hotel.getComments());
+                            reviewAdapter.sortByDate(tempComments);
 
                             edtCommentText.setText("");
                             String star = String.valueOf(hotel.getAvgStar());
@@ -128,6 +128,9 @@ public class ReviewFragment extends Fragment {
                 }
             });
         }
+
+        Sort(hotel);
+
         return rootView;
     }
 
@@ -168,6 +171,45 @@ public class ReviewFragment extends Fragment {
         ivAvatar = rootView.findViewById(R.id.iv_avatar_review);
         edtCommentText = rootView.findViewById(R.id.edt_message_review);
         ivSendComment = rootView.findViewById(R.id.iv_sendbutton_review);
+
+        tv1Sao = rootView.findViewById(R.id.tv_1sao_review);
+        tv2Sao = rootView.findViewById(R.id.tv_2sao_review);
+        tv3Sao = rootView.findViewById(R.id.tv_3sao_review);
+        tv4Sao = rootView.findViewById(R.id.tv_4sao_review);
+        tv5Sao = rootView.findViewById(R.id.tv_5sao_review);
     }
 
+
+    private void Sort(Hotel hotel){
+        tv1Sao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewAdapter.sortByStar(hotel.getComments(),1);
+            }
+        });
+        tv2Sao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewAdapter.sortByStar(hotel.getComments(), 2);
+            }
+        });
+        tv3Sao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewAdapter.sortByStar(hotel.getComments(), 3);
+            }
+        });
+        tv4Sao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewAdapter.sortByStar(hotel.getComments(),4);
+            }
+        });
+        tv5Sao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewAdapter.sortByStar(hotel.getComments(),5);
+            }
+        });
+    }
 }

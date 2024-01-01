@@ -1,6 +1,7 @@
 package com.example.travel_tour_booking_app;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Hotel implements Serializable {
@@ -164,9 +165,10 @@ public class Hotel implements Serializable {
         for (Comment comment : comments) {
             totalStars += comment.getStar();
         }
+        float averageStar = totalStars / comments.size();
 
-        // Calculate the average star rating
-        return totalStars / comments.size();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Float.parseFloat(decimalFormat.format(averageStar));
     }
     public int getSizeComments(){
         return comments.size();
