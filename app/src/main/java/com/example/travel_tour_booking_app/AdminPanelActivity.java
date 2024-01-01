@@ -51,5 +51,9 @@ public class AdminPanelActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListNotificationAdminActivity.class);
         startActivity(intent);
     }
+    public void ChangeUser (View view){
+        Intent intent = new Intent(this, ListUserAdminActivity.class);
+        startActivity(intent);
+    }
 
 }

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
         <activity
+            android:name=".ListUserAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".SecurityCommitmentActivity"
             android:exported="false" />
         <activity
