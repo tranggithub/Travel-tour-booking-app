@@ -55,7 +55,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         paginationAdapter = new PaginationAdapter(this,paginationArrayList);
 
-        RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_new);
+        RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_notification);
         recyclerViewPagination.setAdapter(paginationAdapter);
     }
     public void GoBack(View view){

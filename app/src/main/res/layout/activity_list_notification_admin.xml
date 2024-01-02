@@ -103,13 +103,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="150dp">
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_pigination_list_notification"
+                android:id="@+id/rv_list_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_item"
-                >
-            </androidx.recyclerview.widget.RecyclerView>
+                android:background="@color/background_item"></androidx.recyclerview.widget.RecyclerView>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pigination_list_new"
+                    android:id="@+id/rv_pigination_list_notification"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="6"

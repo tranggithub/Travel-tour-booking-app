@@ -132,7 +132,7 @@
                     android:singleLine="true"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pigination_list_new"
+                    android:id="@+id/rv_pigination_list_notification"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="6"

@@ -16,9 +16,12 @@ public class Notification implements Serializable {
     boolean isActive;
     ArrayList<DetailNews> detailNotificationArrayList = new ArrayList<>();
 
+    public Notification()
+    {
 
-    public Notification(String titile, String uploadDate, String text, String thumbnail, String key, boolean isActive, ArrayList<DetailNews> detailNewsArrayList) {
-        Title = titile;
+    }
+    public Notification(String title, String uploadDate, String text, String thumbnail, String key, boolean isActive, ArrayList<DetailNews> detailNewsArrayList) {
+        Title = title;
         UploadDate = uploadDate;
         Text = text;
         Thumbnail = thumbnail;

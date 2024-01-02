@@ -113,7 +113,7 @@ public class UserFragment extends Fragment {
     }
 
     private void ChangeToNotification() {
-        Intent intent = new Intent(getActivity(), NotificationActivity.class);
+        Intent intent = new Intent(getActivity(), ListNotificationActivity.class);
         iconNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

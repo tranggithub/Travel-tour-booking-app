@@ -93,7 +93,7 @@ public class ListNotificationActivity extends AppCompatActivity {
 
         paginationAdapter = new PaginationAdapter(this,paginationArrayList);
 
-        RecyclerView recyclerViewPagination = findViewById(R.id.rv_list_notifications);
+        RecyclerView recyclerViewPagination = findViewById(R.id.rv_pigination_list_notification);
         recyclerViewPagination.setAdapter(paginationAdapter);
 
         //Search Function

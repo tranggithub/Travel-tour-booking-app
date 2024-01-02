@@ -55,7 +55,7 @@ public class ListNotificationAdminActivity extends AppCompatActivity {
 
         notificationAdapter = new NotificationAdapter(this,notifications);
 
-        RecyclerView rvNotification = findViewById(R.id.rv_pigination_list_notification);
+        RecyclerView rvNotification = findViewById(R.id.rv_list_notification);
         rvNotification.setLayoutManager(new LinearLayoutManager(this));
         rvNotification.setAdapter(notificationAdapter);
 
