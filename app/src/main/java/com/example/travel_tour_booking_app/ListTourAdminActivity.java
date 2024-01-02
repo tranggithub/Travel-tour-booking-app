@@ -41,12 +41,7 @@ public class ListTourAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_tour_admin);
-        //Progress layout
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
         //change to upload page
         AddTour();
 
@@ -59,28 +54,8 @@ public class ListTourAdminActivity extends AppCompatActivity {
         rvNews.setLayoutManager(new LinearLayoutManager(this));
         rvNews.setAdapter(placeAdapter);
 
-        //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
-//        alertDialog.show();
+        LoadTour();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                places.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    Place tempPlace = itemSnapshot.getValue(Place.class);
-                    tempPlace.setKey(itemSnapshot.getKey());
-                    places.add(tempPlace);
-                }
-                placeAdapter.notifyDataSetChanged();
-                alertDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
-            }
-        });
 
         //Pagination
         Pagination tempPagination = new Pagination("1");
@@ -120,6 +95,43 @@ public class ListTourAdminActivity extends AppCompatActivity {
 
         //Scroll to Top
         ScrollToTop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoadTour();
+    }
+
+    private void LoadTour(){
+        //Progress layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
+//        alertDialog.show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                places.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Place tempPlace = itemSnapshot.getValue(Place.class);
+                    tempPlace.setKey(itemSnapshot.getKey());
+                    places.add(tempPlace);
+                }
+                placeAdapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+//                alertDialog.dismiss();
+            }
+        });
     }
 
     private void performSearch(String query) {

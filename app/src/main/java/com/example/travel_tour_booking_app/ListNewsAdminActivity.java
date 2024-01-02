@@ -42,12 +42,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_news_admin);
 
-        //Progress layout
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
         //change to upload page
         AddNews();
 
@@ -60,28 +55,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         rvNews.setLayoutManager(new LinearLayoutManager(this));
         rvNews.setAdapter(newsAdapter);
 
-        //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
-//        alertDialog.show();
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                newss.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    News tempNews = itemSnapshot.getValue(News.class);
-                    tempNews.setKey(itemSnapshot.getKey());
-                    newss.add(tempNews);
-                }
-                newsAdapter.notifyDataSetChanged();
-                alertDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                alertDialog.dismiss();
-            }
-        });
+        LoadNews();
 
         //Pagination
         Pagination tempPagination = new Pagination("1");
@@ -152,6 +126,43 @@ public class ListNewsAdminActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoadNews();
+    }
+
+    private void LoadNews(){
+        //Progress layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
+//        alertDialog.show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                newss.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    News tempNews = itemSnapshot.getValue(News.class);
+                    tempNews.setKey(itemSnapshot.getKey());
+                    newss.add(tempNews);
+                }
+                newsAdapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     public void GoBack(View view)

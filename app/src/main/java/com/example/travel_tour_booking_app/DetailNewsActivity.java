@@ -130,15 +130,6 @@ public class DetailNewsActivity extends AppCompatActivity {
     }
 
     public void GoBack (View view){
-        if (isAdmin)
-        {
-            Intent intent = new Intent(this,ListNewsAdminActivity.class);
-            startActivity(intent);
-        }
-        else {
-            Intent intent = new Intent(this,ListNewsActivity.class);
-            startActivity(intent);
-        }
         finish();
     }
 }

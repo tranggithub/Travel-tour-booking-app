@@ -109,4 +109,7 @@ public class DetailPromotionActivity extends AppCompatActivity {
         intent.putExtra("DetailPromotion", (Promotion) promotion);
         startActivity(intent);
     }
+    public void GoBack(View view){
+        finish();
+    }
 }

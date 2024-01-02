@@ -96,6 +96,7 @@ public class TourDetailActivity extends AppCompatActivity {
         //Lấy nội dung được gửi vào intent
         tours = (Place) getIntent().getSerializableExtra("Tour");
         if (tours != null){
+            UpdateView();
             tv_title.setText(tours.getTitle().toString());
             tv_date.setText(tours.getDate().toString());
             tv_text.setText(tours.getText().toString());
@@ -277,6 +278,18 @@ public class TourDetailActivity extends AppCompatActivity {
         tv_cartype = findViewById(R.id.tv_car);
         rv_TienIch_Car = findViewById(R.id.rv_detail_tour_tiennghi_car);
     }
+    private void UpdateView(){
+        tours.setView(tours.getView()+1);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Tours");
+        databaseReference.child(tours.getKey()).setValue(tours)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Lịch sử tìm kiếm đã được cập nhật thành công
+                    } else {
+                        // Lỗi khi cập nhật lịch sử tìm kiếm
+                    }
+                });
+    }
 
     private void Share(){
         iv_share.setOnClickListener(new View.OnClickListener() {
@@ -289,6 +302,7 @@ public class TourDetailActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void Heart(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
@@ -429,11 +443,6 @@ public class TourDetailActivity extends AppCompatActivity {
     }
 
     public void GoBack (View view){
-        if (isAdmin)
-        {
-            Intent intent = new Intent(this,ListTourAdminActivity.class);
-            startActivity(intent);
-        }
         finish();
     }
     public void ChangeDetailHotel(View v){

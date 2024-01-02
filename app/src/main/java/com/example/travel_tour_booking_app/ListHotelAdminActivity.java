@@ -42,44 +42,17 @@ public class ListHotelAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_hotel_admin);
 
         initID();
-        //Progress layout
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
 
-        //News
+        //Hotel
         hotels = new ArrayList<>();
 
-        hotelAdapter = new HotelAdapter(this,hotels,R.layout.item_place);
+        hotelAdapter = new HotelAdapter(this,hotels,R.layout.item_hotel);
 
         RecyclerView rvNews = findViewById(R.id.rv_list_hotels);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
         rvNews.setAdapter(hotelAdapter);
 
-        //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
-//        alertDialog.show();
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                hotels.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
-                    tempHotel.setKey(itemSnapshot.getKey());
-                    hotels.add(tempHotel);
-                }
-                hotelAdapter.notifyDataSetChanged();
-                alertDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                alertDialog.dismiss();
-            }
-        });
+        LoadHotel();
 
         //Pagination
         Pagination tempPagination = new Pagination("1");
@@ -121,6 +94,13 @@ public class ListHotelAdminActivity extends AppCompatActivity {
         ScrollToTop();
         ChaneToAddHotel();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoadHotel();
+    }
+
     private void initID(){
         tv_add_hotels = findViewById(R.id.tv_add_hotels);
     }
@@ -130,6 +110,35 @@ public class ListHotelAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListHotelAdminActivity.this, UploadHotelActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+    private void LoadHotel(){
+        //Progress layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                hotels.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
+                    tempHotel.setKey(itemSnapshot.getKey());
+                    hotels.add(tempHotel);
+                }
+                hotelAdapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                alertDialog.dismiss();
             }
         });
     }

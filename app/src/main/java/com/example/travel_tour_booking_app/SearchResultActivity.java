@@ -123,7 +123,7 @@ public class SearchResultActivity extends AppCompatActivity {
         tv_place = findViewById(R.id.tv_list_tour_place);
         tv_no_place = findViewById(R.id.tv_list_tour_null);
         tv_sort_by_price = findViewById(R.id.tv_list_tour_sortbyprice);
-        tv_sort_by_star = findViewById(R.id.tv_list_tour_sortbystar);
+        tv_sort_by_star = findViewById(R.id.tv_list_tour_sortbyview);
         tv_sort_by_duration = findViewById(R.id.tv_list_tour_sortbyduration);
     }
     private void Sort(){
@@ -144,7 +144,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 tv_sort_by_price.setBackgroundTintList(ContextCompat.getColorStateList(SearchResultActivity.this, R.color.unselected));
                 tv_sort_by_duration.setBackgroundTintList(ContextCompat.getColorStateList(SearchResultActivity.this, R.color.unselected));
 
-                placeAdapter.sortByStar();
+                placeAdapter.sortByView();
             }
         });
         tv_sort_by_duration.setOnClickListener(new View.OnClickListener() {

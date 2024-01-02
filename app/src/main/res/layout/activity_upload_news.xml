@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -26,17 +26,19 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <ImageView
                         android:id="@+id/iv_returnbutton_list_news"
-                        android:onClick="GoBack"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
+                        android:onClick="GoBack"
                         android:scaleType="center"
                         android:src="@drawable/return_button"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintHorizontal_chainStyle="spread"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                         android:id="@+id/iv_Logo"
                         android:layout_width="wrap_content"
@@ -95,7 +97,6 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -105,6 +106,7 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:text=""
+                        android:textColor="@color/white"
                         android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -120,12 +122,11 @@
                         android:text="Ngày đăng tải"
                         android:textColor="#BCFEFE"
                         android:textSize="13dp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@+id/tv_title_uploadnews"
-                        app:layout_constraintTop_toBottomOf="@+id/edt_title_upload_news"
-                        android:visibility="gone"/>
+                        app:layout_constraintTop_toBottomOf="@+id/edt_title_upload_news" />
 
                     <EditText
-                        android:visibility="gone"
                         android:id="@+id/edt_date_upload_news"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -143,6 +144,7 @@
                         android:paddingBottom="10dp"
                         android:text=""
                         android:textSize="16dp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@+id/edt_title_upload_news"
                         app:layout_constraintTop_toBottomOf="@+id/tv_date_upload_news" />
 
@@ -166,30 +168,31 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
                         android:background="@drawable/custom_maincolor_border"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="@+id/edt_text_upload_news"
                         app:layout_constraintStart_toStartOf="@+id/edt_text_upload_news"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_thumbnail_upload_news"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        app:layout_constraintTop_toBottomOf="@+id/tv_thumbnail_upload_news">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Tải hình ảnh lên"
-                            android:textColor="@color/maincolor"
                             android:fontFamily="@font/firasans_medium"
-                            android:textAlignment="center"/>
+                            android:text="Tải hình ảnh lên"
+                            android:textAlignment="center"
+                            android:textColor="@color/maincolor" />
+
                         <ImageView
                             android:id="@+id/iv_thumbnail_upload_news"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_upload_image"
                             android:layout_marginLeft="@dimen/margin_section"
                             android:layout_marginRight="@dimen/margin_section"
                             android:layout_marginBottom="@dimen/margin_section"
-                            />
+                            android:src="@drawable/ic_upload_image" />
 
                     </LinearLayout>
+
                     <TextView
                         android:id="@+id/tv_text_upload_news"
                         android:layout_width="wrap_content"
@@ -200,7 +203,7 @@
                         android:textColor="#BCFEFE"
                         android:textSize="13dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_date_upload_news"
-                        app:layout_constraintTop_toBottomOf="@id/ll_thumbnail_upload_news"/>
+                        app:layout_constraintTop_toBottomOf="@id/ll_thumbnail_upload_news" />
 
 
                     <EditText
@@ -210,21 +213,22 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
+                        android:gravity="top|start"
                         android:hint="Nhập nội dung vào đây..."
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
                         android:paddingEnd="20dp"
+                        android:paddingBottom="10dp"
                         android:text=""
+                        android:textColor="@color/white"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="@+id/edt_date_upload_news"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_news"
-                        android:gravity="top|start"/>
+                        app:layout_constraintTop_toBottomOf="@+id/tv_text_upload_news" />
+
                     <LinearLayout
                         android:id="@+id/ll_upload_detail_news"
                         android:layout_width="match_parent"
@@ -232,45 +236,50 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
+                        android:orientation="vertical"
                         app:layout_constraintStart_toStartOf="@+id/tv_text_upload_news"
-                        app:layout_constraintTop_toBottomOf="@+id/edt_text_upload_news"
-                        android:orientation="vertical">
+                        app:layout_constraintTop_toBottomOf="@+id/edt_text_upload_news">
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_upload_detail_news"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="4dp">
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal">
+
                             <Button
                                 android:id="@+id/btn_addText_upload_news"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_add"
                                 android:fontFamily="@font/firasans_bold"
                                 android:text="Thêm nội dung"
                                 android:textColor="#FFFFFF"
                                 android:textSize="15dp"
-                                android:drawableStart="@drawable/ic_add"
+                                app:layout_constraintEnd_toStartOf="@id/btn_addPicture_upload_news"
                                 app:layout_constraintStart_toStartOf="parent"
-                               app:layout_constraintEnd_toStartOf="@id/btn_addPicture_upload_news"
-                                app:layout_constraintTop_toTopOf="parent"/>
+                                app:layout_constraintTop_toTopOf="parent" />
+
                             <Button
                                 android:id="@+id/btn_addPicture_upload_news"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_add"
                                 android:fontFamily="@font/firasans_bold"
                                 android:text="Thêm hình ảnh"
                                 android:textColor="#FFFFFF"
                                 android:textSize="15dp"
-                                android:layout_weight="1"
-                                android:drawableStart="@drawable/ic_add"
                                 android:visibility="gone"
-                                app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/btn_addText_upload_news"/>
+                                app:layout_constraintStart_toEndOf="@id/btn_addText_upload_news"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
                         <CheckBox
                             android:id="@+id/ckb_upload_isActive"
                             android:layout_width="wrap_content"
@@ -281,7 +290,7 @@
                             android:text="Hiển thị"
                             android:textColor="#BCFEFE"
                             android:textSize="15dp"
-                            android:theme="@style/checkBoxStyle"/>
+                            android:theme="@style/checkBoxStyle" />
                     </LinearLayout>
 
                     <Button
@@ -303,6 +312,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
+        >
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

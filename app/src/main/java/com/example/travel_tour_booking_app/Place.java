@@ -28,6 +28,7 @@ public class Place implements Serializable {
     int NumberOfPeople;
     int SumOfPoint;
     String Key;
+    int View = 0;
 
     public Place(String title, String date, String location, String price, String duration, String thumbnail_Image, String text, ArrayList<DetailNews> schedule, String hotel, String planeFrom, String planeDuration, int numberOfSegment, String planeDate, String planeBrand, String timeTakeOff, String timeLanding, ArrayList<TienIch> planeTienIch, String carType, ArrayList<TienIch> carTienIch, boolean isActive) {
         Title = title;
@@ -234,5 +235,13 @@ public class Place implements Serializable {
 
     public void setKey(String key) {
         Key = key;
+    }
+
+    public int getView() {
+        return View;
+    }
+
+    public void setView(int view) {
+        View = view;
     }
 }

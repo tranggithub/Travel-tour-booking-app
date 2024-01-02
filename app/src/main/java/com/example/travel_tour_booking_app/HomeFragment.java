@@ -97,6 +97,7 @@ public class HomeFragment extends Fragment {
         databaseReferenceNews.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                placesPopular.clear();
                 places.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Place tempPlace = itemSnapshot.getValue(Place.class);

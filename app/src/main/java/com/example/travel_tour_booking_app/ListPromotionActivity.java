@@ -40,12 +40,7 @@ public class ListPromotionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_promotion);
 
-        //Progress layout
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
 
         //Promotions
         promotions = new ArrayList<>();
@@ -57,28 +52,7 @@ public class ListPromotionActivity extends AppCompatActivity {
         rvNews.setAdapter(promotionAdapter);
 
 
-        //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Promotion");
-//        alertDialog.show();
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                promotions.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
-                    if (tempPromotion.isActive())
-                        promotions.add(tempPromotion);
-                }
-                promotionAdapter.notifyDataSetChanged();
-                alertDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
-            }
-        });
+        LoadPromotion();
 
         //Pagination
         Pagination tempPagination = new Pagination("1");
@@ -118,6 +92,43 @@ public class ListPromotionActivity extends AppCompatActivity {
         //Scroll to Top
         ScrollToTop();
         GoBack();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoadPromotion();
+    }
+
+    private void LoadPromotion(){
+        //Progress layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Promotion");
+//        alertDialog.show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                promotions.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
+                    if (tempPromotion.isActive())
+                        promotions.add(tempPromotion);
+                }
+                promotionAdapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     private void performSearch(String query) {

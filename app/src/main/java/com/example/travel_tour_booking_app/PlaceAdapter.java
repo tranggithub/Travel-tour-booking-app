@@ -1,13 +1,11 @@
 package com.example.travel_tour_booking_app;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,6 +42,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         holder.tvTitle.setText(places.get(position).getTitle());
         holder.tvLocation.setText(places.get(position).getLocation() + " (" + places.get(position).getDuration() + ")");
         holder.tvPrice.setText(places.get(position).getPrice());
+        holder.tvView.setText(places.get(position).getView()+"");
         if (places.get(position).getStar() < 1) {
             holder.ivStar1.setImageResource(R.drawable.ic_star_not_vote);
             holder.ivStar2.setImageResource(R.drawable.ic_star_not_vote);
@@ -100,7 +98,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView tvTitle;
         private TextView tvLocation;
-        private TextView tvPrice;
+        private TextView tvPrice, tvView;
         private ImageView ivThumbnail;
         private ImageView ivStar1, ivStar2, ivStar3, ivStar4, ivStar5;
         private ConstraintLayout cl_item_place;
@@ -116,6 +114,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
             ivStar4 = itemView.findViewById(R.id.iv_star_4);
             ivStar5 = itemView.findViewById(R.id.iv_star_5);
             ivThumbnail = itemView.findViewById(R.id.iv_place);
+            tvView = itemView.findViewById(R.id.tv_view);
 
             cl_item_place = itemView.findViewById(R.id.cl_item_place);
 
@@ -133,7 +132,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         Collections.sort(places,new PriceComparator());
         notifyDataSetChanged();
     }
-    public void sortByStar(){
+    public void sortByView(){
         Collections.sort(places,new StarComparator());
         notifyDataSetChanged();
     }

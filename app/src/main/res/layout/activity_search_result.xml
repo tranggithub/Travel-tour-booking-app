@@ -88,7 +88,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_list_tour_sortby"
             app:layout_constraintTop_toTopOf="@id/tv_list_tour_sortby"
             app:layout_constraintBottom_toBottomOf="@id/tv_list_tour_sortby"
-            app:layout_constraintEnd_toStartOf="@id/tv_list_tour_sortbystar"
+            app:layout_constraintEnd_toStartOf="@id/tv_list_tour_sortbyview"
             android:layout_marginLeft="@dimen/margin_section"
             android:textColor="@color/white"
             android:background="@drawable/custom_button"
@@ -96,7 +96,7 @@
             android:padding="@dimen/margin_section"
             />
         <TextView
-            android:id="@+id/tv_list_tour_sortbystar"
+            android:id="@+id/tv_list_tour_sortbyview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sao"
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:text="Thời lượng"
             android:textSize="15dp"
-            app:layout_constraintStart_toEndOf="@id/tv_list_tour_sortbystar"
+            app:layout_constraintStart_toEndOf="@id/tv_list_tour_sortbyview"
             app:layout_constraintTop_toTopOf="@id/tv_list_tour_sortby"
             app:layout_constraintBottom_toBottomOf="@id/tv_list_tour_sortby"
             app:layout_constraintEnd_toEndOf="parent"
