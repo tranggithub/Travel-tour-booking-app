@@ -47,10 +47,14 @@ public class ListTourActivity extends AppCompatActivity {
         }
 
         initID();
-        if(location!="")
+        if(location!=null)
             tv_place.setText("Địa điểm ở " + location);
         else
+        {
             tv_place.setText("Địa điểm");
+            location = "";
+        }
+
 
         //Places
         places = new ArrayList<>();

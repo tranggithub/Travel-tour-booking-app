@@ -116,7 +116,8 @@
                 android:orientation="horizontal"
                 android:id="@+id/cl_pagination"
                 android:layout_gravity="center"
-                android:weightSum="8">
+                android:weightSum="8"
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/btn_previous_discover"
@@ -157,7 +158,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_margin="@dimen/margin_section">
+                android:layout_margin="@dimen/margin_section"
+                android:visibility="gone">
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

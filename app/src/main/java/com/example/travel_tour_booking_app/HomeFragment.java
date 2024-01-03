@@ -190,7 +190,7 @@ public class HomeFragment extends Fragment {
                     }
                     if (selectedSeclection == Seclection.Place) {
                         Intent intent = new Intent(getActivity(), ListTourActivity.class);
-                        intent.putExtra("Place", "");
+                        intent.putExtra("Place", (String) null);
                         intent.putExtra("Appointment", "");
                         intent.putExtra("Date", "");
                         intent.putExtra("Price","Không giới hạn");

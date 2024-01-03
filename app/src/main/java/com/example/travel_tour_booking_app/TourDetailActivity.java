@@ -40,7 +40,7 @@ public class TourDetailActivity extends AppCompatActivity {
     TextView tv_update_tour;
     String key;
     //Tour
-    TextView tv_title, tv_date, tv_text, tv_location, tv_price, tv_duration, tv_price_navigation, tv_star;
+    TextView tv_title, tv_date, tv_text, tv_location, tv_price, tv_duration, tv_price_navigation, tv_view;
     RatingBar rb_star, rb_hotel_star;
     //Hotel
     TextView tv_hotel_name, tv_hotel_diachi, tv_hotel_star, tv_hotel_comment, tv_hotel_breakfast, tv_hotel_checkin, tv_hotel_checkout,tv_hotel_age_free, tv_hotel_age_fee, tv_hotel_additional_fee;
@@ -106,7 +106,7 @@ public class TourDetailActivity extends AppCompatActivity {
             tv_duration.setText(tours.getDuration().toString());
             tv_price_navigation.setText(tours.getPrice());
             Glide.with(this).load(tours.getThumbnail_Image()).into(iv_thumbnail);
-            tv_star.setText(tours.getStar() + " sao");
+            tv_view.setText(tours.getView() + "");
             rb_star.setRating((float) tours.getStar());
 
             //Firebase
@@ -240,7 +240,7 @@ public class TourDetailActivity extends AppCompatActivity {
         tv_price = findViewById(R.id.tv_detail_tour_price);
         tv_duration = findViewById(R.id.tv_detail_tour_duration);
         iv_thumbnail = findViewById(R.id.img_toronto);
-        tv_star = findViewById(R.id.tv_danhgia);
+        tv_view = findViewById(R.id.tv_danhgia);
         rb_star = findViewById(R.id.rtbProductRating);
 
         //Hotel
