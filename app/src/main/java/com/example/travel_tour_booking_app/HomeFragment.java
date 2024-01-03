@@ -188,6 +188,22 @@ public class HomeFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), ChatActivity.class);
                         startActivity(intent);
                     }
+                    if (selectedSeclection == Seclection.Place) {
+                        Intent intent = new Intent(getActivity(), ListTourActivity.class);
+                        intent.putExtra("Place", "");
+                        intent.putExtra("Appointment", "");
+                        intent.putExtra("Date", "");
+                        intent.putExtra("Price","Không giới hạn");
+                        startActivity(intent);
+                    }
+                    if (selectedSeclection == Seclection.News) {
+                        Intent intent = new Intent(getActivity(), ListNewsActivity.class);
+                        startActivity(intent);
+                    }
+                    if (selectedSeclection == Seclection.Promotion) {
+                        Intent intent = new Intent(getActivity(), ListPromotionActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
