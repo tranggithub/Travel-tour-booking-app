@@ -70,7 +70,8 @@
                 android:fontFamily="@font/firasans_medium"
                 android:hint="Nhập ghi chú hình ảnh vào đây..."
                 android:inputType="textMultiLine"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone"/>
         </LinearLayout>
         <ImageView
             android:id="@+id/iv_delete_upload_news"

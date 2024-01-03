@@ -155,7 +155,7 @@ public class UploadHotelActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DetailNews temp = new DetailNews(true);
                 detailNewsList.add(temp);
-                contextOrPictureUploadAdapter.notifyDataSetChanged();
+                contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
                 Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
             }
         });
