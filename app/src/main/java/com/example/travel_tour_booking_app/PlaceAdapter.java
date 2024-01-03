@@ -22,7 +22,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     Context context;
     List<Place> places;
     int layout;
+    private int maxItemsToShow = -1; // Mặc định không giới hạn
 
+    public PlaceAdapter (Context context, List<Place> places, int layout, int maxItemsToShow){
+        this.context = context;
+        this.places = places;
+        this.layout = layout;
+        this.maxItemsToShow = maxItemsToShow;
+    }
     public PlaceAdapter (Context context, List<Place> places, int layout){
         this.context = context;
         this.places = places;
@@ -92,7 +99,13 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return places.size();
+        if (maxItemsToShow == -1) {
+            // Trường hợp không giới hạn số lượng item
+            return places.size();
+        } else {
+            // Trường hợp giới hạn số lượng item
+            return Math.min(places.size(), maxItemsToShow);
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -133,7 +146,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         notifyDataSetChanged();
     }
     public void sortByView(){
-        Collections.sort(places,new StarComparator());
+        Collections.sort(places,new ViewComparator());
         notifyDataSetChanged();
     }
 

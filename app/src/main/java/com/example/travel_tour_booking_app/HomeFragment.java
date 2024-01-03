@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
         //Popular Place
         placesPopular = new ArrayList<>();
 
-        placePopularAdapter = new PlaceAdapter(getContext(),placesPopular,R.layout.item_popular_place);
+        placePopularAdapter = new PlaceAdapter(getContext(),placesPopular,R.layout.item_popular_place,5);
 
         ViewPager2 vpPopular_Place = view.findViewById(R.id.vp_popularplace);
         vpPopular_Place.setAdapter(placePopularAdapter);
@@ -85,11 +85,12 @@ public class HomeFragment extends Fragment {
         //Place
         places = new ArrayList<>();
 
-        placeAdapter = new PlaceAdapter(getContext(),places,R.layout.item_place);
+        placeAdapter = new PlaceAdapter(getContext(),places,R.layout.item_place,2);
 
         RecyclerView rvPlace = view.findViewById(R.id.rv_place);
         rvPlace.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvPlace.setAdapter(placeAdapter);
+
 
         //Firebase
         databaseReferenceNews = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
@@ -108,7 +109,7 @@ public class HomeFragment extends Fragment {
                     }
 
                 }
-                placePopularAdapter.notifyDataSetChanged();
+                placePopularAdapter.sortByView();
                 placeAdapter.sortByNews();
             }
 
@@ -120,7 +121,7 @@ public class HomeFragment extends Fragment {
 
         //Promotion
         promotions = new ArrayList<>();
-        promotionAdapter = new PromotionAdapter(getContext(),promotions);
+        promotionAdapter = new PromotionAdapter(getContext(),promotions,2);
 
         RecyclerView rvPromotion = view.findViewById(R.id.rv_promotion);
         rvPromotion.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -149,7 +150,7 @@ public class HomeFragment extends Fragment {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(getContext(),newss);
+        newsAdapter = new NewsAdapter(getContext(),newss,2);
 
         RecyclerView rvNews = view.findViewById(R.id.rv_new);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
