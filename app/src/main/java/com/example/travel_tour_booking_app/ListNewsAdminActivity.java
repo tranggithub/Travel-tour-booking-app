@@ -134,6 +134,12 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         LoadNews();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadNews();
+    }
+
     private void LoadNews(){
         //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

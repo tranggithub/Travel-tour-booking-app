@@ -103,6 +103,12 @@ public class ListTourAdminActivity extends AppCompatActivity {
         LoadTour();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadTour();
+    }
+
     private void LoadTour(){
         //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

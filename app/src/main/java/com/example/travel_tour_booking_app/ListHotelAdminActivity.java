@@ -101,6 +101,12 @@ public class ListHotelAdminActivity extends AppCompatActivity {
         LoadHotel();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadHotel();
+    }
+
     private void initID(){
         tv_add_hotels = findViewById(R.id.tv_add_hotels);
     }

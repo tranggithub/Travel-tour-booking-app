@@ -384,6 +384,7 @@ public class UpdateTourActivity extends AppCompatActivity {
             Place place = new Place(title,Date,Location,Price,Duration,ThumbnailURL,
                     text,detailSchedule,hotelID,diaDiemKhoiHanh,thoiLuongChuyenBay,SoChang,ngayBay,hangBay,
                     thoiGianCatCanh,thoiGianHaCanh,PlaneTienIch,loaiXe,CarTienIch,isActive);
+            place.setView(tour.getView());
             toursRef.child(tour.getKey()).
                     setValue(place).
                     addOnCompleteListener(new OnCompleteListener<Void>() {

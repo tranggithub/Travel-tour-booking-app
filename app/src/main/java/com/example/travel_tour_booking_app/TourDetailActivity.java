@@ -96,7 +96,8 @@ public class TourDetailActivity extends AppCompatActivity {
         //Lấy nội dung được gửi vào intent
         tours = (Place) getIntent().getSerializableExtra("Tour");
         if (tours != null){
-            UpdateView();
+            if(!isAdmin)
+                UpdateView();
             tv_title.setText(tours.getTitle().toString());
             tv_date.setText(tours.getDate().toString());
             tv_text.setText(tours.getText().toString());

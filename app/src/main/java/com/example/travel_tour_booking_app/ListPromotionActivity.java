@@ -100,6 +100,12 @@ public class ListPromotionActivity extends AppCompatActivity {
         LoadPromotion();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadPromotion();
+    }
+
     private void LoadPromotion(){
         //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
