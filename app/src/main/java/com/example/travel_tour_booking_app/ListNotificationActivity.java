@@ -12,6 +12,7 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -145,7 +146,7 @@ public class ListNotificationActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_notifications);
+                NestedScrollView scrollView = findViewById(R.id.sv_list_notifications);
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });

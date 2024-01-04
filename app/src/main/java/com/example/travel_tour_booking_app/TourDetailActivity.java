@@ -72,6 +72,7 @@ public class TourDetailActivity extends AppCompatActivity {
     String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
     DatabaseReference databaseReferenceHotel;
     Hotel hotel;
+    Button btn_moretour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,6 +192,9 @@ public class TourDetailActivity extends AppCompatActivity {
         rvDetailNews.setLayoutManager(new LinearLayoutManager(this));
         rvDetailNews.setAdapter(detailScheduleAdapter);
 
+        //Giới thiệu thêm các tour cùng địa điểm
+        MoreTour();
+
         ScrollToTop();
 
     }
@@ -278,6 +282,21 @@ public class TourDetailActivity extends AppCompatActivity {
         //Car
         tv_cartype = findViewById(R.id.tv_car);
         rv_TienIch_Car = findViewById(R.id.rv_detail_tour_tiennghi_car);
+
+        btn_moretour = findViewById(R.id.btn_detail_tour_moretour);
+    }
+    private void MoreTour(){
+        btn_moretour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TourDetailActivity.this,ListTourActivity.class);
+                intent.putExtra("Place", "");
+                intent.putExtra("Appointment", tours.getLocation().toString());
+                intent.putExtra("Price", "Không giới hạn");
+                intent.putExtra("Date", "");
+                startActivity(intent);
+            }
+        });
     }
     private void UpdateView(){
         tours.setView(tours.getView()+1);

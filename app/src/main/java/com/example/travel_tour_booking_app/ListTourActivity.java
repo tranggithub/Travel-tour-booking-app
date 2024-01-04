@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,12 +48,12 @@ public class ListTourActivity extends AppCompatActivity {
         }
 
         initID();
-        if(location!=null)
-            tv_place.setText("Địa điểm ở " + location);
+        if(appointment!=null)
+            tv_place.setText("Địa điểm ở " + appointment);
         else
         {
             tv_place.setText("Địa điểm");
-            location = "";
+            appointment = "";
         }
 
 
@@ -212,7 +213,7 @@ public class ListTourActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_tours);
+                NestedScrollView scrollView = findViewById(R.id.sv_list_tours);
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });

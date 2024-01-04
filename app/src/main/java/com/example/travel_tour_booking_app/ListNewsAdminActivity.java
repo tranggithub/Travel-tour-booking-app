@@ -3,6 +3,7 @@ package com.example.travel_tour_booking_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -121,7 +122,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_news);
+                NestedScrollView scrollView = findViewById(R.id.sv_list_news);
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });

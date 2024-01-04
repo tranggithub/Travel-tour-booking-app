@@ -5,6 +5,7 @@ import static com.example.travel_tour_booking_app.UserInformationActivity.FIREBA
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +37,7 @@ public class ListUserAdminActivity extends AppCompatActivity {
     PaginationAdapter paginationAdapter;
     EditText edt_search;
     UsersAdapter usersAdapter;
-    ScrollView scrollView;
+    NestedScrollView scrollView;
     Button button;
 
     @Override
