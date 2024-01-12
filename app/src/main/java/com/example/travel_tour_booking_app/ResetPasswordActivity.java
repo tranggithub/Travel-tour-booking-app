@@ -105,9 +105,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Email đặt lại mật khẩu đã được gửi thành công
                             Toast.makeText(ResetPasswordActivity.this, "Email đặt lại mật khẩu đã được gửi", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+                            Intent intent = new Intent(ResetPasswordActivity.this, SuccessResetPasswordActivity.class);
+                            intent.putExtra("user_email", email); // Thêm email vào Intent
                             startActivity(intent);
-                            finish();
                         } else {
                             // Nếu địa chỉ email không được đăng ký hoặc có lỗi khác xảy ra
                             Toast.makeText(ResetPasswordActivity.this, "Không thể gửi email đặt lại mật khẩu", Toast.LENGTH_SHORT).show();

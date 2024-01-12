@@ -77,11 +77,16 @@ public class ChatFragment extends Fragment {
     public String generateBotResponse(String userMessage) {
         if (userMessage.contains("4Travel") && userMessage.contains("đảm bảo") && userMessage.contains("an toàn")) {
             return "Cảm ơn quý khách đã đặt câu hỏi. 4Travel hoạt động dựa trên nguyên tắc lấy lợi ích của khách hàng làm trung tâm, vì thế sự an toàn của khách hàng là một trong những yếu tố mà 4Travel ưu tiên đáp ứng hàng đầu. Do đó quý khách có thể yên tâm sử dụng dịch vụ của chúng tôi.";
+        } else if (userMessage.contains("khuyến mãi")) {
+            return "Để xem các khuyến mãi, quý khách có thể truy cập trang màn hình chính của chúng tôi hoặc liên hệ với đội ngũ hỗ trợ khách hàng để biết thêm chi tiết.";
+        } else if (userMessage.contains("tài khoản ngân hàng")) {
+            return "Để liên kết tài khoản ngân hàng, quý khách có thể truy cập phần cài đặt trong ứng dụng hoặc liên hệ với đội ngũ hỗ trợ để được hướng dẫn chi tiết.";
+        } else if (userMessage.contains("tốn phí") || userMessage.contains("phí không")) {
+            return "Ứng dụng của chúng tôi miễn phí cho việc tải về và sử dụng cơ bản. Tuy nhiên, có thể có một số tính năng hoặc dịch vụ đặc biệt có thể đòi hỏi thanh toán. Quý khách có thể kiểm tra trong phần cài đặt hoặc liên hệ với chúng tôi để biết thêm chi tiết.";
         } else {
-            // Other condition checks or default responses can be handled here
-            // For different types of inquiries or messages
-            return "Sorry, I didn't understand that. Can you ask again differently?";
+            return "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể đặt lại câu hỏi một cách khác không?";
         }
+
     }
 
     public void addUserMessageToChat(String userMessage) {

@@ -455,11 +455,9 @@ public class LoginFragment extends Fragment {
                                                     if ("user".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
                                                         Intent intent = new Intent(getActivity(), HomeActivity.class);
                                                         startActivity(intent);
-                                                        getActivity().finish();
                                                     } else if ("admin".equals(userDetails.getRole()) && userDetails.getDelected() == 0) {
                                                         Intent intent = new Intent(getActivity(), AdminPanelActivity.class);
                                                         startActivity(intent);
-                                                        getActivity().finish();
                                                     } else {
                                                         Toast.makeText(getActivity(), "Người dùng đã bị xóa", Toast.LENGTH_SHORT).show();
                                                         FirebaseAuth.getInstance().signOut();
@@ -471,16 +469,18 @@ public class LoginFragment extends Fragment {
 
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
-
+                                                Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại.",
+                                                        Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                         Toast.makeText(getActivity(), "Đăng nhập thành công.",
                                                 Toast.LENGTH_SHORT).show();
                                     } else {
-                                        // If sign in fails, display a message to the user.
-                                        Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại.",
-                                                Toast.LENGTH_SHORT).show();
                                     }
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(LoginFragment.this.getContext(), "Đăng nhập thất bại. Sai email hoặc mật khẩu.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
