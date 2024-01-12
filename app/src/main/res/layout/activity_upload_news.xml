@@ -26,7 +26,17 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
+                    <ImageView
+                        android:id="@+id/iv_returnbutton_list_news"
+                        android:onClick="GoBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:scaleType="center"
+                        android:src="@drawable/return_button"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
                     <ImageView
                         android:id="@+id/iv_Logo"
                         android:layout_width="wrap_content"
@@ -85,7 +95,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
+                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -160,8 +170,7 @@
                         app:layout_constraintStart_toStartOf="@+id/edt_text_upload_news"
                         app:layout_constraintTop_toBottomOf="@+id/tv_thumbnail_upload_news"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:alpha="0.6">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -201,7 +210,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="35dp"
-                        android:alpha="0.6"
+                        android:textColor="@color/white"
                         android:background="@drawable/rounded_border"
                         android:ems="10"
                         android:fontFamily="@font/firasans_medium"
@@ -262,7 +271,17 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/btn_addText_upload_news"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
+                        <CheckBox
+                            android:id="@+id/ckb_upload_isActive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checked="true"
+                            android:fontFamily="@font/firasans_medium"
+                            android:text="Hiển thị"
+                            android:textColor="#BCFEFE"
+                            android:textSize="15dp"
+                            android:theme="@style/checkBoxStyle"/>
                     </LinearLayout>
 
                     <Button

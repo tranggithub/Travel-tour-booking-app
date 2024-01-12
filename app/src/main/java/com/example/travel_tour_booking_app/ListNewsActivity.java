@@ -49,7 +49,7 @@ public class ListNewsActivity extends AppCompatActivity {
         //News
         newss = new ArrayList<>();
 
-        newsAdapter = new NewsAdapter(this,newss);
+        newsAdapter = new NewsAdapter(this, newss);
 
         RecyclerView rvNews = findViewById(R.id.rv_list_news);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
@@ -67,7 +67,8 @@ public class ListNewsActivity extends AppCompatActivity {
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     News tempNews = itemSnapshot.getValue(News.class);
                     tempNews.setKey(itemSnapshot.getKey());
-                    newss.add(tempNews);
+                    if (tempNews.isActive())
+                        newss.add(tempNews);
                 }
                 newsAdapter.notifyDataSetChanged();
                 alertDialog.dismiss();
@@ -117,12 +118,13 @@ public class ListNewsActivity extends AppCompatActivity {
 
         //Scroll to Top
         ScrollToTop();
+        GoBack();
     }
 
     private void performSearch(String query) {
         ArrayList<News> searchList = new ArrayList<>();
         for (News item : newss){
-            if(normalizeString(item.getTitile().toLowerCase()).contains(query.toLowerCase())){
+            if(normalizeString(item.getTitle().toLowerCase()).contains(query.toLowerCase())){
                 searchList.add(item);
             }
         }

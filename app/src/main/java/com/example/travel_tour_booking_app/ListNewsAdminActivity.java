@@ -42,12 +42,12 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_news_admin);
 
-//Progress layout
+        //Progress layout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
+        alertDialog.show();
         //change to upload page
         AddNews();
 
@@ -59,7 +59,6 @@ public class ListNewsAdminActivity extends AppCompatActivity {
         RecyclerView rvNews = findViewById(R.id.rv_list_news);
         rvNews.setLayoutManager(new LinearLayoutManager(this));
         rvNews.setAdapter(newsAdapter);
-
 
         //Firebase
         databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android News");
@@ -80,7 +79,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
+                alertDialog.dismiss();
             }
         });
 
@@ -127,7 +126,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
     private void performSearch(String query) {
         ArrayList<News> searchList = new ArrayList<>();
         for (News item : newss){
-            if(normalizeString(item.getTitile().toLowerCase()).contains(query.toLowerCase())){
+            if(normalizeString(item.getTitle().toLowerCase()).contains(query.toLowerCase())){
                 searchList.add(item);
             }
         }
@@ -155,15 +154,9 @@ public class ListNewsAdminActivity extends AppCompatActivity {
 
     }
 
-    public void GoBack()
+    public void GoBack(View view)
     {
-        ImageView imageView = findViewById(R.id.iv_returnbutton_list_news);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        finish();
     }
 
     public void AddNews()
@@ -177,4 +170,6 @@ public class ListNewsAdminActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

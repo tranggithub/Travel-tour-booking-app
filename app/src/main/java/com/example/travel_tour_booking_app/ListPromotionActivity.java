@@ -67,7 +67,8 @@ public class ListPromotionActivity extends AppCompatActivity {
                 promotions.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
-                    promotions.add(tempPromotion);
+                    if (tempPromotion.isActive())
+                        promotions.add(tempPromotion);
                 }
                 promotionAdapter.notifyDataSetChanged();
                 alertDialog.dismiss();
@@ -116,6 +117,7 @@ public class ListPromotionActivity extends AppCompatActivity {
 
         //Scroll to Top
         ScrollToTop();
+        GoBack();
     }
 
     private void performSearch(String query) {

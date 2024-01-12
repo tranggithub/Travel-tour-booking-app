@@ -47,6 +47,19 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_list_trip"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_update_tour"
+                android:onClick="ChangeUpdateNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Sửa"
+                android:fontFamily="@font/firasans_bold"
+                android:textSize="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingEnd="@dimen/margin_left_right_section"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
 
@@ -63,7 +76,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="100dp">
+            android:paddingBottom="100dp"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -77,7 +91,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
-                    tools:ignore="MissingConstraints"
+                    android:scaleType="centerCrop"
                     >
                 </ImageView>
 
@@ -87,25 +101,38 @@
                     android:layout_height="30dp"
                     android:scaleType="center"
                     android:src="@drawable/ic_heart"
-                    app:layout_constraintLeft_toLeftOf="@id/img_toronto"
-                    app:layout_constraintRight_toRightOf="@id/img_toronto"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="200dp"
-                    app:layout_constraintTop_toTopOf="@id/img_toronto"/>
+                    app:layout_constraintTop_toTopOf="@id/img_toronto"
+                    app:layout_constraintEnd_toStartOf="@id/iv_share_trip"
+                    />
+                <ImageView
+                    android:id="@+id/iv_heart_trip_love"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_heart"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="200dp"
+                    app:layout_constraintTop_toTopOf="@id/img_toronto"
+                    app:layout_constraintEnd_toStartOf="@id/iv_share_trip"
+                    android:tint="#eb3223"
+                    android:visibility="gone"
+                    />
                 <ImageView
                     android:id="@+id/iv_share_trip"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:scaleType="center"
                     android:src="@drawable/ic_share"
-                    app:layout_constraintLeft_toRightOf="@id/iv_heart_trip"
-                    app:layout_constraintRight_toRightOf="@id/img_toronto"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     app:layout_constraintTop_toTopOf="@id/img_toronto"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/tv_detail_tour_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -133,15 +160,17 @@
                     android:id="@+id/tv_ngaythamquan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="50dp"
                     android:fontFamily="@font/firasans_bold"
                     android:text="Ngày tham quan"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_schec"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                     />
 
                 <View
                     android:id="@+id/v_schec"
@@ -152,34 +181,33 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <View
                     android:id="@+id/view13"
                     android:layout_width="3dp"
                     android:layout_height="30dp"
-                    android:layout_marginEnd="152dp"
-                    android:layout_marginBottom="2dp"
                     android:background="@color/maincolor"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_date"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toEndOf="@id/tv_ngaythamquan"
+                    app:layout_constraintEnd_toStartOf="@id/tv_detail_tour_date"
+                     />
 
                 <TextView
-                    android:id="@+id/tv_date"
+                    android:id="@+id/tv_detail_tour_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/firasans_mediumitalic"
                     android:text="Chủ nhật, 9 Th 4 2023"
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    tools:ignore="MissingConstraints,TextSizeCheck"
-                    tools:layout_editor_absoluteY="4dp" />
+                    app:layout_constraintStart_toEndOf="@id/view13"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,13 +227,13 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <TextView
-                    android:id="@+id/tv_thoihan"
+                    android:id="@+id/tv_detail_tour_duration"
                     android:layout_width="70dp"
                     android:layout_height="31dp"
-                    android:layout_marginStart="52dp"
+                    android:layout_marginStart="50dp"
                     android:fontFamily="@font/firasans_medium"
                     android:text="4 ngày"
                     android:textColor="@color/white"
@@ -213,22 +241,23 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <View
                     android:id="@+id/v14"
                     android:layout_width="3dp"
                     android:layout_height="30dp"
-                    android:layout_marginEnd="36dp"
                     android:background="@color/maincolor"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_gia"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintEnd_toStartOf="@+id/tv_detail_tour_price"
+                    app:layout_constraintStart_toEndOf="@id/tv_detail_tour_duration"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                     />
 
                 <TextView
-                    android:id="@+id/tv_gia"
+                    android:id="@+id/tv_detail_tour_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="96dp"
                     android:fontFamily="@font/firasans_bold"
                     android:text="9.190.123 VND"
                     android:textColor="@color/white"
@@ -236,7 +265,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toEndOf="@id/v14"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -255,21 +285,21 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <TextView
-                    android:id="@+id/tv_diadiem"
+                    android:id="@+id/tv_detail_tour_diadiem"
                     android:layout_width="70dp"
                     android:layout_height="31dp"
-                    android:layout_marginStart="52dp"
+                    android:layout_marginStart="50dp"
                     android:fontFamily="@font/firasans_mediumitalic"
                     android:text="Canada"
                     android:textColor="@color/white"
                     android:textSize="19dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:layout_width="20dp"
@@ -298,21 +328,21 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_danhgia"
                     android:layout_width="70dp"
                     android:layout_height="31dp"
-                    android:layout_marginStart="17dp"
+                    android:layout_marginStart="50dp"
                     android:fontFamily="@font/firasans_mediumitalic"
                     android:text="4 sao"
                     android:textColor="@color/white"
                     android:textSize="19dp"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_quality"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <RatingBar
                     android:id="@+id/rtbProductRating"
@@ -324,8 +354,8 @@
                     android:numStars="5"
                     android:rating="3.5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteY="4dp" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
@@ -337,7 +367,7 @@
                 android:background="@color/white" />
 
             <TextView
-                android:id="@+id/tv_info_trip"
+                android:id="@+id/tv_detail_tour_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -350,7 +380,7 @@
                 android:textSize="20dp"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                 />
 
             <View
                 android:layout_width="match_parent"
@@ -369,36 +399,42 @@
                 android:text="Lịch trình"
                 android:textColor="@color/maincolor"
                 android:textSize="35dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail_tour_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:nestedScrollingEnabled="false"/>
 
             <TextView
+                android:id="@+id/tv_thongtinlichtrinh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:fontFamily="@font/firasans_medium"
-                android:text="Ngày 1"
+                android:text="Ngày 1:\n
+7 giờ - 8 giờ: làm thủ tục ở sân bay\n
+11 giờ 30 đến 12 giờ: làm thủ tục nhận phòng khách sạn\n
+12 giờ đến 1 giờ 30: ăn trưa tại nhà hàng của khách sạn\n
+2 giờ: nghỉ ngơi\n
+Ngày 2:\n
+8 giờ: tập hợp tại sảnh khách sạn\n
+9 giờ: đi thăm quan chùa Laka\n
+12 giờ: ăn trưa tại nhà hàng Saras\n
+1 giờ đến 5 giờ: du lịch tự do\n
+5 giờ 30: quay về khách sạn và ăn tối\n
+7 giờ: đi Công viên Vany\n
+Ngày 3:\n
+7 giờ: ăn sáng tại nhà ăn khách sạn\n
+9 giờ đến 11 giờ: tham quan tự do\n
+12 giờ: ăn trưa tại nhà ăn khách sạn\n
+3 giờ: tham quan Bảo tàng"
+                android:maxLines="3"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="12dp"
-                android:fontFamily="@font/firasans_medium"
-                android:text="* 7 giờ - 8 giờ: làm thủ tục ở sân bay"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="12dp"
-                android:fontFamily="@font/firasans_medium"
-                android:text="* 11 giờ 30 đến 12 giờ: làm thủ tục nhận phòng khách sạn"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_more_info"
@@ -409,7 +445,8 @@
                 android:background="@drawable/custom_button"
                 android:gravity="bottom"
                 android:text="Xem thêm"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
@@ -420,6 +457,7 @@
                 android:background="@color/maincolor" />
 
             <TextView
+                android:id="@+id/tv_detail_tour_hotel_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -453,7 +491,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <Button
                     android:layout_width="20dp"
@@ -461,9 +499,8 @@
                     android:background="@drawable/ic_back1"
                     android:theme="@style/Theme.Design.Light"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="365dp"
-                    tools:layout_editor_absoluteY="5dp" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <TextView
                     android:id="@+id/tv_diadiem_khachsan"
@@ -473,9 +510,10 @@
                     android:text="Đường 27, khu phố Wams, Tp Canada"
                     android:textColor="@color/white"
                     android:textSize="19dp"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="41dp"
-                    tools:layout_editor_absoluteY="0dp" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="50dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -489,25 +527,25 @@
                     android:id="@+id/v_quality1"
                     android:layout_width="28dp"
                     android:layout_height="31dp"
-                    android:layout_marginStart="4dp"
                     android:background="@drawable/ic_good_quality"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_danhgia1"
                     android:layout_width="70dp"
                     android:layout_height="31dp"
-                    android:layout_marginStart="17dp"
+                    android:layout_marginStart="50dp"
                     android:fontFamily="@font/firasans_mediumitalic"
                     android:text="5 sao"
                     android:textColor="@color/white"
                     android:textSize="19dp"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_quality1"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                     />
 
                 <RatingBar
                     android:id="@+id/rtbProductRating1"
@@ -519,7 +557,9 @@
                     android:numStars="5"
                     android:rating="5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -538,7 +578,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <Button
                     android:layout_width="20dp"
@@ -546,9 +586,8 @@
                     android:background="@drawable/ic_back1"
                     android:theme="@style/Theme.Design.Light"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="365dp"
-                    tools:layout_editor_absoluteY="5dp" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <TextView
                     android:id="@+id/tv_danhgia2"
@@ -558,9 +597,10 @@
                     android:text="Từ 40 đánh giá"
                     android:textColor="@color/white"
                     android:textSize="19dp"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="41dp"
-                    tools:layout_editor_absoluteY="0dp" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="50dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
@@ -583,8 +623,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
-                    tools:ignore="MissingConstraints,UnknownIdInLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news">
                 </ImageView>
                 <Button
                     android:id="@+id/bt_full_img"
@@ -626,7 +665,13 @@
                 android:textColor="@color/white"
                 android:textSize="30dp">
             </TextView>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail_tour_tiennghichung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="12dp"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -641,7 +686,7 @@
                     android:background="@drawable/ic_wifi"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints">
+                    >
                 </View>
 
                 <TextView
@@ -655,7 +700,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/v_wifi"
                     app:layout_constraintStart_toStartOf="@id/v_wifi"
                     app:layout_constraintTop_toBottomOf="@+id/v_wifi"
-                    tools:ignore="MissingConstraints,TextSizeCheck">
+                    >
                 </TextView>
 
                 <View
@@ -666,7 +711,8 @@
                     android:background="@drawable/ic_two_bed"
                     app:layout_constraintEnd_toStartOf="@+id/v_spa"
                     app:layout_constraintStart_toEndOf="@+id/v_wifi"
-                    tools:ignore="MissingConstraints"></View>
+                    app:layout_constraintTop_toTopOf="parent"
+                    ></View>
 
                 <TextView
                     android:id="@+id/tv_bed"
@@ -681,7 +727,7 @@
                     app:layout_constraintHorizontal_bias="0.717"
                     app:layout_constraintStart_toStartOf="@+id/v_twobed"
                     app:layout_constraintTop_toBottomOf="@+id/v_twobed"
-                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+                    ></TextView>
 
                 <View
                     android:id="@+id/v_spa"
@@ -691,7 +737,8 @@
                     android:background="@drawable/ic_spa"
                     app:layout_constraintEnd_toStartOf="@+id/v_tvshow"
                     app:layout_constraintStart_toEndOf="@+id/v_twobed"
-                    tools:ignore="MissingConstraints"></View>
+                    app:layout_constraintTop_toTopOf="parent"
+                    ></View>
 
                 <TextView
                     android:id="@+id/tv_spa"
@@ -706,8 +753,7 @@
                     app:layout_constraintHorizontal_bias="0.652"
                     app:layout_constraintStart_toStartOf="@+id/v_spa"
                     app:layout_constraintTop_toBottomOf="@+id/v_spa"
-                    tools:ignore="MissingConstraints,TextSizeCheck,TextSizeCheck"></TextView>
-//2
+                    ></TextView>
                 <View
                     android:id="@+id/v_tvshow"
                     android:layout_width="30dp"
@@ -716,7 +762,8 @@
                     android:background="@drawable/ic_tvshow"
                     app:layout_constraintEnd_toStartOf="@id/v_cool"
                     app:layout_constraintStart_toEndOf="@+id/v_spa"
-                    tools:ignore="MissingConstraints"></View>
+                    app:layout_constraintTop_toTopOf="parent"
+                    ></View>
 
                 <TextView
                     android:id="@+id/tv_tvshow"
@@ -729,7 +776,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/v_tvshow"
                     app:layout_constraintStart_toStartOf="@+id/v_tvshow"
                     app:layout_constraintTop_toBottomOf="@+id/v_tvshow"
-                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+                    ></TextView>
 
                 <View
                     android:id="@+id/v_cool"
@@ -740,7 +787,8 @@
                     android:background="@drawable/ic_cool"
                     app:layout_constraintEnd_toStartOf="@id/v_packing"
                     app:layout_constraintStart_toEndOf="@+id/v_tvshow"
-                    tools:ignore="MissingConstraints"></View>
+                    app:layout_constraintTop_toTopOf="parent"
+                    ></View>
 
                 <TextView
                     android:id="@+id/tv_cool"
@@ -754,7 +802,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/v_cool"
                     app:layout_constraintStart_toStartOf="@+id/v_cool"
                     app:layout_constraintTop_toBottomOf="@+id/v_cool"
-                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+                    ></TextView>
 
                 <View
                     android:id="@+id/v_packing"
@@ -763,7 +811,8 @@
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/ic_packing"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints"></View>
+                    app:layout_constraintTop_toTopOf="parent"
+                    ></View>
 
                 <TextView
                     android:id="@+id/tv_packing"
@@ -778,7 +827,7 @@
                     app:layout_constraintHorizontal_bias="0.824"
                     app:layout_constraintStart_toStartOf="@+id/v_packing"
                     app:layout_constraintTop_toBottomOf="@+id/v_packing"
-                    tools:ignore="MissingConstraints,TextSizeCheck"></TextView>
+                    ></TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
@@ -813,7 +862,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_restaurant"
@@ -823,10 +872,10 @@
                     android:text="Bữa sáng miễn phí"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.22222"
-                    app:layout_constraintStart_toEndOf="@+id/v_restaurant"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="50dp"
+                    >
                 </TextView>
 
                 <TextView
@@ -840,11 +889,13 @@
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     app:layout_constraintTop_toBottomOf="@+id/v_restaurant"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
                 </TextView>
 
                 <TextView
                     android:id="@+id/tv_traphong"
+                    android:layout_marginLeft="@dimen/margin_section"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -852,9 +903,9 @@
                     android:text="Trả phòng trước"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_restaurant"
+                    app:layout_constraintStart_toEndOf="@id/tv_nhanphong"
                     app:layout_constraintTop_toBottomOf="@id/tv_restaurant"
-                    tools:ignore="MissingConstraints,TextSizeCheck">
+                    >
                 </TextView>
 
                 <TextView
@@ -869,7 +920,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/tv_nhanphong"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nhanphong"
-                    tools:ignore="MissingConstraints">
+                    >
                 </TextView>
 
                 <TextView
@@ -884,7 +935,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/tv_traphong"
                     app:layout_constraintTop_toBottomOf="@+id/tv_traphong"
-                    tools:ignore="MissingConstraints">
+                    >
                 </TextView>
 
                 <View
@@ -895,7 +946,8 @@
                     android:background="@drawable/ic_hotel_bed"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintTop_toBottomOf="@+id/tv_gionhanphong"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toStartOf="parent"
+                     />
 
                 <TextView
                     android:id="@+id/tv_themgiuong"
@@ -909,18 +961,20 @@
                     android:textSize="20dp"
                     app:layout_constraintLeft_toRightOf="@+id/v_hotelbed"
                     app:layout_constraintTop_toBottomOf="@+id/tv_giotraphong"
-                    tools:ignore="MissingConstraints">
+                    >
                 </TextView>
 
                 <LinearLayout
                     android:id="@+id/ll_free"
                     android:layout_width="0dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/rounded_border_maincolor"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/v_hotelbed"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
 
                     <TextView
                         android:layout_width="match_parent"
@@ -956,14 +1010,12 @@
                     android:id="@+id/tv_free2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="36dp"
                     android:fontFamily="@font/firasans_light"
-                    android:text="Trẻ em có thể sử dụng giường phụ miễn phí "
+                    android:text="Sử dụng giường phụ miễn phí "
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    app:layout_constraintLeft_toRightOf="@+id/ll_free"
-                    app:layout_constraintTop_toBottomOf="@id/tv_free1"
-                    tools:ignore="TextSizeCheck">
+                    app:layout_constraintStart_toStartOf="@+id/tv_free1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_free1">
                 </TextView>
 
                 <LinearLayout
@@ -975,7 +1027,8 @@
                     android:background="@drawable/rounded_border_maincolor"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/ll_free"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1007,14 +1060,13 @@
 
                 <TextView
                     android:id="@+id/tv_thanhtoan2"
-                    android:layout_width="326dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
                     android:fontFamily="@font/firasans_light"
-                    android:text="Trẻ em có thể sử dụng giường phụ với phụ phí là VND 500.000"
+                    android:text="Phụ phí là VND 500.000"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    app:layout_constraintLeft_toRightOf="@+id/ll_thanhtoan"
+                    app:layout_constraintStart_toStartOf="@+id/tv_thanhtoan1"
                     app:layout_constraintTop_toBottomOf="@id/tv_thanhtoan1">
                 </TextView>
 
@@ -1059,7 +1111,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="DuplicateIds,MissingConstraints" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_airplane_info"
@@ -1069,11 +1121,12 @@
                     android:text="Thông tin chuyến bay"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.22222"
-                    app:layout_constraintStart_toEndOf="@+id/v_airplane"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="50dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
                 </TextView>
+
                 <TextView
                     android:id="@+id/tv_info"
                     android:layout_width="wrap_content"
@@ -1082,10 +1135,8 @@
                     android:text="Từ thành phố  Hồ Chí Minh"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    app:layout_constraintHorizontal_bias="0.22222"
-                    app:layout_constraintTop_toBottomOf="@+id/v_airplane"
-                    tools:ignore="MissingConstraints">
-                </TextView>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_airplane"></TextView>
                 <View
                     android:id="@+id/v_clock"
                     android:layout_width="28dp"
@@ -1094,7 +1145,8 @@
                     android:background="@drawable/ic_clock"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintTop_toBottomOf="@+id/tv_info"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toStartOf="parent"
+                     />
                 <TextView
                     android:id="@+id/tv_thoigianbay"
                     android:layout_width="wrap_content"
@@ -1108,7 +1160,7 @@
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintStart_toEndOf="@+id/v_clock"
                     app:layout_constraintTop_toBottomOf="@+id/tv_info"
-                    tools:ignore="MissingConstraints">
+                    >
                 </TextView>
                 <View
                     android:id="@+id/v_dot"
@@ -1120,7 +1172,7 @@
                     android:background="@drawable/ic_dot"
                     app:layout_constraintStart_toEndOf="@+id/tv_thoigianbay"
                     app:layout_constraintTop_toBottomOf="@+id/tv_info"
-                    tools:ignore="MissingConstraints" />
+                     />
                 <TextView
                     android:id="@+id/tv_thoigianbay1"
                     android:layout_width="wrap_content"
@@ -1134,22 +1186,25 @@
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintStart_toEndOf="@+id/v_dot"
                     app:layout_constraintTop_toBottomOf="@+id/tv_info"
-                    tools:ignore="MissingConstraints">
+                    >
                 </TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/ll_date_fly"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_border_maincolor"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/ll_free"
-                tools:ignore="MissingConstraints">
+                >
 
                 <TextView
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:id="@+id/tv_detail_tour_date_plane"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -1175,7 +1230,7 @@
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 app:layout_constraintTop_toBottomOf="@+id/ll_date"
-                tools:ignore="MissingConstraints">
+                >
             </TextView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -1191,7 +1246,7 @@
                     android:background="@drawable/ic_dot"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_chitietbay"
@@ -1202,29 +1257,30 @@
                     android:text="8:30 Thành phố Hồ Chí Minh"
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toRightOf="@+id/v_dot1"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
                 </TextView>
 
                 <View
                     android:id="@+id/v_line"
                     android:layout_width="3dp"
-                    android:layout_height="170dp"
+                    android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:background="@color/maincolor"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_chitietbay6"
                     app:layout_constraintEnd_toEndOf="@id/v_dot2"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/v_dot1">
-                </View>
+                    app:layout_constraintTop_toBottomOf="@+id/v_dot1"></View>
 
                 <View
                     android:id="@+id/v_dot2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:background="@drawable/ic_dot"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="182dp">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
                 </View>
 
                 <View
@@ -1237,112 +1293,15 @@
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line"
                     app:layout_constraintTop_toBottomOf="@id/tv_chitietbay" />
-
-                <View
-                    android:id="@+id/v_airplane_takeoff"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_airplane_take_off"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_tour_tiennghi_plane"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line2"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintTop_toBottomOf="@+id/v_line2"/>
 
-//1
-                <View
-                    android:id="@+id/v_tvshow_transport"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_tvshow"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_airplane_takeoff"
-                    tools:ignore="DuplicateIds,MissingConstraints" />
 
-                <TextView
-                    android:id="@+id/tv_chitietbay1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="A350 (máy bay thân rộng)"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_airplane_takeoff"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line2"
-                    tools:ignore="MissingConstraints">
-                </TextView>
-
-                <TextView
-                    android:id="@+id/tv_chitietbay2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Có Tivi"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_tvshow_transport"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_chitietbay1"
-                    tools:ignore="MissingConstraints">
-                </TextView>
-
-                <View
-                    android:id="@+id/v_food"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_food_bar"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow_transport"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/tv_chitietbay3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Cung cấp các bữa ăn "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_food"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow_transport"
-                    tools:ignore="MissingConstraints">
-                </TextView>
-
-                <View
-                    android:id="@+id/v_plug"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_plug"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@+id/v_food"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/tv_chitietbay4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Cung cấp ổ cắm điện "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_plug"
-                    app:layout_constraintTop_toBottomOf="@+id/v_food"
-                    tools:ignore="MissingConstraints">
-                </TextView>
 
                 <View
                     android:id="@+id/v_line3"
@@ -1353,20 +1312,20 @@
                     android:layout_marginRight="12dp"
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line"
-                    app:layout_constraintTop_toBottomOf="@id/v_plug" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_detail_tour_tiennghi_plane" />
 
                 <TextView
                     android:id="@+id/tv_chitietbay6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/firasans_medium"
                     android:text="10:45 Đảo Toronto "
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toRightOf="@+id/v_dot2"
                     app:layout_constraintTop_toBottomOf="@id/v_line3"
-                    tools:ignore="MissingConstraints">
+                    >
                 </TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <View
@@ -1391,7 +1350,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="DuplicateIds,MissingConstraints" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_car_info"
@@ -1401,10 +1360,10 @@
                     android:text="Thông tin chuyến xe"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.22222"
-                    app:layout_constraintStart_toEndOf="@+id/v_car"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="50dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
                 </TextView>
 
                 <TextView
@@ -1417,7 +1376,9 @@
                     android:textSize="20dp"
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintTop_toBottomOf="@+id/v_car"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
+                    >
                 </TextView>
 
                 <View
@@ -1428,7 +1389,9 @@
                     android:background="@drawable/ic_clock"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintTop_toBottomOf="@+id/tv_from_car"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
+                     />
 
                 <TextView
                     android:id="@+id/tv_thoigiancar"
@@ -1443,7 +1406,8 @@
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintStart_toEndOf="@+id/v_clock_car"
                     app:layout_constraintTop_toBottomOf="@+id/tv_from_car"
-                    tools:ignore="MissingConstraints">
+                    android:visibility="gone"
+                    >
                 </TextView>
 
                 <TextView
@@ -1458,7 +1422,8 @@
                     android:textSize="20dp"
                     app:layout_constraintHorizontal_bias="0.22222"
                     app:layout_constraintTop_toBottomOf="@+id/v_clock_car"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
                 </TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1475,7 +1440,7 @@
                     android:background="@drawable/ic_dot"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_detailhour_car"
@@ -1483,22 +1448,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:fontFamily="@font/firasans_medium"
-                    android:text="10:55 Từ sân bay"
+                    android:text="Danh sách tiện nghi"
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toRightOf="@+id/v_dot3"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
                 </TextView>
 
                 <View
                     android:id="@+id/v_line_car"
                     android:layout_width="3dp"
-                    android:layout_height="120dp"
+                    android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:background="@color/maincolor"
                     app:layout_constraintEnd_toEndOf="@id/v_dot4"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/v_dot3">
+                    app:layout_constraintTop_toBottomOf="@+id/v_dot3"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_detailhour_car1">
                 </View>
 
                 <View
@@ -1507,7 +1474,8 @@
                     android:layout_height="20dp"
                     android:background="@drawable/ic_dot"
                     app:layout_constraintTop_toBottomOf="@id/v_line_car"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
                 </View>
 
                 <View
@@ -1520,87 +1488,13 @@
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line_car"
                     app:layout_constraintTop_toBottomOf="@id/tv_detailhour_car" />
-
-                <View
-                    android:id="@+id/v_tvshow_car"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_tvshow"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_car1"
-                    tools:ignore="MissingConstraints" />
-
-
-                <TextView
-                    android:id="@+id/tv_detail_car1"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_tour_tiennghi_car"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Có Tivi"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_tvshow_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_car1"
-                    tools:ignore="MissingConstraints">
-                </TextView>
-
-                <View
-                    android:id="@+id/v_car_freshair"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_car_fresh_air"
-                    app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow_car"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_car1"/>
 
-
-                <TextView
-                    android:id="@+id/tv_detail_car2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Xe có máy lạnh "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_car_freshair"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_car1"
-                    tools:ignore="MissingConstraints">
-                </TextView>
-
-                <View
-                    android:id="@+id/v_car_seat"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_seat"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@+id/v_car_freshair"
-                    tools:ignore="MissingConstraints" />
-
-
-                <TextView
-                    android:id="@+id/tv_detail_car3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/firasans_medium"
-                    android:text="Ghế ngồi thoải mái "
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/v_car_seat"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_car2"
-                    tools:ignore="MissingConstraints">
-                </TextView>
 
                 <View
                     android:id="@+id/v_line_car2"
@@ -1611,7 +1505,7 @@
                     android:layout_marginRight="12dp"
                     android:background="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/v_line_car"
-                    app:layout_constraintTop_toBottomOf="@id/tv_detail_car3" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_detail_tour_tiennghi_car" />
 
                 <TextView
                     android:id="@+id/tv_detailhour_car1"
@@ -1623,7 +1517,8 @@
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toRightOf="@+id/v_dot4"
                     app:layout_constraintTop_toBottomOf="@id/v_line_car2"
-                    tools:ignore="MissingConstraints">
+                    android:visibility="gone"
+                    >
                 </TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1633,7 +1528,7 @@
                 android:layout_marginTop="@dimen/margin_section">
 
                 <Button
-                    android:id="@+id/btn_detail_trip_up"
+                    android:id="@+id/btn_detail_tour_up"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -1648,18 +1543,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_double_up"
-                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_trip_up"
-                    app:layout_constraintEnd_toEndOf="@id/btn_detail_trip_up"
-                    app:layout_constraintStart_toStartOf="@id/btn_detail_trip_up"
-                    app:layout_constraintTop_toTopOf="@id/btn_detail_trip_up" />
+                    app:layout_constraintBottom_toBottomOf="@id/btn_detail_tour_up"
+                    app:layout_constraintEnd_toEndOf="@id/btn_detail_tour_up"
+                    app:layout_constraintStart_toStartOf="@id/btn_detail_tour_up"
+                    app:layout_constraintTop_toTopOf="@id/btn_detail_tour_up" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/sv_detail_tour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_top_border"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -1669,27 +1566,28 @@
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9.999.999 VND"
-                android:textSize="30dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/firasans_medium"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/firasans_bold"
+                android:text="9.190.123 VND"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="@id/bt_booking"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="20dp">
+                app:layout_constraintTop_toTopOf="@id/bt_booking">
             </TextView>
+
             <Button
                 android:id="@+id/bt_booking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đặt chuyến đi"
-                android:background="@drawable/rounded_border"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="20dp">
+                android:background="@drawable/custom_button"
+                android:text="Đặt chuyến đi"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
             </Button>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

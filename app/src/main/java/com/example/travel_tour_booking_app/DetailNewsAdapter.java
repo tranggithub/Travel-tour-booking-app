@@ -1,6 +1,8 @@
 package com.example.travel_tour_booking_app;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +19,12 @@ import java.util.List;
 public class DetailNewsAdapter extends RecyclerView.Adapter<DetailNewsAdapter.MyViewHolder> {
     Context context;
     List<DetailNews> detailNews;
+    Float textSize = null;
 
-    public DetailNewsAdapter (Context context, List<DetailNews> detailNews){
+    public DetailNewsAdapter (Context context, List<DetailNews> detailNews, float textSize){
         this.context = context;
         this.detailNews = detailNews;
+        this.textSize = textSize;
     }
     @Override
     public DetailNewsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +59,10 @@ public class DetailNewsAdapter extends RecyclerView.Adapter<DetailNewsAdapter.My
 
             //Thiết lập nội dung
             holder.tvDetail.setText(tempDetailNews.getDetailText());
+
+            if(textSize != null){
+                holder.tvDetail.setTextSize(textSize);
+            }
         }
     }
 
@@ -73,5 +81,12 @@ public class DetailNewsAdapter extends RecyclerView.Adapter<DetailNewsAdapter.My
             ivPlace = itemView.findViewById(R.id.iv_detail_place);
             tvSubtitlePlace = itemView.findViewById(R.id.tv_subtitle_detail_place);
         }
+    }
+
+    public void setTextSize(float size){
+        textSize = convertDpToPixels(size);
+    }
+    private float convertDpToPixels(float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 }

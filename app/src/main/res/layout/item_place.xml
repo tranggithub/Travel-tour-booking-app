@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_section"
     android:layout_marginLeft="12dp"
-    android:layout_marginRight="12dp">
+    android:layout_marginRight="12dp"
+    android:id="@+id/cl_item_place">
 
     <ImageView
         android:id="@+id/iv_place"
@@ -31,15 +32,17 @@
 
     <TextView
         android:id="@+id/tv_title_place"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/firasans_bold"
         android:padding="5dp"
-        android:text="Chuyến du lịch đảo Toronto"
+        android:text="Chuyến du lịch đảo Toronto 000000000000 006868"
         android:textColor="@color/white"
         android:textSize="16dp"
+        app:layout_constraintEnd_toStartOf="@id/iv_star_5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iv_label_place" />
+        app:layout_constraintTop_toTopOf="@id/iv_label_place"
+        />
 
     <TextView
         android:id="@+id/tv_location"

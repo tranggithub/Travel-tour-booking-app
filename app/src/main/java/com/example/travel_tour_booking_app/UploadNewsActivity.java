@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import java.util.List;
 public class UploadNewsActivity extends AppCompatActivity {
     Button bt_UploadNews;
     EditText et_title, et_date, et_text;
+    CheckBox ckb_isActive;
     ImageView iv_thumbnail;
     String ThumbnailURL;
     Uri uri;
@@ -70,6 +72,7 @@ public class UploadNewsActivity extends AppCompatActivity {
         et_title = findViewById(R.id.edt_title_upload_news);
         et_date = findViewById(R.id.edt_date_upload_news);
         et_text = findViewById(R.id.edt_text_upload_news);
+        ckb_isActive = findViewById(R.id.ckb_upload_isActive);
         iv_thumbnail = findViewById(R.id.iv_thumbnail_upload_news);
 
         //Thiết lập URL cho Thumbnail
@@ -104,7 +107,7 @@ public class UploadNewsActivity extends AppCompatActivity {
         bt_UploadNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contextOrPictureUploadAdapter.notifyDataSetChanged();
+//                contextOrPictureUploadAdapter.notifyDataSetChanged();
                 for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
                 {
                     if(item.isImage())
@@ -231,13 +234,14 @@ public class UploadNewsActivity extends AppCompatActivity {
          //Upload Data Firebase
          String title = et_title.getText().toString();
          String text = et_text.getText().toString();
+         boolean isActive = ckb_isActive.isChecked();
          if (title!=null)
          {
-             News news = new News(title, News.getCurrentDate(),text,ThumbnailURL,uploadDetailNewsList);
              // Khởi tạo Firebase Realtime Database
              FirebaseDatabase database = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/");
              DatabaseReference newsRef = database.getReference("Android News");
              String newsId = newsRef.push().getKey();
+             News news = new News(title, News.getCurrentDate(),text,ThumbnailURL,newsId,isActive,uploadDetailNewsList);
              newsRef.child(newsId).
                      setValue(news).
                      addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -257,5 +261,11 @@ public class UploadNewsActivity extends AppCompatActivity {
          } else {
              Toast.makeText(this,"Hãy nhập đầy đủ thông tin",Toast.LENGTH_LONG);
          }
+     }
+
+     public void GoBack (View view){
+        Intent intent = new Intent(this,ListNewsAdminActivity.class);
+        startActivity(intent);
+        finish();
      }
 }

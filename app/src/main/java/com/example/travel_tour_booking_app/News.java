@@ -8,46 +8,30 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class News implements Serializable {
-    String Titile;
+    String Title;
     String UploadDate;
     String Text;
     String Thumbnail;
     String Key;
+    boolean isActive;
     ArrayList<DetailNews> detailNewsArrayList = new ArrayList<>();
-
-//    public News(String titile, String uploadDate, String text) {
-//        Titile = titile;
-//        UploadDate = uploadDate;
-//        Text = text;
-//    }
-
-    public News(String titile, String uploadDate, String text, String thumbnail) {
-        Titile = titile;
-        UploadDate = uploadDate;
-        Text = text;
-        Thumbnail = thumbnail;
-    }
 
     public News() {
     }
 
-    public News(String titile, String uploadDate, String thumbnail, ArrayList<DetailNews> detailNewsArrayList) {
-        Titile = titile;
-        UploadDate = uploadDate;
-        Thumbnail = thumbnail;
-        this.detailNewsArrayList = detailNewsArrayList;
-    }
-
-    public News(String titile, String uploadDate, String text, String thumbnail, ArrayList<DetailNews> detailNewsArrayList) {
-        Titile = titile;
+    public News(String titile, String uploadDate, String text, String thumbnail, String key, boolean isActive, ArrayList<DetailNews> detailNewsArrayList) {
+        Title = titile;
         UploadDate = uploadDate;
         Text = text;
         Thumbnail = thumbnail;
+        Key = key;
+        this.isActive = isActive;
         this.detailNewsArrayList = detailNewsArrayList;
     }
 
-    public void setTitile(String titile) {
-        Titile = titile;
+
+    public void setTitle(String title) {
+        Title = title;
     }
 
     public void setUploadDate(String uploadDate) {
@@ -58,8 +42,8 @@ public class News implements Serializable {
         Text = text;
     }
 
-    public String getTitile() {
-        return Titile;
+    public String getTitle() {
+        return Title;
     }
 
     public String getUploadDate() {
@@ -103,5 +87,13 @@ public class News implements Serializable {
 
     public String getKey() {
         return Key;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -22,10 +23,12 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-public class ReadWriteUserDetails {
+public class ReadWriteUserDetails implements Serializable {
     StorageReference storageReference;
     private String ho;
     private String ten;
@@ -34,6 +37,7 @@ public class ReadWriteUserDetails {
     private String sdt;
     private String email;
     private int delected;
+    ArrayList<Place> listLikeTours = new ArrayList<>();
     public ReadWriteUserDetails() {
         this.ho = null;
         this.ten = null;
@@ -57,25 +61,15 @@ public class ReadWriteUserDetails {
         this.role = "user";
         this.delected = 0;
     }
-    ReadWriteUserDetails(String Ho, String Ten, String Email, String Sdt){
-        this.ho = Ho;
-        this.ten = Ten;
-        this.email = Email;
-        this.sdt = Sdt;
-        this.role = "user";
-    }
-
 
     private void getDefaultImageUrl() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference()
                 .child("Android Users Image").child("default.png");
         Task<Uri> uriTask = storageReference.getDownloadUrl();
-        while (!uriTask.isComplete());
-            Uri url_Image = uriTask.getResult();
+        while (!uriTask.isComplete()) ;
+        Uri url_Image = uriTask.getResult();
         urlImage = url_Image.toString();
     }
-
-
     public String getHo() {
         return ho;
     }
@@ -130,5 +124,13 @@ public class ReadWriteUserDetails {
 
     public String getSdt() {
         return sdt;
+    }
+
+    public ArrayList<Place> getListLikeTours() {
+        return listLikeTours;
+    }
+
+    public void setListLikeTours(ArrayList<Place> listLikeTours) {
+        this.listLikeTours = listLikeTours;
     }
 }

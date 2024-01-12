@@ -8,4 +8,9 @@
         <item name="android:minHeight">22dip</item>
         <item name="android:maxHeight">22dip</item>
     </style>
+
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">#BCFEFE</item>
+        <item name="android:textColorSecondary">#D5D8D9</item>
+    </style>
 </resources>

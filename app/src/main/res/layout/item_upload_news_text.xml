@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:alpha="0.6"
             android:background="@drawable/rounded_border"
             android:ems="10"
             android:fontFamily="@font/firasans_medium"
@@ -30,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:gravity="start|top"
             />
         <LinearLayout
@@ -43,8 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="center"
-            android:orientation="vertical"
-            android:alpha="0.6">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -62,15 +60,17 @@
                 android:layout_marginRight="@dimen/margin_section"
                 android:layout_marginBottom="@dimen/margin_section"
                 />
+
             <EditText
                 android:id="@+id/edt_subtitle_picture_upload_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_section"
                 android:layout_marginRight="@dimen/margin_section"
-                android:hint="Nhập ghi chú hình ảnh vào đây..."
                 android:fontFamily="@font/firasans_medium"
-                android:inputType="textMultiLine"/>
+                android:hint="Nhập ghi chú hình ảnh vào đây..."
+                android:inputType="textMultiLine"
+                android:textColor="@color/white" />
         </LinearLayout>
         <ImageView
             android:id="@+id/iv_delete_upload_news"

@@ -23,8 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
-    Button btnSetting, btnChangeInfor;
-    TextView tvName, tvEmail, tvSdt;
+    TextView btnSetting, btnChangeInfor, btnNotification;
+    ImageView iconNotification;
+    TextView tvName, tvEmail, tvSdt, tvHistory;
     ImageView ivAvatar;
     FirebaseAuth mAuth;
 
@@ -43,6 +44,7 @@ public class UserFragment extends Fragment {
         tvSdt = view.findViewById(R.id.textView8);
         ivAvatar = view.findViewById(R.id.imageView2);
         btnChangeInfor = view.findViewById(R.id.button);
+        tvHistory = view.findViewById(R.id.button3);
 
         if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,9 +63,11 @@ public class UserFragment extends Fragment {
                             if (user.getEmail() != null)
                                 tvEmail.setText("Email: " + user.getEmail());
                             else tvEmail.setText("Email: ");
-                            if (user.getPhoneNumber() != null || userDetails.getSdt() != null)
-                                tvSdt.setText("Số điện thoại: " + (user.getPhoneNumber() != null ? user.getPhoneNumber() : userDetails.getSdt()));
-                            else tvSdt.setText("Số điện thoại: ");
+                            if (userDetails.getSdt() != null) {
+                                tvSdt.setText("Số điện thoại: " + userDetails.getSdt());
+                            } else {
+                                tvSdt.setText("Số điện thoại: ");
+                            }
                             Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
                         }
                     }
@@ -76,6 +80,11 @@ public class UserFragment extends Fragment {
                 }
             });
         }
+
+        //Handle button Notification
+        btnNotification = view.findViewById(R.id.button2);
+        iconNotification = view.findViewById(R.id.noti);
+        ChangeToNotification();
 
         //Handle button Setting
         btnSetting = view.findViewById(R.id.button7);
@@ -98,6 +107,37 @@ public class UserFragment extends Fragment {
             }
         });
 
+        ChangeToHistory();
+
         return view;
+    }
+
+    private void ChangeToNotification() {
+        Intent intent = new Intent(getActivity(), NotificationActivity.class);
+        iconNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(intent);
+            }
+        });
+
+        btnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void ChangeToHistory(){
+        tvHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

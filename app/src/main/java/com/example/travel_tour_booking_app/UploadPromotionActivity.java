@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 public class UploadPromotionActivity extends AppCompatActivity {
     Button bt_UploadPromotion;
     EditText et_title, et_start_date, et_end_date, et_text;
+    CheckBox ckb_isActive;
     ImageView iv_thumbnail;
     String ThumbnailURL;
     Uri uri;
@@ -71,6 +73,7 @@ public class UploadPromotionActivity extends AppCompatActivity {
         et_end_date = findViewById(R.id.edt_date_upload_promotion_end);
         et_text = findViewById(R.id.edt_text_upload_promotion);
         iv_thumbnail = findViewById(R.id.iv_thumbnail_upload_promotion);
+        ckb_isActive = findViewById(R.id.ckb_upload_promotion_isActive);
 
         //Thiết lập URL cho Thumbnail
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -239,7 +242,7 @@ public class UploadPromotionActivity extends AppCompatActivity {
         String dateStart = et_start_date.getText().toString();
         String dateEnd = et_end_date.getText().toString();
         if (title != null && text != null && dateStart != null && dateEnd != null) {
-            Promotion promotion = new Promotion(title,ThumbnailURL,dateStart,dateEnd,text,uploadDetailNewsList);
+            Promotion promotion = new Promotion(title,ThumbnailURL,dateStart,dateEnd,text,uploadDetailNewsList,ckb_isActive.isChecked());
             // Khởi tạo Firebase Realtime Database
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/");
             DatabaseReference promotionRef = database.getReference("Android Promotion");

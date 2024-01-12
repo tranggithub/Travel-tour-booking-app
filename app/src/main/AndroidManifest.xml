@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,54 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
+        <activity
+            android:name=".DetailHotelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadHotelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListHotelAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdatePromotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateTourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListTourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListTourAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadTourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TourDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PhoneLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateNewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListPromotionAdminActivity"
+            android:exported="false" />
         <activity
             android:name=".UserInformationActivity"
             android:exported="false" />
@@ -42,14 +91,8 @@
             android:name=".UploadNewsActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".HomeActivity"
+            android:exported="false" />
         <activity
             android:name=".DetailNewsActivity"
             android:exported="false" />
@@ -64,19 +107,45 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
-            android:exported="false" />
-        <activity
             android:name=".SettingActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetailTripActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

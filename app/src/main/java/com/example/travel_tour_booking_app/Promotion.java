@@ -19,25 +19,17 @@ public class Promotion implements Serializable {
     ArrayList<DetailNews> detailPromotionList;
     boolean isActive;
 
+    public Promotion() {
+    }
 
-    public Promotion(String title, String thumbnail, String startDateString, String endDateString, String text, ArrayList<DetailNews> detailPromotionList) {
+    public Promotion(String title, String thumbnail, String startDateString, String endDateString, String text, ArrayList<DetailNews> detailPromotionList, boolean isActive) {
         Title = title;
         Thumbnail = thumbnail;
         this.startDateString = startDateString;
         this.endDateString = endDateString;
         Text = text;
         this.detailPromotionList = detailPromotionList;
-    }
-
-    public Promotion(String title, String thumbnail, String startDateString, String endDateString, String text) {
-        Title = title;
-        Thumbnail = thumbnail;
-        this.startDateString = startDateString;
-        this.endDateString = endDateString;
-        Text = text;
-    }
-
-    public Promotion() {
+        this.isActive = isActive;
     }
 
     public void setTitle(String title) {
