@@ -22,44 +22,80 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class DetailPromotionActivity extends AppCompatActivity {
+    private static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
     ArrayList<DetailNews> detailPromotionList;
     DetailNewsAdapter detailPromotionAdapter;
     Promotion promotion;
     boolean isAdmin;
-    TextView tv_update_promotion;
+    TextView tv_update_promotion, tv_title, tv_date;
+    RecyclerView rvDetailNews;
+    String Key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_promotion);
 
-        TextView tv_title = findViewById(R.id.tv_title_details_promotion);
-        TextView tv_date = findViewById(R.id.tv_date_details_promotion);
+        tv_title = findViewById(R.id.tv_title_details_promotion);
+        tv_date = findViewById(R.id.tv_date_details_promotion);
         tv_update_promotion = findViewById(R.id.tv_update_promotion);
+        rvDetailNews = findViewById(R.id.rv_detail_promotion);
 
         //Lấy nội dung từ intent()
         Bundle bundle = getIntent().getExtras();
-        promotion = (Promotion) getIntent().getSerializableExtra("DetailPromotionList");
         if (bundle!= null){
-            tv_title.setText(bundle.getString("Title"));
-            tv_date.setText(bundle.getString("Date"));
+            Key = bundle.getString("Key");
         }
-        //Thêm nội dung detail
-        detailPromotionList = new ArrayList<>();
-
-        DetailNews tempDetailNews1 = new DetailNews(promotion.getThumbnail(), null,null,true);
-        detailPromotionList.add(tempDetailNews1);
-
-        for (DetailNews item : promotion.getDetailPromotionList()){
-            detailPromotionList.add(item);
-        }
-        detailPromotionAdapter = new DetailNewsAdapter(this,detailPromotionList,15);
-
-        RecyclerView rvDetailNews = findViewById(R.id.rv_detail_promotion);
-        rvDetailNews.setLayoutManager(new LinearLayoutManager(this));
-        rvDetailNews.setAdapter(detailPromotionAdapter);
+        promotion = (Promotion) getIntent().getSerializableExtra("DetailPromotionList");
 
         ScrollToTop();
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LoadView();
+    }
+    private void LoadView(){
+        DatabaseReference databaseReferenceHotel = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Promotion");
+        databaseReferenceHotel.child(Key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    promotion = snapshot.getValue(Promotion.class);
+                    promotion.setKey(snapshot.getKey());
+                    if (promotion!= null){
+                        tv_title.setText(promotion.getTitle());
+                        tv_date.setText(promotion.getStartDateString()+" - "+promotion.getEndDateString());
+                        //Thêm nội dung detail
+                        detailPromotionList = new ArrayList<>();
+
+                        DetailNews tempDetailNews1 = new DetailNews(promotion.getThumbnail(), null,null,true);
+                        detailPromotionList.add(tempDetailNews1);
+
+                        for (DetailNews item : promotion.getDetailPromotionList()){
+                            detailPromotionList.add(item);
+                        }
+                        detailPromotionAdapter = new DetailNewsAdapter(getBaseContext(),detailPromotionList,15);
+
+
+                        rvDetailNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        rvDetailNews.setAdapter(detailPromotionAdapter);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     public void ScrollToTop()
     {

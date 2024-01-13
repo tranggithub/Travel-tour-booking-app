@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,8 +33,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -54,6 +59,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
     ArrayList<String> newOtherPictureUrl, oldOtherPictureUrl;
     int check;
     Hotel hotel;
+    DatabaseReference hotelRef;
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +68,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
 
         initID();
 
-        hotel = (Hotel) getIntent().getSerializableExtra("Hotel", Hotel.class);
+        hotel = (Hotel) getIntent().getSerializableExtra("Hotel");
         if(hotel!=null){
             for (DetailNews item: hotel.getDetailPictureList()){
                 oldOtherPictureUrl.add(item.getPicture());
@@ -115,6 +121,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
         update();
 
     }
+
     //Thiết lập URL cho Detail News
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -170,6 +177,10 @@ public class UpdateHotelActivity extends AppCompatActivity {
         uploadOtherPictureURL = new ArrayList<>();
         newOtherPictureUrl = new ArrayList<>();
         oldOtherPictureUrl = new ArrayList<>();
+
+        // Khởi tạo Firebase Realtime Database
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        hotelRef = database.getReference("Android Hotel");
     }
     private void addContentOrPicture() {
         detailNewsList = contextOrPictureUploadAdapter.getDetailNewsList();
@@ -182,7 +193,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(false);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
-                Toast.makeText(getBaseContext(),"add content",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm nội dung",Toast.LENGTH_SHORT).show();
             }
         });
         btn_add_picture.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +202,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(true);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
-                Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm hình ảnh",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -229,17 +240,26 @@ public class UpdateHotelActivity extends AppCompatActivity {
         bt_UploadHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
-                    {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                    } else {
-                        uploadOtherPictureURL.add(item);
+                YesNoDialog dialog;
+                dialog = new YesNoDialog(UpdateHotelActivity.this,"Bạn có xác nhận cập nhật ?","Có", "Không");
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                dialog.btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
+                        {
+                            if(item.isImage())
+                            {
+                                saveDetailPicture(Uri.parse(item.getPicture()));
+                            } else {
+                                uploadOtherPictureURL.add(item);
+                            }
+                        }
                     }
-                }
-                Log.e("Check",check+"");
+                });
+
             }
         });
     }
@@ -392,10 +412,19 @@ public class UpdateHotelActivity extends AppCompatActivity {
         boolean isActive = ckb_isActive.isChecked();
         if (title!=null)
         {
-            // Khởi tạo Firebase Realtime Database
-            FirebaseDatabase database = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/");
-            DatabaseReference hotelRef = database.getReference("Android Hotel");
-            Hotel tempHotel = new Hotel(ThumbnailURL,address,title,text,check_in,check_out,tienNghiChungs,addition_fee,age_free,age_addition_fee,breakfast,uploadOtherPictureURL);
+            Hotel tempHotel = hotel;
+            tempHotel.setThumbnail(ThumbnailURL);
+            tempHotel.setAddress(address);
+            tempHotel.setName(title);
+            tempHotel.setIntroduction(text);
+            tempHotel.setTimeCheckIn(check_in);
+            tempHotel.setTimeCheckOut(check_out);
+            tempHotel.setTienNghiChungs(tienNghiChungs);
+            tempHotel.setChildenFee(addition_fee);
+            tempHotel.setChildrenAgeFree(age_free);
+            tempHotel.setChildrenAgeAdditionFee(age_addition_fee);
+            tempHotel.setBreakfast(breakfast);
+            tempHotel.setDetailPictureList(uploadOtherPictureURL);
             hotelRef.child(hotel.getKey()).
                     setValue(tempHotel).
                     addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -414,8 +443,6 @@ public class UpdateHotelActivity extends AppCompatActivity {
                                 }
                                 Toast.makeText(UpdateHotelActivity.this, "Saved", Toast.LENGTH_SHORT);
                                 finish();
-                                Intent intent = new Intent(UpdateHotelActivity.this,ListHotelAdminActivity.class);
-                                startActivity(intent);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {

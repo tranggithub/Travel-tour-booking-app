@@ -3,6 +3,7 @@ package com.example.travel_tour_booking_app;
 import static com.example.travel_tour_booking_app.UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -58,7 +59,6 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_review, container, false);
-
         findViewById(rootView);
 
         mAuth = FirebaseAuth.getInstance();
@@ -86,22 +86,8 @@ public class ReviewFragment extends Fragment {
         if (bundle != null) {
             hotel = (Hotel) bundle.getSerializable("Hotel");
 
-            tvHotelName.setText(hotel.getName());
+            LoadView();
 
-            List<DetailNews> imgHotelList = hotel.getDetailPictureList();
-            HotelImageAdapter hotelImageAdapter = new HotelImageAdapter(getActivity(), imgHotelList);
-            rcvImgHotel.setAdapter(hotelImageAdapter);
-
-            String star = String.valueOf(hotel.getAvgStar());
-            tvSaoDanhGia.setText(star);
-
-            rbHotelRating.setRating(hotel.getAvgStar());
-
-            String soDanhGia = hotel.getSizeComments() + " đánh giá";
-            tvSoDanhGia.setText(soDanhGia);
-
-            tempComments = hotel.getComments();
-            reviewAdapter = new ReviewAdapter(tempComments, getActivity(), user.getUid(), hotel);
             rcvReview.setLayoutManager(new LinearLayoutManager(getActivity()));
             rcvReview.setAdapter(reviewAdapter);
             ivSendComment.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +118,52 @@ public class ReviewFragment extends Fragment {
         Sort(hotel);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LoadView();
+    }
+    private void LoadView() {
+        DatabaseReference databaseReferenceHotel = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel");
+        databaseReferenceHotel.child(hotel.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    hotel = snapshot.getValue(Hotel.class);
+
+                    tvHotelName.setText(hotel.getName());
+
+                    List<DetailNews> imgHotelList = hotel.getDetailPictureList();
+                    HotelImageAdapter hotelImageAdapter = new HotelImageAdapter(getActivity(), imgHotelList);
+                    rcvImgHotel.setAdapter(hotelImageAdapter);
+
+                    String star = String.valueOf(hotel.getAvgStar());
+                    tvSaoDanhGia.setText(star);
+
+                    rbHotelRating.setRating(hotel.getAvgStar());
+
+                    String soDanhGia = hotel.getSizeComments() + " đánh giá";
+                    tvSoDanhGia.setText(soDanhGia);
+
+                    tempComments = hotel.getComments();
+                    reviewAdapter = new ReviewAdapter(tempComments, getActivity(), user.getUid(), hotel);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void UploadComment() {

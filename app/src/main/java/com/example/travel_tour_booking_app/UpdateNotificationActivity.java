@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -128,20 +130,29 @@ public class UpdateNotificationActivity extends AppCompatActivity {
         bt_UpdateNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
-                    {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                        uploadDetailNotificationList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
-                    } else {
-                        uploadDetailNotificationList.add(item);
+                YesNoDialog dialog;
+                dialog = new YesNoDialog(UpdateNotificationActivity.this,"Bạn có xác nhận cập nhật ?","Có", "Không");
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                dialog.btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //contextOrPictureUploadAdapter.notifyDataSetChanged();
+                        for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
+                        {
+                            if(item.isImage())
+                            {
+                                saveDetailPicture(Uri.parse(item.getPicture()));
+                                uploadDetailNotificationList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
+                            } else {
+                                uploadDetailNotificationList.add(item);
+                            }
+                        }
+                        saveData();
                     }
-                }
-                saveData();
-                Intent intent = new Intent(UpdateNotificationActivity.this, ListNotificationAdminActivity.class);
-                startActivity(intent);
+                });
+
             }
         });
     }

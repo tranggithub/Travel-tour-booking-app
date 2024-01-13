@@ -22,8 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DetailNewsActivity extends AppCompatActivity {
+    private static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
     ArrayList<DetailNews> detailNewsArrayList;
     DetailNewsAdapter detailNewsAdapter;
     //FirebaseAuth
@@ -33,6 +35,7 @@ public class DetailNewsActivity extends AppCompatActivity {
     //News chứa nội dung tương ứng với trang được chọn
     News news;
     boolean isAdmin;
+    TextView tv_title, tv_date, tv_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,17 +50,13 @@ public class DetailNewsActivity extends AppCompatActivity {
         }
 
 
-        TextView tv_title = findViewById(R.id.tv_title_details_news);
-        TextView tv_date = findViewById(R.id.tv_date_details_news);
-        TextView tv_text = findViewById(R.id.tv_text_details_news);
+        tv_title = findViewById(R.id.tv_title_details_news);
+        tv_date = findViewById(R.id.tv_date_details_news);
+        tv_text = findViewById(R.id.tv_text_details_news);
 
         //Lấy nội dung được gửi vào intent
         news = (News) getIntent().getSerializableExtra("DetailNewsList");
-        if (news != null){
-            tv_title.setText(news.getTitle().toString());
-            tv_date.setText(news.getUploadDate().toString());
-            tv_text.setText(news.getText().toString());
-        }
+
 //        if (bundle!= null){
 //            tv_title.setText(bundle.getString("Title"));
 //            tv_date.setText(bundle.getString("Date"));
@@ -79,6 +78,17 @@ public class DetailNewsActivity extends AppCompatActivity {
 
         ScrollToTop();
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LoadView();
     }
     private void checkIsAdmin(String userId) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -122,7 +132,28 @@ public class DetailNewsActivity extends AppCompatActivity {
         });
 
     }
+    private void LoadView(){
+        DatabaseReference databaseReferenceHotel = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android News");
+        databaseReferenceHotel.child(news.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    news = snapshot.getValue(News.class);
+                    if (news != null){
+                        tv_title.setText(news.getTitle().toString());
+                        tv_date.setText(news.getUploadDate().toString());
+                        tv_text.setText(news.getText().toString());
+                    }
+                }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     public void ChangeUpdateNews(View view){
         Intent intent = new Intent(DetailNewsActivity.this, UpdateNewsActivity.class);
         intent.putExtra("DetailNewsList", (News) news);

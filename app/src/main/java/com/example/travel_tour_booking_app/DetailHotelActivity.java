@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +48,12 @@ import com.google.firebase.database.ValueEventListener;
             hotel = (Hotel) getIntent().getSerializableExtra("Hotel");
             tours = (Place) getIntent().getSerializableExtra("Tour");
 
-            tvPrice.setText(tours.getPrice());
+            if(tours!=null){
+                tvPrice.setText(tours.getPrice());
+            } else {
+                BottomNavigationView bottomNavigationView = findViewById(R.id.sv_detail_review);
+                bottomNavigationView.setVisibility(View.GONE);
+            }
 
             // Pass the Hotel object to the fragment using a Bundle
             Bundle bundle = new Bundle();

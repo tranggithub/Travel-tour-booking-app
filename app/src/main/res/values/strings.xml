@@ -25,4 +25,6 @@
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">EAAPeXjptvroBO5jP1CHFjIs07wt5mSoCG7Yc2OJpZA0811hA0tG5xbAJCXJNaHZCjLbQoHb26zgOf4zig674mu4Xnv4L00kSkZA3IPxMXq6loZBqTwXfFZBT1WXx12FgVPvBnhcRTSbdjTKltUWhEwWu7htOzylhYBRFWiHZBLHu97ZA7QQdZAfdZCskYTDQU7fkjTPTvWdPCZBDuzOUG5bgZDZD</string>
 
+    <string name="FIREBASE_REALTIME_DATABASE_URL">https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
+
 </resources>

@@ -124,6 +124,7 @@ public class ListPromotionActivity extends AppCompatActivity {
                 promotions.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
+                    tempPromotion.setKey(itemSnapshot.getKey());
                     if (tempPromotion.isActive())
                         promotions.add(tempPromotion);
                 }

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -128,20 +130,29 @@ public class UpdateNewsActivity extends AppCompatActivity {
         bt_UpdateNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                YesNoDialog dialog;
+                dialog = new YesNoDialog(UpdateNewsActivity.this,"Bạn có xác nhận cập nhật ?","Có", "Không");
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
                 //contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
-                    {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                        uploadDetailNewsList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
-                    } else {
-                        uploadDetailNewsList.add(item);
+
+                dialog.btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
+                        {
+                            if(item.isImage())
+                            {
+                                saveDetailPicture(Uri.parse(item.getPicture()));
+                                uploadDetailNewsList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
+                            } else {
+                                uploadDetailNewsList.add(item);
+                            }
+                        }
+                        saveData();
                     }
-                }
-                saveData();
-                Intent intent = new Intent(UpdateNewsActivity.this, ListNewsAdminActivity.class);
-                startActivity(intent);
+                });
             }
         });
     }
@@ -174,7 +185,7 @@ public class UpdateNewsActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(false);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
-                Toast.makeText(getBaseContext(),"add content",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm nội dung",Toast.LENGTH_SHORT).show();
             }
         });
         btn_add_picture.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +194,7 @@ public class UpdateNewsActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(true);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyDataSetChanged();
-                Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm hình ảnh",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -266,10 +277,18 @@ public class UpdateNewsActivity extends AppCompatActivity {
         Boolean isActive = ckbIsActive.isChecked();
         if (title!=null)
         {
-            News news = new News(title,News.getCurrentDate(),text,ThumbnailURL,Key,isActive,uploadDetailNewsList);
+            News tempNews = news;
+            tempNews.setTitle(title);
+            tempNews.setUploadDate(News.getCurrentDate());
+            tempNews.setText(text);
+            tempNews.setThumbnail(ThumbnailURL);
+            tempNews.setKey(Key);
+            tempNews.setActive(isActive);
+            tempNews.setDetailNewsArrayList(uploadDetailNewsList);
+
             // Khởi tạo Firebase Realtime Database
             databaseReference.
-                    setValue(news).
+                    setValue(tempNews).
                     addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

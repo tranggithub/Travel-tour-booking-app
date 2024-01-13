@@ -96,107 +96,139 @@ public class TourDetailActivity extends AppCompatActivity {
 
         //Lấy nội dung được gửi vào intent
         tours = (Place) getIntent().getSerializableExtra("Tour");
-        if (tours != null){
-            if(!isAdmin)
-                UpdateView();
-            tv_title.setText(tours.getTitle().toString());
-            tv_date.setText(tours.getDate().toString());
-            tv_text.setText(tours.getText().toString());
-            tv_location.setText(tours.getLocation().toString());
-            tv_price.setText(tours.getPrice().toString());
-            tv_duration.setText(tours.getDuration().toString());
-            tv_price_navigation.setText(tours.getPrice());
-            Glide.with(this).load(tours.getThumbnail_Image()).into(iv_thumbnail);
-            tv_view.setText(tours.getView() + "");
-            rb_star.setRating((float) tours.getStar());
+        LoadView();
 
-            //Firebase
-            databaseReferenceHotel = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
-            databaseReferenceHotel.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                        Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
-                        tempHotel.setKey(itemSnapshot.getKey());
-                        if(tempHotel.getKey().contains(tours.getHotel())){
-                            hotel = tempHotel;
-                            //Hotel
-                            tv_hotel_diachi.setText(hotel.getAddress());
-                            tv_hotel_name.setText(hotel.getName());
-                            tv_hotel_comment.setText("Từ " + hotel.getComments().size() + " đánh giá");
-                            float averageStar = 0;
-                            if(hotel.getComments()!= null){
-                                for (Comment item:hotel.getComments()){
-                                    averageStar+=item.getStar();
-                                }
-                                if(hotel.getComments().size()!=0){
-                                    averageStar = averageStar/(hotel.getComments().size());
-                                }
-                            }
-                            tv_hotel_star.setText(averageStar + " sao");
-                            rb_hotel_star.setRating(averageStar);
-                            Glide.with(getBaseContext()).load(hotel.getThumbnail()).into(iv_hotel_thumbnail);
-
-                            tienNghiChungAdapter.setTienNghiChungs(hotel.getTienNghiChungs());
-
-                            tv_hotel_breakfast.setText(hotel.getBreakfast());
-                            tv_hotel_checkin.setText(hotel.getTimeCheckIn());
-                            tv_hotel_checkout.setText(hotel.getTimeCheckOut());
-                            tv_hotel_age_free.setText(hotel.getChildrenAgeFree()+ " tuổi trở xuống");
-                            tv_hotel_age_fee.setText(hotel.getChildrenAgeAdditionFee()+ " tuổi trở xuống");
-                            tv_hotel_additional_fee.setText("Phụ phí thêm là " + hotel.getChildenFee());
-                            break;
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-
-
-            //Plane
-            tienIchPlane = tours.getPlaneTienIch();
-            tienIchAdapterPlane = new TienIchAdapter(this,tienIchPlane);
-            rv_TienIch_Plane.setLayoutManager(new LinearLayoutManager(this));
-            rv_TienIch_Plane.setAdapter(tienIchAdapterPlane);
-            tv_planefrom.setText(tours.getPlaneFrom());
-            tv_planeduration.setText(tours.getPlaneDuration());
-            tv_segment.setText(tours.NumberOfSegment + " chặng");
-            tv_planedate.setText(tours.getPlaneDate());
-            tv_planebrand.setText(tours.getPlaneBrand());
-            tv_timetakeoff.setText(tours.getTimeTakeOff());
-            tv_timelanding.setText(tours.getTimeLanding());
-
-            //Car
-            tienIchCar = tours.getCarTienIch();
-            tienIchAdapterCar = new TienIchAdapter(this,tienIchCar);
-            rv_TienIch_Car.setLayoutManager(new LinearLayoutManager(this));
-            rv_TienIch_Car.setAdapter(tienIchAdapterCar);
-            tv_cartype.setText(tours.getCarType());
-
-        }
-        //        if (bundle!= null){
-//            tv_title.setText(bundle.getString("Title"));
-//            tv_date.setText(bundle.getString("Date"));
-//        }
-        //Thêm nội dung detail
-        detailSchedules = new ArrayList<>();
-
-        for (DetailNews item : tours.getSchedule()){
-            detailSchedules.add(item);
-        }
-        detailScheduleAdapter = new DetailNewsAdapter(this,detailSchedules,20);
-
-        RecyclerView rvDetailNews = findViewById(R.id.rv_detail_tour_schedule);
-        rvDetailNews.setLayoutManager(new LinearLayoutManager(this));
-        rvDetailNews.setAdapter(detailScheduleAdapter);
 
         //Giới thiệu thêm các tour cùng địa điểm
         MoreTour();
 
         ScrollToTop();
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LoadView();
+    }
+    private void LoadView() {
+        DatabaseReference databaseReferenceTour = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Tours");
+        databaseReferenceTour.child(tours.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    tours = snapshot.getValue(Place.class);
+
+                    if (tours != null){
+                        if(!isAdmin)
+                            UpdateView();
+                        tv_title.setText(tours.getTitle().toString());
+                        tv_date.setText(tours.getDate().toString());
+                        tv_text.setText(tours.getText().toString());
+                        tv_location.setText(tours.getLocation().toString());
+                        tv_price.setText(tours.getPrice().toString());
+                        tv_duration.setText(tours.getDuration().toString());
+                        tv_price_navigation.setText(tours.getPrice());
+                        Glide.with(getBaseContext()).load(tours.getThumbnail_Image()).into(iv_thumbnail);
+                        tv_view.setText(tours.getView() + "");
+                        rb_star.setRating((float) tours.getStar());
+
+                        //Firebase
+                        databaseReferenceHotel = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
+                        databaseReferenceHotel.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                                    Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
+                                    tempHotel.setKey(itemSnapshot.getKey());
+                                    if(tempHotel.getKey().contains(tours.getHotel())){
+                                        hotel = tempHotel;
+                                        //Hotel
+                                        tv_hotel_diachi.setText(hotel.getAddress());
+                                        tv_hotel_name.setText(hotel.getName());
+                                        tv_hotel_comment.setText("Từ " + hotel.getComments().size() + " đánh giá");
+                                        float averageStar = 0;
+                                        if(hotel.getComments()!= null){
+                                            for (Comment item:hotel.getComments()){
+                                                averageStar+=item.getStar();
+                                            }
+                                            if(hotel.getComments().size()!=0){
+                                                averageStar = averageStar/(hotel.getComments().size());
+                                            }
+                                        }
+                                        tv_hotel_star.setText(averageStar + " sao");
+                                        rb_hotel_star.setRating(averageStar);
+                                        Glide.with(getBaseContext()).load(hotel.getThumbnail()).into(iv_hotel_thumbnail);
+
+                                        tienNghiChungAdapter.setTienNghiChungs(hotel.getTienNghiChungs());
+
+                                        tv_hotel_breakfast.setText(hotel.getBreakfast());
+                                        tv_hotel_checkin.setText(hotel.getTimeCheckIn());
+                                        tv_hotel_checkout.setText(hotel.getTimeCheckOut());
+                                        tv_hotel_age_free.setText(hotel.getChildrenAgeFree()+ " tuổi trở xuống");
+                                        tv_hotel_age_fee.setText(hotel.getChildrenAgeAdditionFee()+ " tuổi trở xuống");
+                                        tv_hotel_additional_fee.setText("Phụ phí thêm là " + hotel.getChildenFee());
+                                        break;
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+
+
+                        //Plane
+                        tienIchPlane = tours.getPlaneTienIch();
+                        tienIchAdapterPlane = new TienIchAdapter(getBaseContext(),tienIchPlane);
+                        rv_TienIch_Plane.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        rv_TienIch_Plane.setAdapter(tienIchAdapterPlane);
+                        tv_planefrom.setText(tours.getPlaneFrom());
+                        tv_planeduration.setText(tours.getPlaneDuration());
+                        tv_segment.setText(tours.NumberOfSegment + " chặng");
+                        tv_planedate.setText(tours.getPlaneDate());
+                        tv_planebrand.setText(tours.getPlaneBrand());
+                        tv_timetakeoff.setText(tours.getTimeTakeOff());
+                        tv_timelanding.setText(tours.getTimeLanding());
+
+                        //Car
+                        tienIchCar = tours.getCarTienIch();
+                        tienIchAdapterCar = new TienIchAdapter(getBaseContext(),tienIchCar);
+                        rv_TienIch_Car.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        rv_TienIch_Car.setAdapter(tienIchAdapterCar);
+                        tv_cartype.setText(tours.getCarType());
+
+                    }
+                    //        if (bundle!= null){
+//            tv_title.setText(bundle.getString("Title"));
+//            tv_date.setText(bundle.getString("Date"));
+//        }
+                    //Thêm nội dung detail
+                    detailSchedules = new ArrayList<>();
+
+                    for (DetailNews item : tours.getSchedule()){
+                        detailSchedules.add(item);
+                    }
+                    detailScheduleAdapter = new DetailNewsAdapter(getBaseContext(),detailSchedules,20);
+
+                    RecyclerView rvDetailNews = findViewById(R.id.rv_detail_tour_schedule);
+                    rvDetailNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    rvDetailNews.setAdapter(detailScheduleAdapter);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void addRecntlyView() {

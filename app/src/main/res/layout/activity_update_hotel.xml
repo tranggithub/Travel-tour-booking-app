@@ -583,7 +583,7 @@
                             android:layout_marginTop="4dp"
                             android:checked="false"
                             android:fontFamily="@font/firasans_medium"
-                            android:text="wifi"
+                            android:text="Wifi"
                             android:textColor="#BCFEFE"
                             android:textSize="15dp"
                             android:theme="@style/checkBoxStyle"/>
@@ -673,7 +673,8 @@
                             android:fontFamily="@font/firasans_bold"
                             android:text="Chế độ hiển thị"
                             android:textColor="#BCFEFE"
-                            android:textSize="13dp" />
+                            android:textSize="13dp"
+                            android:visibility="gone"/>
                         <CheckBox
                             android:id="@+id/ckb_upload_hotel_isActive"
                             android:layout_width="wrap_content"
@@ -684,7 +685,8 @@
                             android:text="Hiển thị"
                             android:textColor="#BCFEFE"
                             android:textSize="15dp"
-                            android:theme="@style/checkBoxStyle"/>
+                            android:theme="@style/checkBoxStyle"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                     <Button

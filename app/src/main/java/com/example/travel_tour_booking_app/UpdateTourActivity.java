@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -297,15 +299,26 @@ public class UpdateTourActivity extends AppCompatActivity {
         bt_UploadTour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                YesNoDialog dialog;
+                dialog = new YesNoDialog(UpdateTourActivity.this,"Bạn có xác nhận cập nhật ?","Có", "Không");
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                dialog.btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 //                contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage()) {}
-                    else {
-                        uploadDetailSchedule.add(item);
+                        for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
+                        {
+                            if(item.isImage()) {}
+                            else {
+                                uploadDetailSchedule.add(item);
+                            }
+                        }
+                        saveData();
                     }
-                }
-                saveData();
+                });
+
             }
         });
     }
@@ -381,12 +394,29 @@ public class UpdateTourActivity extends AppCompatActivity {
             // Khởi tạo Firebase Realtime Database
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/");
             DatabaseReference toursRef = database.getReference("Android Tours");
-            Place place = new Place(title,Date,Location,Price,Duration,ThumbnailURL,
-                    text,detailSchedule,hotelID,diaDiemKhoiHanh,thoiLuongChuyenBay,SoChang,ngayBay,hangBay,
-                    thoiGianCatCanh,thoiGianHaCanh,PlaneTienIch,loaiXe,CarTienIch,isActive);
-            place.setView(tour.getView());
+            Place tempPlace = tour;
+            tempPlace.setTitle(title);
+            tempPlace.setDate(Date);
+            tempPlace.setLocation(Location);
+            tempPlace.setPrice(Price);
+            tempPlace.setDuration(Duration);
+            tempPlace.setThumbnail_Image(ThumbnailURL);
+            tempPlace.setText(text);
+            tempPlace.setSchedule(detailSchedule);
+            tempPlace.setHotel(hotelID);
+            tempPlace.setPlaneFrom(diaDiemKhoiHanh);
+            tempPlace.setDuration(thoiLuongChuyenBay);
+            tempPlace.setNumberOfSegment(SoChang);
+            tempPlace.setPlaneDate(ngayBay);
+            tempPlace.setPlaneBrand(hangBay);
+            tempPlace.setTimeTakeOff(thoiGianCatCanh);
+            tempPlace.setTimeLanding(thoiGianHaCanh);
+            tempPlace.setPlaneTienIch(PlaneTienIch);
+            tempPlace.setCarType(loaiXe);
+            tempPlace.setCarTienIch(CarTienIch);
+            tempPlace.setActive(isActive);
             toursRef.child(tour.getKey()).
-                    setValue(place).
+                    setValue(tempPlace).
                     addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
