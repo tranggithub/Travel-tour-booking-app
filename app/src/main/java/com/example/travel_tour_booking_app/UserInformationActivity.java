@@ -2,6 +2,7 @@ package com.example.travel_tour_booking_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -36,6 +37,7 @@ public class UserInformationActivity extends AppCompatActivity {
     private static String FIREBASE_STORAGE_URL = "gs://travel-tour-booking-app.appspot.com/";
     public static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
     private static int MY_REQUEST_CODE = 10;
+    ConstraintLayout clChangePsw;
     Button btnConfirm;
     EditText edtFirstName, edtName, edtEmail, edtSdt;
     TextView tvThayDoiAvatar;
@@ -59,6 +61,7 @@ public class UserInformationActivity extends AppCompatActivity {
         ivAvatar = findViewById(R.id.iv_avatar_userinformation);
         ivBack = findViewById(R.id.iv_returnbutton_userinformation);
         tvThayDoiAvatar = findViewById(R.id.tv_thaydoihinhanh_userinformation);
+        clChangePsw = findViewById(R.id.ctv_DoiMatKhau_user_information);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -124,6 +127,14 @@ public class UserInformationActivity extends AppCompatActivity {
                                 }
                             });
                 }
+            }
+        });
+
+        clChangePsw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserInformationActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
