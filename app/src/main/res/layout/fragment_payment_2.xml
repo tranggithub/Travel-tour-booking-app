@@ -58,7 +58,7 @@
             app:layout_constraintRight_toRightOf="parent"></TextView>
 
         <RelativeLayout
-            android:id="@+id/add_info"
+            android:id="@+id/discount"
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_alignParentLeft="true"
@@ -80,6 +80,7 @@
                 android:layout_marginTop="10dp"></ImageView>
 
             <Button
+                android:id="@+id/btn_choose_discount"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -98,6 +99,13 @@
                 android:fontFamily="@font/firasans_medium"></TextView>
         </RelativeLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/discount_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/discount"
+            tools:ignore="MissingConstraints"></androidx.recyclerview.widget.RecyclerView>
+
         <TextView
             android:layout_width="330dp"
             android:layout_height="wrap_content"
@@ -105,11 +113,11 @@
             android:lineSpacingExtra="8sp"
             android:text="Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với Điều khoản &amp; Điều kiện và Cam kết bảo mật của 4Travel"
             android:textSize="18dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_info"
+            app:layout_constraintTop_toBottomOf="@id/discount_tag"
             tools:ignore="MissingConstraints"
             android:fontFamily="@font/firasans_medium"></TextView>
 
@@ -118,38 +126,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="175dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:background="#CC22242C"
-            android:clipToOutline="true"
-            app:layout_constraintBottom_toTopOf="@id/money"
-            tools:ignore="MissingConstraints">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tổng tiền"
-                android:textSize="20dp"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="20dp"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/firasans_medium"></TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9.190.123 VND"
-                android:textSize="20dp"
-                android:textColor="#FFFFFF"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/firasans_medium"></TextView>
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/money"
@@ -163,22 +139,24 @@
             tools:ignore="InvalidId,MissingConstraints">
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chọn phương thức thanh toán"
-                android:textSize="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/firasans_medium"></TextView>
+                android:layout_marginLeft="20dp"
+                android:text="0 VND"
+                android:textColor="#000000"
+                android:textSize="20dp"></TextView>
 
             <Button
-                android:layout_width="100dp"
+                android:id="@+id/btnNext"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="Chọn"
-                android:fontFamily="@font/firasans_medium"></Button>
+                android:layout_marginStart="48dp"
+                android:layout_marginRight="10dp"
+                android:text="Tiếp tục"></Button>
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

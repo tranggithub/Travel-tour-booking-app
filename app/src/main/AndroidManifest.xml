@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
         <activity
+            android:name=".ChoosePaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailHotelActivity"
             android:exported="false" />
         <activity
