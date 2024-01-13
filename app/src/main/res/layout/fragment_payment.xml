@@ -79,6 +79,7 @@
                 android:src="@drawable/ic_email"></ImageView>
 
             <Button
+                android:id="@+id/main_passenger_infor"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -110,53 +111,102 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:ignore="MissingConstraints"></TextView>
 
-        <Button
-            android:layout_width="35dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_add"
-            app:layout_constraintRight_toRightOf="@id/passenger_info"
-            app:layout_constraintTop_toTopOf="@id/passenger_info"
-            app:layout_constraintBottom_toBottomOf="@id/passenger_info"
-            tools:ignore="MissingConstraints"></Button>
-
         <RelativeLayout
-            android:id="@+id/info"
+            android:id="@+id/adult"
             android:layout_width="match_parent"
             android:layout_height="51dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:background="#CC22242C"
-            android:clipToOutline="true"
             android:layout_marginTop="15dp"
             app:layout_constraintTop_toBottomOf="@id/passenger_info"
-            tools:ignore="MissingConstraints">
-
-            <ImageView
-                android:id="@+id/passenger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_registration"></ImageView>
-
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_next"></Button>
+            tools:ignore="MissingConstraints" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Người lớn"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/passenger"
-                android:text="Người lớn 1"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp"></TextView>
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginLeft="40dp"/>
+
+            <Button
+                android:id="@+id/plusadult"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_add_24"/>
+            <TextView
+                android:id="@+id/tvCountadult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/plusadult"/>
+
+            <Button
+                android:id="@+id/minusadult"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toStartOf="@id/tvCountadult"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_remove_24"/>
+
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/childen"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="#CC22242C"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/adult"
+            tools:ignore="MissingConstraints" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trẻ em"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginLeft="40dp"/>
+
+            <Button
+                android:id="@+id/pluschild"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_add_24"/>
+            <TextView
+                android:id="@+id/tvCountchild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/pluschild"/>
+
+            <Button
+                android:id="@+id/minuschild"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toStartOf="@id/tvCountchild"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_remove_24"/>
+
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:id="@+id/money"
@@ -170,16 +220,17 @@
             tools:ignore="InvalidId,MissingConstraints">
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
-                android:fontFamily="@font/firasans_bold"
-                android:text="9.190.123 VND"
+                android:layout_marginLeft="20dp"
+                android:text="0 VND"
                 android:textColor="#000000"
                 android:textSize="20dp"></TextView>
 
             <Button
+                android:id="@+id/btnNext"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

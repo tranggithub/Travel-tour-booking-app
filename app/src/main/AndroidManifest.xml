@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
+            android:name=".ChoosePaymentActivity"
+=======
             android:name=".ChatAdminActivity"
             android:exported="false" />
         <activity
@@ -47,6 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".UpdateHotelActivity"
+>>>>>>> ca8bfc431d2752cb3888513c0e86d022f239d5e6
             android:exported="false" />
         <activity
             android:name=".DetailHotelActivity"
