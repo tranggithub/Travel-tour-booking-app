@@ -27,7 +27,8 @@ public class UserFragment extends Fragment {
     ImageView iconNotification;
     TextView tvName, tvEmail, tvSdt, tvHistory;
     ImageView ivAvatar;
-    FirebaseAuth mAuth;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,8 +36,6 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_user_dark, container, false);
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
 
         tvName = view.findViewById(R.id.textView6);
@@ -144,6 +143,35 @@ public class UserFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),HistoryActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                tvName.setText(userDetails.getFullName());
+                tvEmail.setText("Email: " + userDetails.getEmail());
+                if (user.getEmail() != null)
+                    tvEmail.setText("Email: " + user.getEmail());
+                else tvEmail.setText("Email: ");
+                if (userDetails.getSdt() != null) {
+                    tvSdt.setText("Số điện thoại: " + userDetails.getSdt());
+                } else {
+                    tvSdt.setText("Số điện thoại: ");
+                }
+                Picasso.get().load(userDetails.getUrlImage()).into(ivAvatar);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
