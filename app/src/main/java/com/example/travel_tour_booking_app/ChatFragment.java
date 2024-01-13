@@ -10,6 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,10 +24,13 @@ import java.util.Locale;
 
 public class ChatFragment extends Fragment {
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView tvDate;
     RecyclerView recyclerView;
     ChatMessageAdapter chatMessageAdapter;
     List<ChatMessage> chatList = new ArrayList<>();
+    Messages messages;
+    ArrayList<ChatMessage> chatMessages;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,7 @@ public class ChatFragment extends Fragment {
         strings.add("Liên kết tài khoản ngân hàng như thế nào?");
         strings.add("4Travel có đảm bảo sự an toàn cho hành khách không?");
         strings.add("Ứng dụng này có tốn phí không?");
+        strings.add("Tôi muốn trao đổi với nhân viên tư vấn");
         // Tạo tin nhắn từ bot
         ChatMessage botMessage = new ChatMessage("Trung tâm hỗ trợ trực tuyến 4Travel xin chào quý khách! Chúng tôi hỗ trợ trực tuyến cho khách hàng 24/7. Nếu quý khách có thắc mắc gì xin hãy nhập vào ô nhắn tin bên dưới!", 1);
         ChatMessage botMessageList = new ChatMessage(strings, 2);
@@ -83,10 +93,24 @@ public class ChatFragment extends Fragment {
             return "Để liên kết tài khoản ngân hàng, quý khách có thể truy cập phần cài đặt trong ứng dụng hoặc liên hệ với đội ngũ hỗ trợ để được hướng dẫn chi tiết.";
         } else if (userMessage.contains("tốn phí") || userMessage.contains("phí không")) {
             return "Ứng dụng của chúng tôi miễn phí cho việc tải về và sử dụng cơ bản. Tuy nhiên, có thể có một số tính năng hoặc dịch vụ đặc biệt có thể đòi hỏi thanh toán. Quý khách có thể kiểm tra trong phần cài đặt hoặc liên hệ với chúng tôi để biết thêm chi tiết.";
-        } else {
-            return "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể đặt lại câu hỏi một cách khác không?";
+        } else if (userMessage.contains("nhân viên tư vấn")){
+            sendToAdmin();
+            NavigationView nvBottom = ((ChatActivity) getActivity()).nvBottom;
+            nvBottom.setVisibility(View.VISIBLE);
+            return "Đang kết nối với nhân viên tư vấn...";
         }
+        return null;
+    }
 
+    private void sendToAdmin() {
+        messages = new Messages();
+        messages.setSenderId(user.getUid());
+        ChatMessage chatMessage = new ChatMessage("Đang kết nối với nhân viên tư vấn...",1);
+        ArrayList<ChatMessage> chatMessages = new ArrayList<>();
+        chatMessages.add(chatMessage);
+        messages.setChatMessages(chatMessages);
+        DatabaseReference databaseReferenceMess = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Messages");
+        databaseReferenceMess.child(user.getUid()).setValue(messages);
     }
 
     public void addUserMessageToChat(String userMessage) {
@@ -95,8 +119,20 @@ public class ChatFragment extends Fragment {
         chatList.add(userMessageObj);
 
         chatMessageAdapter.notifyDataSetChanged();
-
         recyclerView.scrollToPosition(chatList.size() - 1);
+    }
+    public void addUserMessageToChatWithAdmin(String userMessage) {
+        ChatMessage userMessageObj = new ChatMessage(userMessage, 0);
+
+        chatList.add(userMessageObj);
+        chatMessageAdapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(chatList.size() - 1);
+
+        chatMessages = messages.getChatMessages();
+        chatMessages.add(userMessageObj);
+        messages.setChatMessages(chatMessages);
+        DatabaseReference databaseReferenceMess = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Messages");
+        databaseReferenceMess.child(user.getUid()).setValue(messages);
     }
 
     public void addBotResponse(String userMessage) {
@@ -104,6 +140,7 @@ public class ChatFragment extends Fragment {
             ChatMessage botResponse = new ChatMessage(generateBotResponse(userMessage), 1);
             chatList.add(botResponse);
             chatMessageAdapter.notifyDataSetChanged();
+            recyclerView.scrollToPosition(chatList.size() - 1);
         }
     }
 }

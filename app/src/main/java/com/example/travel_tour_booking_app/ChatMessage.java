@@ -8,6 +8,8 @@ public class ChatMessage {
     private int isBotMessage;
     List<String> listData;
 
+    public ChatMessage() {
+    }
 
     public ChatMessage(String content, int isBotMessage) {
         this.content = content;

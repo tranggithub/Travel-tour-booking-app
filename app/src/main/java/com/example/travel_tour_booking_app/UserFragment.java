@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
-    TextView btnSetting, btnChangeInfor, btnNotification;
+    TextView btnSetting, btnChangeInfor, btnNotification, tvHoTro;
     ImageView iconNotification;
     TextView tvName, tvEmail, tvSdt, tvHistory;
     ImageView ivAvatar;
@@ -45,6 +45,7 @@ public class UserFragment extends Fragment {
         ivAvatar = view.findViewById(R.id.imageView2);
         btnChangeInfor = view.findViewById(R.id.button);
         tvHistory = view.findViewById(R.id.button3);
+        tvHoTro = view.findViewById(R.id.button6);
 
         if (user != null) {
             databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,7 +94,6 @@ public class UserFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -103,11 +103,18 @@ public class UserFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), UserInformationActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
         ChangeToHistory();
+
+        tvHoTro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
