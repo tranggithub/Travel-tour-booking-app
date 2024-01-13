@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -48,7 +49,7 @@ public class ChatAdminActivity extends AppCompatActivity {
         rvChat.setAdapter(chatMessageAdapter);
 
         databaseReference = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Messages");
-        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Messages messages = snapshot.getValue(Messages.class);
@@ -102,6 +103,8 @@ public class ChatAdminActivity extends AppCompatActivity {
                 });
             }
         });
+        checkStatus();
+        loadChatList();
     }
     private void findViewByIds(){
         ivBack = findViewById(R.id.iv_returnbutton_chat);
@@ -110,12 +113,15 @@ public class ChatAdminActivity extends AppCompatActivity {
         edtText = findViewById(R.id.edt_message_chat);
         btnEnd = findViewById(R.id.btn_end);
     }
-    public void addAnswer(){
+    public void addAnswer() {
         String content = edtText.getText().toString();
 
         if (content == null) return;
 
         edtText.setText("");
+
+        chatMessages.clear();
+
 
         chatMessages.add(new ChatMessage(content, 0));
         chatMessageAdapter.notifyDataSetChanged();
@@ -124,5 +130,47 @@ public class ChatAdminActivity extends AppCompatActivity {
         chatMessagesTemp.add(new ChatMessage(content, 1));
         messagesTemp.setChatMessages(chatMessagesTemp);
         databaseReference.child(userId).setValue(messagesTemp);
+    }
+    public void checkStatus(){
+        databaseReference.child(userId).child("status").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean newStatus = snapshot.getValue(Boolean.class);
+                if (newStatus != null) {
+                    if (newStatus == Boolean.FALSE) {
+                        Toast.makeText(ChatAdminActivity.this, "Người dùng đã thoát", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+    }
+    public void loadChatList() {
+        databaseReference.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                chatMessages.clear();
+                Messages tempMess = snapshot.getValue(Messages.class);
+                for (ChatMessage chatMessage : tempMess.getChatMessages()) {
+                    chatMessages.add(chatMessage);
+                }
+                chatMessageAdapter.notifyDataSetChanged();
+                rvChat.scrollToPosition(chatMessages.size() - 1);
+                chatMessageAdapter.notifyDataSetChanged();
+                rvChat.scrollToPosition(chatMessages.size() - 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

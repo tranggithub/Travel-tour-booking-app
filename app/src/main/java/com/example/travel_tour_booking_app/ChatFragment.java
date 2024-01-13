@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,7 +36,7 @@ public class ChatFragment extends Fragment {
     NavigationView nvBottom;
     List<ChatMessage> chatList = new ArrayList<>();
     Messages messages;
-    ArrayList<ChatMessage> chatMessages;
+    ArrayList<ChatMessage> chatMessages = new ArrayList<>();
     DatabaseReference databaseReferenceMess;
 
     @Override
@@ -88,9 +89,6 @@ public class ChatFragment extends Fragment {
         recyclerView.setAdapter(chatMessageAdapter);
         recyclerView.scrollToPosition(chatList.size() - 1);
 
-        if (messages!= null)
-            loadChatList();
-
         return view;
     }
 
@@ -135,12 +133,11 @@ public class ChatFragment extends Fragment {
     public void addUserMessageToChatWithAdmin(String userMessage) {
         ChatMessage userMessageObj = new ChatMessage(userMessage, 0);
 
-        chatMessages = messages.getChatMessages();
+        chatMessages.clear();
+        chatMessages.addAll(chatList);
         chatMessages.add(userMessageObj);
         messages.setChatMessages(chatMessages);
         databaseReferenceMess.child(user.getUid()).setValue(messages);
-
-        loadChatList();
     }
 
     public void loadChatList(){
@@ -153,8 +150,6 @@ public class ChatFragment extends Fragment {
                 for (ChatMessage chatMessage : tempMess.getChatMessages()){
                     chatList.add(chatMessage);
                 }
-                chatMessageAdapter.notifyDataSetChanged();
-                recyclerView.scrollToPosition(chatList.size() - 1);
                 chatMessageAdapter.notifyDataSetChanged();
                 recyclerView.scrollToPosition(chatList.size() - 1);
             }
@@ -171,6 +166,7 @@ public class ChatFragment extends Fragment {
                 if (newStatus != null) {
                     if (newStatus == Boolean.FALSE) {
                         nvBottom.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getActivity(), "Đoạn chat đã dừng", Toast.LENGTH_SHORT).show();
                     } else {
                         nvBottom.setVisibility(View.VISIBLE);
                     }
