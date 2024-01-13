@@ -159,10 +159,13 @@ public class ChatAdminActivity extends AppCompatActivity {
                 chatMessages.clear();
                 Messages tempMess = snapshot.getValue(Messages.class);
                 for (ChatMessage chatMessage : tempMess.getChatMessages()) {
-                    chatMessages.add(chatMessage);
+                    if (chatMessage.getIsBotMessage() == 0){
+                        chatMessages.add(new ChatMessage(chatMessage.getContent(), 1));
+                    }
+                    else {
+                        chatMessages.add(new ChatMessage(chatMessage.getContent(), 0));
+                    }
                 }
-                chatMessageAdapter.notifyDataSetChanged();
-                rvChat.scrollToPosition(chatMessages.size() - 1);
                 chatMessageAdapter.notifyDataSetChanged();
                 rvChat.scrollToPosition(chatMessages.size() - 1);
             }
