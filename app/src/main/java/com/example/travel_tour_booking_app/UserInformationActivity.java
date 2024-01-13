@@ -277,8 +277,7 @@ public class UserInformationActivity extends AppCompatActivity {
     }
 
     private String getImageUrl(FirebaseUser user) {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference()
-                .child("Android Users Image").child(user.getUid() + "_avatar.jpg");
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("Android Users Image").child(user.getUid() + "_avatar.jpg");
         Task<Uri> uriTask = storageReference.getDownloadUrl();
         while (!uriTask.isComplete()) ;
         Uri url_Image = uriTask.getResult();
