@@ -41,6 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,8 @@ public class UpdateHotelActivity extends AppCompatActivity {
     ArrayList<DetailNews> uploadOtherPictureURL;
     ArrayList<String> newOtherPictureUrl, oldOtherPictureUrl;
     int check;
-    Hotel hotel;
+    String hotelId;
+    Hotel hotelTmp;
     DatabaseReference hotelRef;
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -68,53 +70,69 @@ public class UpdateHotelActivity extends AppCompatActivity {
 
         initID();
 
-        hotel = (Hotel) getIntent().getSerializableExtra("Hotel");
-        if(hotel!=null){
-            for (DetailNews item: hotel.getDetailPictureList()){
-                oldOtherPictureUrl.add(item.getPicture());
-            }
-            et_title.setText(hotel.getName());
-            et_address.setText(hotel.getAddress());
-            et_text.setText(hotel.getIntroduction());
-            et_check_in.setText(hotel.getTimeCheckIn());
-            et_check_out.setText(hotel.getTimeCheckOut());
-            et_age_free.setText(hotel.getChildrenAgeFree());
-            et_age_addition_fee.setText(hotel.getChildrenAgeAdditionFee());
-            et_addition_fee.setText(hotel.getChildenFee());
+        hotelId = (String) getIntent().getSerializableExtra("Hotel");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel");
+        databaseReference.child(hotelId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Hotel hotel = snapshot.getValue(Hotel.class);
 
-            int radioButtonCount = rg_breakfast.getChildCount();
-            for (int i = 0; i < radioButtonCount; i++) {
-                View view = rg_breakfast.getChildAt(i);
-                if (view instanceof RadioButton) {
-                    RadioButton radioButton = (RadioButton) view;
-                    if (radioButton.getText().toString().equals(hotel.getBreakfast())) {
-                        radioButton.setChecked(true);
-                        break; // Nếu bạn chỉ muốn thiết lập một RadioButton, bạn có thể thoát vòng lặp sau khi thiết lập
+                if(hotel!=null){
+                    hotelTmp = hotel;
+                    for (DetailNews item: hotel.getDetailPictureList()){
+                        oldOtherPictureUrl.add(item.getPicture());
                     }
+                    et_title.setText(hotel.getName());
+                    et_address.setText(hotel.getAddress());
+                    et_text.setText(hotel.getIntroduction());
+                    et_check_in.setText(hotel.getTimeCheckIn());
+                    et_check_out.setText(hotel.getTimeCheckOut());
+                    et_age_free.setText(hotel.getChildrenAgeFree());
+                    et_age_addition_fee.setText(hotel.getChildrenAgeAdditionFee());
+                    et_addition_fee.setText(hotel.getChildenFee());
+
+                    int radioButtonCount = rg_breakfast.getChildCount();
+                    for (int i = 0; i < radioButtonCount; i++) {
+                        View view = rg_breakfast.getChildAt(i);
+                        if (view instanceof RadioButton) {
+                            RadioButton radioButton = (RadioButton) view;
+                            if (radioButton.getText().toString().equals(hotel.getBreakfast())) {
+                                radioButton.setChecked(true);
+                                break; // Nếu bạn chỉ muốn thiết lập một RadioButton, bạn có thể thoát vòng lặp sau khi thiết lập
+                            }
+                        }
+                    }
+
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Wifi))
+                        ckb_wifi.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Conditioner))
+                        ckb_airconditioner.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Bed))
+                        ckb_bed.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Bathtub))
+                        ckb_bathtub.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.TV))
+                        ckb_tv.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Parking))
+                        ckb_carpark.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Exercise))
+                        ckb_exercise.setChecked(true);
+                    if(hotel.getTienNghiChungs().contains(TienNghiChung.Wine))
+                        ckb_wine.setChecked(true);
+                    oldThumbnailURL = hotel.getThumbnail();
+
+                    Picasso.get().load(hotel.getThumbnail()).into(iv_thumbnail);
+
+                    contextOrPictureUploadAdapter.setDetailNewsList(hotel.getDetailPictureList());
                 }
             }
 
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Wifi))
-                ckb_wifi.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Conditioner))
-                ckb_airconditioner.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Bed))
-                ckb_bed.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Bathtub))
-                ckb_bathtub.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.TV))
-                ckb_tv.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Parking))
-                ckb_carpark.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Exercise))
-                ckb_exercise.setChecked(true);
-            if(hotel.getTienNghiChungs().contains(TienNghiChung.Wine))
-                ckb_wine.setChecked(true);
-            oldThumbnailURL = hotel.getThumbnail();
-            Glide.with(this).load(hotel.getThumbnail()).into(iv_thumbnail);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            contextOrPictureUploadAdapter.setDetailNewsList(hotel.getDetailPictureList());
-        }
+            }
+        });
+
 
         addContentOrPicture();
         ThumbnailListener();
@@ -412,7 +430,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
         boolean isActive = ckb_isActive.isChecked();
         if (title!=null)
         {
-            Hotel tempHotel = hotel;
+            Hotel tempHotel = hotelTmp;
             tempHotel.setThumbnail(ThumbnailURL);
             tempHotel.setAddress(address);
             tempHotel.setName(title);
@@ -425,7 +443,7 @@ public class UpdateHotelActivity extends AppCompatActivity {
             tempHotel.setChildrenAgeAdditionFee(age_addition_fee);
             tempHotel.setBreakfast(breakfast);
             tempHotel.setDetailPictureList(uploadOtherPictureURL);
-            hotelRef.child(hotel.getKey()).
+            hotelRef.child(hotelId).
                     setValue(tempHotel).
                     addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

@@ -85,7 +85,7 @@ import com.google.firebase.database.ValueEventListener;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailHotelActivity.this, UpdateHotelActivity.class);
-                intent.putExtra("Hotel", (Hotel) hotel);
+                intent.putExtra("Hotel", (String) hotel.getKey());
                 startActivity(intent);
             }
         });
