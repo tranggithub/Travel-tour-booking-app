@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 
 public class UserInformationActivity extends AppCompatActivity {
     private static String FIREBASE_STORAGE_URL = "gs://travel-tour-booking-app.appspot.com/";
-    private static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    public static String FIREBASE_REALTIME_DATABASE_URL = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/";
     private static int MY_REQUEST_CODE = 10;
     Button btnConfirm;
     EditText edtFirstName, edtName, edtEmail, edtSdt;
@@ -86,8 +86,6 @@ public class UserInformationActivity extends AppCompatActivity {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserInformationActivity.this, HomeActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -226,16 +224,11 @@ public class UserInformationActivity extends AppCompatActivity {
             uploadImageToFirebase(imageUri);
             tmpUser.setUrlImage(getImageUrl(user));
             databaseReference.child(user.getUid()).setValue(tmpUser)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(UserInformationActivity.this, "Ảnh đại diện người dùng đã được cập nhật.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(UserInformationActivity.this, "Lỗi khi cập nhật ảnh đại diện người dùng.", Toast.LENGTH_SHORT).show();
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Lịch sử tìm kiếm đã được cập nhật thành công
+                        } else {
+                            // Lỗi khi cập nhật lịch sử tìm kiếm
                         }
                     });
         }

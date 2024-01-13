@@ -3,6 +3,7 @@ package com.example.travel_tour_booking_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,12 +42,7 @@ public class ListTourAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_tour_admin);
-        //Progress layout
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
         //change to upload page
         AddTour();
 
@@ -59,28 +55,8 @@ public class ListTourAdminActivity extends AppCompatActivity {
         rvNews.setLayoutManager(new LinearLayoutManager(this));
         rvNews.setAdapter(placeAdapter);
 
-        //Firebase
-        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
-//        alertDialog.show();
+        LoadTour();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                places.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    Place tempPlace = itemSnapshot.getValue(Place.class);
-                    tempPlace.setKey(itemSnapshot.getKey());
-                    places.add(tempPlace);
-                }
-                placeAdapter.notifyDataSetChanged();
-                alertDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-//                alertDialog.dismiss();
-            }
-        });
 
         //Pagination
         Pagination tempPagination = new Pagination("1");
@@ -122,6 +98,49 @@ public class ListTourAdminActivity extends AppCompatActivity {
         ScrollToTop();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoadTour();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadTour();
+    }
+
+    private void LoadTour(){
+        //Progress layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Tours");
+//        alertDialog.show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                places.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Place tempPlace = itemSnapshot.getValue(Place.class);
+                    tempPlace.setKey(itemSnapshot.getKey());
+                    places.add(tempPlace);
+                }
+                placeAdapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+//                alertDialog.dismiss();
+            }
+        });
+    }
+
     private void performSearch(String query) {
         ArrayList<Place> searchList = new ArrayList<>();
         for (Place item : places){
@@ -146,7 +165,7 @@ public class ListTourAdminActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScrollView scrollView = findViewById(R.id.sv_list_tours);
+                NestedScrollView scrollView = findViewById(R.id.sv_list_tours);
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
         });

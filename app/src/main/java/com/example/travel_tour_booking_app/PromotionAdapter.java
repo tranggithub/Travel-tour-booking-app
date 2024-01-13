@@ -20,10 +20,16 @@ import java.util.List;
 public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyViewHolder> {
     Context context;
     List<Promotion> promotions;
+    private int maxItemsToShow = -1; // Mặc định không giới hạn
 
     public PromotionAdapter (Context context, List<Promotion> promotions){
         this.context = context;
         this.promotions = promotions;
+    }
+    public PromotionAdapter (Context context, List<Promotion> promotions, int maxItemsToShow){
+        this.context = context;
+        this.promotions = promotions;
+        this.maxItemsToShow = maxItemsToShow;
     }
     @Override
     public PromotionAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +62,13 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return promotions.size();
+        if (maxItemsToShow == -1) {
+            // Trường hợp không giới hạn số lượng item
+            return promotions.size();
+        } else {
+            // Trường hợp giới hạn số lượng item
+            return Math.min(promotions.size(), maxItemsToShow);
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

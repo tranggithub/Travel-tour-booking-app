@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -130,20 +132,28 @@ public class UpdatePromotionActivity extends AppCompatActivity {
         bt_UpdatePromotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
-                    {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                        uploadDetailPromtionList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
-                    } else {
-                        uploadDetailPromtionList.add(item);
+                YesNoDialog dialog;
+                dialog = new YesNoDialog(UpdatePromotionActivity.this,"Bạn có xác nhận cập nhật ?","Có", "Không");
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                dialog.btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //contextOrPictureUploadAdapter.notifyDataSetChanged();
+                        for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
+                        {
+                            if(item.isImage())
+                            {
+                                saveDetailPicture(Uri.parse(item.getPicture()));
+                                uploadDetailPromtionList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
+                            } else {
+                                uploadDetailPromtionList.add(item);
+                            }
+                        }
+                        saveData();
                     }
-                }
-                saveData();
-                Intent intent = new Intent(UpdatePromotionActivity.this, ListPromotionAdminActivity.class);
-                startActivity(intent);
+                });
             }
         });
     }

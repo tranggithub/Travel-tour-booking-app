@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -28,6 +33,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     VideoView videoView;
     EditText edtEmail;
     Button btnResetPassword;
+    TextView tvDieuKhoan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,39 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 resetPassword(email);
             }
         });
+
+        //DieuKhoan
+        tvDieuKhoan = findViewById(R.id.tv_DieuKhoan_resetpsw);
+
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String normalText = "Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với ";
+        String linkText1 = "Điều khoản & Điều kiện";
+        String linkText2 = "Cam kết bảo mật";
+
+        spannableStringBuilder.append(normalText);
+        int start1 = spannableStringBuilder.length();
+        spannableStringBuilder.append(linkText1);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(TermsAndConditionActivity.class);
+            }
+        }, start1, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        spannableStringBuilder.append(" và ");
+
+        int start2 = spannableStringBuilder.length();
+        spannableStringBuilder.append(linkText2);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(SecurityCommitmentActivity.class);
+            }
+        }, start2, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.append(" của 4Travel.");
+
+        tvDieuKhoan.setText(spannableStringBuilder);
+        tvDieuKhoan.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void resetPassword(String email) {
@@ -66,9 +105,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Email đặt lại mật khẩu đã được gửi thành công
                             Toast.makeText(ResetPasswordActivity.this, "Email đặt lại mật khẩu đã được gửi", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+                            Intent intent = new Intent(ResetPasswordActivity.this, SuccessResetPasswordActivity.class);
+                            intent.putExtra("user_email", email); // Thêm email vào Intent
                             startActivity(intent);
-                            finish();
                         } else {
                             // Nếu địa chỉ email không được đăng ký hoặc có lỗi khác xảy ra
                             Toast.makeText(ResetPasswordActivity.this, "Không thể gửi email đặt lại mật khẩu", Toast.LENGTH_SHORT).show();
@@ -93,6 +132,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 mp.setLooping(true);
             }
         });
+    }
+    private void startActivity(Class<?> cls) {
+        Intent intent = new Intent(ResetPasswordActivity.this, cls);
+        startActivity(intent);
     }
 
 }

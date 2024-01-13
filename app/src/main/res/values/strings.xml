@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Travel-tour-booking-app</string>
+    <string name="app_name">4Travel</string>
     <string name="home">Trang chủ</string>
     <string name="search">Tìm kiếm</string>
     <string name="discover">Khám phá</string>
@@ -18,11 +18,13 @@
     <string name="diadiemocanada">ĐỊA ĐIỂM Ở CANADA</string>
 
     <!--    Sign in with Google-->
-    <string name="default_web_client_id">60358304702-m2udf1hfgq43d44cgdo9qm9785b09jcj.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">60358304702-n7k1jpnmq7m713attsj3bfo7eq411au9.apps.googleusercontent.com</string>
 
     <!--    Sign in with Facebook-->
     <string name="facebook_app_id">1088921218694842</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">EAAPeXjptvroBO5jP1CHFjIs07wt5mSoCG7Yc2OJpZA0811hA0tG5xbAJCXJNaHZCjLbQoHb26zgOf4zig674mu4Xnv4L00kSkZA3IPxMXq6loZBqTwXfFZBT1WXx12FgVPvBnhcRTSbdjTKltUWhEwWu7htOzylhYBRFWiHZBLHu97ZA7QQdZAfdZCskYTDQU7fkjTPTvWdPCZBDuzOUG5bgZDZD</string>
+
+    <string name="FIREBASE_REALTIME_DATABASE_URL">https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
 
 </resources>

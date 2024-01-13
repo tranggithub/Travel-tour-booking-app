@@ -1,5 +1,7 @@
 package com.example.travel_tour_booking_app;
 
+import static com.example.travel_tour_booking_app.UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,14 +36,18 @@ public class TourDetailActivity extends AppCompatActivity {
     DetailNewsAdapter detailScheduleAdapter;
     //FirebaseAuth
     FirebaseAuth mAuth;
+    FirebaseUser currentUser;
     TextView tv_update_tour;
     String key;
     //Tour
-    TextView tv_title, tv_date, tv_text, tv_location, tv_price, tv_duration, tv_price_navigation, tv_star;
+    TextView tv_title, tv_date, tv_text, tv_location, tv_price, tv_duration, tv_price_navigation, tv_view;
     RatingBar rb_star, rb_hotel_star;
     //Hotel
-    TextView tv_hotel_name, tv_hotel_diachi, tv_hotel_star, tv_hotel_comment;
-
+    TextView tv_hotel_name, tv_hotel_diachi, tv_hotel_star, tv_hotel_comment, tv_hotel_breakfast, tv_hotel_checkin, tv_hotel_checkout,tv_hotel_age_free, tv_hotel_age_fee, tv_hotel_additional_fee;
+    ImageView iv_hotel_thumbnail;
+    RecyclerView rv_hotel_tiennghi;
+    ArrayList<TienNghiChung> tienNghiChungArrayList;
+    TienNghiChungAdapter tienNghiChungAdapter;
     //Plane
     TextView tv_planefrom, tv_planeduration, tv_segment,tv_planedate, tv_planebrand, tv_timetakeoff, tv_timelanding;
 
@@ -63,6 +69,10 @@ public class TourDetailActivity extends AppCompatActivity {
     ImageView iv_share;
     ImageView iv_heart;
     ImageView iv_heart_love;
+    String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
+    DatabaseReference databaseReferenceHotel;
+    Hotel hotel;
+    Button btn_moretour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,12 +80,12 @@ public class TourDetailActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         tv_update_tour = findViewById(R.id.tv_update_tour);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             // Nếu là admin thì sẽ có chức năng sửa ngược lại thì không
             checkIsAdmin(currentUser.getUid());
+            addRecntlyView();
         }
-
         initID();
 
         //Share
@@ -86,60 +96,167 @@ public class TourDetailActivity extends AppCompatActivity {
 
         //Lấy nội dung được gửi vào intent
         tours = (Place) getIntent().getSerializableExtra("Tour");
-        if (tours != null){
-            tv_title.setText(tours.getTitle().toString());
-            tv_date.setText(tours.getDate().toString());
-            tv_text.setText(tours.getText().toString());
-            tv_location.setText(tours.getLocation().toString());
-            tv_price.setText(tours.getPrice().toString());
-            tv_duration.setText(tours.getDuration().toString());
-            tv_price_navigation.setText(tours.getPrice());
-            Glide.with(this).load(tours.getThumbnail_Image()).into(iv_thumbnail);
-            tv_star.setText(tours.getStar() + " sao");
-            rb_star.setRating((float) tours.getStar());
+        LoadView();
 
-            //Hotel
-            tv_hotel_name.setText("Khách sạn " + tours.getHotel().getName());
-            tv_hotel_diachi.setText(tours.getHotel().getAddress());
 
-            //Plane
-            tienIchPlane = tours.getPlaneTienIch();
-            tienIchAdapterPlane = new TienIchAdapter(this,tienIchPlane);
-            rv_TienIch_Plane.setLayoutManager(new LinearLayoutManager(this));
-            rv_TienIch_Plane.setAdapter(tienIchAdapterPlane);
-            tv_planefrom.setText(tours.getPlaneFrom());
-            tv_planeduration.setText(tours.getPlaneDuration());
-            tv_segment.setText(tours.NumberOfSegment + " chặng");
-            tv_planedate.setText(tours.getPlaneDate());
-            tv_planebrand.setText(tours.getPlaneBrand());
-            tv_timetakeoff.setText(tours.getTimeTakeOff());
-            tv_timelanding.setText(tours.getTimeLanding());
+        //Giới thiệu thêm các tour cùng địa điểm
+        MoreTour();
 
-            //Car
-            tienIchCar = tours.getCarTienIch();
-            tienIchAdapterCar = new TienIchAdapter(this,tienIchCar);
-            rv_TienIch_Car.setLayoutManager(new LinearLayoutManager(this));
-            rv_TienIch_Car.setAdapter(tienIchAdapterCar);
-            tv_cartype.setText(tours.getCarType());
+        ScrollToTop();
 
-        }
-        //        if (bundle!= null){
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LoadView();
+    }
+    private void LoadView() {
+        DatabaseReference databaseReferenceTour = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Tours");
+        databaseReferenceTour.child(tours.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    tours = snapshot.getValue(Place.class);
+
+                    if (tours != null){
+                        if(!isAdmin)
+                            UpdateView();
+                        tv_title.setText(tours.getTitle().toString());
+                        tv_date.setText(tours.getDate().toString());
+                        tv_text.setText(tours.getText().toString());
+                        tv_location.setText(tours.getLocation().toString());
+                        tv_price.setText(tours.getPrice().toString());
+                        tv_duration.setText(tours.getDuration().toString());
+                        tv_price_navigation.setText(tours.getPrice());
+                        Glide.with(getBaseContext()).load(tours.getThumbnail_Image()).into(iv_thumbnail);
+                        tv_view.setText(tours.getView() + "");
+                        rb_star.setRating((float) tours.getStar());
+
+                        //Firebase
+                        databaseReferenceHotel = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
+                        databaseReferenceHotel.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                                    Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
+                                    tempHotel.setKey(itemSnapshot.getKey());
+                                    if(tempHotel.getKey().contains(tours.getHotel())){
+                                        hotel = tempHotel;
+                                        //Hotel
+                                        tv_hotel_diachi.setText(hotel.getAddress());
+                                        tv_hotel_name.setText(hotel.getName());
+                                        tv_hotel_comment.setText("Từ " + hotel.getComments().size() + " đánh giá");
+                                        float averageStar = 0;
+                                        if(hotel.getComments()!= null){
+                                            for (Comment item:hotel.getComments()){
+                                                averageStar+=item.getStar();
+                                            }
+                                            if(hotel.getComments().size()!=0){
+                                                averageStar = averageStar/(hotel.getComments().size());
+                                            }
+                                        }
+                                        tv_hotel_star.setText(averageStar + " sao");
+                                        rb_hotel_star.setRating(averageStar);
+                                        Glide.with(getBaseContext()).load(hotel.getThumbnail()).into(iv_hotel_thumbnail);
+
+                                        tienNghiChungAdapter.setTienNghiChungs(hotel.getTienNghiChungs());
+
+                                        tv_hotel_breakfast.setText(hotel.getBreakfast());
+                                        tv_hotel_checkin.setText(hotel.getTimeCheckIn());
+                                        tv_hotel_checkout.setText(hotel.getTimeCheckOut());
+                                        tv_hotel_age_free.setText(hotel.getChildrenAgeFree()+ " tuổi trở xuống");
+                                        tv_hotel_age_fee.setText(hotel.getChildrenAgeAdditionFee()+ " tuổi trở xuống");
+                                        tv_hotel_additional_fee.setText("Phụ phí thêm là " + hotel.getChildenFee());
+                                        break;
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+
+
+                        //Plane
+                        tienIchPlane = tours.getPlaneTienIch();
+                        tienIchAdapterPlane = new TienIchAdapter(getBaseContext(),tienIchPlane);
+                        rv_TienIch_Plane.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        rv_TienIch_Plane.setAdapter(tienIchAdapterPlane);
+                        tv_planefrom.setText(tours.getPlaneFrom());
+                        tv_planeduration.setText(tours.getPlaneDuration());
+                        tv_segment.setText(tours.NumberOfSegment + " chặng");
+                        tv_planedate.setText(tours.getPlaneDate());
+                        tv_planebrand.setText(tours.getPlaneBrand());
+                        tv_timetakeoff.setText(tours.getTimeTakeOff());
+                        tv_timelanding.setText(tours.getTimeLanding());
+
+                        //Car
+                        tienIchCar = tours.getCarTienIch();
+                        tienIchAdapterCar = new TienIchAdapter(getBaseContext(),tienIchCar);
+                        rv_TienIch_Car.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        rv_TienIch_Car.setAdapter(tienIchAdapterCar);
+                        tv_cartype.setText(tours.getCarType());
+
+                    }
+                    //        if (bundle!= null){
 //            tv_title.setText(bundle.getString("Title"));
 //            tv_date.setText(bundle.getString("Date"));
 //        }
-        //Thêm nội dung detail
-        detailSchedules = new ArrayList<>();
+                    //Thêm nội dung detail
+                    detailSchedules = new ArrayList<>();
 
-        for (DetailNews item : tours.getSchedule()){
-            detailSchedules.add(item);
-        }
-        detailScheduleAdapter = new DetailNewsAdapter(this,detailSchedules,20);
+                    for (DetailNews item : tours.getSchedule()){
+                        detailSchedules.add(item);
+                    }
+                    detailScheduleAdapter = new DetailNewsAdapter(getBaseContext(),detailSchedules,20);
 
-        RecyclerView rvDetailNews = findViewById(R.id.rv_detail_tour_schedule);
-        rvDetailNews.setLayoutManager(new LinearLayoutManager(this));
-        rvDetailNews.setAdapter(detailScheduleAdapter);
+                    RecyclerView rvDetailNews = findViewById(R.id.rv_detail_tour_schedule);
+                    rvDetailNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    rvDetailNews.setAdapter(detailScheduleAdapter);
 
-        ScrollToTop();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void addRecntlyView() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                ArrayList<String> tempListRecentlyViewedTour = userDetails.getListRecentlyViewedTours();
+                if(tempListRecentlyViewedTour.contains(tours.getKey()))
+                    tempListRecentlyViewedTour.remove(tours.getKey());
+                tempListRecentlyViewedTour.add(tours.getKey());
+                userDetails.setListRecentlyViewedTours(tempListRecentlyViewedTour);
+                databaseReference.child(currentUser.getUid()).setValue(userDetails)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                // Lịch sử tìm kiếm đã được cập nhật thành công
+                            } else {
+                                // Lỗi khi cập nhật lịch sử tìm kiếm
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
@@ -159,13 +276,30 @@ public class TourDetailActivity extends AppCompatActivity {
         tv_price = findViewById(R.id.tv_detail_tour_price);
         tv_duration = findViewById(R.id.tv_detail_tour_duration);
         iv_thumbnail = findViewById(R.id.img_toronto);
-        tv_star = findViewById(R.id.tv_danhgia);
+        tv_view = findViewById(R.id.tv_danhgia);
         rb_star = findViewById(R.id.rtbProductRating);
 
         //Hotel
         tv_hotel_name = findViewById(R.id.tv_detail_tour_hotel_name);
         tv_hotel_diachi = findViewById(R.id.tv_diadiem_khachsan);
         tv_price_navigation = findViewById(R.id.tv_price);
+        tv_hotel_star = findViewById(R.id.tv_danhgia1);
+        tv_hotel_comment = findViewById(R.id.tv_danhgia2);
+        rb_hotel_star = findViewById(R.id.rtbProductRating1);
+        tv_hotel_breakfast = findViewById(R.id.tv_restaurant);
+        tv_hotel_checkin = findViewById(R.id.tv_gionhanphong);
+        tv_hotel_checkout = findViewById(R.id.tv_giotraphong);
+        tv_hotel_age_free = findViewById(R.id.tv_free1);
+        tv_hotel_age_fee = findViewById(R.id.tv_thanhtoan1);
+        tv_hotel_additional_fee = findViewById(R.id.tv_thanhtoan2);
+        iv_hotel_thumbnail = findViewById(R.id.iv_detail_tour_hotel_thumbnail);
+
+        rv_hotel_tiennghi = findViewById(R.id.rv_detail_tour_tiennghichung);
+
+        tienNghiChungArrayList = new ArrayList<>();
+        tienNghiChungAdapter = new TienNghiChungAdapter(this, tienNghiChungArrayList);
+        rv_hotel_tiennghi.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        rv_hotel_tiennghi.setAdapter(tienNghiChungAdapter);
 
         //Plane
         tv_planefrom = findViewById(R.id.tv_info);
@@ -180,6 +314,33 @@ public class TourDetailActivity extends AppCompatActivity {
         //Car
         tv_cartype = findViewById(R.id.tv_car);
         rv_TienIch_Car = findViewById(R.id.rv_detail_tour_tiennghi_car);
+
+        btn_moretour = findViewById(R.id.btn_detail_tour_moretour);
+    }
+    private void MoreTour(){
+        btn_moretour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TourDetailActivity.this,ListTourActivity.class);
+                intent.putExtra("Place", "");
+                intent.putExtra("Appointment", tours.getLocation().toString());
+                intent.putExtra("Price", "Không giới hạn");
+                intent.putExtra("Date", "");
+                startActivity(intent);
+            }
+        });
+    }
+    private void UpdateView(){
+        tours.setView(tours.getView()+1);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Tours");
+        databaseReference.child(tours.getKey()).setValue(tours)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Lịch sử tìm kiếm đã được cập nhật thành công
+                    } else {
+                        // Lỗi khi cập nhật lịch sử tìm kiếm
+                    }
+                });
     }
 
     private void Share(){
@@ -194,12 +355,58 @@ public class TourDetailActivity extends AppCompatActivity {
         });
     }
 
+
     private void Heart(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                ArrayList<String> tempListLikeTour = userDetails.getListLikeTours();
+                if (tempListLikeTour.contains(tours.getKey())){
+                    iv_heart.setVisibility(View.GONE);
+                    iv_heart_love.setVisibility(View.VISIBLE);
+                }
+                else {
+                    iv_heart.setVisibility(View.VISIBLE);
+                    iv_heart_love.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         iv_heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iv_heart.setVisibility(View.GONE);
                 iv_heart_love.setVisibility(View.VISIBLE);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+                databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                        ArrayList<String> tempListLikeTour = userDetails.getListLikeTours();
+                        tempListLikeTour.add(tours.getKey());
+                        userDetails.setListLikeTours(tempListLikeTour);
+                        databaseReference.child(currentUser.getUid()).setValue(userDetails)
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        // Lịch sử tìm kiếm đã được cập nhật thành công
+                                    } else {
+                                        // Lỗi khi cập nhật lịch sử tìm kiếm
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -208,6 +415,32 @@ public class TourDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 iv_heart.setVisibility(View.VISIBLE);
                 iv_heart_love.setVisibility(View.GONE);
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+                databaseReference.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                        ArrayList<String> tempListLikeTour = userDetails.getListLikeTours();
+                        if (tempListLikeTour.contains(tours.getKey())){
+                            tempListLikeTour.remove(tours.getKey());
+                            userDetails.setListLikeTours(tempListLikeTour);
+                            databaseReference.child(currentUser.getUid()).setValue(userDetails)
+                                    .addOnCompleteListener(task -> {
+                                        if (task.isSuccessful()) {
+                                            // Lịch sử tìm kiếm đã được cập nhật thành công
+                                        } else {
+                                            // Lỗi khi cập nhật lịch sử tìm kiếm
+                                        }
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
     }
@@ -262,11 +495,12 @@ public class TourDetailActivity extends AppCompatActivity {
     }
 
     public void GoBack (View view){
-        if (isAdmin)
-        {
-            Intent intent = new Intent(this,ListTourAdminActivity.class);
-            startActivity(intent);
-        }
         finish();
+    }
+    public void ChangeDetailHotel(View v){
+        Intent intent = new Intent(TourDetailActivity.this, DetailHotelActivity.class);
+        intent.putExtra("Hotel", (Hotel) hotel);
+        intent.putExtra("Tour", (Place) tours);
+        startActivity(intent);
     }
 }

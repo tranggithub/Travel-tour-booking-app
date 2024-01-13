@@ -1,56 +1,100 @@
 package com.example.travel_tour_booking_app;
 
-public class Notification {
-    String title;
-    String text;
-    String ThumbnailURL;
-    String date;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
+public class Notification implements Serializable {
+    String Title;
+    String UploadDate;
+    String Text;
+    String Thumbnail;
     String Key;
+    boolean isActive;
+    ArrayList<DetailNews> detailNotificationArrayList = new ArrayList<>();
 
-    public Notification(String title, String text, String thumbnailURL, String date) {
-        this.title = title;
-        this.text = text;
-        ThumbnailURL = thumbnailURL;
-        this.date = date;
+    public Notification()
+    {
+
+    }
+    public Notification(String title, String uploadDate, String text, String thumbnail, String key, boolean isActive, ArrayList<DetailNews> detailNewsArrayList) {
+        Title = title;
+        UploadDate = uploadDate;
+        Text = text;
+        Thumbnail = thumbnail;
+        Key = key;
+        this.isActive = isActive;
+        this.detailNotificationArrayList = detailNotificationArrayList;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public String getThumbnailURL() {
-        return ThumbnailURL;
-    }
-
-    public String getDate() {
-        return date;
-    }
 
     public void setTitle(String title) {
-        this.title = title;
+        Title = title;
+    }
+
+    public void setUploadDate(String uploadDate) {
+        UploadDate = uploadDate;
     }
 
     public void setText(String text) {
-        this.text = text;
+        Text = text;
     }
 
-    public void setThumbnailURL(String thumbnailURL) {
-        ThumbnailURL = thumbnailURL;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getUploadDate() {
+        return UploadDate;
+    }
+
+    public String getText() {
+        return Text;
+    }
+    public static String getCurrentDate() {
+        // Lấy thời gian hiện tại
+        Calendar calendar = Calendar.getInstance();
+        TimeZone timeZone = TimeZone.getTimeZone("Asia/Ho_Chi_Minh"); // Đặt múi giờ cho GMT+7
+
+        // Định dạng ngày giờ
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd/MM/yyyy, HH:mm (z)", new Locale("vi", "VN"));
+        sdf.setTimeZone(timeZone);
+
+        String formattedDate = sdf.format(calendar.getTime());
+        return formattedDate;}
+
+    public String getThumbnail() {
+        return Thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        Thumbnail = thumbnail;
+    }
+
+    public ArrayList<DetailNews> getDetailNotificationArrayList() {
+        return detailNotificationArrayList;
+    }
+
+    public void setDetailNotificationArrayList(ArrayList<DetailNews> detailNotificationArrayList) {
+        this.detailNotificationArrayList = detailNotificationArrayList;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 
     public String getKey() {
         return Key;
     }
 
-    public void setKey(String key) {
-        Key = key;
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

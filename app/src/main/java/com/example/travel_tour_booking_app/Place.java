@@ -12,7 +12,7 @@ public class Place implements Serializable {
     String Thumbnail_Image;
     String Text;
     ArrayList<DetailNews> Schedule = new ArrayList<>();
-    Hotel hotel;
+    String hotel;
     String PlaneFrom;
     String PlaneDuration;
     int NumberOfSegment;
@@ -28,8 +28,9 @@ public class Place implements Serializable {
     int NumberOfPeople;
     int SumOfPoint;
     String Key;
+    int View = 0;
 
-    public Place(String title, String date, String location, String price, String duration, String thumbnail_Image, String text, ArrayList<DetailNews> schedule, Hotel hotel, String planeFrom, String planeDuration, int numberOfSegment, String planeDate, String planeBrand, String timeTakeOff, String timeLanding, ArrayList<TienIch> planeTienIch, String carType, ArrayList<TienIch> carTienIch, boolean isActive) {
+    public Place(String title, String date, String location, String price, String duration, String thumbnail_Image, String text, ArrayList<DetailNews> schedule, String hotel, String planeFrom, String planeDuration, int numberOfSegment, String planeDate, String planeBrand, String timeTakeOff, String timeLanding, ArrayList<TienIch> planeTienIch, String carType, ArrayList<TienIch> carTienIch, boolean isActive) {
         Title = title;
         Date = date;
         Location = location;
@@ -120,7 +121,7 @@ public class Place implements Serializable {
         return Schedule;
     }
 
-    public Hotel getHotel() {
+    public String getHotel() {
         return hotel;
     }
 
@@ -180,7 +181,7 @@ public class Place implements Serializable {
         Schedule = schedule;
     }
 
-    public void setHotel(Hotel hotel) {
+    public void setHotel(String hotel) {
         this.hotel = hotel;
     }
 
@@ -234,5 +235,13 @@ public class Place implements Serializable {
 
     public void setKey(String key) {
         Key = key;
+    }
+
+    public int getView() {
+        return View;
+    }
+
+    public void setView(int view) {
+        View = view;
     }
 }

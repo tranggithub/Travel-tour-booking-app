@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReviewFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#070B1D">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_hotelname_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Khách sạn Borahae"
+                android:textColor="@color/maincolor"
+                android:textSize="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_imghotel_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/tv_hotelname_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_hotelname_review" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_danhgia_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rcv_imghotel_review">
+
+                <TextView
+                    android:id="@+id/tv_saodanhgia_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_bold"
+                    android:text="4.95"
+                    android:textColor="@color/maincolor"
+                    android:textSize="35dp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_5_review"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_5_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="/5"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_saodanhgia_review"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_saodanhgia_review" />
+
+                <TextView
+                    android:id="@+id/tv_luotdanhgia_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.3"
+                    android:fontFamily="@font/firasans_medium"
+                    android:text="40 đánh giá"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_saodanhgia_review" />
+
+                <RatingBar
+                    android:id="@+id/rb_ratinghotel_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:progressTint="@color/maincolor"
+                    android:rating="4.95"
+                    android:stepSize="0.05"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_luotdanhgia_review" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shp_ngang_review"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_margin="15dp"
+                android:background="@color/maincolor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_danhgia_review" />
+
+            <TextView
+                android:id="@+id/tv_danhgiacuaban_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Đánh giá của bạn"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shp_ngang_review" />
+
+            <RatingBar
+                android:id="@+id/rb_danggiacuaban_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:progressTint="@color/maincolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_danhgiacuaban_review" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_nhapdanhgia_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_border_maincolor"
+                android:backgroundTint="#2E3244"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@id/rb_danggiacuaban_review">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:elevation="12dp"
+                    android:id="@+id/cv_avatar_review"
+                    app:cardCornerRadius="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    android:thicknessRatio="1.9"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <ImageView
+                        android:id="@+id/iv_avatar_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_alignParentTop="true"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/iv_sendbutton_review"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/send_button"
+                    app:layout_constraintBottom_toBottomOf="@id/edt_message_review"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/edt_message_review"
+                    app:layout_constraintTop_toTopOf="@id/edt_message_review" />
+
+                <EditText
+                    android:id="@+id/edt_message_review"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/firasans_bold"
+                    android:hint="Nhập bình luận của bạn"
+                    android:textColor="@color/white"
+                    android:textColorHint="#7C7C7C"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_sendbutton_review"
+                    app:layout_constraintHorizontal_weight="5"
+                    app:layout_constraintStart_toEndOf="@id/cv_avatar_review"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shp_ngang2_review"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_margin="15dp"
+                android:background="@color/maincolor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_nhapdanhgia_review" />
+
+            <TextView
+                android:id="@+id/tv_cacbinhluancuanguoidung_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Các bình luận của người dùng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="@id/tv_hotelname_review"
+                app:layout_constraintTop_toBottomOf="@id/shp_ngang2_review" />
+
+            <TextView
+                android:id="@+id/tv_sapxeptheosao_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Sắp xếp tăng theo số sao:"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_1sao_review"
+                app:layout_constraintStart_toStartOf="@id/tv_cacbinhluancuanguoidung_review"
+                app:layout_constraintTop_toTopOf="@id/tv_1sao_review" />
+
+            <TextView
+                android:id="@+id/tv_1sao_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_section"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/unselected"
+                android:padding="@dimen/margin_section"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_2sao_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_sapxeptheosao_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_cacbinhluancuanguoidung_review" />
+
+            <TextView
+                android:id="@+id/tv_2sao_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_section"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/unselected"
+                android:padding="@dimen/margin_section"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_3sao_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_1sao_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_cacbinhluancuanguoidung_review" />
+
+            <TextView
+                android:id="@+id/tv_3sao_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_section"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/unselected"
+                android:padding="@dimen/margin_section"
+                android:text="3"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_4sao_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_2sao_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_cacbinhluancuanguoidung_review" />
+
+            <TextView
+                android:id="@+id/tv_4sao_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_section"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/unselected"
+                android:padding="@dimen/margin_section"
+                android:text="4"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_5sao_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_3sao_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_cacbinhluancuanguoidung_review" />
+
+            <TextView
+                android:id="@+id/tv_5sao_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_section"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/unselected"
+                android:padding="@dimen/margin_section"
+                android:text="5"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_4sao_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_cacbinhluancuanguoidung_review" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_review_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sapxeptheosao_review" />
+
+<!--            <EditText-->
+<!--                android:id="@+id/edt_trang_review"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="5dp"-->
+<!--                android:background="@drawable/rounded_border"-->
+<!--                android:backgroundTint="@color/white"-->
+<!--                android:fontFamily="@font/firasans_medium"-->
+<!--                android:hint="Trang"-->
+<!--                android:paddingLeft="20dp"-->
+<!--                android:paddingTop="7dp"-->
+<!--                android:paddingRight="20dp"-->
+<!--                android:paddingBottom="7dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="15dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/btn_dichuyen_review"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/btn_dichuyen_review"-->
+<!--                app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@id/btn_dichuyen_review" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_dichuyen_review"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Di chuyển"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/edt_trang_review"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/rcv_review_review" />-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

@@ -21,10 +21,16 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
     Context context;
     List<News> newss;
+    int maxItemsToShow = -1;
 
     public NewsAdapter (Context context, List<News> newss){
         this.context = context;
         this.newss = newss;
+    }
+    public NewsAdapter (Context context, List<News> newss,int maxItemsToShow){
+        this.context = context;
+        this.newss = newss;
+        this.maxItemsToShow = maxItemsToShow;
     }
     @Override
     public NewsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,7 +64,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return newss.size();
+        if (maxItemsToShow == -1) {
+            // Trường hợp không giới hạn số lượng item
+            return newss.size();
+        } else {
+            // Trường hợp giới hạn số lượng item
+            return Math.min(newss.size(), maxItemsToShow);
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

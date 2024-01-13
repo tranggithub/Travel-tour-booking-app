@@ -5,5 +5,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailHotelActivity">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#070B1D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_topNavigationView_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_detail_hotel_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_returnbutton_review"
+                app:layout_constraintBottom_toBottomOf="@id/iv_returnbutton_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sửa"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/firasans_medium"/>
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_review"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintEnd_toStartOf="@id/tv_danhgia_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_danhgia_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="ĐÁNH GIÁ"
+                android:textColor="#2D99AE"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_returnbutton_review"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_review"
+                app:layout_constraintTop_toTopOf="@id/iv_returnbutton_review" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/sv_detail_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_top_border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_price_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/firasans_bold"
+                android:text="9.190.123 VND"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="@id/bt_booking_review"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bt_booking_review">
+            </TextView>
+
+            <Button
+                android:id="@+id/bt_booking_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/custom_button"
+                android:text="Đặt chuyến đi"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </Button>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fl_review"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/nv_topNavigationView_review"
+        app:layout_constraintBottom_toTopOf="@id/sv_detail_review"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -302,6 +302,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/btn_detail_tour_moretour"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="4dp"
@@ -324,10 +325,11 @@
                     android:layout_width="28dp"
                     android:layout_height="31dp"
                     android:layout_marginStart="4dp"
-                    android:background="@drawable/ic_good_quality"
+                    android:background="@drawable/ic_eye"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:backgroundTint="@color/white"
                      />
 
                 <TextView
@@ -345,6 +347,7 @@
                      />
 
                 <RatingBar
+                    android:visibility="gone"
                     android:id="@+id/rtbProductRating"
                     style="@style/foodRatingBar"
                     android:layout_width="wrap_content"
@@ -465,7 +468,8 @@ Ngày 3:\n
                 android:fontFamily="@font/firasans_bold"
                 android:text="Khách sạn Borahae"
                 android:textColor="@color/maincolor"
-                android:textSize="35dp" />
+                android:textSize="35dp"
+                android:onClick="ChangeDetailHotel"/>
 
             <View
                 android:layout_width="match_parent"
@@ -587,7 +591,8 @@ Ngày 3:\n
                     android:theme="@style/Theme.Design.Light"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:onClick="ChangeDetailHotel"/>
 
                 <TextView
                     android:id="@+id/tv_danhgia2"
@@ -617,13 +622,16 @@ Ngày 3:\n
                 android:layout_marginTop="10dp">
 
                 <ImageView
+                    android:id="@+id/iv_detail_tour_hotel_thumbnail"
                     android:layout_width="match_parent"
                     android:layout_height="186dp"
                     android:background="@drawable/img_borahea"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news">
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toBottomOf="@+id/sv_detail_news"
+                    android:onClick="ChangeDetailHotel">
                 </ImageView>
                 <Button
                     android:id="@+id/bt_full_img"
@@ -632,7 +640,8 @@ Ngày 3:\n
                     android:text="Xem tất cả hình ảnh"
                     android:background="#03030375"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:onClick="ChangeDetailHotel">
                 </Button>
 
                 <View
@@ -671,164 +680,8 @@ Ngày 3:\n
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="12dp"/>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="12dp">
-
-                <View
-                    android:id="@+id/v_wifi"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_wifi"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    >
-                </View>
-
-                <TextView
-                    android:id="@+id/tv_wifi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/firasans_italic"
-                    android:text="Wifi"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/v_wifi"
-                    app:layout_constraintStart_toStartOf="@id/v_wifi"
-                    app:layout_constraintTop_toBottomOf="@+id/v_wifi"
-                    >
-                </TextView>
-
-                <View
-                    android:id="@+id/v_twobed"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="33dp"
-                    android:background="@drawable/ic_two_bed"
-                    app:layout_constraintEnd_toStartOf="@+id/v_spa"
-                    app:layout_constraintStart_toEndOf="@+id/v_wifi"
-                    app:layout_constraintTop_toTopOf="parent"
-                    ></View>
-
-                <TextView
-                    android:id="@+id/tv_bed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:fontFamily="@font/firasans_italic"
-                    android:text="Giường"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/v_twobed"
-                    app:layout_constraintHorizontal_bias="0.717"
-                    app:layout_constraintStart_toStartOf="@+id/v_twobed"
-                    app:layout_constraintTop_toBottomOf="@+id/v_twobed"
-                    ></TextView>
-
-                <View
-                    android:id="@+id/v_spa"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="33dp"
-                    android:background="@drawable/ic_spa"
-                    app:layout_constraintEnd_toStartOf="@+id/v_tvshow"
-                    app:layout_constraintStart_toEndOf="@+id/v_twobed"
-                    app:layout_constraintTop_toTopOf="parent"
-                    ></View>
-
-                <TextView
-                    android:id="@+id/tv_spa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:fontFamily="@font/firasans_italic"
-                    android:text="Bồn tắm"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/v_spa"
-                    app:layout_constraintHorizontal_bias="0.652"
-                    app:layout_constraintStart_toStartOf="@+id/v_spa"
-                    app:layout_constraintTop_toBottomOf="@+id/v_spa"
-                    ></TextView>
-                <View
-                    android:id="@+id/v_tvshow"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="33dp"
-                    android:background="@drawable/ic_tvshow"
-                    app:layout_constraintEnd_toStartOf="@id/v_cool"
-                    app:layout_constraintStart_toEndOf="@+id/v_spa"
-                    app:layout_constraintTop_toTopOf="parent"
-                    ></View>
-
-                <TextView
-                    android:id="@+id/tv_tvshow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/firasans_italic"
-                    android:text="TV"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/v_tvshow"
-                    app:layout_constraintStart_toStartOf="@+id/v_tvshow"
-                    app:layout_constraintTop_toBottomOf="@+id/v_tvshow"
-                    ></TextView>
-
-                <View
-                    android:id="@+id/v_cool"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="33dp"
-                    android:layout_marginEnd="33dp"
-                    android:background="@drawable/ic_cool"
-                    app:layout_constraintEnd_toStartOf="@id/v_packing"
-                    app:layout_constraintStart_toEndOf="@+id/v_tvshow"
-                    app:layout_constraintTop_toTopOf="parent"
-                    ></View>
-
-                <TextView
-                    android:id="@+id/tv_cool"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/firasans_italic"
-                    android:text="Máy lạnh"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/v_cool"
-                    app:layout_constraintStart_toStartOf="@+id/v_cool"
-                    app:layout_constraintTop_toBottomOf="@+id/v_cool"
-                    ></TextView>
-
-                <View
-                    android:id="@+id/v_packing"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/ic_packing"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    ></View>
-
-                <TextView
-                    android:id="@+id/tv_packing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:fontFamily="@font/firasans_italic"
-                    android:text="Điểm đỗ xe"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="@+id/v_packing"
-                    app:layout_constraintHorizontal_bias="0.824"
-                    app:layout_constraintStart_toStartOf="@+id/v_packing"
-                    app:layout_constraintTop_toBottomOf="@+id/v_packing"
-                    ></TextView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal" />
 
             <View
                 android:layout_width="match_parent"

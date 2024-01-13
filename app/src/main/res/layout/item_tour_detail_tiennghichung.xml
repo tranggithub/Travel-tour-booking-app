@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_tiennghichung">
+    android:id="@+id/cl_tiennghichung"
+    android:layout_margin="@dimen/margin_section">
     <View
         android:id="@+id/v_tiennghichung_icon"
         android:layout_width="30dp"
@@ -11,6 +12,7 @@
         android:background="@drawable/ic_wifi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         >
     </View>
 
@@ -19,12 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/firasans_italic"
-        android:text="Wifi"
+        android:text="Điểm đỗ xe"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="@id/v_tiennghichung_icon"
         app:layout_constraintStart_toStartOf="@id/v_tiennghichung_icon"
         app:layout_constraintTop_toBottomOf="@id/v_tiennghichung_icon"
+        android:paddingLeft="@dimen/margin_section"
+        android:paddingRight="@dimen/margin_section"
         >
     </TextView>
 

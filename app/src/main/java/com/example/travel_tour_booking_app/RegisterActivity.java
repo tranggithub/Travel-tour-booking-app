@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -152,8 +153,39 @@ public class RegisterActivity extends AppCompatActivity {
         tvDaCoTaiKhoan.setText(spannableString);
         tvDaCoTaiKhoan.setMovementMethod(LinkMovementMethod.getInstance());
 
+        //DieuKhoan
         tvDieuKhoan = findViewById(R.id.tv_DieuKhoan_register);
-        tvDieuKhoan.setText(Html.fromHtml("Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với "+"<u>"+"Điều khoản & Điều kiện"+"</u>"+" và "+"<u>"+"Cam kết bảo mật"+"</u>"+" của 4Travel"));
+
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String normalText = "Tiếp tục thao tác nghĩa là tôi đã đọc và đồng ý với ";
+        String linkText1 = "Điều khoản & Điều kiện";
+        String linkText2 = "Cam kết bảo mật";
+
+        spannableStringBuilder.append(normalText);
+        int start1 = spannableStringBuilder.length();
+        spannableStringBuilder.append(linkText1);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(TermsAndConditionActivity.class);
+            }
+        }, start1, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        spannableStringBuilder.append(" và ");
+
+        int start2 = spannableStringBuilder.length();
+        spannableStringBuilder.append(linkText2);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(SecurityCommitmentActivity.class);
+            }
+        }, start2, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.append(" của 4Travel.");
+
+        tvDieuKhoan.setText(spannableStringBuilder);
+        tvDieuKhoan.setMovementMethod(LinkMovementMethod.getInstance());
+
 
         edtEmail = findViewById(R.id.edt_Email_register);
         btnDangKy = findViewById(R.id.btn_DangKy_register);
@@ -307,5 +339,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void startActivity(Class<?> cls) {
+        Intent intent = new Intent(RegisterActivity.this, cls);
+        startActivity(intent);
     }
 }

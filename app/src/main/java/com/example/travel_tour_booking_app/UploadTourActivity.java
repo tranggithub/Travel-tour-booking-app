@@ -20,14 +20,18 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -57,6 +61,10 @@ public class UploadTourActivity extends AppCompatActivity {
     ArrayList<Hotel> hotels;
     HotelSpinnerAdapter hotelSpinnerAdapter;
     String DetailURL;
+
+    DatabaseReference databaseReference;
+    String DatabaseUrl = "https://travel-tour-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +91,36 @@ public class UploadTourActivity extends AppCompatActivity {
 
         //Hotel
         hotels = new ArrayList<>();
-        //hotels.add(new Hotel(null,"Đường 27, khu phố Wans, Canada","Borahae","7:00","12:00",null,"500 VND","1 tuổi"));
         hotelSpinnerAdapter = new HotelSpinnerAdapter(this,R.layout.item_drop_down_spinner, hotels);
+        //Firebase
+        databaseReference = FirebaseDatabase.getInstance(DatabaseUrl).getReference("Android Hotel");
+        //Progress layout
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                hotels.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    Hotel tempHotel = itemSnapshot.getValue(Hotel.class);
+                    tempHotel.setKey(itemSnapshot.getKey());
+                    hotels.add(tempHotel);
+                }
+                hotelSpinnerAdapter.notifyDataSetChanged();
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                alertDialog.dismiss();
+            }
+        });
+
+
 
         spn_hotel = findViewById(R.id.spn_hotel_upload_tour);
         spn_hotel.setAdapter(hotelSpinnerAdapter);
@@ -257,6 +293,7 @@ public class UploadTourActivity extends AppCompatActivity {
         String Location = et_location.getText().toString();
         String text = et_text.getText().toString();
         Hotel hotel = (Hotel) spn_hotel.getSelectedItem();
+        String hotelID = hotel.getKey();
         String diaDiemKhoiHanh = et_planefrom.getText().toString();
         String thoiLuongChuyenBay = et_planeduration.getText().toString();
         int SoChang = Integer.parseInt(et_segment.getText().toString());
@@ -285,7 +322,7 @@ public class UploadTourActivity extends AppCompatActivity {
             DatabaseReference toursRef = database.getReference("Android Tours");
             String toursId = toursRef.push().getKey();
             Place place = new Place(title,Date,Location,Price,Duration,ThumbnailURL,
-                    text,detailSchedule,hotel,diaDiemKhoiHanh,thoiLuongChuyenBay,SoChang,ngayBay,hangBay,
+                    text,detailSchedule,hotelID,diaDiemKhoiHanh,thoiLuongChuyenBay,SoChang,ngayBay,hangBay,
                     thoiGianCatCanh,thoiGianHaCanh,PlaneTienIch,loaiXe,CarTienIch,isActive);
             toursRef.child(toursId).
                     setValue(place).

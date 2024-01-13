@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#070B1D"
+    tools:context=".TermsAndConditionActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nv_topNavigationView_dkvdk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#070B1D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_returnbutton_dkvdk"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="center"
+                android:src="@drawable/return_button"
+                app:layout_constraintEnd_toStartOf="@id/tv_dieukhoanvadieukien"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_dieukhoanvadieukien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="ĐIỀU KHOẢN &amp; ĐIỀU KIỆN"
+                android:textColor="#2D99AE"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_returnbutton_dkvdk"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_returnbutton_dkvdk"
+                app:layout_constraintTop_toTopOf="@id/iv_returnbutton_dkvdk" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+    <ScrollView
+        android:id="@+id/sv_dkvdk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nv_topNavigationView_dkvdk">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_dkvdk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintTop_toTopOf="@id/sv_dkvdk">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firasans_bold"
+                android:text="Dưới đây là một số điều khoản và điều kiện mà người dùng ứng dụng 4Travel cần tuân thủ:"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cl_dkvdk" />
+
+            <TextView
+                android:id="@+id/tv_dieu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Điều 1: Phạm vi dịch vụ của 4Travel"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_dieu1_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Thông qua nền tảng ứng dụng di động được cung cấp và cài đặt trên CH Play và App Store, người dùng có thể dễ dàng tìm thấy ứng dụng 4Travel. Trong 4Travel người dùng có thể tìm kiếm và lựa chọn được nhiều chuyến du lịch khác nhau, mỗi chuyến du lịch sẽ có nhiều hình ảnh chi tiết về địa điểm du lịch, khách sạn, phương tiện, thức ăn, cơ sở vật chất và cả thời gian chuyến du lịch kéo dài cũng sẽ được cung cấp trong từng chuyến để mà người dùng có thể lựa chọn một chuyến du lịch phù hợp với sở thích cũng như là sự thuận tiện đối với chính bản thân người dùng."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu1" />
+
+            <TextView
+                android:id="@+id/tv_dieu1_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Ứng dụng 4Travel chỉ cung cấp duy nhất tính năng đặt vé du lịch (chuyến du lịch), nó không cung cấp các tính năng phụ như đặt máy bay, đặt xe và đặt khách sạn. Điều này làm cho 4Travel trở nên gọn nhẹ và tiết kiệm dung lượng rất nhiều cho người dùng."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu1_p1" />
+
+            <TextView
+                android:id="@+id/tv_dieu1_p3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Nếu người dùng muốn sử dụng một ứng dụng có cả tính năng đặt vé máy bay, đặt xe riêng thì người sử dụng có thể chuyển sang sử dụng các ứng dụng đặc thù như Traveloka, Skyscanner,..."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu1_p2" />
+
+            <TextView
+                android:id="@+id/tv_dieu2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Điều 2: Việc đặt các chuyến du lịch"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu1_p3" />
+
+            <TextView
+                android:id="@+id/tv_dieu2_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Với việc đặt thành công một chuyến du lịch, 4Travel cam kết sẽ không xãy ra trường hợp chuyến du lịch bị hủy bỏ mà không có sự đồng ý của người dùng. Tuy nhiên nếu người dùng vắng mặt vào ngày đi du lịch thì sẽ không nhận lại được bất kỳ phần tiền nào (đã đặt cho chuyến du lịch), nên rất mong người dùng chú ý."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu2" />
+
+            <TextView
+                android:id="@+id/tv_dieu2_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Ngoài ra, người dùng chỉ có thể thực hiện thao tác hủy chuyến du lịch đã đặt nếu mà thời gian kể từ lúc người dùng hủy đến ngày đi du lịch ít nhất là 5 ngày, nếu không thì người dùng sẽ không thể hủy được chuyến du lịch đã đặt. Nếu người dùng hủy thành công chuyến du lịch thì 90% số tiền đã thanh toán cho chuyến đi đó sẽ được hoàn trả lại. Do đó rất mong người sử dụng cân nhắc trước khi thanh toán và đặt vé."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu2_p1" />
+
+            <TextView
+                android:id="@+id/tv_dieu3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Điều 3: Giá cả và khuyến mãi"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu2_p2" />
+
+            <TextView
+                android:id="@+id/tv_dieu3_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Tùy theo từng thời điểm, chúng tôi có thể đưa ra mức giá khác nhau cho từng chuyến du lịch cụ thể. Ngoài ra các khuyến mãi được cung cấp cũng sẽ chỉ tồn tại trong 1 khoảng thời gian nhất định và chúng sẽ liên tục được cập nhật và đổi mới."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu3" />
+
+            <TextView
+                android:id="@+id/tv_dieu4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Điều 4: Tài khoản người dùng"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu3_p1" />
+
+            <TextView
+                android:id="@+id/tv_dieu4_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Để sử dụng được ứng dụng 4Travel thì người dùng cần có 1 tài khoản được đăng ký hoặc là đăng nhập vào bằng các tài khoản liên kết như facebook, google và số điện thoại. Ngoài ra thì 4Travel còn cung cấp một hình thức khác đó là “Người dùng khách”, với tư cách này thì người dùng có thể xem qua các chuyến du lịch tuy nhiên sẽ không thể tiến hành đặt vé hay liên kết tài khoản, nếu muốn thực hiện các chức năng này thì người dùng cần đăng ký tài khoản hoặc sử dụng các các đăng nhập bằng tài khoản liên kết như trên."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu4" />
+
+            <TextView
+                android:id="@+id/tv_dieu4_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Với hình thức đăng ký một tài khoản mới thì 4Travel chỉ thu thâp thông tin Email cũng như là mật khẩu của người dùng, các thông tin khác người dùng có thể tùy chọn cập nhật hoặc không cập nhật sau khi đã đăng nhập thành công."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu4_p1" />
+
+            <TextView
+                android:id="@+id/tv_dieu4_p3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Người dùng không được phép chuyển giao hoặc chuyển nhượng tài khoản của mình cho bất kỳ ai hoặc bất kỳ bên nào khác. Nếu có sự cố xãy ra liên qua đến vấn đề này, 4Travel sẽ không chịu bất kỳ trách nhiệm nào."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu4_p2" />
+
+            <TextView
+                android:id="@+id/tv_dieu4_p4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Người dùng cần phải đảm bảo tính bí mật của mật khẩu, nếu cảm thấy tài khoản bị xâm phạm thì người dùng có thể đổi lại mật khẩu hoặc liên hệ trung tâm hỗ trợ để có thể được giúp đỡ và khôi phục sự an toàn cho tài khoản."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu4_p3" />
+
+            <TextView
+                android:id="@+id/tv_dieu4_p5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Lưu ý rằng, 4Travel có toàn quyền chặn tạm thời, xóa hoặc hủy kích hoạt tài khoản người dùng theo quyết định của chúng tôi ví bất cứ lý do nào khác và không cần đưa ra bất kỳ lý do cho việc này. Các nguyên nhân dẫn đến hành động này bao gồm: vi phạm các điều khoản, bị cấm theo quy định, có hành vi lạm dụng ứng dụng cho mục đích xấu hoặc có dấu hiệu hình sự."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu4_p4" />
+
+            <TextView
+                android:id="@+id/tv_dieu5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Điều 5: Chi tiết và thủ tục thanh toán"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu4_p5" />
+
+            <TextView
+                android:id="@+id/tv_dieu5_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Để thực hiên được hành động thanh toán, thì người dùng cần liên kết ít nhất với 1 tài khoản ngân hàng và trong tài khoản đó vẫn còn đủ tiền để thực hiện giao dịch."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu5" />
+
+            <TextView
+                android:id="@+id/tv_dieu5_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Chi phí được xác định trên mỗi chuyến đi là chi phí cuối cùng mà người dùng sẽ trả, 4Travel cam kết người dùng sẽ không phải chịu thêm các chi phí phụ hoặc các chi phí phát sinh khác trong quá trình đi du lịch (ngoại trừ các chi phí do chính người dung tạo ra như mua trang phục, đi ăn,...)"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu5_p1" />
+
+            <TextView
+                android:id="@+id/tv_dieu5_p3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Sau khi đã thanh toán thành công thì người dùng có thể yên tâm là chuyến du lịch sẽ không bị hủy nếu không có sự đồng ý của người dùng. 4Travel sẽ bồi thường nếu sự cố cho vấn đề này xảy ra."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu5_p2" />
+
+            <TextView
+                android:id="@+id/tv_dieu6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Điều 6: Quyền và Trách nhiệm của người dùng"
+                android:textColor="#2D99AE"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu5_p3" />
+
+            <TextView
+                android:id="@+id/tv_dieu6_p1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="4Travel cung cấp quyền đặt chuyến du lịch tùy ý cho người dùng và cũng hỗ trợ quyền hủy bỏ các chuyến du lịch mà người dùng đã đặt (chi tiết xem điều 2). 4Travel cho phép người dùng thay đổi thông tin cá nhân một cách linh hoạt và dễ dàng. Ngoài ra thì 4Travel còn cho phép người dùng lưu trữ nhiều thẻ thanh toán mà không giới hạn số lượng cụ thể, điều này giúp cho người dùng có thể thanh toán một cách thuận lợi."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu6" />
+
+            <TextView
+                android:id="@+id/tv_dieu6_p2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/firasans_medium"
+                android:text="Người dùng phải chịu trách nhiệm cho hành động thanh toán của mình, đảm bảo các thông tin bình luận, đánh giá là hoàn toàn do người dùng thực hiện và không được trốn tránh nếu hành vi đã thực hiện là hành vi sai trái. Mọi hành động có liên quan đến dấu hiệu tội phạm sẽ bị truy cứu và người dùng sẽ hoàn toàn chịu trách nhiệm cho hành vi đã thực hiện."
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu6_p1" />
+
+            <Button
+                android:id="@+id/btn_up_dkvdk"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_section"
+                android:background="@drawable/custom_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_dieu6_p2"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_double_up"
+                app:layout_constraintBottom_toBottomOf="@id/btn_up_dkvdk"
+                app:layout_constraintEnd_toEndOf="@+id/btn_up_dkvdk"
+                app:layout_constraintStart_toStartOf="@id/btn_up_dkvdk"
+                app:layout_constraintTop_toTopOf="@id/btn_up_dkvdk" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
