@@ -76,7 +76,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 holder.contentTextView.setText(lastMessage);
                 holder.dateTextView.setText(messagesDetails.getTimeDate());
 
-                if (messagesDetails.getStatus() == false){
+                if (messagesDetails.getRep() == false){
                     holder.contentTextView.setTypeface(null, Typeface.BOLD);
                     holder.dateTextView.setTypeface(null, Typeface.BOLD);
                 }

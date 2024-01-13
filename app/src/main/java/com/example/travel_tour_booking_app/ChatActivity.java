@@ -30,6 +30,7 @@ public class ChatActivity extends AppCompatActivity {
     ChatFragment chatFragment;
     DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class ChatActivity extends AppCompatActivity {
         ivBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chatFragment.messages != null){
+                if (chatFragment.messages != null) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ChatActivity.this);
                     builder.setMessage("Nếu bạn thóat ra bây giờ, đoạn chat sẽ bị hủy. Bạn có chắc chắn muốn thoát?")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -78,16 +79,14 @@ public class ChatActivity extends AppCompatActivity {
                     // Show the alert dialog
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                }
-                else finish();
+                } else finish();
             }
         });
         ivSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get the user's message from the EditText
-                if (edtUserType.getText().toString()!=null)
-                {
+                if (edtUserType.getText().toString() != null) {
                     String userTypeMsg = edtUserType.getText().toString();
 
                     // Call the function to add the user's message to the chat
@@ -99,41 +98,12 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
-        stopMess();
     }
-    private void replaceFragment(Fragment fragment)
-    {
+
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fl_chat, fragment);
         fragmentTransaction.commit();
     }
-    private void stopMess() {
-        if (chatFragment.messages != null) {
-            final DatabaseReference userReference = databaseReference.child(user.getUid());
-
-            // Create a ValueEventListener
-            ValueEventListener valueEventListener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Messages messages = snapshot.getValue(Messages.class);
-                    if (messages != null && messages.getStatus() == Boolean.FALSE) {
-                        nvBottom.setVisibility(View.INVISIBLE);
-
-                        // Remove the listener after processing the change
-                        userReference.removeEventListener(this);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle onCancelled
-                }
-            };
-
-            // Add the ValueEventListener to the database reference
-            userReference.addValueEventListener(valueEventListener);
-        }
-    }
-
 }

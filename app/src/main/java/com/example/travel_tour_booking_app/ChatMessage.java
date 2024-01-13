@@ -25,14 +25,19 @@ public class ChatMessage {
     public String getContent() {
         return content;
     }
-
-    public int isBotMessage() {
-        return isBotMessage;
-    }
     public List<String> getListData() {
         return listData;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
 
+    public int getIsBotMessage() {
+        return isBotMessage;
+    }
 
+    public void setIsBotMessage(int isBotMessage) {
+        this.isBotMessage = isBotMessage;
+    }
 }

@@ -47,7 +47,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         ChatMessage chatMessage = chatList.get(position);
 
-        if (chatMessage.isBotMessage() == BOT_LIST_MESSAGE) {
+        if (chatMessage.getIsBotMessage() == BOT_LIST_MESSAGE) {
             List<String> listData = chatMessage.getListData();
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(holder.itemView.getContext(), R.layout.list_item_message, listData);
             holder.messageListView.setAdapter(arrayAdapter);
@@ -74,7 +74,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     public int getItemViewType(int position) {
         // Determine the message type based on the ChatMessage object
         ChatMessage chatMessage = chatList.get(position);
-        int messageType = chatMessage.isBotMessage();
+        int messageType = chatMessage.getIsBotMessage();
 
         if (messageType == USER_MESSAGE) {
             return USER_MESSAGE;

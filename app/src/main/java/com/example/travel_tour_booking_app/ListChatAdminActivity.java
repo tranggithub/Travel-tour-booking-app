@@ -49,6 +49,7 @@ import java.util.ArrayList;
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messagesArrayList.clear();
                 for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
                     Messages messages = itemSnapshot.getValue(Messages.class);
                     if (messages.getStatus() == Boolean.TRUE)  messagesArrayList.add(messages);

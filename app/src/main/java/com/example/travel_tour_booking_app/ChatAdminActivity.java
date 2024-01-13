@@ -52,9 +52,10 @@ public class ChatAdminActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Messages messages = snapshot.getValue(Messages.class);
+                messagesTemp.setSenderId(messages.getSenderId());
                 messagesTemp.setChatMessages(messages.getChatMessages());
                 for (ChatMessage chatMessage : messages.getChatMessages()){
-                    if (chatMessage.isBotMessage() == 0){
+                    if (chatMessage.getIsBotMessage() == 0){
                         chatMessages.add(new ChatMessage(chatMessage.getContent(), 1));
                     }
                     else {
@@ -113,6 +114,8 @@ public class ChatAdminActivity extends AppCompatActivity {
         String content = edtText.getText().toString();
 
         if (content == null) return;
+
+        edtText.setText("");
 
         chatMessages.add(new ChatMessage(content, 0));
         chatMessageAdapter.notifyDataSetChanged();

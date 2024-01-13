@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,9 +32,11 @@ public class ChatFragment extends Fragment {
     TextView tvDate;
     RecyclerView recyclerView;
     ChatMessageAdapter chatMessageAdapter;
+    NavigationView nvBottom;
     List<ChatMessage> chatList = new ArrayList<>();
     Messages messages;
     ArrayList<ChatMessage> chatMessages;
+    DatabaseReference databaseReferenceMess;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class ChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        databaseReferenceMess = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Messages");
 
         tvDate = view.findViewById(R.id.tv_datetime_chat);
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm, dd/MM/yyyy", Locale.getDefault());
@@ -80,6 +88,8 @@ public class ChatFragment extends Fragment {
         recyclerView.setAdapter(chatMessageAdapter);
         recyclerView.scrollToPosition(chatList.size() - 1);
 
+        if (messages!= null)
+            loadChatList();
 
         return view;
     }
@@ -95,7 +105,7 @@ public class ChatFragment extends Fragment {
             return "Ứng dụng của chúng tôi miễn phí cho việc tải về và sử dụng cơ bản. Tuy nhiên, có thể có một số tính năng hoặc dịch vụ đặc biệt có thể đòi hỏi thanh toán. Quý khách có thể kiểm tra trong phần cài đặt hoặc liên hệ với chúng tôi để biết thêm chi tiết.";
         } else if (userMessage.contains("nhân viên tư vấn")){
             sendToAdmin();
-            NavigationView nvBottom = ((ChatActivity) getActivity()).nvBottom;
+            nvBottom = ((ChatActivity) getActivity()).nvBottom;
             nvBottom.setVisibility(View.VISIBLE);
             return "Đang kết nối với nhân viên tư vấn...";
         }
@@ -111,6 +121,7 @@ public class ChatFragment extends Fragment {
         messages.setChatMessages(chatMessages);
         DatabaseReference databaseReferenceMess = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Messages");
         databaseReferenceMess.child(user.getUid()).setValue(messages);
+        loadChatList();
     }
 
     public void addUserMessageToChat(String userMessage) {
@@ -124,15 +135,53 @@ public class ChatFragment extends Fragment {
     public void addUserMessageToChatWithAdmin(String userMessage) {
         ChatMessage userMessageObj = new ChatMessage(userMessage, 0);
 
-        chatList.add(userMessageObj);
-        chatMessageAdapter.notifyDataSetChanged();
-        recyclerView.scrollToPosition(chatList.size() - 1);
-
         chatMessages = messages.getChatMessages();
         chatMessages.add(userMessageObj);
         messages.setChatMessages(chatMessages);
-        DatabaseReference databaseReferenceMess = FirebaseDatabase.getInstance(UserInformationActivity.FIREBASE_REALTIME_DATABASE_URL).getReference("Messages");
         databaseReferenceMess.child(user.getUid()).setValue(messages);
+
+        loadChatList();
+    }
+
+    public void loadChatList(){
+        databaseReferenceMess.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                chatList.clear();
+                Messages tempMess = snapshot.getValue(Messages.class);
+                for (ChatMessage chatMessage : tempMess.getChatMessages()){
+                    chatList.add(chatMessage);
+                }
+                chatMessageAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(chatList.size() - 1);
+                chatMessageAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(chatList.size() - 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReferenceMess.child(user.getUid()).child("status").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean newStatus = snapshot.getValue(Boolean.class);
+                if (newStatus != null) {
+                    if (newStatus == Boolean.FALSE) {
+                        nvBottom.setVisibility(View.INVISIBLE);
+                    } else {
+                        nvBottom.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
     }
 
     public void addBotResponse(String userMessage) {
