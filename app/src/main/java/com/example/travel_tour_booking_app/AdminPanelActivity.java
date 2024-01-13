@@ -68,5 +68,9 @@ public class AdminPanelActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListUserAdminActivity.class);
         startActivity(intent);
     }
+    public void Chat (View view){
+        Intent intent = new Intent(this, ListChatAdminActivity.class);
+        startActivity(intent);
+    }
 
 }

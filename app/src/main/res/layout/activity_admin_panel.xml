@@ -258,12 +258,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/custom_input_searchbar"
-                android:layout_margin="@dimen/margin_section">
+                android:layout_margin="@dimen/margin_section"
+                android:onClick="Chat">
                 <ImageView
                     android:id="@+id/iv_admin_place1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_place"
+                    android:src="@drawable/ic_question"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -280,7 +281,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/firasans_bold"
-                    android:text="Địa điểm"
+                    android:text="Chat"
                     android:textColor="#00476F"
                     android:textSize="12dp"
                     android:textAllCaps="true"

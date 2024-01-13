@@ -86,8 +86,6 @@ public class UserInformationActivity extends AppCompatActivity {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserInformationActivity.this, HomeActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
