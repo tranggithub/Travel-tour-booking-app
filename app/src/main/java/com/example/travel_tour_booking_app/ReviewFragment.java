@@ -86,10 +86,13 @@ public class ReviewFragment extends Fragment {
         if (bundle != null) {
             hotel = (Hotel) bundle.getSerializable("Hotel");
 
-            LoadView();
-
+            tempComments = new ArrayList<>();
+            reviewAdapter = new ReviewAdapter(tempComments, getActivity(), user.getUid(), hotel);
             rcvReview.setLayoutManager(new LinearLayoutManager(getActivity()));
             rcvReview.setAdapter(reviewAdapter);
+
+            LoadView();
+
             ivSendComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,13 +104,14 @@ public class ReviewFragment extends Fragment {
                         } else {
                             UploadComment();
                             reviewAdapter.sortByDate(tempComments);
-
                             edtCommentText.setText("");
-                            String star = String.valueOf(hotel.getAvgStar());
-                            tvSaoDanhGia.setText(star);
-                            rbHotelRating.setRating(hotel.getAvgStar());
-                            String soDanhGia = hotel.getSizeComments() + " đánh giá";
-                            tvSoDanhGia.setText(soDanhGia);
+                            rbDanhGiaCuaBan.setRating(0);
+                            LoadView();
+//                            String star = String.valueOf(hotel.getAvgStar());
+//                            tvSaoDanhGia.setText(star);
+//                            rbHotelRating.setRating(hotel.getAvgStar());
+//                            String soDanhGia = hotel.getSizeComments() + " đánh giá";
+//                            tvSoDanhGia.setText(soDanhGia);
                             Toast.makeText(getActivity(), "Bình luận thành công", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -133,11 +137,13 @@ public class ReviewFragment extends Fragment {
     }
     private void LoadView() {
         DatabaseReference databaseReferenceHotel = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel");
-        databaseReferenceHotel.child(hotel.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceHotel.child(hotel.getKey()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     hotel = snapshot.getValue(Hotel.class);
+
+                    if(tempComments!=null) tempComments.clear();
 
                     tvHotelName.setText(hotel.getName());
 
@@ -153,8 +159,9 @@ public class ReviewFragment extends Fragment {
                     String soDanhGia = hotel.getSizeComments() + " đánh giá";
                     tvSoDanhGia.setText(soDanhGia);
 
-                    tempComments = hotel.getComments();
-                    reviewAdapter = new ReviewAdapter(tempComments, getActivity(), user.getUid(), hotel);
+                    if (hotel.getComments() != null ) tempComments.addAll(hotel.getComments());
+
+                    reviewAdapter.sortByDate(tempComments);
                 }
 
             }
