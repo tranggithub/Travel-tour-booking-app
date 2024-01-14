@@ -35,7 +35,7 @@ public class FacebookLoginActivity extends LoginActivity {
 
         // Add this in your Application class or the first activity that runs
         FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
+        AppEventsLogger.activateApp(this.getApplication());
 
         // Request required permissions
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));

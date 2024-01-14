@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.media3.common.util.Log;
-import androidx.media3.common.util.UnstableApi;
 
 import android.content.Intent;
 import android.media.Image;
@@ -27,7 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-@UnstableApi public class DetailHotelActivity extends AppCompatActivity {
+public class DetailHotelActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextView tv_edit, tvPrice;
     Hotel hotel;
@@ -45,21 +43,21 @@ import com.google.firebase.database.ValueEventListener;
 
         initID();
 
-            hotel = (Hotel) getIntent().getSerializableExtra("Hotel");
-            tours = (Place) getIntent().getSerializableExtra("Tour");
+        hotel = (Hotel) getIntent().getSerializableExtra("Hotel");
+        tours = (Place) getIntent().getSerializableExtra("Tour");
 
-            if(tours!=null){
-                tvPrice.setText(tours.getPrice());
-            } else {
-                BottomNavigationView bottomNavigationView = findViewById(R.id.sv_detail_review);
-                bottomNavigationView.setVisibility(View.GONE);
-            }
+        if (tours != null) {
+            tvPrice.setText(tours.getPrice());
+        } else {
+            BottomNavigationView bottomNavigationView = findViewById(R.id.sv_detail_review);
+            bottomNavigationView.setVisibility(View.GONE);
+        }
 
-            // Pass the Hotel object to the fragment using a Bundle
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("Hotel", hotel);
+        // Pass the Hotel object to the fragment using a Bundle
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Hotel", hotel);
 
-            reviewFragment.setArguments(bundle);
+        reviewFragment.setArguments(bundle);
 
         //Phân quyền - admin
         mAuth = FirebaseAuth.getInstance();
@@ -85,7 +83,7 @@ import com.google.firebase.database.ValueEventListener;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailHotelActivity.this, UpdateHotelActivity.class);
-                intent.putExtra("Hotel", (Hotel) hotel);
+                intent.putExtra("Hotel", (String) hotel.getKey());
                 startActivity(intent);
             }
         });
@@ -128,13 +126,14 @@ import com.google.firebase.database.ValueEventListener;
         fragmentTransaction.replace(R.id.fl_review, fragment);
         fragmentTransaction.commit();
     }
-    private void GoBack(){
+
+    private void GoBack() {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-       }
+    }
 
 }

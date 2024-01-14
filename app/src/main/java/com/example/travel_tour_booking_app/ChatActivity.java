@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -51,34 +53,30 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (chatFragment.messages != null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ChatActivity.this);
-                    builder.setMessage("Nếu bạn thóat ra bây giờ, đoạn chat sẽ bị hủy. Bạn có chắc chắn muốn thoát?")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Messages messages = snapshot.getValue(Messages.class);
-                                            messages.setStatus(Boolean.FALSE);
-                                            databaseReference.child(user.getUid()).setValue(messages);
-                                            finish();
-                                        }
+                    YesNoDialog dialog;
+                    dialog = new YesNoDialog(ChatActivity.this, "Nếu bạn thóat ra bây giờ, đoạn chat sẽ bị hủy. Bạn có chắc chắn muốn thoát?", "Có", "Không");
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.show();
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
+                    dialog.btn_yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    Messages messages = snapshot.getValue(Messages.class);
+                                    messages.setStatus(Boolean.FALSE);
+                                    databaseReference.child(user.getUid()).setValue(messages);
+                                    finish();
                                 }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
                                 }
                             });
-
-                    // Show the alert dialog
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                        }
+                    });
                 } else finish();
             }
         });

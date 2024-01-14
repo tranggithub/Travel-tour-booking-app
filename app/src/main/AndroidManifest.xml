@@ -15,9 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveltourbookingapp"
         tools:targetApi="31">
+        <activity android:name=".ChatAdminActivity"
+            android:exported="false"/>
         <activity
-            android:name=".ChatAdminActivity"
-            android:exported="false" />
+            android:name=".ChoosePaymentActivity"
+            android:exported="false"/>
         <activity
             android:name=".ListChatAdminActivity"
             android:exported="false" />
