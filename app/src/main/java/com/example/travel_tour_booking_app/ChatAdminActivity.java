@@ -138,7 +138,7 @@ public class ChatAdminActivity extends AppCompatActivity {
                 Boolean newStatus = snapshot.getValue(Boolean.class);
                 if (newStatus != null) {
                     if (newStatus == Boolean.FALSE) {
-                        Toast.makeText(ChatAdminActivity.this, "Người dùng đã thoát", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatAdminActivity.this, "Đoạn chat đã dừng", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
                     }
