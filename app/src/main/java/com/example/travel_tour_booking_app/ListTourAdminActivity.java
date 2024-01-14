@@ -130,7 +130,7 @@ public class ListTourAdminActivity extends AppCompatActivity {
                     tempPlace.setKey(itemSnapshot.getKey());
                     places.add(tempPlace);
                 }
-                placeAdapter.notifyDataSetChanged();
+                placeAdapter.sortByNews();
                 alertDialog.dismiss();
             }
 

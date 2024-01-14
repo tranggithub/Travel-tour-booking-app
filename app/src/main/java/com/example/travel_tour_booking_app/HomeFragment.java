@@ -136,10 +136,11 @@ public class HomeFragment extends Fragment {
                 promotions.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Promotion tempPromotion = itemSnapshot.getValue(Promotion.class);
+                    tempPromotion.setKey(itemSnapshot.getKey());
                     if (tempPromotion.isActive())
                         promotions.add(tempPromotion);
                 }
-                promotionAdapter.notifyDataSetChanged();
+                promotionAdapter.sortByNews();
             }
 
             @Override
@@ -170,7 +171,7 @@ public class HomeFragment extends Fragment {
                     if (tempNews.isActive())
                         newss.add(tempNews);
                 }
-                newsAdapter.notifyDataSetChanged();
+                newsAdapter.sortByNews();
             }
 
             @Override

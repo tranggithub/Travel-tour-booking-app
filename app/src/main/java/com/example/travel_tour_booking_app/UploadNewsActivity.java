@@ -108,20 +108,40 @@ public class UploadNewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
+                if(CheckException()){
+                    for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
                     {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                        uploadDetailNewsList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
-                    } else {
-                        uploadDetailNewsList.add(item);
+                        if(item.isImage())
+                        {
+                            saveDetailPicture(Uri.parse(item.getPicture()));
+                            uploadDetailNewsList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
+                        } else {
+                            uploadDetailNewsList.add(item);
+                        }
                     }
+                    saveData();
                 }
-                saveData();
             }
         });
     }
+
+    private boolean CheckException() {
+        String title = et_title.getText().toString();
+        String text = et_text.getText().toString();
+
+        List<String> checkEmtyList = new ArrayList<>();
+        checkEmtyList.add(title);
+        checkEmtyList.add(text);
+        if (Helper.hasEmptyElement(checkEmtyList))
+        {
+            Toast.makeText(getBaseContext(),"Hãy nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+
+    }
+
     //Thiết lập URL cho Detail News
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -151,7 +171,7 @@ public class UploadNewsActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(false);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
-                Toast.makeText(getBaseContext(),"add content",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm nội dung",Toast.LENGTH_SHORT).show();
             }
         });
         btn_add_picture.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +180,7 @@ public class UploadNewsActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(true);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyDataSetChanged();
-                Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm hình ảnh",Toast.LENGTH_SHORT).show();
             }
         });
     }

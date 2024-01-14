@@ -61,20 +61,7 @@ public class DetailNewsActivity extends AppCompatActivity {
 //            tv_title.setText(bundle.getString("Title"));
 //            tv_date.setText(bundle.getString("Date"));
 //        }
-        //Thêm nội dung detail
-        detailNewsArrayList = new ArrayList<>();
-
-        DetailNews tempDetailNews1 = new DetailNews(news.getThumbnail(), null,null,true);
-        detailNewsArrayList.add(tempDetailNews1);
-
-        for (DetailNews item : news.getDetailNewsArrayList()){
-            detailNewsArrayList.add(item);
-        }
-        detailNewsAdapter = new DetailNewsAdapter(this,detailNewsArrayList,15);
-
-        RecyclerView rvDetailNews = findViewById(R.id.rv_detail_news);
-        rvDetailNews.setLayoutManager(new LinearLayoutManager(this));
-        rvDetailNews.setAdapter(detailNewsAdapter);
+       LoadView();
 
         ScrollToTop();
 
@@ -143,6 +130,21 @@ public class DetailNewsActivity extends AppCompatActivity {
                         tv_title.setText(news.getTitle().toString());
                         tv_date.setText(news.getUploadDate().toString());
                         tv_text.setText(news.getText().toString());
+
+                        //Thêm nội dung detail
+                        detailNewsArrayList = new ArrayList<>();
+
+                        DetailNews tempDetailNews1 = new DetailNews(news.getThumbnail(), null,null,true);
+                        detailNewsArrayList.add(tempDetailNews1);
+
+                        for (DetailNews item : news.getDetailNewsArrayList()){
+                            detailNewsArrayList.add(item);
+                        }
+                        detailNewsAdapter = new DetailNewsAdapter(getBaseContext(),detailNewsArrayList,15);
+
+                        RecyclerView rvDetailNews = findViewById(R.id.rv_detail_news);
+                        rvDetailNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                        rvDetailNews.setAdapter(detailNewsAdapter);
                     }
                 }
 

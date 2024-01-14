@@ -38,6 +38,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UploadPromotionActivity extends AppCompatActivity {
     Button bt_UploadPromotion;
@@ -107,28 +108,49 @@ public class UploadPromotionActivity extends AppCompatActivity {
         bt_UploadPromotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
+                if(CheckException()){
+                    contextOrPictureUploadAdapter.notifyDataSetChanged();
+                    for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
                     {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                        uploadDetailNewsList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
-                    } else {
-                        uploadDetailNewsList.add(item);
+                        if(item.isImage())
+                        {
+                            saveDetailPicture(Uri.parse(item.getPicture()));
+                            uploadDetailNewsList.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
+                        } else {
+                            uploadDetailNewsList.add(item);
+                        }
                     }
-                }
-                String dateStart = et_start_date.getText().toString();
-                String dateEnd = et_end_date.getText().toString();
-                if (isValidDate(dateStart) && isValidDate(dateEnd)){
                     saveData();
-                }
-                else {
-                    Toast.makeText(UploadPromotionActivity.this,"Hãy nhập đúng định dạng của ngày", Toast.LENGTH_SHORT);
                 }
             }
         });
     }
+
+    private boolean CheckException() {
+        String title = et_title.getText().toString();
+        String text = et_text.getText().toString();
+        String dateStart = et_start_date.getText().toString();
+        String dateEnd = et_end_date.getText().toString();
+
+        List<String> CheckNullStrList = new ArrayList<>();
+        CheckNullStrList.add(title);
+        CheckNullStrList.add(text);
+        CheckNullStrList.add(dateStart);
+        CheckNullStrList.add(dateEnd);
+
+        if(Helper.hasEmptyElement(CheckNullStrList))
+        {
+            Toast.makeText(getBaseContext(),"Hãy nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!Helper.isValidDate(dateStart) || !Helper.isValidDate(dateEnd)){
+            Toast.makeText(getBaseContext(),"Hãy nhập đúng định dạng của ngày", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     //Thiết lập URL cho Detail News
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -158,7 +180,7 @@ public class UploadPromotionActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(false);
                 detailPromotionList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailPromotionList.size());
-                Toast.makeText(getBaseContext(),"add content",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm nội dung",Toast.LENGTH_SHORT).show();
             }
         });
         btn_add_picture.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +189,7 @@ public class UploadPromotionActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(true);
                 detailPromotionList.add(temp);
                 contextOrPictureUploadAdapter.notifyDataSetChanged();
-                Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm hình ảnh",Toast.LENGTH_SHORT).show();
             }
         });
     }

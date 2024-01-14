@@ -123,7 +123,7 @@ public class TourDetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     tours = snapshot.getValue(Place.class);
-
+                    tours.setKey(snapshot.getKey());
                     if (tours != null){
                         if(!isAdmin)
                             UpdateView();

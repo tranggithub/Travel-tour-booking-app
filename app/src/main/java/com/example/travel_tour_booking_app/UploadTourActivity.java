@@ -37,6 +37,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UploadTourActivity extends AppCompatActivity {
     Button bt_UploadTour;
@@ -180,20 +181,74 @@ public class UploadTourActivity extends AppCompatActivity {
         bt_UploadTour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
+                if(checkException()){
+                    //                contextOrPictureUploadAdapter.notifyDataSetChanged();
+                    for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
                     {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                        uploadDetailSchedule.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
-                    } else {
-                        uploadDetailSchedule.add(item);
+                        if(item.isImage())
+                        {
+                            saveDetailPicture(Uri.parse(item.getPicture()));
+                            uploadDetailSchedule.add(new DetailNews(DetailURL,item.getSubtitleImage(),null,true));
+                        } else {
+                            uploadDetailSchedule.add(item);
+                        }
                     }
+                    saveData();
                 }
-                saveData();
             }
+
         });
+    }
+
+    private boolean checkException() {
+        String title = et_title.getText().toString();
+        String Date = et_date.getText().toString();
+        String Duration = et_duration.getText().toString();
+        String Location = et_location.getText().toString();
+        String text = et_text.getText().toString();
+
+        String diaDiemKhoiHanh = et_planefrom.getText().toString();
+        String thoiLuongChuyenBay = et_planeduration.getText().toString();
+        String SoChang = et_segment.getText().toString();
+        String ngayBay = et_planedate.getText().toString();
+        String hangBay = et_planebrand.getText().toString();
+        String thoiGianCatCanh = et_timetakeoff.getText().toString();
+        String thoiGianHaCanh = et_timelanding.getText().toString();
+
+        String loaiXe = et_cartype.getText().toString();
+
+        String Price = et_price.getText().toString();
+
+        List<String> checkEmtyList = new ArrayList<>();
+        checkEmtyList.add(title);
+        checkEmtyList.add(Date);
+        checkEmtyList.add(Duration);
+        checkEmtyList.add(Location);
+        checkEmtyList.add(diaDiemKhoiHanh);
+        checkEmtyList.add(thoiLuongChuyenBay);
+        checkEmtyList.add(hangBay);
+        checkEmtyList.add(thoiGianCatCanh);
+        checkEmtyList.add(thoiGianHaCanh);
+        checkEmtyList.add(loaiXe);
+        checkEmtyList.add(Price);
+        checkEmtyList.add(SoChang);
+        checkEmtyList.add(ngayBay);
+
+        if(Helper.hasEmptyElement(checkEmtyList)){
+            Toast.makeText(getBaseContext(),"Hãy nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!Helper.isNaturalNumber(SoChang))
+        {
+            Toast.makeText(getBaseContext(),"Số chặng là một số tự nhiên. Vui lòng nhập lại", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(Helper.isValidCurrencyFormat(Price)){
+            Toast.makeText(getBaseContext(),"Vui lòng nhập đúng định dạng giá", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void addContentOrPicture() {

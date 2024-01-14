@@ -161,7 +161,7 @@ public class ListNewsAdminActivity extends AppCompatActivity {
                     tempNews.setKey(itemSnapshot.getKey());
                     newss.add(tempNews);
                 }
-                newsAdapter.notifyDataSetChanged();
+                newsAdapter.sortByNews();
                 alertDialog.dismiss();
             }
 
