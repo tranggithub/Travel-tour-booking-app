@@ -63,22 +63,7 @@ public class ReviewFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
-        if (user != null) {
-            databaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
-                    String avatar = userDetails.getUrlImage();
-                    Picasso.get().load(avatar).into(ivAvatar);
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getActivity(), "Lỗi người dùng", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
 
 
         // Receive data from the Bundle
@@ -136,6 +121,23 @@ public class ReviewFragment extends Fragment {
         LoadView();
     }
     private void LoadView() {
+        databaseReference = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("users");
+        if (user != null) {
+            databaseReference.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    ReadWriteUserDetails userDetails = snapshot.getValue(ReadWriteUserDetails.class);
+                    String avatar = userDetails.getUrlImage();
+                    Picasso.get().load(avatar).into(ivAvatar);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getActivity(), "Lỗi người dùng", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         DatabaseReference databaseReferenceHotel = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE_URL).getReference("Android Hotel");
         databaseReferenceHotel.child(hotel.getKey()).addValueEventListener(new ValueEventListener() {
             @Override
