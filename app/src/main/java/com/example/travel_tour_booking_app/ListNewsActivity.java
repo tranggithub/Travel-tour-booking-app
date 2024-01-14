@@ -127,7 +127,7 @@ public class ListNewsActivity extends AppCompatActivity {
                     if (tempNews.isActive())
                         newss.add(tempNews);
                 }
-                newsAdapter.notifyDataSetChanged();
+                newsAdapter.sortByNews();
                 alertDialog.dismiss();
             }
 

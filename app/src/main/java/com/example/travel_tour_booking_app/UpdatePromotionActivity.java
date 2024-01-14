@@ -186,7 +186,7 @@ public class UpdatePromotionActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(false);
                 detailPromtionList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailPromtionList.size());
-                Toast.makeText(getBaseContext(),"add content",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm nội dung",Toast.LENGTH_SHORT).show();
             }
         });
         btn_add_picture.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +195,7 @@ public class UpdatePromotionActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(true);
                 detailPromtionList.add(temp);
                 contextOrPictureUploadAdapter.notifyDataSetChanged();
-                Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm hình ảnh",Toast.LENGTH_SHORT).show();
             }
         });
     }

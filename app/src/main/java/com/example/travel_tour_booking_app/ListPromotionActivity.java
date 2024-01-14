@@ -128,7 +128,7 @@ public class ListPromotionActivity extends AppCompatActivity {
                     if (tempPromotion.isActive())
                         promotions.add(tempPromotion);
                 }
-                promotionAdapter.notifyDataSetChanged();
+                promotionAdapter.sortByNews();
                 alertDialog.dismiss();
             }
 

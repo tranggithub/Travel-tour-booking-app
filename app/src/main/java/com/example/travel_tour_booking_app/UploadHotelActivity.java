@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UploadHotelActivity extends AppCompatActivity {
     Button bt_UploadHotel;
@@ -104,20 +105,66 @@ public class UploadHotelActivity extends AppCompatActivity {
         bt_UploadHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                contextOrPictureUploadAdapter.notifyDataSetChanged();
-                for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
-                {
-                    if(item.isImage())
+                if(CheckException()){
+                    //                contextOrPictureUploadAdapter.notifyDataSetChanged();
+                    for (DetailNews item: contextOrPictureUploadAdapter.getDetailNewsList())
                     {
-                        saveDetailPicture(Uri.parse(item.getPicture()));
-                    } else {
-                        uploadOtherPictureURL.add(item);
+                        if(item.isImage())
+                        {
+                            saveDetailPicture(Uri.parse(item.getPicture()));
+                        } else {
+                            uploadOtherPictureURL.add(item);
+                        }
                     }
+                    Log.e("Check",check+"");
                 }
-                Log.e("Check",check+"");
             }
         });
     }
+
+    private boolean CheckException() {
+        //Upload Data Firebase
+        String title = et_title.getText().toString();
+        String address = et_address.getText().toString();
+        String text = et_text.getText().toString();
+        String check_in = et_check_in.getText().toString();
+        String check_out = et_check_out.getText().toString();
+        String age_free = et_age_free.getText().toString();
+        String age_addition_fee = et_age_addition_fee.getText().toString();
+        String addition_fee = et_addition_fee.getText().toString();
+
+        RadioButton selectedRadioButton = findViewById(rg_breakfast.getCheckedRadioButtonId());
+
+        List<String> checkEmtyList = new ArrayList<>();
+        checkEmtyList.add(title);
+        checkEmtyList.add(address);
+        checkEmtyList.add(text);
+        checkEmtyList.add(check_in);
+        checkEmtyList.add(check_out);
+        checkEmtyList.add(age_free);
+        checkEmtyList.add(age_addition_fee);
+        checkEmtyList.add(addition_fee);
+
+        if(Helper.hasEmptyElement(checkEmtyList)){
+
+            Toast.makeText(getBaseContext(),"Hãy nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!Helper.isValidTimeFormat(check_in) || !Helper.isValidTimeFormat(check_out)){
+            Toast.makeText(getBaseContext(),"Vui lòng nhập đúng định dạng giờ", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(selectedRadioButton==null){
+            Toast.makeText(getBaseContext(),"Vui lòng chọn chính sách về ăn sáng", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        return true;
+
+    }
+
     //Thiết lập URL cho Detail News
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -147,7 +194,7 @@ public class UploadHotelActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(false);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
-                Toast.makeText(getBaseContext(),"add content",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm nội dung",Toast.LENGTH_SHORT).show();
             }
         });
         btn_add_picture.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +203,7 @@ public class UploadHotelActivity extends AppCompatActivity {
                 DetailNews temp = new DetailNews(true);
                 detailNewsList.add(temp);
                 contextOrPictureUploadAdapter.notifyItemInserted(detailNewsList.size());
-                Toast.makeText(getBaseContext(),"add picture",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"Thêm hình ảnh",Toast.LENGTH_SHORT).show();
             }
         });
     }

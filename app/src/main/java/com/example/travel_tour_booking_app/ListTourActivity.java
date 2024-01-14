@@ -137,7 +137,7 @@ public class ListTourActivity extends AppCompatActivity {
                         }
                     }
                 }
-                placeAdapter.notifyDataSetChanged();
+                placeAdapter.sortByNews();
                 if(placeAdapter.getItemCount()==0){
                     tv_no_place.setVisibility(View.VISIBLE);
                 }

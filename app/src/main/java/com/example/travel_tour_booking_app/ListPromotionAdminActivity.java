@@ -126,7 +126,7 @@ public class ListPromotionAdminActivity extends AppCompatActivity {
                     tempPromotion.setKey(itemSnapshot.getKey());
                     promotions.add(tempPromotion);
                 }
-                promotionAdapter.notifyDataSetChanged();
+                promotionAdapter.sortByNews();
                 alertDialog.dismiss();
             }
 
