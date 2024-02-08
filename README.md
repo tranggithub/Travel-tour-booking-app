@@ -3,7 +3,7 @@
 ### Môn học
 - Tên môn học: Phát triển ứng dụng trên thiết bị di động - NT118.O12
 ### Giảng viên
-- Tên giảng viên: Trần Hồng Nghi
+- Tên giảng viên: ThS.Trần Hồng Nghi
 # Thành viên
 | Tên        |MSSV          | 
 | ------------- |-------------| 
